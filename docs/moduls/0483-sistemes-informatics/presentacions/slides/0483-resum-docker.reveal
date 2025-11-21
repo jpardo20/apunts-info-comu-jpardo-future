@@ -1,0 +1,184 @@
+# Resum Docker — 0483 Sistemes informàtics (1r DAM)
+
+**Currículum de referència:** Mòdul 0483 – *Sistemes informàtics*  
+**Resultat d’aprenentatge:** RA4 – Administra sistemes operatius multiusuari  
+**Criteris:** CA4.d, CA4.e, CA4.f  
+
+---
+
+## 1. Conceptes bàsics (1/2)
+
+* **Imatge:** plantilla immutable amb tot el necessari per executar un servei o aplicació.
+
+* **Contenidor:** instància en execució d’una imatge.
+
+* **Docker Engine:** el servei que gestiona els contenidors.
+
+* **Docker Hub:** repositori públic d’imatges oficials.
+
+----
+
+## 1. Conceptes bàsics (2/2)
+
+* **Volum:** espai del host lligat al contenidor per desar dades persistents.
+
+* **Port mapping:** permet exposar un servei del contenidor a l’exterior (ex. `-p 8080:80`).
+
+* **Diferència amb màquina virtual:** els contenidors comparteixen el mateix nucli del sistema operatiu, per tant són més lleugers i ràpids.
+
+---
+
+## 2. Comandes essencials (1/2)
+
+| Acció | Comanda |
+|:--|:--|
+| Llistar contenidors actius | `docker container ps` |
+| Llistar tots els contenidors | `docker container ps -a` |
+| Descarregar imatge | `docker image pull <nom_imatge>` |
+| Executar contenidor | `docker run -d -p 8080:80 --name <nom_contenidor> <nom_imatge>` |
+
+----
+
+## 2. Comandes essencials (2/2)
+
+| Acció | Comanda |
+|:--|:--|
+| Entrar al contenidor | `docker exec -it <nom_contenidor> bash` |
+| Aturar contenidor | `docker container stop <nom_contenidor>` |
+| Eliminar contenidor | `docker container rm <nom_contenidor>` |
+| Eliminar imatge | `docker image rmi <nom_imatge>` |
+
+---
+
+## 3. Volums i persistència
+
+* Les dades dins d’un contenidor es **perden** si s’elimina el contenidor.
+
+* Per mantenir-les, es poden **enllaçar** carpetes del **host** amb carpetes del **contenidor**:
+
+<pre>
+docker run -d -p 8080:80 -v ~/projectes/docker-nginx/html:/usr/share/nginx/html --name web nginx
+</pre>
+
+Les modificacions a **`~/projectes/docker-nginx/html`** es reflecteixen immediatament al contenidor.
+
+---
+
+## 4. Docker Compose
+
+- Eina per **definir i desplegar serveis** amb un fitxer YAML.
+
+- Exemple bàsic:
+
+```yaml
+version: "3.8"
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+```
+
+**Comandes principals:**
+<pre>
+docker compose up -d   # Arrencar contenidors/serveis
+docker compose down    # Aturar i eliminar contenidors/serveis
+</pre>
+
+**Avantatges**: configuració llegible, repetible i portable.
+
+---
+
+## 5. Seguretat i bones pràctiques
+
+- Fes servir **imatges oficials o de confiança**.
+
+- Evita executar comandes com a root dins dels contenidors.
+
+- Mantén les imatges actualitzades: `docker pull` periòdicament.
+
+- Neteja recursos no usats:
+
+<pre>
+  docker system prune
+</pre>
+
+---
+
+## 6. Control i diagnosi
+
+- Veure estat de contenidors: <pre>docker container ps</pre>
+
+
+- Consultar informació detallada: <pre>docker inspect &lt;id_contenidor></pre>
+
+
+- Veure logs: <pre>docker logs &lt;id_contenidor></pre>
+
+---
+
+## 7. Resum essencial per recordar
+| Concepte | Recorda |
+|:--|:--|
+| Imatge | plantilla immutable |
+| Contenidor | instància activa d’una imatge |
+| Volum | dades persistents fora del contenidor |
+| Port | connexió entre host i contenidor |
+| Compose | orquestració i automatització |
+| `docker ps` | mostra contenidors actius |
+| `docker exec` | entra dins del contenidor |
+| `docker compose up -d` | engega serveis definits en YAML |
+
+---
+
+## Creació d'un contenidor amb un servidor web (1/4)
+
+* Executa el contenidor:
+
+   * fent servir la imatge **`nginx`**
+   
+   * el nom del contenidor sigui **`srv-web`**
+   
+   * s'exposí el **port `8888`**:
+
+<pre>docker run -d -p 8888:80 --name srv-web nginx</pre>
+
+
+----
+
+## Creació d'un contenidor amb un servidor web (2/4)
+
+Comprova el funcionament:  
+ * Obre el navegador del teu equip i escriu:  
+<pre>http://192.168.56.&lt;XXX>:8888`</pre>
+    (on **`<XXX>`** és la ip de la vostra màquina virtual)  
+    <br>
+    <br>
+
+ * Hauries de veure la pàgina per defecte de **`Nginx`**.
+
+
+----
+
+## Creació d'un contenidor amb un servidor web (3/4)
+
+* Mostra els contenidors actius:
+
+   <pre>docker container list</pre>
+
+ * Hauries de veure llistat dels contenidors que esta en marxa.
+
+----
+
+## Creació d'un contenidor amb un servidor web (3/4)
+
+* Atura  el contenidor **`srv-web`**:
+
+   <pre>docker container stop srv-web</pre>
+
+* Elimina el contenidor **`srv-web`**:
+
+   <pre>docker container rm srv-web</pre>
+

@@ -1,0 +1,286 @@
+# Activitat 1: Desplega un servei web amb Docker
+
+<hr>
+<br>
+<a href="https://github.com/jpardo20/apunts-jpardo20/blob/main/docs/moduls/0483-sistemes-informatics/files/activitat-per-seguir-la-teoria.md" target="_blank">Activitat a seguir</a>
+
+
+---
+
+## Objectius
+
+- Entendre la diferència entre **imatge** i **contenidor**.  
+
+- Executar un **servei web real** amb **Docker**.  
+
+- Practicar la gestió de **ports** i **volums**.
+
+- Aprendre a utilitzar **`docker-compose`** per automatitzar serveis.  
+
+---
+
+## Recordatori de conceptes
+
+- Una **imatge** és una plantilla immutable (p. ex. `nginx:latest`).  
+
+- Un **contenidor** és una instància viva d’aquesta imatge.  
+
+- Els **volums** permeten guardar dades persistents.  
+
+- Els **ports** permeten accedir al servei des de fora del contenidor.  
+
+---
+
+## Part 1 – Llançament d’un servidor web
+
+1.1. Comprova que tens **`docker`** instal·lat i funcionant:
+
+
+<kbd>docker -v</kbd>
+
+----
+
+1.2. Comprova que tens **`docker compose`** instal·lat i funcionant:
+
+
+<kbd>docker compose version</kbd>
+
+----
+
+1.3. Comprova si tens algun contenidor corrent:
+
+
+<kbd>docker container list</kbd>
+----
+
+1.4. Si tens algun contenidor corrent atura'l:
+
+
+<kbd>docker container stop <container ID></kbd>
+----
+
+
+Repeteix aquesta comanda, mentre apareguin contenidors corrent.
+
+
+<kbd>docker container list</kbd>
+
+1.5. Comprova si tens algun contenidor aturat:
+
+
+<kbd>docker container list -a</kbd>
+----
+
+1.6. Si tens algun contenidor aturat esborra'l:
+
+
+<kbd>docker container rm <container ID></kbd>
+----
+
+Repeteix aquesta comanda, mentre apareguin contenidors aturats:
+
+
+<kbd>docker container list -a</kbd>
+----
+
+1.7. Comprova si tens la imatge de **nginx** descarregada:
+
+
+<kbd>docker image ls</kbd>
+----
+
+1.8. Descarrega la imatge de **nginx**:
+
+<kbd>docker pull nginx</kbd>
+----
+
+1.9. Executa-la exposant el **port `8888`**:
+
+<kbd>docker run -d -p 8888:80 --name web1 nginx</kbd>
+----
+
+1.10. Comprova el funcionament:  
+   - Obre el navegador del teu equip i escriu:  
+      `http://192.168.56.101:8888`  
+   - Hauries de veure la pàgina per defecte de Nginx.
+
+----
+
+1.11. Mostra els contenidors actius:
+
+<kbd>docker container list</kbd>
+----
+
+1.12. Atura i elimina el contenidor:
+
+* <kbd>docker container stop web1</kbd>
+
+* <kbd>docker container rm web1</kbd>
+
+---
+
+## Part 2 – Afegir contingut personalitzat
+
+2.1. Crea un directori de treball:
+
+* <kbd>mkdir -p ~/projectes/docker-nginx/html</kbd>
+
+* <kbd>cd ~/projectes/docker-nginx</kbd>
+
+----
+
+2.2. Crea una pàgina HTML pròpia:
+
+<kbd>echo "&lt;h1>Hola, sóc el servidor de <em>$(whoami)</em>&lt;/h1>" > html/index.html</kbd>
+
+----
+
+
+2.3. Executa Nginx amb un volum:
+
+<kbd>docker run -d -p 8888:80 -v ~/projectes/docker-nginx/html:/usr/share/nginx/html --name web2 nginx</kbd>
+
+----
+
+
+2.4. Comprova al navegador:  
+
+* <kbd>http://192.168.56.101:8888</kbd>
+
+* Ara hauries de veure la teva pròpia pàgina.
+
+----
+
+
+2.5. Mostra els contenidors actius:
+
+<kbd>docker container list</kbd>
+
+----
+
+
+2.6. Atura i elimina el contenidor:
+
+* <kbd>docker container stop web2</kbd>
+
+* <kbd>docker container rm web2</kbd>
+
+---
+
+## Part 3 – Introducció a docker-compose
+
+3.1. Crea el fitxer `docker-compose.yml` dins `~/projectes/docker-nginx`:
+```yaml
+   version: "3.8"
+   services:
+     web:
+       image: nginx
+       ports:
+         - "8888:80"
+       volumes:
+         - ./html:/usr/share/nginx/html
+```
+
+----
+
+3.2. Llença el servei:
+
+<kbd>docker compose up -d</kbd>
+
+----
+
+3.3. Comprova el funcionament:
+
+<kbd>docker container ls</kbd>
+
+
+----
+
+3.4. Obre el navegador:
+
+<kbd>http://192.168.56.101:8888</kbd>
+
+
+----
+
+3.5. Mostra els contenidors actius:
+
+<kbd>docker container ls</kbd>
+
+
+----
+
+3.6. Atura i elimina els serveis:
+
+<kbd>docker compose down</kbd>
+
+
+----
+
+3.7. Mostra els contenidors actius:
+
+<kbd>docker container list</kbd>
+---
+
+## Part 4 – Traducció
+
+
+Cal fer <a href="https://github.com/jpardo20/apunts-jpardo20/blob/main/docs/moduls/0483-sistemes-informatics/files/activitat-per-seguir-la-teoria.md#2-activitat-per-seguir-la-teoria" target="_blank">2. Activitat per seguir la teoria</a>
+
+4.1. Edita el teu fitxer
+
+<kbd>~/projectes/docker-nginx/getting-started-master/app/src/static/js/app.js</kbd>
+
+ per fer les traduccions:
+
+----
+
+Cal que traduiu les següent cadenes:
+
+* **`New Item`** -> **`Nou element`**
+
+* **`No items yet! Add one above!`** -> **`Encara no hi ha articles! Afegeix-ne un a sobre!`**
+
+* **`Add Item`** -> **`Afegir element`**
+
+----
+
+Com ha de quedar
+
+![alt text](image.png)
+
+----
+
+4.2. Quan funcioni, fes:
+
+<kbd>docker compose down<kbd>
+
+<kbd>tar czf projecte_web.tar.gz ~/projectes/docker-nginx<kbd>
+
+<kbd>python3 -m http.server 8000</kbd>
+
+Al teu portàtil obre el navegador i ves a:
+
+
+<kbd>http://192.168.56.101:8888</kbd>
+
+----
+
+4.3. Prepara l’arxiu per entregar-lo l' aula virtual.
+
+---
+
+## Avaluació
+
+| Criteri | Evidència | Pes |
+|:--|:--|:--:|
+| Execució correcta del contenidor `nginx` | Comprovació al navegador | 25% |
+| Ús correcte de volums i ports | Comandes correctes | 25% |
+| Configuració amb `docker-compose` funcional | Fitxer `docker-compose.yml` vàlid | 25% |
+| Pàgina web personalitzada | Contingut visible i original | 25% |
+
+---
+
+* **Mòdul:** 0483 – Sistemes informàtics  
+* **Resultat d’aprenentatge:** RA4 – Administra sistemes operatius multiusuari  
+* **Criteris d’avaluació:** CA4.d, CA4.e, CA4.f  

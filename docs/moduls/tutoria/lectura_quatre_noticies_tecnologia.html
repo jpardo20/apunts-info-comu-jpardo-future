@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lectura i qüestionari: 4 notícies de tecnologia (tria’n almenys 2) — v2</title>
+<style>
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 1024px; margin: 0 auto; padding: 24px; }
+  h1, h2, h3 { line-height: 1.2; }
+  .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin: 16px 0; }
+  .muted { color: #666; font-size: 0.95rem; }
+  .question { margin-top: 16px; }
+  button { padding: 10px 16px; border-radius: 10px; border: 1px solid #ccc; cursor: pointer; }
+  input[type="text"], textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+  .small { font-size: .9rem; }
+  .pill { display:inline-block; padding: 3px 8px; border:1px solid #999; border-radius:999px; margin-right:8px; font-size: .85rem; }
+  .footer { margin-top: 24px; font-size: .9rem; color:#666; }
+  .required::after { content:" *"; color:#c00; }
+  .row { display:flex; gap: 12px; flex-wrap: wrap; }
+  .row > div { flex: 1 1 260px; min-width: 260px; }
+  details > summary { cursor: pointer; }
+  .sel-list label { display: block; margin: 6px 0; }
+  .warn { padding: 10px; background: #fff7e6; border: 1px solid #ffe1a3; border-radius: 8px; }
+  .hidden { display:none; }
+  .ok { color: #0a7; font-weight:600; }
+  .bad { color: #c00; font-weight:600; }
+  .section-title { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<h1>Lectura i qüestionari: 4 notícies de tecnologia (v2)</h1>
+<p class="muted">Data: <span id="todayISO">2025-11-14</span> · <strong>Respon com a mínim 2 notícies</strong> (pots fer-ne 3 o 4). No hi ha correcció automàtica; només comprovació de camps.</p>
+
+<div class="card">
+  <h2>Identificació</h2>
+  <div class="row">
+    <div>
+      <label class="required">Nom i cognoms</label>
+      <select id="alumneSelect" required></select>
+    </div>
+    <div style="display:none;">
+      <label>Si no surts a la llista, escriu el teu nom</label>
+      <input type="text" id="alumneManual" placeholder="Cognom1 Cognom2, Nom" />
+    </div>
+  </div>
+</div>
+
+<div class="card sel-list">
+  <h2>Tria les notícies que faràs (mínim 2)</h2>
+  <label><input type="checkbox" id="sel_nvidia"> (1) NVIDIA invertirà 1.000 M$ a Nokia per impulsar l'AI‑RAN (28/10/2025) — <a href="https://nvidianews.nvidia.com/news/nvidia-nokia-ai-telecommunications" target="_blank" rel="noopener">nota oficial</a></label>
+  <label><input type="checkbox" id="sel_ai_act"> (2) La Comissió Europea prepara esmenes a l'AI Act per donar més seguretat jurídica (11/2025) — <a href="https://www.euronews.com/my-europe/2025/11/12/eu-tech-chief-eyes-ai-act-amendments-to-create-legal-certainty" target="_blank" rel="noopener">Euronews</a></label>
+  <label><input type="checkbox" id="sel_suncatcher"> (3) Google vol portar centres de dades d'IA a l'espai (Projecte Suncatcher) (06/11/2025) — <a href="https://www.xataka.com/energia/centros-datos-ia-consumen-demasiada-energia-plan-moonshot-google-llevarlos-al-espacio" target="_blank" rel="noopener">Xataka</a></label>
+  <label><input type="checkbox" id="sel_starfinder"> (4) 'Starfinder: Afterlight' rebenta el micromecenatge (05–06/11/2025) — <a href="https://www.vilaweb.cat/noticies/starfinder-afterlight-videojoc-catala-rol/" target="_blank" rel="noopener">VilaWeb</a></label>
+  <p id="sel_counter" class="small muted"></p>
+</div>
+
+<!-- (1) NVIDIA x Nokia -->
+<details id="sec_nvidia" class="card hidden">
+  <summary class="section-title"><strong>(1) NVIDIA x Nokia: AI‑RAN i 6G</strong></summary>
+  <p class="muted">Llegeix la font principal (nota oficial, 28/10/2025) i respon totes les preguntes.</p>
+  <form id="quiz_nvidia">
+    <div class="question"><label class="required"><strong>1.1)</strong> Qui inverteix en qui?</label><br>
+      <label><input type="radio" name="nv_q1" value="a"> Nokia inverteix 1.000 M$ a NVIDIA</label><br>
+      <label><input type="radio" name="nv_q1" value="b"> NVIDIA inverteix 1.000 M$ a Nokia</label><br>
+      <label><input type="radio" name="nv_q1" value="c"> És un préstec del BEI</label>
+    </div>
+    <div class="question"><label class="required"><strong>1.2)</strong> L'AI‑RAN s'enfoca a...</label><br>
+      <label><input type="radio" name="nv_q2" value="a"> Consoles de videojocs</label><br>
+      <label><input type="radio" name="nv_q2" value="b"> IA a les xarxes 5G‑Advanced i 6G</label><br>
+      <label><input type="radio" name="nv_q2" value="c"> Substituir fibra per satèl·lits</label>
+    </div>
+    <div class="question"><label class="required"><strong>1.3)</strong> Quines generacions de xarxa s'esmenten?</label><br>
+      <label><input type="radio" name="nv_q3" value="a"> Només 4G</label><br>
+      <label><input type="radio" name="nv_q3" value="b"> 5G‑Advanced i 6G</label><br>
+      <label><input type="radio" name="nv_q3" value="c"> Només Wi‑Fi 7</label>
+    </div>
+    <div class="question"><label class="required"><strong>1.4)</strong> Beneficis esperats</label><br>
+      <label><input type="radio" name="nv_q4" value="a"> Menys latència, més eficiència i automatització a l'edge</label><br>
+      <label><input type="radio" name="nv_q4" value="b"> Cap impacte per als operadors</label><br>
+      <label><input type="radio" name="nv_q4" value="c"> Eliminar totes les antenes</label>
+    </div>
+    <div class="question"><label class="required"><strong>1.5)</strong> Components de NVIDIA a l'acord</label><br>
+      <label><input type="radio" name="nv_q5" value="a"> GPUs, DPUs i SDKs</label><br>
+      <label><input type="radio" name="nv_q5" value="b"> Només CPUs</label><br>
+      <label><input type="radio" name="nv_q5" value="c"> PLCs industrials</label>
+    </div>
+    <div class="question"><label class="required"><strong>1.6)</strong> V/F · L'objectiu és accelerar l'Open RAN amb IA</label><br>
+      <label><input type="radio" name="nv_q6" value="true"> Vertader</label><br>
+      <label><input type="radio" name="nv_q6" value="false"> Fals</label>
+    </div>
+    <div class="question"><label class="required"><strong>1.7)</strong> V/F · El projecte no té res a veure amb xarxes mòbils</label><br>
+      <label><input type="radio" name="nv_q7" value="true"> Vertader</label><br>
+      <label><input type="radio" name="nv_q7" value="false"> Fals</label>
+    </div>
+    <div class="question"><label class="required"><strong>1.8)</strong> Explica un cas d'ús d'IA al RAN (2–3 frases)</label>
+      <textarea name="nv_q8" rows="4" data-min="120" placeholder="Ex.: optimització d'energia, planificació dinàmica d'espectre..."></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>1.9)</strong> Un possible repte/riscs d'AI‑RAN</label>
+      <textarea name="nv_q9" rows="3" data-min="100" placeholder="Ex.: biaixos, privadesa, cost energètic..."></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>1.10)</strong> Resum i opinió (mínim 3 frases)</label>
+      <textarea name="nv_q10" rows="5" data-min="160" placeholder="Resumeix i dona la teva opinió."></textarea>
+    </div>
+  </form>
+</details>
+
+<!-- (2) AI Act -->
+<details id="sec_ai_act" class="card hidden">
+  <summary class="section-title"><strong>(2) UE: esmenes a l'AI Act</strong></summary>
+  <p class="muted">Llegeix les fonts (Euronews, 12/11/2025) i respon totes les preguntes.</p>
+  <form id="quiz_ai_act">
+    <div class="question"><label class="required"><strong>2.1)</strong> Quan es volen presentar les esmenes?</label><br>
+      <label><input type="radio" name="ai_q1" value="a"> 19 de novembre de 2025</label><br>
+      <label><input type="radio" name="ai_q1" value="b"> 1 de gener de 2026</label><br>
+      <label><input type="radio" name="ai_q1" value="c"> Ja s'han aplicat</label>
+    </div>
+    <div class="question"><label class="required"><strong>2.2)</strong> Objectiu principal</label><br>
+      <label><input type="radio" name="ai_q2" value="a"> Més incertesa</label><br>
+      <label><input type="radio" name="ai_q2" value="b"> Seguretat jurídica i ajust de terminis</label><br>
+      <label><input type="radio" name="ai_q2" value="c"> Derogar l'AI Act</label>
+    </div>
+    <div class="question"><label class="required"><strong>2.3)</strong> Àmbits afectats</label><br>
+      <label><input type="radio" name="ai_q3" value="a"> Sistemes d'alt risc i models bàsics (transparència)</label><br>
+      <label><input type="radio" name="ai_q3" value="b"> Només videojocs</label><br>
+      <label><input type="radio" name="ai_q3" value="c"> Només electrodomèstics</label>
+    </div>
+    <div class="question"><label class="required"><strong>2.4)</strong> Qui es beneficiaria més de seguretat jurídica?</label><br>
+      <label><input type="radio" name="ai_q4" value="a"> PIMES, startups i sectors regulats</label><br>
+      <label><input type="radio" name="ai_q4" value="b"> Només gamers</label><br>
+      <label><input type="radio" name="ai_q4" value="c"> Ningú</label>
+    </div>
+    <div class="question"><label class="required"><strong>2.5)</strong> V/F · Les esmenes deroguen l'AI Act</label><br>
+      <label><input type="radio" name="ai_q5" value="true"> Vertader</label><br>
+      <label><input type="radio" name="ai_q5" value="false"> Fals</label>
+    </div>
+    <div class="question"><label class="required"><strong>2.6)</strong> V/F · Podrien ajustar-se els terminis per a models bàsics</label><br>
+      <label><input type="radio" name="ai_q6" value="true"> Vertader</label><br>
+      <label><input type="radio" name="ai_q6" value="false"> Fals</label>
+    </div>
+    <div class="question"><label class="required"><strong>2.7)</strong> Exemple de “alt risc”</label><br>
+      <label><input type="radio" name="ai_q7" value="a"> Identificació biomètrica o contractació</label><br>
+      <label><input type="radio" name="ai_q7" value="b"> Streaming de vídeo</label><br>
+      <label><input type="radio" name="ai_q7" value="c"> Un editor de text</label>
+    </div>
+    <div class="question"><label class="required"><strong>2.8)</strong> Pros i contres d'ajustar l'AI Act ara (2–3 frases)</label>
+      <textarea name="ai_q8" rows="4" data-min="140"></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>2.9)</strong> Impacte per a una PIME que vol llançar un producte amb IA</label>
+      <textarea name="ai_q9" rows="4" data-min="120"></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>2.10)</strong> Resum i opinió</label>
+      <textarea name="ai_q10" rows="5" data-min="160"></textarea>
+    </div>
+  </form>
+</details>
+
+<!-- (3) Suncatcher -->
+<details id="sec_suncatcher" class="card hidden">
+  <summary class="section-title"><strong>(3) Google Suncatcher: data centers d'IA en òrbita</strong></summary>
+  <p class="muted">Llegeix Xataka (06/11/2025) i respon totes les preguntes.</p>
+  <form id="quiz_suncatcher">
+    <div class="question"><label class="required"><strong>3.1)</strong> Quin problema vol mitigar?</label><br>
+      <label><input type="radio" name="sc_q1" value="a"> Latència de fibra</label><br>
+      <label><input type="radio" name="sc_q1" value="b"> Consum energètic dels centres d'IA</label><br>
+      <label><input type="radio" name="sc_q1" value="c"> Manca de personal</label>
+    </div>
+    <div class="question"><label class="required"><strong>3.2)</strong> Avantatge energètic clau</label><br>
+      <label><input type="radio" name="sc_q2" value="a"> Energia solar quasi contínua</label><br>
+      <label><input type="radio" name="sc_q2" value="b"> Vent constant</label><br>
+      <label><input type="radio" name="sc_q2" value="c"> Geotèrmia</label>
+    </div>
+    <div class="question"><label class="required"><strong>3.3)</strong> Comunicació entre satèl·lits</label><br>
+      <label><input type="radio" name="sc_q3" value="a"> Cable de coure</label><br>
+      <label><input type="radio" name="sc_q3" value="b"> Enllaços òptics làser</label><br>
+      <label><input type="radio" name="sc_q3" value="c"> Fums de senyal</label>
+    </div>
+    <div class="question"><label class="required"><strong>3.4)</strong> Proves amb prototips</label><br>
+      <label><input type="radio" name="sc_q4" value="a"> Abans de 2027</label><br>
+      <label><input type="radio" name="sc_q4" value="b"> 2035</label><br>
+      <label><input type="radio" name="sc_q4" value="c"> Ja funcionen avui</label>
+    </div>
+    <div class="question"><label class="required"><strong>3.5)</strong> On col·locarien les TPUs?</label><br>
+      <label><input type="radio" name="sc_q5" value="a"> Antàrtida</label><br>
+      <label><input type="radio" name="sc_q5" value="b"> Òrbita heliosíncrona</label><br>
+      <label><input type="radio" name="sc_q5" value="c"> Vaixells data center</label>
+    </div>
+    <div class="question"><label class="required"><strong>3.6)</strong> V/F · Suncatcher elimina les emissions dels llançaments</label><br>
+      <label><input type="radio" name="sc_q6" value="true"> Vertader</label><br>
+      <label><input type="radio" name="sc_q6" value="false"> Fals</label>
+    </div>
+    <div class="question"><label class="required"><strong>3.7)</strong> V/F · La latència i les finestres d'enllaç a Terra poden ser un repte</label><br>
+      <label><input type="radio" name="sc_q7" value="true"> Vertader</label><br>
+      <label><input type="radio" name="sc_q7" value="false"> Fals</label>
+    </div>
+    <div class="question"><label class="required"><strong>3.8)</strong> Esmenta 1 risc o repte (tècnic o ambiental)</label>
+      <textarea name="sc_q8" rows="4" data-min="110"></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>3.9)</strong> Proposa una alternativa per millorar l'eficiència energètica sense anar a l'espai</label>
+      <textarea name="sc_q9" rows="4" data-min="110"></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>3.10)</strong> Resum i opinió</label>
+      <textarea name="sc_q10" rows="5" data-min="160"></textarea>
+    </div>
+  </form>
+</details>
+
+<!-- (4) Starfinder -->
+<details id="sec_starfinder" class="card hidden">
+  <summary class="section-title"><strong>(4) 'Starfinder: Afterlight' i el micromecenatge</strong></summary>
+  <p class="muted">Llegeix VilaWeb (05–06/11/2025) i respon totes les preguntes.</p>
+  <form id="quiz_starfinder">
+    <div class="question"><label class="required"><strong>4.1)</strong> Objectiu i temps per assolir-lo</label><br>
+      <label><input type="radio" name="sf_q1" value="a"> 7 dies · 20.000 €</label><br>
+      <label><input type="radio" name="sf_q1" value="b"> 80 minuts · 75.000 €</label><br>
+      <label><input type="radio" name="sf_q1" value="c"> 24 h · 150.000 €</label>
+    </div>
+    <div class="question"><label class="required"><strong>4.2)</strong> Recaptació aproximada</label><br>
+      <label><input type="radio" name="sf_q2" value="a"> ~800.000 €</label><br>
+      <label><input type="radio" name="sf_q2" value="b"> ~80.000 €</label><br>
+      <label><input type="radio" name="sf_q2" value="c"> ~8.000.000 €</label>
+    </div>
+    <div class="question"><label class="required"><strong>4.3)</strong> Idiomes previstos</label><br>
+      <label><input type="radio" name="sf_q3" value="a"> Només anglès</label><br>
+      <label><input type="radio" name="sf_q3" value="b"> Català, castellà i anglès (menús/UI); diàlegs en anglès</label><br>
+      <label><input type="radio" name="sf_q3" value="c"> Tots els idiomes europeus amb doblatge</label>
+    </div>
+    <div class="question"><label class="required"><strong>4.4)</strong> Accés anticipat i llançament</label><br>
+      <label><input type="radio" name="sf_q4" value="a"> 2026T2 · 2027T2</label><br>
+      <label><input type="radio" name="sf_q4" value="b"> 2025T4 · 2026T1</label><br>
+      <label><input type="radio" name="sf_q4" value="c"> 2028T1 · 2029T3</label>
+    </div>
+    <div class="question"><label class="required"><strong>4.5)</strong> Mecenes aproximats</label><br>
+      <label><input type="radio" name="sf_q5" value="a"> > 13.000</label><br>
+      <label><input type="radio" name="sf_q5" value="b"> ~1.300</label><br>
+      <label><input type="radio" name="sf_q5" value="c"> ~130</label>
+    </div>
+    <div class="question"><label class="required"><strong>4.6)</strong> V/F · Hi haurà doblatge en català</label><br>
+      <label><input type="radio" name="sf_q6" value="true"> Vertader</label><br>
+      <label><input type="radio" name="sf_q6" value="false"> Fals</label>
+    </div>
+    <div class="question"><label class="required"><strong>4.7)</strong> Gènere i univers del joc</label><br>
+      <label><input type="radio" name="sf_q7" value="a"> Gestor de futbol</label><br>
+      <label><input type="radio" name="sf_q7" value="b"> RPG narratiu de ciència-ficció basat en Starfinder</label><br>
+      <label><input type="radio" name="sf_q7" value="c"> Curses d'arcade</label>
+    </div>
+    <div class="question"><label class="required"><strong>4.8)</strong> Dos factors de l'èxit</label>
+      <textarea name="sf_q8" rows="4" data-min="110"></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>4.9)</strong> De què va el joc (1–2 frases)</label>
+      <textarea name="sf_q9" rows="3" data-min="100"></textarea>
+    </div>
+    <div class="question"><label class="required"><strong>4.10)</strong> Resum i opinió</label>
+      <textarea name="sf_q10" rows="5" data-min="160"></textarea>
+    </div>
+  </form>
+</details>
+
+<div class="card">
+  <button type="button" onclick="downloadResults()">Descarrega resultats (.json)</button>
+  <span id="status" class="pill"></span>
+  <div id="feedback" class="small"></div>
+</div>
+
+<div class="footer">
+  <div class="small">Referències: NVIDIA x Nokia (28/10/2025), Euronews (12/11/2025) sobre esmenes AI Act, Xataka (06/11/2025) Suncatcher, VilaWeb (05–06/11/2025) Starfinder.</div>
+</div>
+
+<script id="alumnes_data" type="application/json">
+{
+    "meta": {
+        "curs": "2025-2026",
+        "centre": "Digitechfp"
+    },
+    "alumnes": [
+        [
+                        {
+                "firstname": "Lexter",
+                "lastname": "Abe Abag",
+                "email": "teralex142@digitechfp.com"
+            },
+            {
+                "firstname": "Berta",
+                "lastname": "Arenas Del Amo",
+                "email": "Berta.arenas2007@digitechfp.com"
+            },
+            {
+                "firstname": "Daniel",
+                "lastname": "Ciurana Jiménez",
+                "email": "itzciujis@digitechfp.com"
+            },
+            {
+                "firstname": "Juan Manuel",
+                "lastname": "Galán Pérez",
+                "email": "juanmagalan2007@digitechfp.com"
+            },
+            {
+                "firstname": "Lem Gerardo",
+                "lastname": "Quilca Rodríguez",
+                "email": "lemquilca22@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Gonzalez Ortega",
+                "email": "gonzalezHugoortega@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Martínez Santos",
+                "email": "hugomartinez310707@digitechfp.com"
+            },
+            {
+                "firstname": "Denise Andrea",
+                "lastname": "Name Ramírez",
+                "email": "dnameramirez@digitechfp.com"
+            },
+            {
+                "firstname": "David Santiago",
+                "lastname": "Rincón Mendez",
+                "email": "santisalserin.sr@digitechfp.com"
+            },
+            {
+                "firstname": "Carlos",
+                "lastname": "Ruiz Montesinos",
+                "email": "karlosruizmo@digitechfp.com"
+            },
+            {
+                "firstname": "Robinson Javier",
+                "lastname": "Tituaña Criollo",
+                "email": "itsjavii1610@digitechfp.com"
+            },
+            {
+                "firstname": "Marc",
+                "lastname": "López Vivies",
+                "email": "marclopezvives6@digitechfp.com"
+            },
+            {
+                "firstname": "Pau",
+                "lastname": "Díaz López",
+                "email": "paudiazlopez09@digitechfp.com"
+            },
+            {
+                "firstname": "Merouan",
+                "lastname": "Kiass",
+                "email": "kiassmerouan@digitechfp.com"
+            },
+            {
+                "firstname": "Antonia Lorena",
+                "lastname": "Cracana Cracana",
+                "email": "lorenacracana14@digitechfp.com"
+            },
+            {
+                "firstname": "Clemente",
+                "lastname": "Ramos Guiterrez",
+                "email": "clementeramosgutierrez@digitechfp.com"
+            },
+            {
+                "firstname": "Kristina",
+                "lastname": "Velkovska Kucinic",
+                "email": "kristina.velkovska.kucinic@digitechfp.com"
+            },
+            {
+                "firstname": "Joao Daniel",
+                "lastname": "De Paiva Oliveira",
+                "email": "joaodaniel.jd@digitechfp.com"
+            }
+        ]
+    ]
+}
+</script>
+
+<script>
+function slugify(s) { return s.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-zA-Z0-9]+/g, '_').replace(/^_+|_+$/g, '').toLowerCase(); }
+function getTodayISO() { return new Date().toISOString().slice(0,10); }
+function readAlumnes() {
+  try {
+    const raw = document.getElementById('alumnes_data').textContent;
+    const obj = JSON.parse(raw);
+    let arr = [];
+    if (Array.isArray(obj.alumnes)) { if (Array.isArray(obj.alumnes[0])) arr = obj.alumnes[0]; else arr = obj.alumnes; }
+    arr = arr.map(a => ({ firstname: a.firstname||'', lastname: a.lastname||'', email: a.email||'' })).sort((a,b) => (a.lastname.localeCompare(b.lastname,'ca') || a.firstname.localeCompare(b.firstname,'ca')));
+    return { meta: obj.meta || {}, alumnes: arr };
+  } catch(e) { console.error(e); return { meta: {}, alumnes: [] }; }
+}
+function populateSelect() {
+  const { alumnes } = readAlumnes();
+  const sel = document.getElementById('alumneSelect');
+  sel.innerHTML = '<option value="">— Selecciona el teu nom —</option>';
+  for (const a of alumnes) {
+    const opt = document.createElement('option');
+    opt.value = a.email || (a.lastname + ', ' + a.firstname);
+    opt.textContent = (a.lastname + ', ' + a.firstname).trim();
+    opt.dataset.firstname = a.firstname; opt.dataset.lastname = a.lastname; opt.dataset.email = a.email;
+    sel.appendChild(opt);
+  }
+  const optAlt = document.createElement('option');
+  optAlt.value = '__ALTRE__'; optAlt.textContent = '— No hi sóc (escriure manualment) —';
+  sel.appendChild(optAlt);
+}
+function onSelectChange() {
+  const sel = document.getElementById('alumneSelect'); const other = document.getElementById('alumneManual');
+  if (sel.value === '__ALTRE__') { other.parentElement.style.display = 'block'; other.required = true; } 
+  else { other.value = ''; other.required = false; other.parentElement.style.display = 'none'; }
+}
+function updateVisibility() {
+  const pairs = [['sel_nvidia','sec_nvidia'],['sel_ai_act','sec_ai_act'],['sel_suncatcher','sec_suncatcher'],['sel_starfinder','sec_starfinder']];
+  let count = 0;
+  for (const [chk, sec] of pairs) {
+    const c = document.getElementById(chk); const s = document.getElementById(sec);
+    if (c.checked) { s.classList.remove('hidden'); count++; } else { s.classList.add('hidden'); }
+  }
+  document.getElementById('sel_counter').textContent = "Notícies seleccionades: " + count + " (mínim 2)";
+}
+function countSelectedArticles() { return ['sel_nvidia','sel_ai_act','sel_suncatcher','sel_starfinder'].filter(id => document.getElementById(id).checked).length; }
+function ensureAtLeastTwoSelected() { const n = countSelectedArticles(); if (n < 2) { alert('Has de seleccionar com a mínim 2 notícies.'); return false; } return true; }
+function validateSection(formId) {
+  const form = document.getElementById(formId);
+  const missing = [];
+  const radios = form.querySelectorAll('input[type="radio"]');
+  const groups = Array.from(new Set(Array.from(radios).map(r => r.name)));
+  for (const name of groups) { if (!form.querySelector('input[name="'+name+'"]:checked')) missing.push(name.toUpperCase()); }
+  const texts = form.querySelectorAll('textarea[data-min]');
+  for (const t of texts) { const min = parseInt(t.dataset.min || '0', 10); const v = (t.value||'').trim(); if (v.length < min) missing.push((t.name||'text') + " ("+v.length+"/"+min+")"); }
+  const data = new FormData(form); const o = {}; for (let [k,v] of data.entries()) o[k]=v; return { missing, answers:o };
+}
+function downloadResults() {
+  const status = document.getElementById('status'); const feedback = document.getElementById('feedback');
+  status.textContent = ""; feedback.textContent = "";
+  if (!ensureAtLeastTwoSelected()) return;
+  const sel = document.getElementById('alumneSelect'); let student = { firstname:'', lastname:'', email:'', display:'' };
+  if (!sel.value) { alert('Si us plau, tria el teu nom.'); return; }
+  if (sel.value === '__ALTRE__') { const manual = (document.getElementById('alumneManual').value||'').trim(); if (!manual) { alert('Escriu el teu nom complet.'); return; } student.display = manual; }
+  else { const opt = sel.selectedOptions[0]; student.firstname = opt.dataset.firstname||''; student.lastname = opt.dataset.lastname||''; student.email = opt.dataset.email||sel.value; student.display = (opt.textContent||'').trim(); }
+  const selected = { nvidia: sel_nvidia.checked, ai_act: sel_ai_act.checked, suncatcher: sel_suncatcher.checked, starfinder: sel_starfinder.checked };
+  let allMissing = []; let answers = {};
+  if (selected.nvidia) { const r = validateSection('quiz_nvidia'); if (r.missing.length) allMissing.push("NVIDIA/Nokia: "+r.missing.join(', ')); answers.nvidia = r.answers; }
+  if (selected.ai_act) { const r = validateSection('quiz_ai_act'); if (r.missing.length) allMissing.push("AI Act: "+r.missing.join(', ')); answers.ai_act = r.answers; }
+  if (selected.suncatcher) { const r = validateSection('quiz_suncatcher'); if (r.missing.length) allMissing.push("Suncatcher: "+r.missing.join(', ')); answers.suncatcher = r.answers; }
+  if (selected.starfinder) { const r = validateSection('quiz_starfinder'); if (r.missing.length) allMissing.push("Starfinder: "+r.missing.join(', ')); answers.starfinder = r.answers; }
+  if (allMissing.length) { status.textContent = "Falten respostes en algunes preguntes."; status.className="pill bad"; feedback.textContent = allMissing.join(" · "); return; }
+  else { status.textContent = "Validació correcta. Pots descarregar el fitxer."; status.className="pill ok"; }
+  const payload = { meta: { data: getTodayISO(), combo_form: "4 notícies tecnologia (tria’n almenys 2) — v2" }, selected, student, answers };
+  const jsonStr = JSON.stringify(payload, null, 2); const blob = new Blob([jsonStr], {type: 'application/json'});
+  const who = student.display || (student.lastname + ' ' + student.firstname) || 'alumne';
+  const fname = "resultats_4noticies_v2_" + getTodayISO() + "_" + slugify(who) + ".json";
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname; a.click(); URL.revokeObjectURL(a.href);
+}
+window.addEventListener('DOMContentLoaded', () => {
+  populateSelect(); document.getElementById('alumneSelect').addEventListener('change', onSelectChange);
+  ['sel_nvidia','sel_ai_act','sel_suncatcher','sel_starfinder'].forEach(id => document.getElementById(id).addEventListener('change', updateVisibility));
+  updateVisibility();
+  const dateEl = document.getElementById('todayISO'); if (dateEl) dateEl.textContent = getTodayISO();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,574 @@
+ÌNDEX
+
+<details>
+  <summary>De l'1 al 5</summary>
+
+* [MER 1: Cadastre de Granollers ](#mer-1-cadastre-de-granollers)
+
+* [MER 3: Carreteres del País](#mer-3-carreteres-del-país--12)
+
+* [MER 4: Informatització entitat bancària](#mer-4-informatització-entitat-bancària-12)
+
+* [MER 5: Agència de viatges](#mer-5-agència-de-viatges--22)
+
+</details>
+<details>
+  <summary>Del 6 al 10</summary>
+
+* [MER 6: Reserves lloguer d'automòbils](#mer-6-reserves-lloguer-dautomòbils--12)
+
+* [MER 7: Campionat mundial de futbol](#mer-7-campionat-mundial-de-futbol-12)
+
+* [MER 8: Gestió de les línies de metro](#mer-8-gestió-de-les-línies-de-metro--12)
+
+* [MER 9: Empresa de fabricació de motors](#mer-9-empresa-de-fabricació-de-motors-12)
+
+* [MER 10: Organització d'una universitat](#mer-10-organització-duna-universitat)
+
+</details>
+<details>
+  <summary>Del 10 al 15</summary>
+
+* [MER 11: Los Pollos Hermanos](#mer-11-los-pollos-hermanos-13)
+
+* [MER 12: Distribuïdor de cigarrets](#mer-12-distribuïdor-de-cigarrets-13)
+
+* [MER 13: Agència de selecció de personal](#mer-13-agència-de-selecció-de-personal-14)
+
+* [MER 14: Col·lecció de papallones](#mer-14-collecció-de-papallones-13)
+
+* [MER 15: L’esportiu de Barcelona](#mer-15-lesportiu-de-barcelona-13)
+
+</details>
+
+<details>
+  <summary>Del 15 al 19</summary>
+
+* [MER 16: Martínez i fills](#mer-16-martínez-i-fills-13)
+
+* [MER 17: Agències en franquícies a TECHNOHOUSE](#mer-17-agències-en-franquícies-a-technohouse-1)
+
+* [MER 18: Reserves lloguer d'automòbils (segona versió)](#mer-18-reserves-lloguer-dautomòbils-segona-versió-12)
+
+* [MER 19: Control projectes i recursos humans](#mer-19-control-projectes-i-recursos-humans-13)
+
+</details>
+
+---
+
+## MER 1: Cadastre de Granollers (1/3)
+
+L'ajuntament de Granollers vol fer el cadastre del seu municipi, per aquest motiu ens ha proporcionat la següent informació:
+
+ * En el municipi hi ha una sèrie de zones urbanes (**barris**) en les quals s'han **<span class="underline">edificat</span>** un seguit d'**habitatges** (evidentment un habitatge només pot estar en una zona urbana).
+
+ * Una persona habita en un únic habitatge.
+
+ * Cada **habitatge** pot **<span class="underline">tenir</span>** **més d'un** **propietari**. (Una persona pot ser propietària de més d'un habitatge).
+
+ * Una **persona** pot ser **<span class="underline">habitant</span>**, propietari o ambdues coses d'un **habitatge**.
+
+----
+
+#### MER 2: Cadastre de Granollers  (2/3)
+
+ * Un habitatge pot ser de dos tipus, o pis o casa particular.
+
+ * De les persones ens interessa conèixer el DNI (clau primària), el nom i els cognoms.
+
+ * De les zones urbanes ens interessa conèixer el nom.
+
+ * Dels **habitatges** ens interessa conèixer el carrer, el número, el codi postal, els metres quadrats habitables, el tipus (pis o casa), la planta i la porta.
+
+----
+
+#### MER 2: Cadastre de Granollers  (3/3)
+
+### Es demana:
+
+ * Dissenyar un esquema **M**odel **E**ntitat **R**elació (**MER**) que reculli la informació de l'enunciat.
+
+---
+
+## MER 3: Carreteres del País  (1/2)
+
+Es vol dissenyar una base de dades que contingui la informació relativa a totes les carreteres d'un determinat país. Es demana realitzar el disseny en el model E/R, sabent que:
+
+ * En aquest país les **carreteres** estan <span class="underline">dividides</span> en **trams**.
+
+ * Un **tram** sempre pertany a una única carretera i no pot canviar de carretera.
+
+ * Un tram pot passar per diversos termes municipals, sent una dada d'interès el quilòmetre del tram pel qual **entra** en l'esmentat terme municipal i el quilòmetre pel qual **surt**.
+
+ * Hi ha una sèrie d'àrees en què s'agrupen els trams, cada un dels quals no pot pertànyer a més d'una àrea
+
+----
+
+#### MER 3: Carreteres del País  (2/2)
+
+
+### Es demana:
+
+ * Dissenyar un esquema **M**odel **E**ntitat **R**elació (**MER**) que reculli la informació de l'enunciat.
+
+---
+
+## MER 4: Informatització entitat bancària (1/2)
+
+Es desitja informatitzar parcialment una determinada entitat bancària amb els següents supòsits (fes el disseny del model E/R):
+
+ * El banc té diferents sucursals que s'identifiquen per un codi.
+
+ * Cada sucursal té una sèrie de comptes corrents assignats a ella que s'identifiquen per un codi diferent per a cada compte. Diferents sucursals poden tenir el mateix número de compte assignat.
+
+ * Per tant, el número de compte es compon de:
+
+**número de banc + número de sucursal + número de compte**
+
+----
+
+#### MER 4: Informatització entitat bancària (2/2)
+
+ * Un compte corrent pot tenir associats un o diversos clients. Com que els clients poden ser titulars o signatures autoritzades, és possible que les operacions que poden realitzar els clients amb signatura autoritzada amb el compte siguin molt menys.
+
+ * D'altra banda, cada client, que s'identifica amb el seu carnet d'identitat, pot tenir diversos comptes i, per descomptat, uns privilegis diferents en cadascuna d'elles.
+
+ * Cada compte pot tenir domiciliacions associades amb ella.
+
+ * Els clients poden tenir atorgats préstecs (ha d’estar associat a algun dels seus comptes corrents). Cada préstec s'atorga a nom d'un sol client i a un client se li pot atorgar més d'un préstec.
+
+---
+
+## MER 5: Agència de viatges (1/3)
+
+Per oferir un millor servei als seus clients, considera d'interès tenir registrada informació referent als diferents *Tours* que pot oferir.
+
+ * Un *Tour* segons la seva finalitat (cultural, històrica, esportiva...) té uns determinats punts de ruta i pot repetir-se diverses vegades en un any (diferents viatges).
+
+ * Definim com a viatge un *Tour* concret a realitzar a partir d'una data determinada.
+
+ * Els punts de ruta d'un *Tour* poden ser ciutats, monuments, zones geogràfiques, i es consideren de visita només o de visita i estada. En aquest últim cas, el punt de ruta té assignat un lloc o diversos.
+
+----
+
+#### MER 5: Agència de viatges  (2/2)
+
+ * Entenem per client d'un viatge a la persona que ha decidit fer-ho i ha fet efectiva un senyal.
+
+ * Un client pot confirmar la seva participació en més d'un viatge (se sobreentén que en dates diferents).
+
+ * Les persones que participen en un viatge poden ser allotjades en el mateix o en diferent hotel en un mateix punt de ruta.
+
+### Es demana:
+
+ * Dissenyar un esquema **M**odel **E**ntitat **R**elació (**MER**) que reculli la informació de l'enunciat.
+
+---
+
+## MER 6: Reserves lloguer d'automòbils  (1/2)
+
+Es vol dissenyar una base de dades (MER) sobre la informació de les reserves d'una empresa dedicada al lloguer d'automòbils. La informació recollida de l'empresa és la següent i sobre la que es vol guardar
+
+ * Un determinat client pot tenir en un moment donat cap o més d’una reserva.
+
+ * Una reserva la realitza un únic client, però pot involucrar diversos cotxes.
+
+ * És important recollir la data de començament i d'acabament de la reserva així com l’import total de la reserva.
+
+----
+
+#### MER 6: Reserves lloguer d'automòbils  (2/2)
+
+ * Per una millor optimització de l’espai, necessitem tenir controlada les places d’aparcament on guardem els cotxes. Tots els cotxes tenen sempre assignat una única plaça de pàrquing que no pot canviar.
+
+ * La nostra empresa està dividia en diferents agències distribuïdes per tot el territori per donar així una àmplia cobertura. Una reserva es realitza en una determinada agència. No poden existir dues agències amb una mateixa reserva.
+
+ * A la base de dades poden existir clients que no hagin fet cap reserva
+
+ * Afegeix a cada entitat tres atributs (inclòs la clau primària) a la teva elecció i que tinguin relació amb la informació que es vol guardar.
+
+---
+
+## MER 7: Campionat mundial de futbol (1/2)
+
+Feu l'esquema E/R per una base de dades en la qual es desitja emmagatzemar la informació relativa a alguns aspectes de campionat mundial de futbol considerant els següents supòsits d’interès per ser guardats en una base de dades:
+
+ * Un jugador pertany a un únic equip, té un dorsal que es pot repetir per equips i no hi ha dos jugadors amb el mateix nom.
+
+ * Un jugador pot actuar en diverses posicions diferents, però en un determinat partit només pot jugar en una posició.
+
+ * En cada partit hi intervenen tres col·legiats: un jutge de línia per a la banda dreta, un per a l'esquerra i un àrbitre.
+
+----
+
+#### MER 7: Campionat mundial de futbol (2/2)
+
+ * Un col·legiat pot realitzar, en un partit, una funció i una altra, de diferent, en un altre partit.
+
+ * Cada partit involucra dos equips (local i visitant). S'ha de guardar el nombre de gols de cada equip en el partit.
+
+ * S'ha de guardar en cada partit a quina fase pertany (fase de grup, vuitens..., final).
+
+---
+
+## MER 8: Gestió de les línies de metro  (1/2)
+
+Dissenya el MER que reflecteixi tota la informació necessària per a la gestió de les línies de metro d'una determinada ciutat. Els supòsits considerats són els següents:
+
+ * Una línia està composta per una sèrie d'estacions en un ordre determinat, sent molt important recollir la informació d'aquest ordre.
+
+ * Cada estació pertany almenys a una línia, podent pertànyer a diverses.
+
+ * Una estació mai pot deixar de pertànyer a una línia, a la que anteriorment pertanyia.
+
+ * Cada estació pot tenir diversos accessos, però considerem que un accés només pot pertànyer a una estació.
+
+----
+
+#### MER 8: Gestió de les línies de metro  (2/2)
+
+ * Cada línia té assignada una sèrie de trens, no podent succeir que un tren estigui assignat a més d'una línia, però sí que no estigui assignat a cap. (Per exemple, si es troba en reparació).
+
+ * Cada línia té assignats com a mínim tants trens com estacions tingui i com a màxim el doble del nombre d'estacions.
+
+ * Algunes estacions tenen assignades cotxeres, i cada tren té assignada una cotxera.
+
+ * Un tren pot canviar de cotxera assignada, però no quedar-se sense cap cotxera assignada.
+
+---
+
+## MER 9: Empresa de fabricació de motors (1/2)
+
+Realitzar el disseny de la base de dades d'una empresa que es dedica a la fabricació de motors. Aquesta empresa té interès a mantenir informació sobre els diferents tipus de motors que fabrica.
+
+ * L'empresa està dividida en seccions a les quals estan assignats obligatòriament els empleats, els quals han de pertànyer a una sola secció.
+
+ * A cada secció se li pot assignar la fabricació d'un o diversos tipus de motors, i hi ha seccions generals (departament d'administració, de procés de dades, etc.) que no tenen assignat cap mena de motor en concret; mai un tipus de motor pot ser fabricat per més d'una secció, ni aquesta pot canviar una vegada que se li ha assignat la fabricació d'un determinat motor.
+
+----
+
+#### MER 9: Empresa de fabricació de motors (2/2)
+
+
+ * Entre els empleats que treballen en un tipus de motor sempre hi haurà un responsable, sent aquesta informació d'interès per a l'empresa. Un empleat pot estar treballant en més d'un tipus de motor.
+
+ * Els empleats poden tenir familiars a càrrec seu, les dades dels quals convé guardar a la base de dades.
+
+ * L'empresa utilitza peces i vol conèixer les estructures del producte. A aquests efectes un motor és una peça composta de diferents peces.
+
+
+---
+
+## MER 10: Organització d'una universitat
+
+ * Els departaments poden estar en una sola facultat o ser interfacultatius agrupant en aquest cas càtedres que pertanyin a facultats diferents.
+
+ * Una càtedra es troba en un únic departament i pertany a una sola facultat.
+
+ * Un professor està sempre assignat a un únic departament i adscrit a una o diverses càtedres, podent canviar de càtedra però no de departament. Interessa la data en què un professor està adscrit a una càtedra.
+
+ * Els departaments tenen una única àrea de coneixement.
+
+
+---
+
+## MER 11: Los Pollos Hermanos (1/3)
+
+* La granja "**Los Pollos Hermanos**" desitja guardar la informació corresponent a l'alimentació que se subministra als animals que són explotats en aquesta.
+
+* Els animals pertanyen a diferents espècies (pollastres, vaques, ovelles, etc.) ens interessa guardar la dieta de cada un dels animals, ja que aquesta variarà depenent de l'espècie, edat, etc.
+
+* La dieta seguida per un animal anirà variant al llarg de la seva vida, interessant guardar les dates inici i final de cadascuna de les dietes que ha seguit.
+
+* Una dieta està composta d'una sèrie d'aliments que són ingerits pels animals en diferents preses al llarg del dia. En cada presa, cada un dels animals ingereix unes quantitats determinades d'un o diversos aliments.
+
+----
+
+#### MER 11: Los Pollos Hermanos (2/3)
+
+També hem obtingut aquesta informació:
+
+ * Tot i que una dieta s'estableix per un animal, aquesta pot ser seguida per diversos animals de la granja.
+
+ * Cada animal només segueix una dieta alhora. (Diverses dietes al llarg de la seva vida).
+
+ * Dels tipus d'animals (espècies) ens interessa guardar el nom.
+
+ * Dels animals ens interessa guardar el seu codi, pes, any de naixement, la seva utilitat (només carn, ous o llet), i la seva producció (depèn de la utilitat).
+
+----
+
+#### MER 11: Los Pollos Hermanos (3/3)
+
+ * De les dietes ens interessa conèixer la seva finalitat.
+
+ * Dels aliments ens interessa conèixer el nom, tipus (fruita, carn, etc.), la magnitud d'aquest aliment i el seu cost.
+
+ * De les preses ens interessa el nom, l'hora d'inici i l'hora de finalització.
+
+### Es demana:
+
+ * Dissenyar un esquema **M**odel **E**ntitat **R**elació (**MER**) que reculli la informació de la granja.
+
+---
+
+## MER 12: Distribuïdor de cigarrets (1/3)
+
+* Un distribuïdor de cigarrets vol fer una base de dades amb les vendes realitzades pels diferents expenedors autoritzats (estancs).
+
+* Al distribuïdor li interessa conèixer informació sobre els estancs, les comandes que realitzen, els cigarrets i els fabricants d'aquests. Així mateix, és important conèixer les dades per a cada un de les classes de tabac. També hem obtingut aquesta informació:
+
+ * Els estancs són abastits amb un nombre de cigarrets que depèn de les comandes. Una comanda només pot ser realitzat per un estanc.
+
+----
+
+#### MER 12: Distribuïdor de cigarrets (2/3)
+
+ * Els estancs tenen assignat un nombre d'expenedoria que es pot repetir d'una localitat a una altra. A més, cada estanc té un número d'identificació fiscal (NIF), un nom (el qual pot ser el del responsable o no).
+
+ * Un fabricant de cigarrets té la seva seu principal en un únic país, encara que en un mateix país es poden trobar seus de diversos fabricants.
+
+ * Un fabricant pot fabricar un nombre variable de marques de cigarrets, si bé una marca de cigarrets, independentment del seu tipus, només pot ser fabricada per un únic fabricant.
+
+ * Una comanda està composta d'una sèrie de línies de comanda, en una línia de comanda només pot haver-hi un article, i poden estar un mateix article en moltes línies de comanda.
+
+----
+
+#### MER 12: Distribuïdor de cigarrets (3/3)
+
+
+ * De les comandes ens interessa el nombre, la data de comanda i la data de lliurament.
+
+ * De les línies de comanda ens interessa la quantitat, el preu i l'import.
+
+ * Dels fabricants ens interessa el nom i el país de fabricació.
+
+ * Dels cigarrets ens interessa la marca, si té filtre o no, el color, la classe, si és mentol o no, la quantitat de nicotina que té, la quantitat de quitrà, el preu de cost i el preu de venda.
+
+ * Dels estancs ens interessa el NIF (clau principal), el nombre d'expenedoria, el nom, adreça, localitat, codi postal i província.
+
+
+
+---
+
+## MER 13: Agència de selecció de personal (1/4)
+
+En una agència de selecció de personal volen gestionar la seva activitat professional.
+
+ * En primer lloc volen tenir les dades dels oferents i d'altra banda les dades dels demandants de treball.
+
+ * Els oferents d'ocupació es dediquen a una activitat en concret, podent-se dedicar a aquesta mateixa activitat molts oferents. Potser hi ha activitats en les quals no tinguem cap oferent de feina, però no pot passar que un oferent de feina no tingui una activitat assignada.
+
+----
+
+#### MER 13: Agència de selecció de personal (2/4)
+
+ * Els oferents ofereixen una sèrie de perfils de llocs de treball, a cada perfil de lloc de treball poden haver-hi moltes empreses que ofereixin. Aquestes ofertes es fan durant un període de dates en concret, podent un oferent de feina demanar un mateix perfil més d’una vegada.
+
+ * Un demandant pot coincidir amb una sèrie de perfils de llocs de treball, en un mateix perfil poden coincidir molts demandants. Pot passar que un demandant de feina no coincideixi amb cap perfil ni que en un perfil tinguem un demandant que coincideixi.
+
+ * Dels oferents volem conèixer el nom, NIF, telèfon, fax, persona de contacte i saldo monetari pel que fa a nosaltres.
+
+----
+
+#### MER 13: Agència de selecció de personal (3/4)
+
+ * Un demandant pot tenir un títol obtingut en un centre acadèmic, un demandant en un centre acadèmic pot haver obtingut molts títols, un títol en un centre acadèmic pot haver estat obtingut per molts demandants.
+
+ * Un demandant coneix una sèrie d'idiomes (mínim 1), un mateix idioma el poden conèixer diversos demandants.
+
+ * Un demandant pot tenir diversos tipus diferents de permisos de conduir, un mateix permís de conduir el poden tenir diversos demandants.
+
+ * Dels demandants volem conèixer el nom i cognoms, disponibilitat horària, data de naixement, el seu estat civil i uns comentaris.
+
+ * Un perfil de lloc de treball pot requerir una sèrie de títols, un mateix títol pot ser requerit per diversos perfils de llocs de treball.
+
+----
+
+#### MER 13: Agència de selecció de personal (4/4)
+
+ * Un perfil de lloc pot requerir el coneixement d'una sèrie d'idiomes, tenint en compte que un mateix idioma pot ser requerit per diversos perfils de lloc de treball.
+
+ * Un perfil pot requerir un permís en concret de carnet de conduir, tenint en compte que un mateix carnet de conduir pot ser requerit per a diversos llocs.
+
+
+---
+
+## MER 14: Col·lecció de papallones (1/3)
+
+Un gran aficionat a les papallones, vol fer una base de dades amb la seva col·lecció i les col·leccions de gent que com ell tenen bastants exemplars d'aquests insectes en el seu poder.
+
+Evidentment, un exemplar de papallona pertany a una espècie en concret, estant les espècies agrupades en "gèneres de papallones", entenent com a gènere aquell conjunt d'espècies que tenen característiques comunes.
+
+L’aficionat a les papallones també ens ha proporcionat aquesta informació:
+
+ * La captura d'un exemplar de papallona la realitza només una persona, podent una mateixa persona capturar diferents tipus d'exemplars.
+
+----
+
+#### MER 14: Col·lecció de papallones (2/3)
+
+ * Una persona només pot ser propietària d'una col·lecció, i els exemplars de papallona que pertanyen a aquesta poden haver estat capturats per altres persones.
+
+ * Una papallona només pot pertànyer a una col·lecció en una data concreta (podent haver estat en + d'una col·lecció) i una col·lecció estarà formada com a mínim per un exemplar.
+
+ * De les espècies de papallona ens interessa el nom i el nom científic.
+
+ * Dels gèneres ens interessa el nom.
+
+ * De les col·leccions ens interessa el nom de la persona que es cuida d'ella, el seu DNI (clau principal), la data d'inici de la col·lecció i el seu preu estimat.
+
+----
+
+#### MER 14: Col·lecció de papallones (3/3)
+
+ * De les persones que capturen les papallones ens interessa el DNI (clau principal), el seu nom, cognoms i la seva activitat.
+
+ * Dels exemplars de papallona ens interessa la zona en què ha estat capturat, el nom de l'espècie, la data de captura, la seva grandària, sexe, província i localitat on ha estat capturat, el seu nom comú i el preu d'aquest exemplar.
+
+---
+
+## MER 15: L’esportiu de Barcelona (1/3)
+
+Al centre esportiu “L’esportiu de Barcelona” es vol fer una base de dades per controlar les dades de les activitats que es realitzen, i ens ha proporcionat la següent informació:
+
+ * Cadascuna de les activitats esportives que es realitzen (atletisme, futbol, ​​bàsquet, aeròbic, etc.), necessiten una sèrie de materials (per exemple en futbol la pilota), però un tipus de material només pertany a una activitat esportiva.
+
+ * Una activitat esportiva es realitza en una única sala dirigida per un únic monitor en diverses hores (dia -hora) al llarg de la setmana, per descomptat en una mateixa hora poden haver-hi diverses activitats programades. Evidentment en una hora no pot haver-hi més d'una activitat en una sala, ni un monitor pot donar més d'una activitat al mateix temps.
+
+----
+
+#### MER 15: L’esportiu de Barcelona (2/3)
+
+ * Una mateixa activitat pot tenir molts monitors adscrits, mentre que un monitor només treballa en una activitat.
+
+ * Al gimnàs també li interessa conèixer quins monitors poden ser substituts d'altres monitors.
+
+ * A una activitat estan subscrits un nombre variable de socis, mentre que un soci pot dur a terme moltes activitats.
+
+ * De les sales ens interessa conèixer el nom, dimensions, i uns comentaris.
+
+ * Dels socis ens interessa conèixer el nom i cognoms, la data d'entrada, la quota mensual, si té taquilla, el número de compte corrent i uns comentaris.
+
+----
+
+#### MER 15: L’esportiu de Barcelona (3/3)
+
+
+ * Dels tipus de materials ens interessa el nom i la quantitat que tenim al gimnàs.
+
+ * Dels monitors ens interessa el nom i cognoms, el seu sou, DNI (clau principal), edat, data d'entrada i uns comentaris.
+
+ * De les activitats ens interessa el nom, horaris i uns comentaris.
+
+---
+
+## MER 16: Martínez i fills (1/3)
+
+Al taller de 'Martínez i fills', es reparen automòbils de qualsevol marca, el propietari vol que realitzem una base de dades i després de parlar amb ell hem tret la següent informació:
+
+ * El taller repara vehicles de moltes marques diferents. Els vehicles són d’un model concret i d'aquest model ens poden arribar al taller molts vehicles diferents.
+
+ * Els propietaris porten els seus vehicles per a ser reparats. A un propietari li poden pertànyer molts vehicles, un vehicle només pertany a un propietari.
+
+ * Un mecànic pot reparar molts models de vehicles diferents.
+
+----
+
+#### MER 16: Martínez i fills (2/3)
+
+ * A vegades un vehicle concret només el pot reparar un mecànic que és de la confiança del client.
+
+ * Un model de vehicle pot tenir moltes peces de recanvi diferent i una peça pot aparèixer en més d’un model.
+
+ * L'amo del taller també desitja que tinguem en compte aquelles peces de recanvi que són substitutes d'altres peces de recanvi. Una peça de recanvi pot ser substituïda per una altra peça.
+
+ * Dels vehicles volem guardar la matrícula (clau principal), últim quilometratge, darrera vegada que el propietari el va portar, color, els centímetres cúbics, la potència i uns comentaris.
+
+----
+
+#### MER 16: Martínez i fills (3/3)
+
+
+ * Dels models ens interessa el model i de la marca el seu nom i nacionalitat.
+
+ * De les peces de recanvi interessa guardar el nom, el preu i la utilitat.
+
+ * Dels mecànics volem conèixer el NIF (clau principal), nom i cognoms, data de naixement, si està casat o no, la titulació, sou i uns comentaris.
+
+ * Dels propietaris ens interessa conèixer el NIF (clau principal), nom i cognoms, adreça, població i codi postal.
+
+---
+
+## MER 17: Agències en franquícies a TECHNOHOUSE (1/?)
+
+Es tracta de dissenyar una base de dades per a una xarxa d'agències en franquícies a TECHNOHOUSE, empresa especialitzada en el lloguer i compra d'immobles.
+
+ * Cada agència té un titular propi i un conjunt de venedors. Tant el titular com els venedors només poden pertànyer a una agència. Sobre les agències interessa emmagatzemar la seva adreça, telèfons (que poden ser diversos), fax, etc. A més, cada agència té assignada una zona d'actuació que és única.
+
+ * Les agències disposen d'immobles tant per llogar com per vendre (o ambdues coses), en el primer cas figurarà el preu de lloguer i la fiança a dipositar, mentre que, en el segon cas a més del preu de venda, s'indica si l'immoble està o no hipotecat.
+
+----
+
+#### MER 17: Agències en franquícies a TECHNOHOUSE (2/?)
+
+ * D'altra banda, els immobles poden ser locals comercials, o pisos. En ambdós casos s'identifiquen per un codi, interessant conèixer el propietari, la direcció i la superfície en **m<sup>2</sup>**.
+
+ * A més, en el cas de pisos interessa conèixer el nombre d'habitacions (incloent-hi el saló), el nombre de cambres de bany, el tipus de gas (natural, ciutat, butà), i si és interior o exterior. Per als locals comercials s'ha de conèixer si disposa de llicència d'obertura.
+
+ * Un client pot acudir a diverses agències, en cadascuna se li assigna un venedor, que és l'encarregat de seleccionar els immobles que compleixen les característiques desitjades, i en cas d'estar interessat, el client ha de donar un senyal per reservar l'immoble (o els immobles) que desitja.
+
+---
+
+## MER 18: Reserves lloguer d'automòbils (segona versió) (1/2)
+
+Es desitja dissenyar una base de dades sobre la informació de les reserves d'una empresa dedicada al lloguer d'automòbils, tenint en compte que:
+
+ * Un determinat client pot tenir en un moment donat fetes diverses reserves.
+
+ * De cada client es volen emmagatzemar el seu DNI, nom, adreça i telèfon. A més dos clients es diferencien per un codi únic.
+
+ * Cada client pot ser avalat per un altre client de l'empresa.
+
+ * Una reserva la realitza un únic client, però pot involucrar diversos cotxes.
+
+----
+
+#### MER 18: Reserves lloguer d'automòbils (segona versió) (2/?)
+
+ * És important registrar la data d'inici i final de la reserva, el preu del lloguer de cada un dels cotxes, els litres de gasolina en el dipòsit en el moment de realitzar la reserva, el preu total de la reserva i un indicador de si el cotxe o els cotxes han estat lliurats.
+
+ * Tot cotxe té sempre assignat un determinat garatge que no pot canviar. De cada cotxe es requereix la matrícula, el model el color i la marca.
+
+ * Cada reserva es realitza en una determinada agència.
+
+---
+
+## MER 19: Control projectes i recursos humans (1/3)
+
+* L'empresa "X" té la intenció de portar un control dels seus departaments, empleats i projectes segons les següents especificacions:
+
+ * Es vol conèixer el nom, salari i número de la seguretat social de cada empleat, així com el nom, la data de naixement i estudis que cursa, de cadascun dels seus fills.
+
+----
+
+#### MER 19: Control projectes i recursos humans (2/3)
+
+ * Hi ha diversos tipus d'empleats: directors (encarregats d'un departament), representants de vendes (s'ocupen de la representació en un nombre de regions) i enginyers (encarregats de dur a terme els projectes de l'empresa)
+
+ * Els diferents departaments concedeixen beques d'estudi als fills dels empleats. Aquestes beques no estan tipificades, sinó que són ajudes que es concedeixen depenent del pressupost de què disposi el departament. Es desitja conèixer la data de concessió de cada beca així com la quantia d'aquesta.
+
+ * Un enginyer pot tenir diverses especialitats que es volen conèixer.
+
+
+----
+
+#### MER 19: Control projectes i recursos humans (3/3)
+
+ * Dels departaments es necessita saber, el nom, localització i empleats que treballen. Un departament té, com a mínim 2 empleats i com a màxim 30 i està al càrrec d'un únic director. Cada departament té un director diferent.
+
+ * Un departament pot controlar un nombre de projectes, dels quals es desitja conèixer el seu nom i data de començament.
+
+ * Es desitja conèixer les regions per on es troba repartides les diferents seus de l’empresa. Cada regio serà gestionada per un representant de vendes.
+
+ * En la realització d'un projecte no hi pot haver involucrats més de 5 enginyers. Tot enginyer ha d'estar associat a 1 projecte com a mínim i a 2 com a màxim.

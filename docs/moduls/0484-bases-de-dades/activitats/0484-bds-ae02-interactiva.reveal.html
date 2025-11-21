@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0484-bds-ae02 · Activitat JOIN (reveal.js)</title>
+
+  <!-- Reveal.js from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5/dist/theme/white.css" id="theme">
+  <style>
+    /* Ajustos visuals perquè els inputs quedin macos dins de reveal */
+    :root{
+      --border:#e2e8f0; --soft:#f8fafc; --ink:#0f172a; --muted:#475569;
+      --accent:#0ea5e9; --accent2:#7c3aed; --danger:#dc2626; --ok:#16a34a;
+    }
+    .r-stretch .card{ width: min(980px, 96%); margin: 0 auto; }
+    .card{ border:1px solid var(--border); border-radius:16px; padding:18px; background:#fff; box-shadow:0 10px 30px rgba(15,23,42,.06); }
+    .muted{ color:var(--muted); font-size:.8em; }
+    label{ font-weight:700; display:block; margin:8px 0 6px; }
+    select, textarea, input[type="text"]{
+      width:100%; border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:16px; outline:none; color:var(--ink);
+      background:#fff; box-shadow:0 1px 0 rgba(2,6,23,.02) inset;
+    }
+    textarea{ min-height:120px; resize:vertical; }
+    .q{ border-left:3px solid var(--accent); background:var(--soft); padding:10px 12px; border-radius:8px; color:var(--muted); }
+    .btns{ display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
+    button{ border:0; border-radius:12px; padding:10px 14px; font-weight:800; cursor:pointer; font-size:16px; }
+    .primary{ background: linear-gradient(90deg,var(--accent),var(--accent2)); color:#fff; }
+    .ghost{ background:#fff; color:var(--ink); border:1px solid var(--border); }
+    .kbd{ font-family: ui-monospace,SFMono-Regular,Menlo,monospace; background:#f1f5f9; border:1px solid var(--border); padding:2px 6px; border-radius:6px; }
+    .pill{ display:inline-block; padding:2px 8px; border-radius:999px; background:#f1f5f9; border:1px solid var(--border); font-size:12px; color:var(--muted); }
+    .invalid{ border-color: var(--danger)!important; box-shadow: 0 0 0 3px rgba(220,38,38,.12); }
+    .ok{ color:var(--ok); font-weight:700; }
+    .err{ color:var(--danger); font-weight:700; }
+
+    /* Modal d'errors */
+    .modal{ position:fixed; inset:0; display:none; place-items:center; background:rgba(2,6,23,.45); z-index:99; padding:16px; }
+    .modal.show{ display:grid; }
+    .modal-card{ width:min(780px,100%); background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 20px 60px rgba(2,6,23,.18); padding:18px; }
+    .badge-err{ display:inline-flex; align-items:center; gap:8px; background:#fee2e2; color:var(--danger); border:1px solid #fecaca; border-radius:999px; padding:4px 10px; font-weight:800; font-size:12px; }
+    .modal-title{ font-size:20px; margin:0 0 6px 0; }
+    .modal-footer{ display:flex; justify-content:flex-end; gap:10px; margin-top:14px; }
+    .danger{ background:var(--danger); color:#fff; }
+    .outline{ background:#fff; color:var(--ink); border:1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- Portada -->
+    <section data-auto-animate>
+      <h2>Activitat · JOIN en SQL <span class="pill">botiga</span></h2>
+      <p class="muted">Mòdul 0484 — Bases de Dades (DAM)<br>Codi: <strong>0484-bds-ae02</strong></p>
+      <div class="card">
+        <p>Respon les preguntes i, al final, descarrega el fitxer <span class="kbd">.json</span> per lliurar a l’aula virtual.</p>
+        <ul>
+          <li>1️⃣ Selecciona el teu nom</li>
+          <li>2️⃣ Respon cada exercici</li>
+          <li>3️⃣ Descarrega el <em>JSON</em> a l’última diapositiva</li>
+        </ul>
+      </div>
+      <aside class="notes">Presentació interactiva de 30 min sobre INNER/LEFT JOIN.</aside>
+    </section>
+
+    <!-- Alumne -->
+    <section data-auto-animate>
+      <h3>Identificació de l’alumne</h3>
+      <div class="card">
+        <label for="alumneSelect">Alumne</label>
+        <select id="alumneSelect" required><option value="">Carregant llista…</option></select>
+        <div id="alumneStatus" class="muted" style="margin-top:6px;">Intentant carregar <code>alumnes/dades_alumnes.json</code>…</div>
+      </div>
+      <p class="muted">Si no es carrega la llista, comprova que serveixes aquesta presentació des d’un servidor local.</p>
+    </section>
+
+    <!-- Exercici 1 -->
+    <section data-auto-animate>
+      <h3>Exercici 1 — Comandes i clients (INNER JOIN)</h3>
+      <div class="card">
+        <p class="q">Mostra el <strong>nom del client</strong>, la <strong>ciutat</strong> i la <strong>data de comanda</strong> per a totes les comandes existents.</p>
+        <label for="q1sql">Consulta SQL</label>
+        <textarea id="q1sql" placeholder="Escriu aquí la teva consulta SQL…"></textarea>
+        <label for="q1ans">Resposta curta · Quants clients diferents han fet comandes?</label>
+        <input id="q1ans" type="text" placeholder="Nombre de clients" />
+      </div>
+    </section>
+
+    <!-- Exercici 2 -->
+    <section data-auto-animate>
+      <h3>Exercici 2 — Empleats que gestionen comandes</h3>
+      <div class="card">
+        <p class="q">Mostra el <strong>nom</strong> i <strong>cognom</strong> de l’empleat, amb el <strong>número de comanda</strong> que ha gestionat.</p>
+        <label for="q2sql">Consulta SQL</label>
+        <textarea id="q2sql" placeholder="Escriu aquí la teva consulta SQL…"></textarea>
+        <label for="q2ans">Resposta curta · Quin empleat ha gestionat més comandes?</label>
+        <input id="q2ans" type="text" placeholder="Nom i cognom" />
+      </div>
+    </section>
+
+    <!-- Exercici 3 -->
+    <section data-auto-animate>
+      <h3>Exercici 3 — Clients sense comandes (LEFT JOIN)</h3>
+      <div class="card">
+        <p class="q">Mostra <strong>tots els clients</strong> i, si han fet alguna comanda, indica l’<code>IdComanda</code>.</p>
+        <label for="q3sql">Consulta SQL</label>
+        <textarea id="q3sql" placeholder="Escriu aquí la teva consulta SQL…"></textarea>
+        <label for="q3ans">Resposta curta · Quins clients surten amb <code>IdComanda = NULL</code>?</label>
+        <textarea id="q3ans" placeholder="Pots llistar noms separats per comes"></textarea>
+      </div>
+    </section>
+
+    <!-- Exercici 4 -->
+    <section data-auto-animate>
+      <h3>Exercici 4 — Productes sense vendes</h3>
+      <div class="card">
+        <p class="q">Mostra els <strong>productes</strong> que <strong>no s’han venut mai</strong>.</p>
+        <label for="q4sql">Consulta SQL</label>
+        <textarea id="q4sql" placeholder="Escriu aquí la teva consulta SQL…"></textarea>
+        <label for="q4ans">Resposta curta · Quants productes no tenen cap comanda associada?</label>
+        <input id="q4ans" type="text" placeholder="Nombre de productes" />
+      </div>
+    </section>
+
+    <!-- Exercici 5 -->
+    <section data-auto-animate>
+      <h3>Exercici 5</h3>
+      <div class="card">
+        <p class="q">Per a cada client, mostra el <strong>nom</strong> i el <strong>total de comandes</strong> que ha fet.</p>
+        <label for="q5sql">Consulta SQL</label>
+        <textarea id="q5sql" placeholder="Escriu aquí la teva consulta SQL…"></textarea>
+      </div>
+    </section>
+
+    <!-- Export -->
+    <section data-auto-animate>
+      <h3>Descarrega les teves respostes</h3>
+      <div class="card">
+        <p>Quan acabis, fes clic al botó: validarem els camps i es generarà el fitxer <span class="kbd">&lt;email&gt;_0484-bds-ae02_respostes.json</span>.</p>
+        <div class="btns">
+          <button class="ghost" id="btnReset" type="button">Neteja respostes</button>
+          <button class="primary" id="btnExport" type="button">Descarrega respostes (.json)</button>
+        </div>
+        <p id="msg" class="muted" style="margin-top:10px"></p>
+      </div>
+      <p class="muted">💡 Pots navegar entre diapositives mentre respons. Res es perd fins que tanques la pestanya.</p>
+    </section>
+
+  </div>
+</div>
+
+<!-- Modal d'errors -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalBody">
+  <div class="modal-card">
+    <div class="modal-header">
+      <span class="badge-err" id="errCount">0 errors</span>
+      <h3 class="modal-title" id="modalTitle">Hi ha errors per revisar</h3>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <p>Revisa els punts següents abans de descarregar les respostes:</p>
+      <ul id="errList"></ul>
+    </div>
+    <div class="modal-footer">
+      <button class="outline" id="btnCloseModal" type="button">Tanca</button>
+      <button class="danger" id="btnGotoError" type="button">Anar al primer error</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/reveal.js@5/dist/reveal.js"></script>
+<script>
+  // Init Reveal
+  const deck = new Reveal({ hash: true, slideNumber: true, transition: 'slide' });
+  deck.initialize();
+
+  // Helpers
+  const $ = (sel) => document.querySelector(sel);
+  const byId = (id) => document.getElementById(id);
+
+  // Alumnes JSON loader
+  function flattenAlumnes(raw){
+    const out = [];
+    const pushIf = (x)=>{ if(!x) return; if(Array.isArray(x)) x.forEach(pushIf); else if(typeof x==='object' && ('firstname'in x || 'email'in x)) out.push(x); };
+    if(raw && Array.isArray(raw.alumnes)) pushIf(raw.alumnes); else if(Array.isArray(raw)) pushIf(raw);
+    return out;
+  }
+  async function loadAlumnes(){
+    const sel = byId('alumneSelect'); const status = byId('alumneStatus');
+    try{
+      const res = await fetch('alumnes/dades_alumnes.json', { cache:'no-store' });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const data = await res.json();
+      const alumnes = flattenAlumnes(data);
+      sel.innerHTML = '<option value="">— Selecciona el teu nom —</option>' +
+        alumnes.map(a => {
+          const name = `${a.firstname ?? ''} ${a.lastname ?? ''}`.trim();
+          const label = `${name || a.email} (${a.email})`;
+          const val = a.email || label;
+          return `<option value="${encodeURIComponent(val)}" data-name="${encodeURIComponent(name)}">${label}</option>`;
+        }).join('');
+      status.innerHTML = `<span class="ok">Llista carregada</span> (${alumnes.length} alumne/s).`;
+    }catch(e){
+      status.innerHTML = `<span class="err">No s'ha pogut carregar el fitxer d'alumnes</span>.`;
+      sel.innerHTML = '<option value="">— No disponible —</option>';
+    }
+  }
+
+  // Payload
+  function collectPayload(){
+    const sel = byId('alumneSelect');
+    const emailFromSel = sel.value ? decodeURIComponent(sel.value) : '';
+    const nameFromSel = sel.selectedOptions[0]?.dataset?.name ? decodeURIComponent(sel.selectedOptions[0].dataset.name) : '';
+    return {
+      activity_code: '0484-bds-ae02',
+      activity_title: 'Treballem les JOIN (botiga) — reveal',
+      version: 1,
+      submitted_at: new Date().toISOString(),
+      student: { name: nameFromSel || undefined, email: emailFromSel || undefined },
+      answers: [
+        { id:'ex1', sql: byId('q1sql').value.trim(), answer: byId('q1ans').value.trim() },
+        { id:'ex2', sql: byId('q2sql').value.trim(), answer: byId('q2ans').value.trim() },
+        { id:'ex3', sql: byId('q3sql').value.trim(), answer: byId('q3ans').value.trim() },
+        { id:'ex4', sql: byId('q4sql').value.trim(), answer: byId('q4ans').value.trim() },
+        { id:'ex5', sql: byId('q5sql').value.trim(), answer: '' }
+      ]
+    };
+  }
+
+  // Validació
+  function validateBeforeDownload(p){
+    const errors = [];
+    if (!p.student.email) errors.push({ id: 'alumneSelect', msg: 'Email d\'alumne (selecciona del desplegable)' });
+    if (!p.answers[0].sql) errors.push({ id: 'q1sql', msg: 'SQL exercici 1' });
+    if (!p.answers[1].sql) errors.push({ id: 'q2sql', msg: 'SQL exercici 2' });
+    if (!p.answers[2].sql) errors.push({ id: 'q3sql', msg: 'SQL exercici 3' });
+    if (!p.answers[3].sql) errors.push({ id: 'q4sql', msg: 'SQL exercici 4' });
+    if (!p.answers[3].sql) errors.push({ id: 'q5sql', msg: 'SQL exercici 4' });
+    if (!p.answers[0].answer) errors.push({ id: 'q1ans', msg: 'Resposta curta exercici 1' });
+    if (!p.answers[1].answer) errors.push({ id: 'q2ans', msg: 'Resposta curta exercici 2' });
+    if (!p.answers[2].answer) errors.push({ id: 'q3ans', msg: 'Resposta curta exercici 3' });
+    if (!p.answers[3].answer) errors.push({ id: 'q4ans', msg: 'Resposta curta exercici 4' });
+    if (!p.answers[4].answer) errors.push({ id: 'q5ans', msg: 'Resposta curta exercici 5' });
+    return errors;
+  }
+  function clearInvalids(){
+    ['alumneSelect','q1sql','q1ans','q2sql','q2ans','q3sql','q3ans','q4sql','q4ans','q5sql','q5ans'].forEach(id => byId(id)?.classList.remove('invalid'));
+  }
+  function markInvalids(errors){ errors.forEach(e => byId(e.id)?.classList.add('invalid')); }
+
+  // Modal
+  const modal = byId('modal'); const errList = byId('errList'); const errCount = byId('errCount');
+  let firstErrorId = null;
+  function showModal(errors){ errList.innerHTML = errors.map(e=>`<li>${e.msg}</li>`).join(''); errCount.textContent = `${errors.length} error${errors.length>1?'s':''}`; firstErrorId = errors[0]?.id || null; modal.classList.add('show'); byId('btnCloseModal').focus(); document.addEventListener('keydown', escHandler); }
+  function hideModal(){ modal.classList.remove('show'); document.removeEventListener('keydown', escHandler); }
+  function escHandler(ev){ if (ev.key === 'Escape') hideModal(); }
+  byId('btnCloseModal').addEventListener('click', hideModal);
+  byId('btnGotoError').addEventListener('click', ()=>{ hideModal(); if(firstErrorId){ const el = byId(firstErrorId); el?.focus(); el?.scrollIntoView({behavior:'smooth', block:'center'}); } });
+
+  // Botons
+  byId('btnExport')?.addEventListener('click', () => {
+    const payload = collectPayload();
+    const errors = validateBeforeDownload(payload);
+    clearInvalids();
+    if (errors.length) { markInvalids(errors); showModal(errors); return; }
+    const email = payload.student.email?.replace(/[^a-zA-Z0-9_.-]/g,'_') || 'alumne';
+    const filename = `${email}_0484-bds-ae02_respostes.json`;
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),2000);
+    byId('msg').innerHTML = `<span class="ok">Fitxer descarregat:</span> <span class="kbd">${filename}</span>`;
+  });
+  byId('btnReset')?.addEventListener('click', () => {
+    ['q1sql','q1ans','q2sql','q2ans','q3sql','q3ans','q4sql','q4ans','q5sql','q5ans'].forEach(id => { const el = byId(id); if(el) el.value = ''; });
+    byId('msg').textContent=''; clearInvalids();
+  });
+
+  // Start
+  window.addEventListener('DOMContentLoaded', loadAlumnes);
+</script>
+</body>
+</html>

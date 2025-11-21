@@ -1,0 +1,15 @@
+# Llista de continguts a publicar.
+items:
+  # Exemple (descomenta i adapta quan tinguis el DOCX):
+  # - title: "UD01 — Introducció a …"
+  #   section: "UD01"
+  #   source: "source/unitats-didactiques/ud01-introduccio-…/ud01-introduccio.docx"
+  #   output: "unitats-didactiques/ud01-…/index.md"  # URLs netes
+  #   publish: true
+  #   freeze: true    # protegeix l'index.md si el vols retocar a mà
+  #
+  # - title: "UD01 — Activitats avaluables 01"
+  #   section: "UD01"
+  #   source: "source/unitats-didactiques/ud01-introduccio-…/ud01-activitats-01.docx"
+  #   output: "unitats-didactiques/ud01-…/ud01-activitats-01.md"
+  #   publish: true    # sense freeze → es regenera quan canvia el DOCX

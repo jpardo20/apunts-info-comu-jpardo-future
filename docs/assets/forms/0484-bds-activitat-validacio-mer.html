@@ -1,0 +1,375 @@
+
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0484 · Validació MER (Agència de viatges) — Formulari</title>
+  <style>
+    :root{ --bg:#f8fafc; --card:#ffffff; --ink:#0f172a; --muted:#475569; --accent:#0ea5e9; --danger:#ef4444; --ok:#16a34a; --border:#e2e8f0; }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial; background:var(--bg); color:var(--ink);}
+    header.progress{ position:fixed; top:0; left:0; right:0; z-index:9999; background:#fff; border-bottom:1px solid var(--border); }
+    .progress-inner{max-width:1100px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:16px;}
+    .bar{flex:1; height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden}
+    .bar>span{display:block; height:100%; width:0%; background:var(--accent); transition:width .25s ease}
+    .pct{min-width:60px; font-variant-numeric:tabular-nums; text-align:right; color:var(--muted)}
+    main{max-width:1100px; margin:90px auto 48px; padding:0 16px;}
+    section.card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px 18px; margin:18px 0; box-shadow:0 1px 2px rgba(0,0,0,.03)}
+    h1{font-size:1.4rem; margin:0 0 4px}
+    h2{font-size:1.2rem; margin:12px 0 8px}
+    .hint{color:var(--muted); font-size:.95rem}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width:800px){ .row{grid-template-columns:1fr} }
+    label{display:block; font-weight:600; margin:.3rem 0 .35rem}
+    select, textarea{ width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:#fff; color:var(--ink); font-size:1rem;}
+    textarea{min-height:90px; resize:vertical}
+    fieldset{border:1px dashed var(--border); border-radius:10px; padding:10px 12px; margin:10px 0}
+    legend{color:var(--muted); padding:0 6px; font-size:.95rem}
+    .q{padding:8px 4px}
+    .q h3{margin:0 0 6px; font-size:1rem}
+    .radio{display:flex; gap:16px; align-items:center}
+    .req::after{content:" *"; color:var(--danger); font-weight:700}
+    .actions{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:flex-end; margin-top:12px}
+    button{appearance:none; border:1px solid var(--border); background:#0f172a; color:#fff; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600}
+    button[disabled]{opacity:.6; cursor:not-allowed}
+    .ghost{background:#fff; color:#0f172a}
+    .success{color:var(--ok); font-weight:600}
+    .error{color:var(--danger); font-weight:600}
+    .missing-list{margin:6px 0 0 18px}
+    .invalid{border-color:var(--danger) !important; box-shadow:0 0 0 2px rgba(239,68,68,.12)}
+    .pill{display:inline-block; padding:2px 8px; border-radius:999px; background:#eef2ff; border:1px solid #e0e7ff; font-size:.85rem}
+    .footer-note{color:var(--muted); font-size:.9rem; margin-top:6px}
+    .sticky-title{position:sticky; top:52px; background:var(--card); padding:8px; border-bottom:1px solid var(--border); z-index:5; border-radius:10px 10px 0 0}
+
+    /* Uploader */
+    .uploader{border:2px dashed var(--border); border-radius:12px; padding:12px; background:#fff; display:flex; gap:12px; align-items:center; justify-content:space-between}
+    .uploader .info{color:var(--muted); font-size:.95rem}
+    .uploader button{background:#fff; color:#0f172a}
+    .uploader:focus{outline:2px solid var(--accent); outline-offset:2px}
+    .preview{max-height:100px; max-width:220px; border:1px solid var(--border); border-radius:8px; display:none}
+
+    /* --- Seccions marcades amb CONTORN complet --- */
+    .scenario{margin-bottom:18px}
+    .sec{ --line:#111827; border:2px solid var(--line); border-radius:12px; padding:12px; margin:12px 0; background:#fff; transition:border-color .2s ease, box-shadow .2s ease}
+    .sec.idle{ --line:#111827; }
+    .sec.done{ --line:#0ea5e9; box-shadow:0 0 0 3px rgba(14,165,233,.12); }
+    .sec.pending{ --line:#ef4444; box-shadow:0 0 0 3px rgba(239,68,68,.12); }
+    .sec-title{font-weight:700; margin:.2rem 0 .6rem; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="progress">
+    <div class="progress-inner">
+      <strong>0484 · Validació MER (per parelles)</strong>
+      <div class="bar"><span id="bar"></span></div>
+      <div class="pct"><span id="pct">0%</span></div>
+    </div>
+  </header>
+  <main>
+    <section class="card">
+      <h1>Identificació de l’equip</h1>
+      <p class="hint">Seleccioneu <b>dues persones</b> de la llista. El segon no pot ser el mateix que el primer.</p>
+      <div class="row">
+        <div>
+          <label for="alumne1" class="req">Alumne 1</label>
+          <select id="alumne1" required></select>
+        </div>
+        <div>
+          <label for="alumne2" class="req">Alumne 2</label>
+          <select id="alumne2" required></select>
+        </div>
+      </div>
+      <div class="footer-note">La llista es carrega de <code>dades_alumnes.json</code>. Poseu aquest HTML i el JSON al mateix directori.</div>
+    </section>
+
+    <form id="frm">
+      <section class="card">
+        <div class="sticky-title"><h2>Escenaris</h2></div>
+        <div id="questions"></div>
+
+        <div class="actions">
+          <div id="status" class="pill">Camp(s) complets: 0 / <span id="total"></span></div>
+          <button type="button" class="ghost" id="checkBtn">Comprova camps</button>
+          <button type="button" id="genBtn" disabled>Genera fitxer JSON</button>
+        </div>
+        <div id="report" class="footer-note"></div>
+      </section>
+    </form>
+  </main>
+
+  <script>
+    const ACTIVITY = { course:"0484", module:"Bases de dades", activity:"validacio-mer-agencia", version:"1.4.0" };
+    const SCENARIOS = [
+      { id:1, text:"Un tour amb diversos viatges: l’agència crea el tour «Itàlia Essencial» i programa tres viatges (V1, V2, V3) en mesos diferents." },
+      { id:2, text:"Calendari d’un viatge: a V1 s’estableix l’ordre i les dates d’arribada/sortida pels punts Roma → Florència → Pisa." },
+      { id:3, text:"Un punt de ruta compartit per dos tours: Roma apareix a «Itàlia Essencial» i a «Grans Capitals Romanes»." },
+      { id:4, text:"Reserva amb diversos participants: el client Joan fa una reserva amb Joan, Marta i Biel." },
+      { id:5, text:"Punt de «visita només» sense hotels: Pisa és visita i no requereix hotels admesos." },
+      { id:6, text:"Reserva que barreja dos viatges: una sola reserva per cobrir V1 i V2." },
+      { id:7, text:"Múltiples hotels possibles per a un punt: a Roma es consideren disponibles l’Hotel A i l’Hotel B." },
+      { id:8, text:"Dues reserves del mateix client al mateix viatge: Carla fa dues reserves separades a V1." },
+      { id:9, text:"Qui dorm on en un punt: a V1, al punt Roma, Anna dorm a l’Hotel A i Biel a l’Hotel B." },
+      { id:10, text:"Estat i senyal: una reserva queda confirmada en rebre un senyal de 200 € i es registra la data." }
+    ];
+
+    const qContainer = document.getElementById('questions');
+    document.getElementById('total').textContent = 2 + (SCENARIOS.length*3);
+
+    const el = (sel, root=document) => root.querySelector(sel);
+
+    function scenarioBlock(s){
+      return `
+        <div class="q scenario" data-sid="${s.id}">
+          <fieldset>
+            <legend>Escenari ${s.id}</legend>
+            <h3>${s.text}</h3>
+
+            <div class="sec sec1 idle">
+              <div class="sec-title">1) Es pot modelar?</div>
+              <div class="radio">
+                <label><input type="radio" name="q${s.id}_yn" value="si"> Sí</label>
+                <label><input type="radio" name="q${s.id}_yn" value="no"> No</label>
+              </div>
+            </div>
+
+            <div class="sec sec2 idle">
+              <div class="sec-title">2) On ho representaries (entitats/relacions) — o bé adjunta una captura del MER</div>
+              <label>Text (opcional si adjunteu imatge)</label>
+              <textarea name="q${s.id}_on"></textarea>
+
+              <label>Captura del MER (opcional si heu escrit el text). Admet arrossegar/enganxar (Ctrl+V).</label>
+              <div class="uploader" id="uploader-q${s.id}" tabindex="0" aria-label="Zona d'enganxar o pujar imatge per a l'escenari ${s.id}">
+                <div class="info">
+                  <div><b>Arrossega i deixa anar</b> o <b>enganxa (Ctrl+V)</b> una imatge (PNG/JPG/SVG), o bé</div>
+                  <button type="button" id="pick-btn-q${s.id}">Tria un fitxer…</button>
+                </div>
+                <img id="preview-q${s.id}" class="preview" alt="Vista prèvia"/>
+                <input type="file" id="file-q${s.id}" accept="image/*" hidden>
+                <input type="hidden" name="q${s.id}_img_name">
+                <input type="hidden" name="q${s.id}_img_data">
+                <input type="hidden" name="q${s.id}_img_mime">
+              </div>
+            </div>
+
+            <div class="sec sec3 idle">
+              <div class="sec-title">3) Justifica breument</div>
+              <textarea name="q${s.id}_why"></textarea>
+            </div>
+          </fieldset>
+        </div>
+      `;
+    }
+    qContainer.innerHTML = SCENARIOS.map(s => scenarioBlock(s)).join('');
+
+    // Carrega d’alumnes
+    async function loadAlumnes(){
+      const sel1 = el('#alumne1'); const sel2 = el('#alumne2');
+      sel1.append(new Option('— Selecciona Alumne 1 —',''));
+      sel2.append(new Option('— Selecciona Alumne 2 —',''));
+      try{
+        const res = await fetch('dades_alumnes.json');
+        const data = await res.json();
+        const arr = Array.isArray(data.alumnes) ? (Array.isArray(data.alumnes[0]) ? data.alumnes[0] : data.alumnes) : [];
+        arr.forEach(stu => {
+          const label = `${stu.firstname} ${stu.lastname}`;
+          const value = (stu.email||'').trim();
+          sel1.append(new Option(label, value));
+          sel2.append(new Option(label, value));
+        });
+      }catch(e){
+        const warn = document.createElement('div');
+        warn.className='footer-note error';
+        warn.textContent='No s’ha pogut carregar dades_alumnes.json. Comproveu que el fitxer és al mateix directori.';
+        document.querySelector('section.card').appendChild(warn);
+      }
+    }
+    loadAlumnes();
+
+    // Uploader
+    function bindUploader(id){
+      const zone = el(`#uploader-q${id}`);
+      const btn = el(`#pick-btn-q${id}`);
+      const file = el(`#file-q${id}`);
+      const prev = el(`#preview-q${id}`);
+      const hName = el(`[name="q${id}_img_name"]`);
+      const hData = el(`[name="q${id}_img_data"]`);
+      const hMime = el(`[name="q${id}_img_mime"]`);
+
+      function setImage(dataURL, name, mime){
+        prev.src = dataURL; prev.style.display='block';
+        hName.value = name; hData.value = dataURL; hMime.value = mime || 'image/jpeg';
+        updateSectionStatesForScenario(id); updateProgress();
+      }
+      function compressAndSet(dataURL, name){
+        const img = new Image();
+        img.onload = () => {
+          const max = 1280;
+          const scale = Math.min(1, max/Math.max(img.width,img.height));
+          const cw = Math.round(img.width*scale), ch = Math.round(img.height*scale);
+          const cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
+          cv.getContext('2d').drawImage(img, 0, 0, cw, ch);
+          const out = cv.toDataURL('image/jpeg', 0.82);
+          setImage(out, name.replace(/\.\w+$/,'')+'.jpg', 'image/jpeg');
+        };
+        img.src = dataURL;
+      }
+      function handleFile(f){
+        if(!f) return;
+        if(f.type === 'image/svg+xml'){ const r = new FileReader(); r.onload = () => setImage(r.result, f.name, f.type); r.readAsDataURL(f); }
+        else { const r = new FileReader(); r.onload = () => compressAndSet(r.result, f.name); r.readAsDataURL(f); }
+      }
+      btn?.addEventListener('click', () => file.click());
+      ['dragenter','dragover'].forEach(ev => zone?.addEventListener(ev, e => { e.preventDefault(); zone.style.background='#f1f5f9'; }));
+      ['dragleave','drop'].forEach(ev => zone?.addEventListener(ev, e => { e.preventDefault(); zone.style.background='#fff'; }));
+      zone?.addEventListener('drop', e => handleFile(e.dataTransfer.files[0]));
+      file?.addEventListener('change', e => handleFile(e.target.files[0]));
+      zone?.addEventListener('paste', e => {
+        const it = [...(e.clipboardData?.items||[])].find(it => it.type && it.type.startsWith('image/'));
+        if(it){ e.preventDefault(); handleFile(it.getAsFile()); }
+      });
+    }
+    SCENARIOS.forEach(s => bindUploader(s.id));
+
+    // Compleció per seccions
+    function scenarioHasTextOrImage(id){
+      const on = el(`textarea[name="q${id}_on"]`)?.value.trim();
+      const img = el(`[name="q${id}_img_data"]`)?.value;
+      return (on && on.length>0) || (img && img.length>0);
+    }
+    const isSec1Complete = id => !!el(`input[name="q${id}_yn"]:checked`);
+    const isSec2Complete = id => scenarioHasTextOrImage(id);
+    const isSec3Complete = id => !!el(`textarea[name="q${id}_why"]`)?.value.trim();
+
+    function setSecState(id, secNo, state){
+      const sec = document.querySelector(`.scenario[data-sid="${id}"] .sec${secNo}`);
+      if(!sec) return;
+      sec.classList.remove('idle','done','pending');
+      sec.classList.add(state);
+    }
+    function updateSectionStatesForScenario(id){
+      setSecState(id, 1, isSec1Complete(id) ? 'done' : 'idle');
+      setSecState(id, 2, isSec2Complete(id) ? 'done' : 'idle');
+      setSecState(id, 3, isSec3Complete(id) ? 'done' : 'idle');
+    }
+    function markScenarioPending(id){
+      if(id==null) return;
+      setSecState(id, 1, isSec1Complete(id) ? 'done' : 'pending');
+      setSecState(id, 2, isSec2Complete(id) ? 'done' : 'pending');
+      setSecState(id, 3, isSec3Complete(id) ? 'done' : 'pending');
+    }
+
+    // Progrés
+    const bar = el('#bar'), pctEl = el('#pct'), status = el('#status'), genBtn = el('#genBtn'), report = el('#report');
+    function pairValid(){ const a1 = el('#alumne1').value.trim(); const a2 = el('#alumne2').value.trim(); return a1 && a2 && a1 !== a2; }
+    function completion(){
+      let filled = 0; const total = 2 + (SCENARIOS.length*3);
+      if(el('#alumne1').value) filled++;
+      if(el('#alumne2').value) filled++;
+      if(el('#alumne1').value && el('#alumne2').value && el('#alumne1').value === el('#alumne2').value){ filled--; }
+      SCENARIOS.forEach(s => {
+        if(isSec1Complete(s.id)) filled++;
+        if(isSec2Complete(s.id)) filled++;
+        if(isSec3Complete(s.id)) filled++;
+      });
+      return {filled,total};
+    }
+    function updateProgress(){
+      const {filled,total} = completion();
+      const pct = Math.round((filled/total)*100);
+      bar.style.width = pct + '%'; pctEl.textContent = pct + '%';
+      status.innerHTML = `Camp(s) complets: ${filled} / ${total}`;
+      genBtn.disabled = (filled !== total) || !pairValid();
+    }
+    document.addEventListener('input', e => {
+      if(e.target.matches('select, textarea, input[type="radio"]')){
+        const sc = e.target.closest('.scenario'); if(sc){ updateSectionStatesForScenario(sc.dataset.sid); }
+        e.target.classList.remove('invalid'); updateProgress();
+      }
+    });
+    el('#alumne1').addEventListener('change', updateProgress);
+    el('#alumne2').addEventListener('change', updateProgress);
+
+    // Canvi d’escenari → marca pendents al que deixes
+    let currentScenarioId = null;
+    document.addEventListener('focusin', e => {
+      const sc = e.target.closest('.scenario');
+      const nextId = sc ? Number(sc.dataset.sid) : null;
+      if(currentScenarioId != null && nextId != null && nextId !== currentScenarioId){
+        markScenarioPending(currentScenarioId);
+      }
+      if(nextId != null){
+        updateSectionStatesForScenario(nextId); // idle/done en entrar
+      }
+      currentScenarioId = nextId ?? currentScenarioId;
+    });
+
+    // Inicialitza estats
+    SCENARIOS.forEach(s => updateSectionStatesForScenario(s.id));
+    updateProgress();
+
+    function listMissing(){
+      const missing = [];
+      if(!el('#alumne1').value) missing.push('Alumne 1');
+      if(!el('#alumne2').value) missing.push('Alumne 2');
+      if(el('#alumne1').value && el('#alumne2').value && el('#alumne1').value === el('#alumne2').value){
+        missing.push('Els dos alumnes no poden ser el mateix');
+      }
+      SCENARIOS.forEach(s => {
+        if(!isSec1Complete(s.id)){ missing.push(`Escenari ${s.id}: Es pot modelar?`); document.querySelector(`.scenario[data-sid="${s.id}"] .sec1`).classList.add('pending'); }
+        if(!isSec2Complete(s.id)){ missing.push(`Escenari ${s.id}: cal text a "On..." o adjuntar imatge`); document.querySelector(`.scenario[data-sid="${s.id}"] .sec2`).classList.add('pending'); }
+        const wy = el(`textarea[name="q${s.id}_why"]`);
+        if(!wy.value.trim()){ missing.push(`Escenari ${s.id}: Justificació`); document.querySelector(`.scenario[data-sid="${s.id}"] .sec3`).classList.add('pending'); wy.classList.add('invalid'); }
+      });
+      return missing;
+    }
+
+    el('#checkBtn').addEventListener('click', () => {
+      const miss = listMissing();
+      document.getElementById('report').innerHTML = miss.length
+        ? `<span class="error">Falten camps per omplir:</span><ul class="missing-list">` + miss.map(m=>`<li>${m}</li>`).join('') + `</ul>`
+        : `<span class="success">Perfecte! Tots els camps estan complets. Pots generar el JSON.</span>`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateProgress();
+    });
+
+    function textOfSelectValue(sel){
+      const s = el(sel); const opt = s.options[s.selectedIndex]; return opt ? opt.textContent : '';
+    }
+    function slug(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+
+    el('#genBtn').addEventListener('click', () => {
+      const miss = listMissing();
+      if(miss.length){
+        document.getElementById('report').innerHTML = `<span class="error">No es pot generar el fitxer. Revisa els camps pendents:</span><ul class="missing-list">` + miss.map(m=>`<li>${m}</li>`).join('') + `</ul>`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const payload = {
+        meta:{ ...ACTIVITY, timestamp:new Date().toISOString() },
+        team:[
+          { email:el('#alumne1').value.trim(), name:textOfSelectValue('#alumne1') },
+          { email:el('#alumne2').value.trim(), name:textOfSelectValue('#alumne2') }
+        ],
+        answers: SCENARIOS.map(s => ({
+          q: s.id,
+          can_model: el(`input[name="q${s.id}_yn"]:checked`).value === 'si',
+          where: el(`textarea[name="q${s.id}_on"]`).value.trim(),
+          why: el(`textarea[name="q${s.id}_why"]`).value.trim(),
+          image: {
+            name: el(`[name="q${s.id}_img_name"]`).value || null,
+            mime: el(`[name="q${s.id}_img_mime"]`).value || null,
+            data: el(`[name="q${s.id}_img_data"]`).value || null
+          }
+        }))
+      };
+      const fname = `0484-validacio-mer__${slug(textOfSelectValue('#alumne1'))}__${slug(textOfSelectValue('#alumne2'))}.json`;
+      const blob = new Blob([JSON.stringify(payload,null,2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = fname; document.body.appendChild(a); a.click();
+      URL.revokeObjectURL(url); a.remove();
+      document.getElementById('report').innerHTML = `<span class="success">Fitxer generat:</span> <code>${fname}</code>. Pugeu-lo al campus.`;
+    });
+  </script>
+</body>
+</html>

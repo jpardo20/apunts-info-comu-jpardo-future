@@ -1,0 +1,32 @@
+{
+  "module": {
+    "code": "0373",
+    "name": "Llenguatges de marques"
+  },
+  "presentations": [
+    {
+        "order":0,
+        "title": "Activitat w3css",
+        "src": "slides/activitat-w3css.reveal",
+        "description": "Activitat w3css"
+    },
+    {
+      "order": 1,
+      "title": "1. Introducció",
+      "src": "slides/introduccio.reveal",
+      "description": "Introducció al mòdul 0373 - Llenguatges de marques"
+    },
+    {
+      "order": 2,
+      "title": "2. Introducció XML",
+      "src": "slides/002_Introduccio_XML.reveal",
+      "description": "Introducció al concepte XML"
+    },
+    {
+      "order": 3,
+      "title": "HTML — Introducció i elements essencials",
+      "src": "slides/0373_001_HTML_Basics.reveal",
+      "description": "HTML — Introducció i elements essencials"
+    }
+  ]
+}

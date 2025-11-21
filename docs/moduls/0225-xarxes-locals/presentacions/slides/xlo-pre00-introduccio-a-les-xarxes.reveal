@@ -1,0 +1,600 @@
+# 1. Introducció a les xarxes
+
+* Fonaments de xarxes.
+
+* Protocols i models de xarxes.
+
+* Elements d’una xarxa.
+
+* Cablejat estructurat.
+
+----
+
+#### 1. Introducció a les xarxes
+
+## Què aprendrem?
+
+* La base de la comunicació.
+
+* Identificar tipus de xarxes.
+
+* Identificar els elements d’una xarxa.
+
+* Reconèixer les diverses topologies de xarxa.
+
+* Desplegar el cablatge i interpretar tècniques de muntatge.
+
+* Complir les normes de prevenció de riscos laborals i de protecció ambiental.
+
+---
+
+#### 1. Introducció a les xarxes
+
+## Què és Internet?
+
+----
+
+#### 1. Introducció a les xarxes
+
+# Introducció
+
+Per què serveix Internet?
+
+----
+
+#### 1. Introducció a les xarxes
+
+
+ * Què és una xarxa o network?
+
+
+----
+
+#### 1. Introducció a les xarxes
+
+
+ * Per a què serveix una xarxa?
+
+---
+
+#### 1. Introducció a les xarxes
+
+## 1.1. Comunicació
+
+
+ * Què és? És un procés d’intercanvi d’informació on l’emissor envia un missatge a un o més receptors mitjançant un canal i amb un codi determinat.
+
+----
+
+#### 1. Introducció a les xarxes
+
+## 1.2. Comunicació
+
+* La informació és tot allò que percebem per mitjà de l’entorn i produeix un augment del nostre coneixement.
+
+Procés de la comunicació
+ 
+ * L’emissor codifica la info. (Transductor)
+ 
+ * L’emissor emet el missatge.
+ 
+ * Receptor rep el missatge.
+ 
+ * El descodifica. (Transductor)
+
+----
+
+#### 1. Introducció a les xarxes
+
+## 1.3 Exemples de comunicació
+
+
+ * Mantenir una conversa amb un company.
+
+ * Llegir un article en un diari.
+
+ * Saludar-nos amb la mà.
+
+ * Enviar una foto per Whatsapp.
+
+ * Expulsió d’un jugador en un camp de futbol.
+
+ * Senyals de trànsit.
+
+ * Campanades d’un campanar.
+
+----
+
+#### 1. Introducció a les xarxes
+
+## 1.4 Ús de la informàtica en les comunicacions
+
+ * La informàtica ens ofereix el conjunt de tècniques necessàries per transmetre dades dins d’un sistema informàtic o entre nodes del sistema, localitzats en llocs distants o utilitzant xarxes de telecomunicacions.
+
+----
+
+#### 1. Introducció a les xarxes
+
+## 1.5 Digitalització
+
+
+ * Per tal que es pugui realitzar una trucada telefònica es necessari transformar les dades analògiques en digital (0 i 1), aquest procés s’anomena digitalització.
+
+---
+
+# 2- Evolució de les comunicacions
+
+----
+
+#### 2- Evolució de les comunicacions
+
+## 2. Estructura d’una Xarxa (network structure)
+
+
+ * Què és? El conjunt de dispositius i usuaris que s’interconnecten per administrar les necessitats informàtiques.
+
+----
+
+#### 2- Evolució de les comunicacions
+
+## 2.1 Transferència dels missatges
+
+ * Les dades s’envien per la xarxa en petits trossets denominats segments.
+
+ * Segmentació: Dividir el missatge que volem transmetre en segments per facilitar la transmissió. (1500 bytes)
+
+ * Multiplexació (MUX): Organitzar el canal de transmissió de tal manera que es pugui compartir entre els segments transmesos per varis usuaris.
+
+----
+
+#### 2- Evolució de les comunicacions
+
+## 2.2 Segmentació
+
+– Les dades es transporten en petits “blocs” (segments).
+– Cada segment s’etiqueta amb el número d’aplicació.
+– Web=80, ftp =20/21, Telnet= 23, Correu SMTP = 25, POP=110 Multiplexació
+
+----
+
+#### 2- Evolució de les comunicacions
+
+## 2.3 elements d’una xarxa
+
+
+ * Hardware:
+– Dispositius finals
+– Dispositius intermitjos
+
+ * Software → Protocols
+HTTP,DNS,POP3,IMAP
+SMTP,DHCP,TELNET,FTP
+SSH, IP,TCP,UDP
+
+----
+
+#### 2- Evolució de les comunicacions
+
+## 2.3 elements d’una xarxa (2/2)
+
+▪ Hardware: Routers, switxos
+▪ Software: IOS (implementació de protocols)
+–Aplicació: DNS, HTTP, correu, etc
+–Enrutament: IPv4, IPv6
+–Enllaç de dades: Ethenet, protocols wireless 802.11
+
+----
+
+#### 2- Evolució de les comunicacions
+
+## 2.4 Símbols comuns de les xarxes de dades
+
+---
+
+# 3. Tipus de xarxa
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.1 Classificació 
+
+#### * Extensió geogràfica.
+
+* La titularitat de la xarxa.
+
+* Tipus de distribució.
+
+* Segons mitjà de transmissió.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.1. Extensió geogràfica.
+
+### Exmeple:  LAN (Local Area Network)
+
+ * Una xarxa d’àrea local és un sistema informàtic que permet la connexió entre ordinadors que es troben físicament pròxims entre si, amb la principal finalitat de compartir recursos.
+
+ * Ethernet: Tecnologia que es fa servir per implantar LANs.
+
+----
+#### 3. Tipus de xarxa
+
+## 3.1. Extensió geogràfica.
+
+### 3.1.2 LAN 
+
+Característiques d’una LAN
+
+ * Restricció geogràfica curta.
+
+ * Un edifici, una oficina…
+
+ * Velocitat de transmissió elevada (1Mbps a 1Gbps).
+
+ * Longitud màxima del cablejat 100m sense repetidors.
+
+ * Fiabilitat en les transmissions.
+
+ * Xarxa privada.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.1. Extensió geogràfica.
+
+### 3.1.2 MAN
+
+* MAN (Metropolitan Area Network) xarxa de dades per a la distribució de dades en el àrea geogràfica d’una ciutat.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.1. Extensió geogràfica.
+
+ * WAN (Wide Area Network) xarxa que intercomunica equips en un àrea geogràfica molt extensa (entre ciutats o països).
+
+ * Es produeixen més errors que a les xarxes locals, ja que les transmissions s’acostumen a realitzar a través de xarxes públiques
+
+
+
+----
+#### 3. Tipus de xarxa
+
+## 3.1. Extensió geogràfica.
+
+* PAN (Personal Area Network) Xarxa que permet interconnectar dispositius (mòbils, PDA, tablets, ...) de forma senzilla i gairebé automàtica. (Infrarojos, bluetooth o wifi)
+
+---
+
+#### 3. Tipus de xarxa
+
+## 3.1 Classificació 
+
+* Extensió geogràfica.
+
+#### * La titularitat de la xarxa.
+
+* Tipus de distribució.
+
+* Segons mitjà de transmissió.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.2 La titularitat de la xarxa
+
+ * Xarxa pública o compartida: Xarxa de servei públic ofertes per companyies de telecomunicacions. Es paga una quota per fer-la servir. (Telefonia fixa i mòbil, ADSL, xarxa de fibra òptica...)
+
+ * Xarxa privada o dedicada: Xarxa dissenyada i instal·lada per l’administrador del sistema de la pròpia empresa. També poden ser xarxes llogades a empreses de telecomunicacions.
+
+---
+
+#### 3. Tipus de xarxa
+
+## 3.1 Classificació 
+
+* Extensió geogràfica.
+
+* La titularitat de la xarxa.
+
+#### * Tipus de distribució.
+
+* Segons mitjà de transmissió.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.3 Classificació segons distribució
+
+LES XARXES PODEN ESTAR FORMADES PER
+ * CLIENTS: Es beneficia dels serveis proporcionats pel servidor.
+ * SERVIDORS: Proporciona serveis als clients.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.3 Classificació segons distribució
+
+Dins d’una xarxa, els ordinadors poden estar:
+ * XARXES ENTRE IGUALS
+ * CLIENT-SERVIDOR
+ * AÏLLATS
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.3 Classificació segons distribució
+
+ * A les xarxes d’igual a igual (peerto-peer): tots els equips es troben interconnectats entre ells, i posen a disposició de la resta els seus recursos. Cada node  pot realitzar tasques de client o de servidor.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.3 Classificació segons distribució
+
+ * A les xarxes Client-servidor els serveis es troben centralitzats. El servidor brinda uns serveis, i els clients se’n beneficien.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.3 Classificació segons distribució
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.3 Classificació segons distribució
+
+* Els sistemes aïllats estan composats per un ordinador aïllat o varis ordinadors, que malgrat estar connectats entre si, no tenen interconnectivitat amb la resta de la xarxa corporativa o amb altres sistemes aïllats.
+* Són ordinadors que només realitzen connexions remotes temporals.
+
+---
+
+#### 3. Tipus de xarxa
+
+## 3.1 Classificació 
+
+* Extensió geogràfica.
+
+* La titularitat de la xarxa.
+
+* Tipus de distribució.
+
+#### * Segons mitjà de transmissió.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.4 Classificació segons mitjà de transmissió
+
+ * Xarxa cablejada: els equips es connecten a la xarxa mitjançant un cable. Aquest cable va des de la targeta de xarxa fins a una roseta, i de la roseta al armari de comunicacions.
+
+
+ * Xarxa sense fils: els equips d’aquest tipus de xarxa transmeten i reben informació per mitjà d’ones electromagnètiques.
+----
+
+#### 3. Tipus de xarxa
+
+## 3.4 Classificació segons mitjà de transmissió
+
+ * Xarxa “mixta”: hi ha dels dos tipus de connexió des dels dispositius fins al router.
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.4 Classificació segons mitjà de transmissió
+
+
+ * Wifi menys segur
+
+ * Cablejat més ràpid
+
+ * Cablejat cost superior
+
+ * Cablejat instal·lació més complexa
+
+
+----
+
+#### 3. Tipus de xarxa
+
+## 3.4 Classificació segons mitjà de transmissió
+
+Cablejat VS sense fils
+
+---
+
+# 4. Topologia d’una xarxa
+
+
+----
+
+## 4. Topologia d’una xarxa
+
+La TOPOLOGIA física d’una xarxa indica la forma física de la xarxa, és a dir, la forma en què es disposen els equips i el sistema de cablejat que els connecta per a complir la seva funció.
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+* estrella
+
+* extendida
+
+* ESTRELLA
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+
+* Els diferents equips de la xarxa es troben connectats a través d’un concentrador.
+
+* Menys possibilitats d’error per estar centralitzat.
+
+* Només xarxes petites.
+
+* Massa càrrega de tràfic al concentrador.
+
+* S’ha de mantenir el cablejat ordenat.
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+# ANELL
+
+* Tots els equips estan connectats al voltant d’un cable en forma d’anell físic.
+
+* No hi ha problemes de congestió de tràfic, fan servir protocols lliures de col·lisions: “Token ring”.
+
+* Si es trenca només un node, hi ha un error general a la xarxa.
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+# BUS
+
+ * Tots els equips estan connectats al llarg d’un mateix cable que comparteixen.
+
+ * Instal·lació i funcionament senzill.
+
+ * Menys cost econòmic.
+
+ * Sensible a problemes de tràfic.
+
+ * Si falla un node, hi ha un error general a la xarxa.
+
+> Difícil de trobar l’origen de l’error.
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+# MALLA
+
+* Cada node està sempre connectat amb línies punt a punt amb qualsevol altre node.
+
+* Pocs errors de xarxa i de tràfic.
+
+* No necessita un concentrador.
+
+* Es necessita massa cablejat.
+
+* Instal·lació més complexa.
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+# ARBRE
+
+* Conjunt d’Estrelles,
+
+* connectades per Bus.
+
+  * Si la xarxa creix, facilita l’instal·acció.
+
+  * Si hi ha un error a un node d’enllaç, deixa fora de servei altres nodes.
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+# TOPOLOGIES MIXTES
+
+* És una barreja de les topologies bàsiques vistes.
+
+* És la forma més comuna en xarxes mitjanes i grans, pel fet que les organitzacions van creixent de forma progressiva i sovint poc planificada.
+
+4.1 Topologies físiques
+
+4.2 Topologia lògica d’una xarxa
+
+----
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+* La topologia lògica d’una xarxa és la forma en què els nodes es comuniquen a través de la topologia física.
+* Els tipus més comuns són:
+ * Broadcast.
+ * Transmissió de tokens. 
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+### 4.2.1 broadcast
+
+ * Cada host envia les seves dades cap a tota la resta de hosts. (Ex: Imprimir)
+
+ * No existeix un ordre a seguir per a fer servir la xarxa, és per ordre d’arribada.
+
+ * Així és com funciona la tecnologia Ethernet.
+
+----
+
+#### 4. Topologia d’una xarxa
+
+## 4.1 Topologies físiques
+
+### 4.2.2 Transmissió de TOKENS
+
+* Controla l’accés a la xarxa mitjançant la transmissió d’un token electrònic a cada host de forma seqüèncial.
+* Quan un host rep el token, aquest pot enviar dades a través de la xarxa. Si el host no té dades per enviar, transmet el token al següent host i el procés es torna a repetir. 
+
+<!--
+Exemple de XARXA
+
+Xarxes
+Extensió
+LAN
+MAN
+WAN
+PAN
+Tipus
+d’accés
+Públic
+Privat
+Mitjà
+transmissió
+Cablejat
+Sense fils
+Distribució
+P2P
+Client/Servidor
+Topologia Anell, arbre,
+malla,estrella,
+bus
+-->

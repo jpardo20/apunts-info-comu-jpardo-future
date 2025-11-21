@@ -1,0 +1,102 @@
+
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8">
+    <title>Presentació</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/white.css" id="theme">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/tema.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+
+<style>
+      .topbar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: #115eaf; color: #fff;
+        display: flex; align-items: center; gap: 16px;
+        padding: 6px 12px;
+        z-index: 1000;
+        font-size: .95rem;
+      }
+      .topbar a {
+        color: #fff;
+        text-decoration: underline;
+        font-weight: 600;
+      }
+      .topbar a:hover { text-decoration: none; }
+      :root { --topbar-h: 40px; }
+      .reveal {
+        position: fixed;
+        top: var(--topbar-h);
+        left: 0; right: 0; bottom: 0;
+        height: calc(100dvh - var(--topbar-h));
+        width: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+        <a href="./index.html">← Tornar a Presentacions</a>
+        <span id="topbar-title">Presentació</span>
+        <img src="../../../assets/img/Logo_DIGIQTECH_343x99.png" alt="DigiTech" class="logo" height="70" width="auto">
+    </div>
+    <div class="reveal">
+      <div class="slides">
+        <section id="md-section"
+        data-separator="^---$"
+        data-separator-vertical="^----$"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"></section>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+    <script src="https://unpkg.com/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="https://unpkg.com/reveal.js/plugin/highlight/highlight.js"></script>
+
+    <script>
+      const params = new URLSearchParams(location.search);
+      const src   = params.get('src');
+      const title = params.get('title') || 'Presentació';
+      const theme = params.get('theme');
+      const sep   = params.get('sep');
+      const vsep  = params.get('vsep');
+      const nsep  = params.get('notes');
+
+      document.title = title;
+      document.getElementById('topbar-title').textContent = title;
+      if (theme) document.getElementById('theme').href = `https://unpkg.com/reveal.js/dist/theme/${theme}.css`;
+      const sec = document.getElementById('md-section');
+      if (src) sec.setAttribute('data-markdown', src);
+      if (sep)  sec.setAttribute('data-separator', sep);
+      if (vsep) sec.setAttribute('data-separator-vertical', vsep);
+      if (nsep) sec.setAttribute('data-separator-notes', nsep);
+
+      const deck = new Reveal({
+        hash: true,
+        plugins: [ RevealMarkdown, RevealHighlight ],
+        slideNumber: params.get('slideNumber') === 'true',
+        controls: params.get('controls') !== 'false',
+        progress: params.get('progress') !== 'true',
+        center: params.get('center') !== 'false'
+      });
+      deck.initialize();
+
+      // Ajustar alçada topbar dinàmicament
+      function setTopbarHeight() {
+        const tb = document.querySelector('.topbar');
+        const h = tb ? tb.offsetHeight : 0;
+        document.documentElement.style.setProperty('--topbar-h', h + 'px');
+      }
+      window.addEventListener('DOMContentLoaded', setTopbarHeight);
+      window.addEventListener('resize', setTopbarHeight);
+      const obs = new MutationObserver(setTopbarHeight);
+      obs.observe(document.querySelector('.topbar'), { childList: true, subtree: true, characterData: true });
+    </script>
+  </body>
+</html>

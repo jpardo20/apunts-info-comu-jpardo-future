@@ -1,0 +1,54 @@
+# RA4 · Validació d'XML: DTD i XML Schema (XSD)
+
+
+
+## Objectius del RA
+Describir i aplicar tècniques de **definició i validació** d'XML amb **DTD** i **XSD**, associant esquemes als documents i utilitzant eines de validació.
+
+## Continguts clau
+- Per què validar: qualitat, robustesa, intercanvi fiable.
+- **DTD**: elements, atributs, quantificadors (`? * +`), tipus d'atribut (`ID`, `IDREF`…), entitats.
+- **XSD** 1.0/1.1: tipus simples/complexos, restriccions (`pattern`, `minInclusive`…), cardinalitats, namespaces.
+- Associació: `<!DOCTYPE …>` (DTD) i `xsi:noNamespaceSchemaLocation`/`xsi:schemaLocation` (XSD).
+- Eines: `xmllint`, complements VS Code, validació online.
+
+[comment]: <> (## Exemple breu (DTD vs XSD))
+[comment]: <> (```dtd)
+[comment]: <> (<!ELEMENT cataleg (producte+)>)
+[comment]: <> (<!ELEMENT producte (nom, preu)>)
+[comment]: <> (<!ATTLIST producte id ID #REQUIRED>)
+[comment]: <> (```)
+[comment]: <> (```xml)
+[comment]: <> (<!-- XSD (fragment) -->)
+[comment]: <> (<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">)
+[comment]: <> (  <xsd:element name="cataleg">)
+[comment]: <> (    <xsd:complexType>)
+[comment]: <> (      <xsd:sequence>)
+[comment]: <> (        <xsd:element name="producte" maxOccurs="unbounded">)
+[comment]: <> (          <xsd:complexType>)
+[comment]: <> (            <xsd:sequence>)
+[comment]: <> (              <xsd:element name="nom" type="xsd:string"/>)
+[comment]: <> (              <xsd:element name="preu" type="xsd:decimal"/>)
+[comment]: <> (            </xsd:sequence>)
+[comment]: <> (            <xsd:attribute name="id" type="xsd:ID" use="required"/>)
+[comment]: <> (          </xsd:complexType>)
+[comment]: <> (        </xsd:element>)
+[comment]: <> (      </xsd:sequence>)
+[comment]: <> (    </xsd:complexType>)
+[comment]: <> (  </xsd:element>)
+[comment]: <> (</xsd:schema>)
+[comment]: <> (```)
+[comment]: <> ()
+[comment]: <> (## Microexercicis)
+[comment]: <> (1. Dona dos exemples que el DTD acceptaria però l'XSD rebutjaria (p. ex. `preu` amb text “catorze”, `id` duplicat).)
+[comment]: <> (2. Associa un `xsi:noNamespaceSchemaLocation="cataleg.xsd"` a un document i valida'l.)
+[comment]: <> (3. Afegeix una restricció perquè `preu` tingui 2 decimals i sigui ≥ 0.)
+
+## CA vinculats (resum)
+- Identifica tecnologies de definició i validació (DTD/XSD) i la seva sintaxi.
+- Crea i associa esquemes a documents.
+- Valida documents amb eines adequades.
+
+## Enllaços útils
+- Especificació XSD (W3C).
+- Documentació `xmllint` i extensions VS Code per XML.

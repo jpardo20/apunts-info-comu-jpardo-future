@@ -1,0 +1,28 @@
+# RA2 · Web: HTML5, CSS i validació
+
+---
+
+## Objectius del RA
+Dominar l'estructura bàsica d'un document **HTML5** i aplicar **CSS** per a l'estil, tenint en compte semàntica, accessibilitat mínima i validació estàndard.
+
+---
+
+## Continguts clau
+- Estructura HTML5: `<!doctype html>`, `<head>`, `<body>`; metaetiquetes bàsiques (`charset`, `viewport`).
+- Semàntica: `header`, `nav`, `main`, `section`, `article`, `aside`, `footer`.
+- Accessibilitat essencial: textos alternatius (`alt`), associació `label`–`input`, ordre de capçaleres.
+- CSS: selectores, cascada i herència, **box model**, unitats (`rem`, `%`, `fr`), media queries (nocions).
+- Validació HTML/CSS: eines i errors típics (atributs obsolets, elements mal niats, `alt` absent).
+
+---
+
+## CA vinculats (resum)
+- Reconeix versions/estàndards HTML i bones pràctiques semàntiques.
+- Aplica i valida **CSS**, considerant accessibilitat bàsica.
+- Coneix la sindicació (RSS/Atom) i l'ús a la web (introducció).
+
+---
+
+## Enllaços útils
+- MDN HTML (guia i referència d'elements).
+- W3C Validator (HTML) i CSS Validator.

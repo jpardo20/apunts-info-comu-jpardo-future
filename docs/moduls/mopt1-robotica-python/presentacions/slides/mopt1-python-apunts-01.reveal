@@ -1,0 +1,295 @@
+
+
+# MOPT1 — Python
+
+## Introducció
+Fa segles, "computer" era la persona que **computava**. Els ordinadors actuals automatitzen aquest càlcul i permeten programes que, per sota, fan **moltes operacions amb nombres**. En aquesta unitat consolidem la base numèrica de Python per poder avançar cap a **lògica, control del temps** i petites **simulacions** de robòtica.
+
+----
+
+Validem la versió que tenim instal·lade de Pyton.
+
+1. Obriu una sessió de **`cmd`**
+
+1. executeu: <kbd>python3 --version</kbd> per veure la versió que teniu instal·lada de Python.
+
+```cmd
+joan@jpc-ThinkPad ~ $ python3 --version
+Python 3.10.12
+joan@jpc-ThinkPad ~ $
+```
+
+----
+
+Comencem excutant comandes directament a l’intèrpret de Pyton.
+
+
+1. Obriu una sessió de **`cmd`**, (si no la teniu ja oberta).
+
+1. executeu: <kbd>python3</kbd> per a l’intèrpret de Pyton.
+
+```cmd
+joan@jpc-ThinkPad ~ $ python3
+Python 3.10.12 (main, Aug 15 2025, 14:32:43) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+```
+
+Per sortir de a l’intèrpret de Pyton cal executar <kbd>quit()</kbd>
+
+```cmd
+>>> quit()
+joan@jpc-ThinkPad ~ $ 
+```
+
+---
+
+## Números: enters i reals
+**Tipus**:
+- **`int`**: enters, sense part decimal — p. ex. **`-3`**, **`0`**, **`42`**.
+- **`float`**: reals amb decimals — p. ex. **`3.14`**, **`2.0`**.
+
+```python
+type(2)     # <class 'int'>
+type(2.0)   # <class 'float'>
+type(2.)    # <class 'float'>
+```
+
+----
+
+### La comanda **`type()`**
+
+* **`type()`**: ens mostra de quin tipus és l'objecte que li passem com argument.
+
+![alt text](../../../assets/img/info-vsc-python-type.png)
+
+Més informació de [**`type()`**](https://docs.python.org/3/reference/simple_stmts.html#type)
+
+----
+
+**Operadors**: **`+`**, **`-`**, **`*`**, **`/`**, **`//`**, **`%`**, **`**`** (potència).  
+**Precedència**: **`**`** → **`*`**, **`/`**, **`//`**, **`%`** → **`+`**, **`-`**. Usa parèntesis per deixar clar l’ordre.
+
+```python
+5 / 2        # 2.5 el resultat és decimal => float.
+5 // 2       # 2   mostra només la part sencera, NO arrodoneix.
+5 % 2        # 1   mostra la resta de la divisió 5 entre 2.
+2 ** 4       # 16  mostra la potencia de 2 elevat a 4.
+(2 + 3) * 4  # 20  mostra el resultat canviant l'ordre de Precedència
+2 + 3 * 4    # 14  mostra el resultat sense canviar l'ordre de Precedència
+```
+
+----
+
+
+**Conversió i imprecisions**:
+```python
+int(3.9)     # 3  (talla)
+float(5)     # 5.0
+```
+
+---
+
+## Variables, acumuladors i constants
+
+----
+
+## Variables
+
+Una **variable** guarda un valor identificat per un **nom** vàlid (no pot començar per número).
+
+```python
+x = 6
+x = x + 4      # 10
+x += 3         # 13 (assignació composta)
+```
+
+----
+
+## Acumuladors
+
+**Acumulador**: patró per anar sumant/mesurant.
+
+```python
+total = 0.0
+for nota in [6.5, 7.0, 5.25]:
+    total += nota
+mitjana = total / 3
+```
+
+----
+
+## Constants
+
+**Constants**: estil en MAJÚSCULES per valors "fixos" al codi.
+
+```python
+PI = 3.141592653
+radi = 8
+area = PI * (radi ** 2)
+```
+
+---
+
+> Python distingeix **majúscules/minúscules**: `pi` i `PI` són noms diferents.
+
+## Llegibilitat: espais i sagnat
+Python ignora **espais** entre operadors, però llegeix millor `2 + 4 + -5` que no pas variants compactes.  
+El **sagnat** (espais al principi) és significatiu a les estructures de control; al REPL, una línia amb espais al principi pot provocar `IndentationError`.
+
+----
+
+## Text: `str`, cometes i línies múltiples
+```python
+type("hola")      # <class 'str'>
+type("33")        # <class 'str'>
+type('Hi!')       # cometes simples o dobles
+"""Un
+dos
+tres"""           # literal multilínia; conté '\n'
+```
+
+----
+
+Si el text conté apòstrof (`'`), és còmode usar cometes dobles: `"L'ombra..."`.
+
+## f-strings i format numèric
+
+Les **f-strings** incrusten expressions amb `{}`:
+
+```python
+nom, edat = "Laia", 21
+f"Em dic {nom} i tinc {edat} anys."
+
+a = 2/3
+f"Amb dos decimals: {a:.2f}"   # -> 'Amb dos decimals: 0.67'
+```
+
+----
+
+## De l’intèrpret a l’script
+Un **script** (`.py`) és una seqüència de sentències guardades en fitxer.
+
+`hello.py`:
+
+```python
+x = 45
+x += 90
+print(x)
+```
+
+Execució:
+```python
+python hello.py
+# 135
+```
+----
+
+
+Exemple amb entrada d’usuari (`input()`):
+```python
+# circle.py
+print("Entra el radi? ", end="")
+radi = int(input())
+PI = 3.141592653
+area = PI * (radi ** 2)
+print(f"Àrea amb radi {radi}: {area}")
+```
+
+---
+
+## Activitats ràpides
+Escriu aquesta sentència de manera que es pugui entendre fàcilment: **`+4++6-+6+-10`**
+
+<details>
+  <summary>Mostra la solució</summary>
+
+Solució (llegible):  
+`+4 + +6 - +6 + -10`  
+Opció equivalent més clara: `4 + 6 - 6 - 10`
+</details>
+
+
+----
+
+2) f-string: amb `usuari = "Miquel"` i `lliure = 125.5999`, mostra  
+   `L'usuari Miquel té 125.60 MB d'espai lliure` (arrodonit a 2 decimals).
+
+<details>
+  <summary>Mostra la solució</summary>
+
+```python
+usuari = "Miquel"
+lliure = 125.5999
+print(f"L'usuari {usuari} té {lliure:.2f} MB d'espai lliure")
+# → L'usuari Miquel té 125.60 MB d'espai lliure
+```
+
+</details>
+
+----
+
+3) Percentatges: amb `p = 0.8` i `n = 99`, mostra `El 80.0 % de 99 és 79.2` amb una sola línia `print(...)` i càlcul dins d’un f-string.
+
+<details> <summary>Mostra la solució</summary>
+
+```python
+p, n = 0.8, 99
+print(f"El {p*100:.1f} % de {n} és {p*n:.1f}")
+# → El 80.0 % de 99 és 79.2
+```
+
+</details>
+----
+
+4) Scripts: amplia `circle.py` perquè imprimeixi **perímetre** i una línia final resum: `radi=X, àrea=..., perímetre=...`.
+
+
+<details> <summary>Mostra la solució</summary>
+
+```python
+PI = 3.141592653
+radi = float(input("Radi? "))
+area = PI * (radi ** 2)
+perimetre = 2 * PI * radi
+print(f"Àrea: {area:.2f}")
+print(f"Perímetre: {perimetre:.2f}")
+print(f"resum -> radi={radi:g}, àrea={area:.2f}, perímetre={perimetre:.2f}")
+```
+
+</details>
+----
+
+
+5) Converteix segons totals a `h:mm:ss` usant **`//`** i **`%`** (sense llibreries).
+
+<details> <summary>Mostra la solució</summary>
+
+```python
+segons = int(input("Segons totals: "))
+h = segons // 3600
+m = (segons % 3600) // 60
+s = segons % 60
+print(f"{h}:{m:02d}:{s:02d}")
+# Ex.: 3671 → 1:01:11
+```
+
+</details>
+---
+
+## Errors típics i com interpretar-los
+
+```python
+- **NameError** — variable no definida. Defineix abans d’usar:
+  ```python
+  zeta = 5
+  2 * zeta  # 10
+  ```
+```
+- **SyntaxError** — números amb zero inicial (`03`) o cometes no tancades.
+- **ZeroDivisionError** — divisió per zero (vigila parèntesis!).
+- **TypeError** — barreges `str` i `int` en una suma:
+  ```python
+  x = "5"; y = 3
+  int(x) + y  # 8
+  ```

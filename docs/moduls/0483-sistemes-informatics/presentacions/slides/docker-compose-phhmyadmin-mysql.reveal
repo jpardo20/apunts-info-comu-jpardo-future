@@ -1,0 +1,141 @@
+## Sistema de contenidors: phpMyAdmin + MySQL amb `docker compose` (1/4)
+
+**Objectiu:** aixecar un sistema format per **MySQL** (base de dades) i **phpMyAdmin** (administració web) fent servir `docker compose`.
+
+---
+
+1) Crea una carpeta de treball i entra-hi:
+```
+mkdir -p ~/projectes/docker-lamp && cd ~/projectes/docker-lamp
+```
+
+---- 
+
+
+2) Crea un fitxer **`docker-compose.yml`** amb aquest contingut:
+```yaml
+version: "3.8"
+services:
+  db:
+    image: mysql:8.0
+    container_name: db-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=alumne
+      - MYSQL_DATABASE=botiga
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=app123
+    ports:
+      - "3306:3306"         # (opcional) exposa MySQL al host
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    depends_on:
+      - db
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=alumne
+    ports:
+      - "8081:80"           # accés web a phpMyAdmin
+
+volumes:
+  db_data:
+```
+
+> **Notes:**  
+> - Contrasenya de `root`: **alumne** 
+> - El volum `db_data` **persisteix** les dades de MySQL.  
+> - El port `3306` és **opcional**; no cal exposar-lo si només fareu servir phpMyAdmin.
+
+---
+
+## Sistema de contenidors: **`phpMyAdmin`** + **`MySQL`** amb **`docker compose`** (2/4)
+
+**Engegar el sistema**
+
+1) Al directori (**`~/projectes/docker-lamp`**) on hi ha el **`docker-compose.yml`**, executeu:
+```
+docker compose up -d
+```
+
+2) Comproveu l'estat:
+```
+docker compose ps
+```
+
+3) Vegeu els logs (si cal diagnosticar):
+```
+docker compose logs -f
+```
+
+----
+
+## Sistema de contenidors: phpMyAdmin + MySQL amb `docker compose` (3/4)
+
+**Comprovació via navegador**
+
+- Obriu el navegador del vostre equip i escriviu:  
+```
+http://192.168.56.<XXX>:8081
+```
+(on **`<XXX>`** és la ip de la vostra màquina virtual)
+
+- Pantalla d'inici de **phpMyAdmin**:  
+  - **Usuari:** `root`  
+  - **Contrasenya:** `alumne`
+
+- Verificacions ràpides dins phpMyAdmin:
+  - Comproveu que existeix la BD inicial **`botiga`**.  
+  - Creeu una taula de prova i inseriu-ne un parell de registres.
+
+```sql
+CREATE TABLE prova (
+  codi         INTEGER PRIMARY KEY,
+  textProva    VARCHAR(100)
+);
+
+INSERT INTO `prova` (`codi`,`textProva`) VALUES
+  (1, 'Aquest text és de prova1'),
+  (2, 'Aquest text és de prova2');
+
+
+SELECT *
+FROM prova;
+
+```
+
+----
+
+> **Alternativa:** si heu exposat el port `3306`, podeu connectar-vos a MySQL des del host amb un client (DBeaver, MySQL Workbench, etc.) a `192.168.56.<XXX>:3306`.
+
+(on **`<XXX>`** és la ip de la vostra màquina virtual)
+
+
+----
+
+## Sistema de contenidors: phpMyAdmin + MySQL amb `docker compose` (4/4)
+
+**Gestió i aturada**
+
+- Llistar serveis en marxa:
+```
+docker compose ps
+```
+
+- Aturar i eliminar contenidors (les dades PERSISTEIXEN al volum):
+```
+docker compose down
+```
+
+- Aturar i **eliminar també les dades** (esborra el volum `db_data`):
+```
+docker compose down -v
+```
+
+- Netejar recursos que sobren (imatges o volums dangling):
+```
+docker system prune
+```

@@ -1,0 +1,47 @@
+{
+  "module": {
+    "code": "0225",
+    "name": "Xarxes locals"
+  },
+  "presentations": [
+    {
+      "order": 1,
+      "title": "1. Introducció a les xarxes",
+      "src": "slides/xlo-pre00-introduccio-a-les-xarxes.reveal",
+      "description": "TEORIA: Introducció a les xarxes",
+      "status": "active"
+    },
+    {
+      "order": 2,
+      "title": "2. Adreça IP i màscara de subxarxa",
+      "src": "slides/presentacio-ip-mascara.reveal",
+      "description": "Adreça IP i màscara de subxarxa",
+      "status": "active"
+    },
+    {
+      "order": 3,
+      "title": "3. Activitat",
+      "src": "slides/activitats/activitat.html",
+      "description": "Adreça IP i màscara de subxarxa",
+      "status": "inactive"
+    },
+    {
+      "order": 4,
+      "title": "4. Activitat",
+      "src": "slides/activitats/0225-xlo-ae02-protocols.reveal",
+      "description": "Activitat: Presentacions de Protocols (SMX)<br>(<kbd>0225-xlo-ae02-protocols</kbd>)",
+      "status": "active"
+    },
+    {
+      "order": 5,
+      "title": "5. Protocols",
+      "src": "slides/protocols.reveal",
+      "description": "Protocols",
+      "status": "active"
+    }
+    
+
+
+    
+  ]
+}

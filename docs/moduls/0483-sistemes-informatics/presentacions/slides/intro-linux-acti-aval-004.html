@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>0483 · Sistemes informàtics — Activitat avaluable 004 (Qüestionari JSON)</title>
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #16a34a;
+      --danger: #dc2626;
+      --danger-ink: #991b1b;
+      --border: #e5e7eb;
+      --shadow: 0 6px 24px rgba(2, 6, 23, .08);
+      --radius: 14px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
+      background:
+        radial-gradient(850px 500px at 0% -10%, rgba(37,99,235,.08), transparent 60%),
+        radial-gradient(900px 500px at 100% -10%, rgba(16,163,69,.07), transparent 55%),
+        var(--bg);
+      color: var(--ink);
+      line-height:1.48;
+      padding: 24px;
+    }
+    .wrap{ max-width: 980px; margin:0 auto; }
+    header{ display:grid; gap:6px; margin-bottom:16px; }
+    h1{ margin:0; font-size: clamp(22px, 4vw, 30px); }
+    .subtitle{ color: var(--muted); font-size: 14px; }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .sticky-progress{
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(246,247,251,.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+    }
+    .progress{ position:relative; height:10px; background:#eef2f7; border:1px solid #e5e7eb; border-radius:999px; overflow:hidden; }
+    .progress>i{ position:absolute; inset:0; width:0%; background: linear-gradient(90deg, #16a34a, #2563eb); transition: width .3s ease; }
+    .pct { text-align: right; font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    .row{ display:grid; gap:8px; }
+    label{ font-weight:600; font-size:14px; }
+    .hint, .muted-inline{ color:var(--muted); font-size:12px; }
+    input[type="text"], select{
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #d6d9e0;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+    .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+    button{
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fff, #f1f5f9);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button.good{ background: linear-gradient(180deg, #22c55e, #16a34a); color: #fff; border-color: #16a34a; }
+    button.warn{ background: linear-gradient(180deg, #ef4444, #dc2626); color: #fff; border-color:#dc2626; }
+    .dangerbox{ background:#fee2e2; border:1px solid #fecaca; color:var(--danger-ink); border-radius:12px; padding:12px; display:none; }
+    .dangerbox h3{ margin:0 0 6px 0; }
+    .dangerbox ul{ margin:0; padding-left: 20px; }
+    .qgroup{ padding:10px; border:1px dashed var(--border); border-radius: 10px; margin:10px 0; }
+    .qgroup h3{ margin:0 0 8px 0; font-size:16px; }
+    .qgroup.invalid{ border-color:#ef4444; background:#fff7f7; box-shadow: 0 0 0 3px rgba(239,68,68,.12); }
+    .opts{ display:grid; gap:6px; margin-left: 6px; }
+    .opt label{ font-weight: 500; }
+    .small{ font-size:12px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>0483 · Sistemes informàtics — Activitat avaluable 004</h1>
+      <div class="subtitle">Qüestionari de consoles Linux (20 preguntes) · Entrega en JSON</div>
+    </header>
+
+    <div class="card">
+      <p><strong>Objectiu:</strong> respondre 20 preguntes sobre les comandes de Linux vistes a classe (S01 + S02) i descarregar un <strong>fitxer JSON</strong> amb les respostes.</p>
+    </div>
+
+    <!-- Alumne -->
+    <div class="card">
+      <div class="row">
+        <div>
+          <label for="student">Alumne/a</label>
+          <select id="student" disabled>
+            <option>Carregant llistat...</option>
+          </select>
+          <div id="studentFallback" style="display:none; margin-top:8px;">
+            <label for="studentManual">Nom i cognoms (si el llistat no carrega)</label>
+            <input id="studentManual" type="text" placeholder="Escriu el teu nom manualment" />
+            <div class="muted-inline">Evita accents i caràcters especials per consistència.</div>
+          </div>
+          <div class="small" id="studentEmailNote"></div>
+        </div>
+      </div>
+      <div id="lockMsg" class="muted-inline" style="margin-top:8px;"></div>
+    </div>
+
+    <div id="missingBox" class="card dangerbox">
+      <h3>Falten respostes:</h3>
+      <ul id="missingList"></ul>
+    </div>
+
+    <section class="card">
+      <h2 style="margin-top:0">Qüestionari (20)</h2>
+      <div class="sticky-progress">
+        <div class="progress" title="Completat"><i id="progbar"></i></div>
+        <div class="pct" id="pct">0%</div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="qgroup" id="q01_group" data-qid="q01" data-type="radio">
+        <h3>Q1. Quina comanda mostra el directori actual?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q01" value="a" data-text="ls"> ls</label>
+          <label class="opt"><input type="radio" name="q01" value="b" data-text="pwd"> pwd</label>
+          <label class="opt"><input type="radio" name="q01" value="c" data-text="cd"> cd</label>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="qgroup" id="q02_group" data-qid="q02" data-type="radio">
+        <h3>Q2. Llistar fitxers amb detalls i incloent ocults:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q02" value="a" data-text="ls -l"> ls -l</label>
+          <label class="opt"><input type="radio" name="q02" value="b" data-text="ls -a"> ls -a</label>
+          <label class="opt"><input type="radio" name="q02" value="c" data-text="ls -la"> ls -la</label>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="qgroup" id="q03_group" data-qid="q03" data-type="radio">
+        <h3>Q3. Crear un directori i tots els subdirectoris necessaris:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q03" value="a" data-text="mkdir -p"> mkdir -p</label>
+          <label class="opt"><input type="radio" name="q03" value="b" data-text="mkdir *"> mkdir *</label>
+          <label class="opt"><input type="radio" name="q03" value="c" data-text="mk -r"> mk -r</label>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="qgroup" id="q04_group" data-qid="q04" data-type="radio">
+        <h3>Q4. Copiar recursivament i preservant metadades:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q04" value="a" data-text="cp -r"> cp -r</label>
+          <label class="opt"><input type="radio" name="q04" value="b" data-text="cp -a"> cp -a</label>
+          <label class="opt"><input type="radio" name="q04" value="c" data-text="cp --meta"> cp --meta</label>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="qgroup" id="q05_group" data-qid="q05" data-type="radio">
+        <h3>Q5. Quina comanda serveix per moure o reanomenar?</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q05" value="a" data-text="mv"> mv</label>
+          <label class="opt"><input type="radio" name="q05" value="b" data-text="rn"> rn</label>
+          <label class="opt"><input type="radio" name="q05" value="c" data-text="move"> move</label>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="qgroup" id="q06_group" data-qid="q06" data-type="radio">
+        <h3>Q6. Eliminar un directori que conté fitxers:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q06" value="a" data-text="rmdir"> rmdir</label>
+          <label class="opt"><input type="radio" name="q06" value="b" data-text="rm -r"> rm -r</label>
+          <label class="opt"><input type="radio" name="q06" value="c" data-text="rm"> rm</label>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="qgroup" id="q07_group" data-qid="q07" data-type="radio">
+        <h3>Q7. Crear un fitxer buit:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q07" value="a" data-text="touch"> touch</label>
+          <label class="opt"><input type="radio" name="q07" value="b" data-text="mkfile"> mkfile</label>
+          <label class="opt"><input type="radio" name="q07" value="c" data-text="newfile"> newfile</label>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="qgroup" id="q08_group" data-qid="q08" data-type="radio">
+        <h3>Q8. Opció per crear un enllaç <em>simbòlic</em>:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q08" value="a" data-text="ln -s"> ln -s</label>
+          <label class="opt"><input type="radio" name="q08" value="b" data-text="ln -h"> ln -h</label>
+          <label class="opt"><input type="radio" name="q08" value="c" data-text="ln --soft"> ln --soft</label>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="qgroup" id="q09_group" data-qid="q09" data-type="radio">
+        <h3>Q9. Concatenar <code>a.txt</code> i <code>b.txt</code> i escriure a <code>ab.txt</code>:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q09" value="a" data-text="cat a.txt b.txt > ab.txt"> cat a.txt b.txt &gt; ab.txt</label>
+          <label class="opt"><input type="radio" name="q09" value="b" data-text="cat ab.txt > a.txt b.txt"> cat ab.txt &gt; a.txt b.txt</label>
+          <label class="opt"><input type="radio" name="q09" value="c" data-text="echo a.txt b.txt >> ab.txt"> echo a.txt b.txt &gt;&gt; ab.txt</label>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="qgroup" id="q10_group" data-qid="q10" data-type="radio">
+        <h3>Q10. Mostrar les 10 primeres línies d’un fitxer gran:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q10" value="a" data-text="head"> head</label>
+          <label class="opt"><input type="radio" name="q10" value="b" data-text="tail"> tail</label>
+          <label class="opt"><input type="radio" name="q10" value="c" data-text="less"> less</label>
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="qgroup" id="q11_group" data-qid="q11" data-type="radio">
+        <h3>Q11. Cercar la paraula <code>error</code> recursivament a <code>/var/log</code> (sense color):</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q11" value="a" data-text="grep -Rin --color=never 'error' /var/log"> grep -Rin --color=never 'error' /var/log</label>
+          <label class="opt"><input type="radio" name="q11" value="b" data-text="find /var/log -name 'error'"> find /var/log -name 'error'</label>
+          <label class="opt"><input type="radio" name="q11" value="c" data-text="locate /var/log/error"> locate /var/log/error</label>
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="qgroup" id="q12_group" data-qid="q12" data-type="radio">
+        <h3>Q12. Trobar i llistar fitxers &gt; 10MB modificats en l’última setmana:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q12" value="a" data-text="find . -type f -size +10M -mtime -7"> find . -type f -size +10M -mtime -7</label>
+          <label class="opt"><input type="radio" name="q12" value="b" data-text="locate '*.log' -size +10M"> locate '*.log' -size +10M</label>
+          <label class="opt"><input type="radio" name="q12" value="c" data-text="du -sh *.log"> du -sh *.log</label>
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="qgroup" id="q13_group" data-qid="q13" data-type="radio">
+        <h3>Q13. Calcular el hash SHA-256 d’un fitxer:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q13" value="a" data-text="md5sum"> md5sum</label>
+          <label class="opt"><input type="radio" name="q13" value="b" data-text="sha256sum"> sha256sum</label>
+          <label class="opt"><input type="radio" name="q13" value="c" data-text="hash -sha256"> hash -sha256</label>
+        </div>
+      </div>
+
+      <!-- Q14 (text) -->
+      <div class="qgroup" id="q14_group" data-qid="q14" data-type="text">
+        <h3>Q14. Quin és el valor <em>octal</em> dels permisos <code>rwxr-x---</code>?</h3>
+        <input type="text" id="q14" placeholder="Escriu el valor octal (per ex. 644)">
+      </div>
+
+      <!-- Q15 -->
+      <div class="qgroup" id="q15_group" data-qid="q15" data-type="radio">
+        <h3>Q15. Canviar propietari i grup d’un fitxer:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q15" value="a" data-text="chgrp usuari:grup fitxer"> chgrp usuari:grup fitxer</label>
+          <label class="opt"><input type="radio" name="q15" value="b" data-text="chown usuari:grup fitxer"> chown usuari:grup fitxer</label>
+          <label class="opt"><input type="radio" name="q15" value="c" data-text="chmod usuari:grup fitxer"> chmod usuari:grup fitxer</label>
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="qgroup" id="q16_group" data-qid="q16" data-type="radio">
+        <h3>Q16. Actualitzar el catàleg de paquets (Debian/Ubuntu):</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q16" value="a" data-text="apt update"> apt update</label>
+          <label class="opt"><input type="radio" name="q16" value="b" data-text="apt upgrade"> apt upgrade</label>
+          <label class="opt"><input type="radio" name="q16" value="c" data-text="apt install"> apt install</label>
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="qgroup" id="q17_group" data-qid="q17" data-type="radio">
+        <h3>Q17. Habilitar l’inici automàtic d’un servei (systemd):</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q17" value="a" data-text="systemctl start servei"> systemctl start servei</label>
+          <label class="opt"><input type="radio" name="q17" value="b" data-text="systemctl enable servei"> systemctl enable servei</label>
+          <label class="opt"><input type="radio" name="q17" value="c" data-text="systemctl restart servei"> systemctl restart servei</label>
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="qgroup" id="q18_group" data-qid="q18" data-type="radio">
+        <h3>Q18. Veure ports i sockets escoltant al sistema:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q18" value="a" data-text="ss -tulpn"> ss -tulpn</label>
+          <label class="opt"><input type="radio" name="q18" value="b" data-text="ip a"> ip a</label>
+          <label class="opt"><input type="radio" name="q18" value="c" data-text="ping -c 1 8.8.8.8"> ping -c 1 8.8.8.8</label>
+        </div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="qgroup" id="q19_group" data-qid="q19" data-type="radio">
+        <h3>Q19. Mostra l’ús de disc de cada element del directori actual en format humà:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q19" value="a" data-text="df -h"> df -h</label>
+          <label class="opt"><input type="radio" name="q19" value="b" data-text="du -sh *"> du -sh *</label>
+          <label class="opt"><input type="radio" name="q19" value="c" data-text="lsblk"> lsblk</label>
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="qgroup" id="q20_group" data-qid="q20" data-type="radio">
+        <h3>Q20. Generar una clau SSH moderna amb comentari:</h3>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q20" value="a" data-text="ssh-keygen -t rsa -b 1024"> ssh-keygen -t rsa -b 1024</label>
+          <label class="opt"><input type="radio" name="q20" value="b" data-text="ssh-keygen -t ed25519 -C 'alumne@centre'"> ssh-keygen -t ed25519 -C 'alumne@centre'</label>
+          <label class="opt"><input type="radio" name="q20" value="c" data-text="ssh-keygen --create"> ssh-keygen --create</label>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button class="good" id="btnDownload">Descarrega JSON</button>
+        <button class="warn" id="btnReset" type="button">Neteja respostes</button>
+      </div>
+    </section>
+
+    <div class="card" style="text-align:center; color: var(--muted); font-size:12px;">
+      © DAM · Activitat 004 · HTML+JS · Carrega d'alumnes des de <code>../alumnes/dades_alumnes.json</code>.
+    </div>
+  </div>
+
+<script>
+  const $ = (s)=>document.querySelector(s);
+  const $$ = (s)=>Array.from(document.querySelectorAll(s));
+
+  const studentSelect = $('#student');
+  const studentFallback = $('#studentFallback');
+  const lockMsg = $('#lockMsg');
+  const emailNote = $('#studentEmailNote');
+
+  async function loadStudents(){
+    try{
+      lockMsg.textContent = "Carregant llistat d'alumnes...";
+      const res = await fetch('../alumnes/dades_alumnes.json', {cache:'no-store'});
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const arr = flattenAlumnes(data);
+      if(!arr.length) throw new Error('Sense alumnes');
+      studentSelect.innerHTML = '<option value="">Selecciona el teu nom…</option>' + arr.map(s=>{
+        const txt = escapeHtml((s.firstname||'') + ' ' + (s.lastname||''));
+        const em = s.email ? ` data-email="${escapeHtml(s.email)}"` : '';
+        return `<option${em}>${txt}</option>`;
+      }).join('');
+      studentSelect.disabled = false;
+      studentFallback.style.display = 'none';
+      lockMsg.textContent = 'Selecciona el teu nom del desplegable.';
+      studentSelect.addEventListener('change', ()=>{
+        const opt = studentSelect.selectedOptions[0];
+        const mail = opt?.dataset?.email || '';
+        emailNote.textContent = mail ? ('Email: ' + mail) : '';
+      });
+    }catch(err){
+      studentSelect.innerHTML = '<option value="">No s\'ha pogut carregar el llistat</option>';
+      studentSelect.disabled = true;
+      studentFallback.style.display = 'block';
+      lockMsg.textContent = 'No s’ha pogut carregar el llistat (potser estàs obrint el fitxer localment). Escriu el teu nom manualment.';
+      console.error(err);
+    }
+  }
+
+  function flattenAlumnes(data){
+    const out = [];
+    function pushIfValid(x){
+      if(!x) return;
+      const fn = x.firstname || x.name || x.nom || '';
+      const ln = x.lastname || x.cognoms || x.surname || '';
+      const em = x.email || x.correu || '';
+      if(fn || ln || em){
+        out.push({firstname: fn, lastname: ln, email: em});
+      }
+    }
+    function walk(node){
+      if(Array.isArray(node)){
+        node.forEach(walk);
+      }else if(node && typeof node === 'object'){
+        if('firstname' in node || 'lastname' in node || 'email' in node){
+          pushIfValid(node);
+        }else if('alumnes' in node){
+          walk(node.alumnes);
+        }else if('students' in node){
+          walk(node.students);
+        }else{
+          Object.values(node).forEach(walk);
+        }
+      }
+    }
+    walk(data);
+    return out;
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>\"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#039;' }[m]));
+  }
+
+  loadStudents();
+
+  // Progress + missing
+  const questions = Array.from(document.querySelectorAll('.qgroup')).map(div => ({
+    id: div.dataset.qid,
+    type: div.dataset.type
+  }));
+
+  function getAnswer(q){
+    if(q.type === 'text'){
+      return { value: (document.getElementById(q.id).value || '').trim() };
+    }else{
+      const checked = document.querySelector(`input[name="${q.id}"]:checked`);
+      if(!checked) return null;
+      return { value: checked.value, text: checked.dataset.text };
+    }
+  }
+
+  function progress(){
+    const total = questions.length + 1; // + nom
+    let done = questions.filter(q => {
+      const ans = getAnswer(q);
+      return ans && (q.type === 'text' ? ans.value.length>0 : !!ans.value);
+    }).length;
+    if(getStudentName()) done += 1;
+    const pct = Math.round((done/total)*100);
+    document.getElementById('progbar').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+  }
+  document.addEventListener('input', (e)=>{ const g=e.target.closest('.qgroup'); if(g?.classList.contains('invalid')) g.classList.remove('invalid'); progress(); });
+  document.addEventListener('change', (e)=>{ const g=e.target.closest('.qgroup'); if(g?.classList.contains('invalid')) g.classList.remove('invalid'); progress(); });
+  progress();
+
+  function getStudentName(){
+    const v = studentSelect.disabled ? '' : (studentSelect.value || '').trim();
+    const manual = (document.getElementById('studentManual')?.value || '').trim();
+    return v || manual;
+  }
+
+  function listMissing(ids){
+    const box = document.getElementById('missingBox'); const ul = document.getElementById('missingList');
+    ul.innerHTML = ids.map(id => `<li>${id.toUpperCase()}</li>`).join('');
+    box.style.display = ids.length ? 'block' : 'none';
+    // highlight
+    ids.forEach(id => { const g = document.getElementById(id + '_group'); if(g) g.classList.add('invalid'); });
+    if(ids.length) box.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  function buildJSON(){
+    const nom = getStudentName();
+    const email = (!studentSelect.disabled && studentSelect.selectedOptions[0]?.dataset?.email) ? studentSelect.selectedOptions[0].dataset.email : '';
+    if(!nom) throw new Error('Alumne/a');
+    const answers = {};
+    const missing = [];
+    for(const q of questions){
+      const ans = getAnswer(q);
+      if(!ans || (q.type==='text' && !ans.value)){
+        missing.push(q.id);
+        continue;
+      }
+      answers[q.id] = { type:q.type, value: ans.value, text: ans.text };
+    }
+    if(missing.length){
+      listMissing(missing);
+      throw new Error('Falten respostes');
+    }
+    return {
+      alumne: { nom, email: email || undefined, origen: studentSelect.disabled ? 'manual' : (studentSelect.value ? 'llistat' : ( (document.getElementById('studentManual')?.value || '').trim() ? 'manual' : 'llistat')) },
+      respostes: answers,
+      meta: { activitat: 'intro-linux-acti-aval-004', preguntes: questions.length }
+    };
+  }
+
+  function download(){
+    try{
+      const obj = buildJSON();
+      const pretty = JSON.stringify(obj, null, 2);
+      const blob = new Blob([pretty], {type: 'application/json;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'intro-linux-acti-aval-004.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+      document.getElementById('missingBox').style.display = 'none';
+    }catch(e){
+      console.warn(e.message);
+    }
+  }
+
+  function resetAll(){
+    if(!confirm('Vols buidar totes les respostes?')) return;
+    $$('input[type=text]').forEach(el => { el.value = ''; });
+    $$('input[type=radio]').forEach(el => { el.checked = false; });
+    $$('.qgroup').forEach(g => g.classList.remove('invalid'));
+    document.getElementById('missingBox').style.display = 'none';
+    if(!studentSelect.disabled) studentSelect.value = '';
+    progress();
+  }
+
+  document.getElementById('btnDownload').addEventListener('click', (e)=>{ e.preventDefault(); download(); });
+  document.getElementById('btnReset').addEventListener('click', (e)=>{ e.preventDefault(); resetAll(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "id": "0225_ip_mascara_llarga",
+  "nom": "Xarxes Locals — IPs, màscares, xarxa i broadcast (activitat llarga)",
+  "versio": "1.0",
+  "fitxer_html": "activitat.html",
+  "alumnes_json_relpath": "../../alumnes/dades_alumnes.json",
+  "penalitzacio": "10% per reinent a partir del 2n",
+  "num_preguntes": 14,
+  "tipus": [
+    "single",
+    "multi",
+    "match"
+  ]
+}

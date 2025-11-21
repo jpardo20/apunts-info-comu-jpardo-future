@@ -1,0 +1,328 @@
+# Components d’un equip microinformàtic RA1
+
+
+- Sistemes d’emmagatzematge extern de dades
+- Vídeos de suport:
+- https://drive.google.com/drive/folders/1e_KxXeXxOIMour8CPcmu7BVYdztenlmT?usp=sharing
+
+---
+
+## Sistemes d’emmagatzematge de dades
+
+- Permeten guardar d’una manera permanent tot tipus de fitxers amb els que tracta l’ordinador.
+- Avantatges i inconvenients:
+- No són volàtils.
+- Tenen una capacitat molt superior.
+- Preu molt inferior.
+- Temps de resposta acceptables però molt inferiors.
+
+---
+
+## Característiques
+
+- Són reutilitzables.
+- Tenen molta capacitat d’emmagatzematge.
+- No són volàtils.
+- Són molt econòmics.
+
+---
+
+## Característiques comparatives
+
+- Quan volem adquirir un sistema d’emmagatzematge extern busquem:
+- Temps d’accés a les dades.
+- Velocitat de transferència de les dades.
+- Capacitat total d’emmagatzematge.
+- Tipus d’accés al dispositiu (seqüencial o directe).
+- Cost/bit del dispositiu.
+
+---
+
+## Tipus (tecnologies)
+
+- Tecnologia magnètica.
+  - Disc Durs.
+  - Disquets.
+  - Cintes magnètiques.
+  - ...
+- Tecnologia òptica.
+  - DVD.
+  - Blue Ray
+  - ...
+- Tecnologia elèctrica.
+  - Memòries Flash.
+  - ...
+
+---
+
+## Tecnologia Magnètica
+
+- Estan basats en la capacitat magnètica d’alguns materials. Quan s'apliquen camps magnètics aconseguim canviar de forma les posicions d’aquest material.
+- Tots són lectors i gravadors alhora, tenen un cost/bit molt baix i són molt delicats en quan a temperatura, cops i camps magnètics.
+
+---
+
+## El disc dur
+
+- És el dispositiu d’emmagatzematge més emprat.
+- Té molta capacitat.
+
+---
+
+## Diapositiva
+
+
+---
+
+## Components del disc dur
+
+- Unitats de discos (plats).
+- Material de suport magnètic.
+- Capçal de lectura/escriptura.
+- Motor d’accionament de l’eix de rotació.
+- Motor d’impulsos de posicionament del capçal.
+- Tarja controladora.
+- Pistes, sectors i cilindres.
+
+---
+
+## Components del disc dur.Les unitats de discos
+
+- Un disc dur està constituït per diferents plats de material magnètic, disposats sobre un eix central sobre el que es mouen.
+- La velocitat de rotació de les unitats de discos oscil·la des de les 5,400 rpm fins a les 10.000 rpm.
+
+---
+
+## Components del disc dur.Material de suport magnètic.
+
+- Els discos estan fets amb una aleació d’alumini recoberta amb una capa de material magnètic.
+
+---
+
+## Components dels discs durs.Capçal de lectura/escriptura
+
+- Està compost d’una sèrie de capçals en forma de pila que es mouen alhora.
+- Són els responsables de la lectura/escriptura de dades en els discos.
+- Els capçals no arriben a tocar la superfície dels discos, ja que gràcies a la seva velocitat fan un coixí d’aire sobre el que floten.
+
+---
+
+## Components dels discs durs.Capçal de lectura/escriptura
+
+- En l’accés a les dades s’ha de tenir en compte:
+  - El temps de cerca de la pista (Tseek): És el temps que passa des que la CPU dóna l’ordre de lectura/escriptura fins que es fa.
+  - El temps d’espera al sector (Temps de latencia): És el temps que s’ha d’esperar després d’haver fet una lectura/escriptura fins que podem per la següent.
+- Taccés = Tseek + Tlatència
+
+---
+
+## Components del disc dur.Capçal de lectura/escriptura
+
+
+---
+
+## Components del disc dur.Motor d’accionament de l’eix de rotació de la unitat
+
+- És l’encarregat de proporcionar velocitat a l’eix que suporta els plats.
+
+---
+
+## Components del disc dur.Motor d’impulsos o de posicionament dels capçals
+
+- Motor elèctric encarregat de moure el capçal a través dels prats en sentit radial per situar-se sobre el sector i cilindre adequat.
+
+---
+
+## Estructura interna
+
+
+---
+
+## Tipus de connexions. IDE
+
+- És un tipus de connexió que permet 2 connectors per a 2 connexions cadascun.
+- Dels dos discs durs, un ha d'estar com esclau i l'altre com mestre. La configuració es realitza mitjançant jumpers.
+- Un disc dur pot estar configurat d'una d'aquestes tres formes:
+  - Master: Si és l'únic dispositiu en el cable o si té més preferència que  l’esclau.
+  - Esclau: Si hi ha un altre dispositiu que sigui mestre.
+  - Cable select: El dispositiu serà mestre o esclau en funció de la seva posició en el cable.
+
+---
+
+## Connexió IDE
+
+
+---
+
+## Tipus de connexions. SATA
+
+- És una interfície de transferència de dades entre la placa mare i alguns dispositius d'emmagatzemament.
+- La connexió entre el port i el dispositiu és directa i que cada dispositiu es connecta de manera directa amb la seva controladora SATA.
+
+---
+
+## Connexió SATA
+
+
+---
+
+## Factors de forma
+
+- 3,5 polzades: s'utilitza a la majoria de discs durs dels ordinadors de sobretaula.
+- 2,5 polzades: s'utilitza a la majoria de discs durs dels ordinadors portàtils.
+
+---
+
+## Discs durs SSD
+
+- Una unitat d'estat sòlid és un dispositiu d'emmagatzematge secundari fet amb components electrònics.
+- Està formada per una memòria no volàtil, en comptes dels plats giratoris.
+- Sense parts mòbils, una unitat en estat sòlid és totalment silenciosa, redueix notablement el temps d'accés i de latència. És molt útil als ordinadors portàtils que estiguin sotmesos a moviments bruscos.
+
+---
+
+## Disc durs SSD
+
+
+---
+
+## Disc durs SSD M.2
+
+- Normalment: Interface: PCI-Express. Depèn de la placa. També pot ser SATA
+
+---
+
+## Memòria Virtual
+
+- La memòria virtual és un sistema de gestió de la memòria RAM dins el SO que ofereix als programes la impressió que la memòria que fan servir té adreces continuades, mentre que en realitat la memòria pot estar físicament fragmentada o desada en el disc dur.
+- Els sistemes que usen aquesta tècnica fan més fàcil la programació de grans aplicacions i permeten un ús més eficient de la memòria RAM.
+
+---
+
+## Tecnologia òptica
+
+- Els discos òptics estan formats per una peça circular de 12cm de diàmetre d’un plàstic policarbonat.
+- El plàstic es recobreix d’una finíssima capa d’alumini reflectant.
+- L’alumini té una capa de laca que protegeix les dades.
+- També ha de tenir una capa de caràtula.
+
+---
+
+## Tecnologia òptica
+
+- Els discos òptics només tenen una única pista en espiral que comença en la part central del disc.
+- En aquesta pista en espiral s’han estampat milions de perforacions que son les que codifiquen la informació que conté el disc.
+- Cada perforació (pit) és un ‘1’ lògic, i la falta de perforació (land) és un ‘0’ lògic.
+
+---
+
+## Tecnologia òpticaProcediment de lectura
+
+- Un làser s’emet per un díode d’infrarojos cap a un mirall que forma part del capçal de lectura/escriptura.
+- La llum reflectida en el mirall travessa la lent i s’enfoca sobre un punt de la superfície del CD.
+- La llum es reflexa en la capa d’alumini, la qual retorna una quantitat de llum si hi ha un forat o un altra quantitat en cas contrari.
+
+---
+
+## Tecnologia òptica
+
+- El lector òptic, a diferència del magnètic, no té contacte directe amb la superfície del disc, però s’ha de vigilar la neteja de pols sobre el díode, el mirall i la lent.
+
+---
+
+## DVD’s
+
+- Són idèntics als CD’s en quant a forma i grossor.
+- Les seves capacitats van des de els 4,7Gb (Una cara i una capa) fins els 17,1 Gb (dues cares i dues capes).
+- La longitud del làser és més curta que en els CD’s, per tant la informació està més comprimida en la superfície del disc.
+
+---
+
+## DVD’s
+
+- La separació entre voltes és de 0,74 micres (en els CD’s 1,6 micres).
+- La longitud del pit és de 0,4 micres (en els CD’s 0,83 micres).
+
+---
+
+## Blu-ray
+
+- La mateixa mida i grossor que els CD’s i DVD’s.
+- Utilitza un raig blau.
+- El disc de capa simple pot emmagatzemar 25Gb i el de capa doble 50Gb.
+- La velocitat de transferència és de 36 Mbps.
+- El successor serà l’Archival Disc i tindrà des de 300Gb fins a 1Tb de capacitat.
+
+---
+
+## Diferències entre Blu-Ray i DVD
+
+
+---
+
+## Estructura d’un Blu-ray
+
+
+---
+
+## Tecnologia elèctrica
+
+- La memòria flash consisteix en un xip que emmagatzema informació mitjançant portes lògiques.
+- Permeten la lectura y escriptura de múltiples posicions de memòria en la mateixa operació mitjançant impulsos elèctrics.
+- És la tecnologia emprada en les memòries USB, discos SSD, SD.
+
+---
+
+## Avantatges de la tecnologia elèctrica
+
+  - Gran resistència a cops.
+  - Gran velocitat.
+  - Baix consum d’energia.
+  - funcionament silenciós.
+- Inconvenients
+  - Número limitat d’escriptures i esborrats per cel·la.
+  - Preu/capacitat més elevat que les tecnologies magnètiques i òptiques.
+
+---
+
+## Memòria USB
+
+- És un petit dispositiu de memòria flaix que es pot connectar directament a un port USB.
+- Els pendrive s’utilitzen com discs durs externs amb una capacitat comparable amb els de gamma baixa i s'utilitzen normalment per a guardar-hi tot tipus d’arxius.
+
+---
+
+## Memòries USB. Característiques
+
+- Durada: És limitada pel fet que la càrrega elèctrica que té desada i que representa la informació no està perfectament aïllada i pot, per tant, pot desaparèixer al cap d'un cert temps.
+- Rendiment: La taxa de bits de les dades varia en lectura i en escriptura depenent del controlador, components, …
+- Vídeo: SSD vs HDD - Comparativa
+
+---
+
+## Readyboost
+
+- És una tecnologia de memòria cau de disc pels SO Windows.
+- El seu objectiu és fer més ràpids aquells ordinadors que s'executen amb l'esmentat sistema operatiu mitjançant memòries USB, targetes SD, CompactFlash o similars.
+- Aquesta tecnologia permet que la memòria virtual es trobi a les memòries flash, ja que són més ràpides que els discos durs.
+
+---
+
+## Targetes SD
+
+- La Targeta Secure Digital, (també coneguda com a targeta SD) és un format de targeta de memòria flash.
+- Una targeta SD s'utilitza com a mitjà de comunicació i d'emmagatzematge per a un dispositiu portàtil, que es pot treure fàcilment per a l'accés per un ordinador personal.
+
+---
+
+## Formats de targetes SD
+
+
+---
+
+## Característiques
+
+
+---
+
+## Velocitats

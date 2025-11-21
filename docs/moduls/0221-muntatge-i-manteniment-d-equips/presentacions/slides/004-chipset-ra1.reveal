@@ -1,0 +1,94 @@
+# Muntatge i manteniment d’equips
+
+- Components d’un equip microinformàtic
+- Chipset
+---
+
+
+## Chipset (repàs)
+
+- El Chipset és un conjunt de circuits (chips) que ajuden a que el processador es comuniqui amb els dispositius connectats a la placa base.
+- El chipset acostuma a estar composat de dos ciercuits:
+  - Pont Nort (Northbridge)
+  - Pont Sud (Southbridge)
+---
+
+
+## Chipset (repàs)
+
+- Quins components gestionava el NorthBridge?
+- Quins components gestionava el SouthBridge?
+---
+
+
+## Chipset (repàs)
+
+- Northbridge (Pont Nord)
+---
+- Northbridge
+- CPU
+- Memòria RAM
+- Southbridge
+- Bus AGP o PCI Express
+
+
+## Chipset (repàs)
+
+- Southbridge (Pont Sud)
+---
+- Southbridge
+- Northbridge
+- IDE, SATA
+- Suport PCI
+- Disquetera, tarja de xarxa, so
+- Suport ISA
+- USB, Firewire
+- Altres dispositius
+
+
+## Chipset
+
+- Els dos ponts constitueixen l’eix central del chipset.
+- La especialització d’alguns components requereixen ser gestionats de forma específica.
+  - Directament controlats per altres chips especials.
+  - Aquest xips també formen part del chipset.
+  - Descarreguen feina als ponts, però qualsevol feina important estarà supervisada pel pont corresponent.
+- Els chips especialitzats s’anomenen controladors.
+---
+
+
+## Controladors auxiliars del Chipset
+
+- Controlador d'àudio.	-	Controlador ethernet.
+- Controlador SATA	-	Controlador Firewire
+---
+
+
+## Nous Chipsets
+
+- Noves generacions de Chipset
+  - La evolució ve marcada per processadors cada vegada més ràpids i amb més nuclis, i connexions entre micro i ponts massa lentes.
+- Noves tecnologies (arquitectures) de microprocessadors:
+  - Nehalem
+  - Sandy Bridge
+  - Haswell
+---
+
+
+## Noves generacions de Chipset
+
+---
+
+
+## Noves generacions de Chipset
+
+- Canvis per solucionar problemes de rendiment:
+  - El pont nord  desapareix i la majoria de funcions passen al microprocessador.
+  - Es crea un nou xip anomenat PCH, que substitueix al pont sud. Assumeix totes les seves funcions i algunes del pont nord.
+  - El canal de comunicació del PCH amb el microprocessador és el DMI
+---
+
+
+## Noves generacions de Chipset
+
+---

@@ -1,0 +1,170 @@
+### Components d’un equip microinformàtic
+
+# Factors de Forma
+
+---
+
+
+
+## Placa Base
+
+- En anglès: mainboard o motherboard
+- És l’element principal de l’ordinador.
+- En ella es connecten la resta d’elements i fa que treballin junts (que es comuniquin)
+  - Processador, Memòria RAM, disc dur
+- El model de placa determina els components que hi podem instal·lar i les possibles ampliacions que li podem fer al PC.
+
+---
+
+
+
+## Factor de Forma
+
+- Són uns estàndards que defineixen de forma molt bàsica les característiques (físiques) que ha de tenir la placa base.
+- L’objectiu és garantir que no hi haurà problemes de compatibilitat física entre les plaques dels diferents fabricants i al resta de components de l’ordinador.
+
+---
+
+
+
+## Factor de Forma
+
+- El factor de forma de la placa determina:
+  - La mida de la placa.
+  - La orientació dins de la torre i la posició dels ancoratges.
+  - El tipus de font d’alimentació (forma dels connectors).
+  - La posició i orientació dels elements que es connectaran a la placa.
+
+---
+
+
+
+## Factors de Forma més populars
+
+- Hi ha més de 20 factors de forma diferents:
+- Alguns dels més característics:
+  - ATX
+    - ATX, Micro-ATX (µATX).
+  - BTX
+    - BTX, Micro-BTX (µBTX), Pico-BTX (pBTX).
+  - WTX (ATX per a WorkStations).
+  - ITX
+    - Mini-ITX (mITX), Nano-ITX (nITX), Pico-ITX (pITX).
+  - DTX.
+
+---
+
+
+
+## Factors de Forma més populars
+
+- ATX
+  - Són les més populars actualment.
+  - Avantatges:
+    - Millor disposició dels components
+    - CPU i memòria lluny de les targes i proper a la font d’alimentació, per rebre aire fresc del ventilador de la font.
+    - Connectors  de dispositius propers entre ells per reduir la longitud dels cables.
+  - Micro-ATX son iguals però de mides més reduïdes.
+    - Compatibles amb ATX. Fins i tot les caixes (torres).
+    - Menys ports d’expansió (components integrats en placa).
+
+---
+
+
+
+## Factors de Forma més populars
+
+- ATX
+
+![factor-de-forma-atx.png](../../../assets/img/factor-de-forma-atx.png)
+
+- Micro-ATX
+
+![factor-de-forma-micro-atx.png](../../../assets/img/factor-de-forma-micro-atx.png)
+
+---
+
+
+
+## Factors de Forma més populars
+
+- BTX
+  - Es va crear per solucionar alguns problemes de refrigeració d’alguns microprocessadors i les gràfiques.
+  - Els components es col·loquen de forma diferent que a la ATX per millorar el flux d’aire i s’incorpora ventilador a la torre.
+  - Intenta refrigerar millor la CPU i la tarja gràfica però la resta de l’ordinador s’escalfa molt més.
+  - Pràcticament incompatible amb ATX (excepte el connector de corrent ATX de la font).
+  - Micro-BTX, Pico-BTX són iguals però de mides més reduïdes.
+
+---
+
+
+
+## Factors de Forma més populars
+
+- BTX
+
+![factor-de-forma-btx.png](../../../assets/img/factor-de-forma-btx.png)
+
+- Micro-BTX
+
+![factor-de-forma-micro-btx.png](../../../assets/img/factor-de-forma-micro-btx.png)
+
+- Pico-BTX
+
+![factor-de-forma-pico-btx.png](../../../assets/img/factor-de-forma-pico-btx.png)
+
+---
+
+
+
+## Factors de Forma més populars
+
+- ATX vs BTX
+
+![atx-vs-btx.png](../../../assets/img/atx-vs-btx.png)
+
+- La CPU a ATX està sota la font d’alimentació
+
+- La CPU a BTX està davant la caixa.
+
+---
+
+
+
+## Factors de Forma més populars
+
+- WTX
+  - Derivat del ATX.
+  - Orientat a equips d’alt rendiment (servidors, workstation).
+  - Contempla la possibilitat de connectar més d’un socket (per a més d’un processador).
+
+![factor-de-forma-wtx.png](../../../assets/img/factor-de-forma-wtx.png)
+
+---
+
+
+
+## Factors de Forma més populars
+
+- ITX
+  - Són les plaques més petites que existeixen en el mercat.
+  - Orientades a equips de petites dimensions.
+  - Són compatibles amb components ATX.
+    - Per tant, permet connectar-hi components dissenyats per qualssevol altre ordinador.
+  - Factors disponibles:
+    - Mini-ITX, Nano ITX i Pico ITX
+
+![Mini-ITX-Nano-ITX-Pico-ITX](../../../assets/img/Mini-ITX-Nano-ITX-Pico-ITX.png)
+
+---
+
+## Factors de Forma més populars
+
+- DTX
+  - Mides una mica per sota que el µATX.
+  - És busca la funcionalitat que es pretenia del BTX.
+  - Per a dispositius petits (Barebones*, HTPC*).
+  - Compatible amb els ancoratges i connexions elèctriques de l’ATX.
+  - Vídeo resum [Evolución de formatos en la Placa Base | Diferencia entre XT, AT, ATX, ITX | Hardware Para Novatos (10:44)](https://www.youtube.com/watch?v=V4mBLMeic6g)
+
+

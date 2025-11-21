@@ -1,0 +1,22 @@
+.codi{
+    background-color:lightgray;
+    font-family: monospace;
+    color: blue;
+}
+
+.negreta{
+    font-weight: bold;
+}
+
+
+.vermell{
+    color: red;
+}
+
+.minuscules{
+    text-transform: lowercase;
+}
+
+h3+a {
+    color: pink!important;
+}

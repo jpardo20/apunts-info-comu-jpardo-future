@@ -1,0 +1,237 @@
+<!-- Fitxer: activitat-w3css.md -->
+
+# Activitat: Landing amb W3.CSS
+### 1r DAM – Llenguatges de marques
+
+**Objectius**
+
+- Importar i utilitzar un _framework_ CSS extern.
+- Fer servir les classes bàsiques de **W3.CSS** per maquetar una pàgina responsiva.
+- Llegir i aprofitar la documentació oficial de W3Schools.
+
+**Recurs únic permès**
+
+`https://www.w3schools.com/w3css/`
+
+---
+
+## 1. Context de l’activitat
+
+- W3.CSS és un **framework CSS responsiu i lleuger**, creat per W3Schools.
+- No necessita JavaScript ni jQuery, només **CSS pur**.
+- El farem servir per crear una **mini landing page** d’una aplicació web de tasques:  
+  **“Taskify – Organitza les teves tasques”**.
+
+Treball Individual
+
+**Material necessari**
+
+- Ordinador amb navegador.
+- Editor de codi.
+- Accés a: `https://www.w3schools.com/w3css/`
+
+---
+
+## 3. Fase 0 – Preparació del projecte
+
+1. Crea una carpeta anomenada `w3css-landing`.
+2. A dins, crea el fitxer `index.html`.
+3. Escriu-hi l’esquelet bàsic HTML5:
+
+```html
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Taskify - Organitza les teves tasques</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TODO: Afegir W3.CSS -->
+</head>
+<body>
+
+  <!-- Aquí anirà tot el contingut W3.CSS -->
+
+</body>
+</html>
+```
+
+4. Afegeix l’enllaç a W3.CSS dins de `<head>`:
+
+```html
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+```
+
+5. Desa i comprova que el fitxer s’obre correctament al navegador.
+
+---
+
+## 4. Repte principal
+
+**Objectiu general**
+
+Dissenyar una landing page per a **Taskify**, utilitzant només classes de **W3.CSS**.
+
+La pàgina haurà de contenir, com a mínim:
+
+1. Capçalera amb menú.
+2. Secció “hero” de presentació.
+3. Secció de característiques del producte.
+4. Secció de testimonis o preguntes freqüents.
+5. Peu de pàgina amb informació bàsica.
+
+Només pots fer servir la documentació i exemples de:
+
+`https://www.w3schools.com/w3css/`
+
+---
+
+## 5. Pas 1 – Capçalera i menú
+
+**Tasques**
+
+1. Crea una capçalera amb fons de color utilitzant `w3-container` i una classe de color (`w3-blue`, `w3-teal`, etc.).
+2. Afegeix-hi un menú horitzontal amb `w3-bar` i `w3-bar-item`.
+
+**Consulta a W3Schools**
+
+- Busca com funciona `w3-bar` i `w3-bar-item`.
+- Prova diferents colors de fons W3.CSS.
+
+---
+
+## 6. Pas 2 – Secció “hero” (presentació)
+
+**Objectiu**
+
+Crear una secció inicial visualment atractiva, centrada i amb bon ús de l’espai.
+
+**Requisits**
+
+- Fons clar (`w3-light-grey` o similar).
+- Contingut centrat (`w3-center`).
+- Espaiat vertical (`w3-padding-64` o similar).
+- Un títol gran i un subtítol.
+- Un botó de crida a l’acció (`Call to Action`) amb estil `w3-button`.
+
+**Consulta a W3Schools**
+
+- Classes de **tipografia** i **mides de text** a W3.CSS.
+- Exemples de “hero” o “banner” en els templates/demos.
+
+---
+
+## 7. Pas 3 – Secció de característiques
+
+**Objectiu**
+
+Mostrar mínim **3 característiques** de l’aplicació en format de “columnes”.
+
+**Requisits**
+
+- Usa `w3-row-padding` per a la fila.
+- Usa 3 columnes amb `w3-third`.
+- Cada característica ha d’estar dins d’un `w3-card` o `w3-panel`.
+- Títol curt + text explicatiu per a cada característica.
+
+
+**Consulta a W3Schools**
+
+- “W3.CSS Grid / Columns”
+- “Cards” i “Panels”.
+
+---
+
+## 8. Pas 4 – Testimonis o Preguntes freqüents
+
+### Pas 4.A: Testimonis
+
+- Crea una secció amb **2–3 testimonis** de “clients”.
+- Utilitza `w3-panel`, `w3-leftbar` i algun color de fons.
+
+### Pas 4.B: Preguntes freqüents (FAQ)
+
+- Crea una llista de **mínim 4 preguntes** amb la seva resposta.
+- Dona format amb `w3-ul` i `w3-card`, o bé amb `w3-panel`.
+
+
+---
+
+## 9. Pas 5 – Peu de pàgina
+
+**Requisits mínims**
+
+- Fons fosc (`w3-dark-grey` o similar).
+- Text clar (`w3-text-light-grey`).
+- Incloure:
+  - Copyright.
+  - Un enllaç de contacte (fictici o real).
+  - Un enllaç que porti a dalt de la pàgina (`href="#top"` o similar, si ho configures).
+
+---
+
+## 10. Pas 6
+
+- Afegir una secció de **preus** (plans “Free”, “Pro”, “Team”) amb `w3-card` i diferents colors.
+- Afegir una secció de **formulari de contacte** usant estil W3.CSS per a inputs i botons.
+- Utilitzar classes de **colors temàtics** (per exemple, paletes de color W3.CSS).
+- Fer que el menú quedi **fixat a la part superior** (`w3-top`) i comprovar el comportament al fer scroll.
+
+Recorda:  
+**Sempre** basar-te en exemples i referències de `https://www.w3schools.com/w3css/`.
+
+---
+
+## 11. Lliurament
+
+Cada alumne haurà de lliurar:
+
+- Carpeta `w3css-landing/` amb:
+  - `index.html`
+  - altres fitxers d’imatge o recursos.
+- El codi ha d’estar **sagnat i ordenat**.
+- El fitxer es lliura **comprimit** en `.zip` amb el nom:  
+  `cognom1_nom1_w3css.zip`
+
+---
+
+## 12. Rúbrica d’avaluació (10 punts)
+
+| Apartat                                    | Punts |
+|----------------------------------------------|------:|
+| **Ús correcte de W3.CSS**                  | 2.5 |
+| **Estructura HTML semàntica**              | 2.0 |
+| **Disseny de la pàgina (layout + responsiu)**| 2.0 |
+| **Qualitat visual (colors, espais, llegibilitat)** | 1.0 |
+| **Contingut i textos (coherència i català)** | 1.0 |
+| **Millores creatives amb W3.CSS.**| 1.5 |
+
+----
+
+
+## 12. Rúbrica d’avaluació (10 punts)
+
+
+| Apartat| Descripció breu|
+|------ |------|
+| **Ús correcte de W3.CSS** | Import correcte del CSS, ús de classes del framework. |
+| **Estructura HTML semàntica** | Ús d’etiquetes adequades (`header`, `section`, `footer`, …). |
+| **Disseny de la pàgina (layout + responsiu)** | Ús de columnes, `w3-row-padding`, adaptació a diferents amplades. |
+| **Qualitat visual (colors, espais, llegibilitat)** | Pàgina clara, coherent i llegible.|
+| **Contingut i textos (coherència i català)** | Textos propis, sense faltes greus i coherents amb el tema. |
+| **Millores creatives amb W3.CSS.** | Preus, formulari, menú fix, etc. |
+
+
+---
+
+## 13. Checklist
+
+Abans de lliurar, comprova:
+
+- [ ] He importat correctament `w3.css`.
+- [ ] El menú funciona i es veu bé.
+- [ ] La secció “hero” té un títol, descripció i botó.
+- [ ] Tinc com a mínim 3 característiques en format columna.
+- [ ] Tinc testimonis i secció de FAQ.
+- [ ] He afegit un peu de pàgina correcte.
+- [ ] El codi està ordenat i comentat mínimament.
+- [ ] He comprovat el resultat en **més d’una amplada de finestra**.

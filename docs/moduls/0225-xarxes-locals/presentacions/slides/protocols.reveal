@@ -1,0 +1,391 @@
+# Protocols de xarxa amb Packet Tracer
+
+#### M0225 – Xarxes locals · 1r SMX
+
+---
+
+## Objectius de la sessió
+
+- Recordar els protocols que heu presentat:
+  - **DHCP, DNS, HTTP, SMTP/POP3/IMAP, FTP, VLAN, SNMP, NTP, HTTPS/TLS**
+- Entendre **què resol cada protocol** i en quin punt del camí el trobem
+- Veure **exemples a Packet Tracer** (demos i “captures” al Simulation Mode)
+- Aclarir dubtes de les presentacions de classe
+
+---
+
+## Idea general
+
+- Quan un ordinador **parla per la xarxa**, no ho fa “a l’atzar”
+- Fa servir **regles (protocols)** que indiquen:
+  - Qui parla primer
+  - Quina informació s’envia
+  - Com es comprova que tot està bé
+- Cada protocol té un **paper concret** (servir IP, resoldre noms, enviar correu, etc.)
+
+---
+
+## Resum ràpid de protocols
+
+| Protocol   | Serveix per…                             | Port típic      |
+|-----------|-------------------------------------------|-----------------|
+| DHCP      | Assignar IP automàticament                | 67/68 UDP       |
+| DNS       | Traduir noms (google.com → IP)            | 53 UDP/TCP      |
+| HTTP      | Web “normal”, sense xifrar                | 80 TCP          |
+| HTTPS/TLS | Web xifrada                               | 443 TCP         |
+| SMTP      | Enviar correu des del client al servidor  | 25 TCP          |
+| POP3      | Baixar correu del servidor                | 110 TCP         |
+| IMAP      | Consultar correu al servidor              | 143 TCP         |
+| FTP       | Pujar/baixar fitxers                      | 20/21 TCP       |
+| SNMP      | Monitorejar equips                        | 161/162 UDP     |
+| NTP       | Sincronitzar l’hora                       | 123 UDP         |
+
+*(Ports = molt orientatiu, no cal memoritzar-los tots a 1r)*
+
+---
+
+# DHCP
+
+----
+
+## DHCP – què és?
+
+- **Dynamic Host Configuration Protocol**
+- Problema que resol:
+  - En lloc de configurar IP, màscara, gateway, DNS **a mà**…
+  - Un **servidor DHCP** les dona automàticament als clients
+- Això fa que:
+  - Sigui **més ràpid** connectar nous equips
+  - Hi hagi **menys errors** de configuració
+
+----
+
+## DHCP – el famós DORA
+
+Quan un PC s’engega i no té IP:
+
+1. **D**iscover → “Hi ha algun servidor DHCP?”
+2. **O**ffer → “Et puc oferir aquesta IP”
+3. **R**equest → “M’agradaria aquesta IP, si us plau”
+4. **A**ck → “Confirmat, aquesta IP és teva”
+
+- Aquest intercanvi és el **DORA**
+
+----
+
+## DHCP – què mirar a Packet Tracer
+
+**Topologia típica:**
+
+- 1 router (o servidor) amb servei **DHCP**
+- 1 switch
+- 1 o més PCs com a **clients DHCP**
+
+----
+
+**Al Simulation Mode:**
+
+- Fes clic a **Simulation**
+- Afegeix filtres **DHCP/BOOTP**
+- Genera trànsit:
+  - Apaga i encén el PC, o fes `ipconfig /renew` (en el PC de PT)
+- Observa els paquets:
+  - **DHCP Discover, Offer, Request, ACK**
+  - Mira les dades: IP oferta, màscara, gateway, DNS…
+
+---
+
+# DNS
+
+----
+
+## DNS – què és?
+
+- **Domain Name System**
+- Problema que resol:
+  - Les persones recordem millor **noms** que no pas **IPs**
+- Exemple:
+  - Escrius `www.google.com`
+  - El PC pregunta a un **servidor DNS**:
+    - “Quina IP té aquest nom?”
+  - El DNS respon: “té la IP X.X.X.X”
+
+----
+
+## DNS – com ho veiem a PT
+
+**Topologia típica:**
+
+- 1 servidor amb servei **DNS**
+- 1 o més PCs
+- Opcionalment un servidor web per provar el nom de domini
+
+----
+
+**Al Simulation Mode:**
+
+- Fes un **ping** o obre el navegador del PC cap a `www.alguna-cosa.local`
+- Afegeix filtre **DNS**
+- Mira:
+  - **DNS query** (consulta)
+  - **DNS response** (resposta)
+  - Observa:
+    - Nom demanat
+    - IP retornada
+    - Tipus de registre (A, bàsicament)
+
+---
+
+# HTTP i HTTPS
+
+----
+
+## HTTP – què és?
+
+- **HyperText Transfer Protocol**
+- Protocol per **demanar i enviar pàgines web**
+- Exemple:
+  - El navegador envia una **petició HTTP** al servidor web
+  - El servidor retorna una **resposta HTTP** (HTML, imatges, etc.)
+- HTTP “normal” **no xifra** el contingut
+
+----
+
+## HTTPS/TLS – idea bàsica
+
+- **HTTPS = HTTP + TLS (xifratge)**  
+- Problema que resol:
+  - Si no hi ha xifratge, algú al mig podria:
+    - Llegir el que envies
+    - Manipular la informació
+- Amb HTTPS:
+  - Navegador i servidor creen un **túnel xifrat**
+  - A partir d’aquí, el trànsit ja no es veu en “clar”
+
+*(A Packet Tracer el TLS/HTTPS real no es veu com a Wireshark; és més per entendre el concepte.)*
+
+----
+
+## HTTP – demo a PT
+
+**Topologia típica:**
+
+- 1 **Web Server**
+- 1 PC client
+- Potser un switch o router intermedi
+
+----
+
+**Al Simulation Mode:**
+
+- Afegeix filtre **HTTP**
+- Al navegador del PC escriu l’IP del servidor
+- Observa:
+  - Petició **GET** (el client demana una pàgina)
+  - Resposta amb codi (per ex. 200 OK) i contingut
+
+---
+
+# SMTP, POP3 i IMAP
+
+----
+
+## Correu electrònic – idea general
+
+Hi ha **dos moments diferents**:
+
+1. **Enviar** el correu:
+   - Client → servidor de correu
+   - Protocol típic: **SMTP**
+2. **Llegir / baixar** el correu:
+   - Client → servidor
+   - Protocols típics: **POP3** o **IMAP**
+
+----
+
+## SMTP – enviar correu
+
+- **Simple Mail Transfer Protocol**
+- Serveix per **enviar** correus:
+  - Del client al servidor
+  - Entre servidors
+- Port típic: **25**
+
+----
+
+## POP3 i IMAP – llegir correu
+
+- **POP3 (Post Office Protocol v3)**
+  - El client **baixa** els correus i normalment els guarda localment
+  - Pensat per tenir el correu en **un sol dispositiu**
+- **IMAP (Internet Message Access Protocol)**
+  - El correu es manté al **servidor**
+  - Pots veure el mateix correu des de diferents dispositius
+
+*(A 1r ens quedem amb la idea general: POP3 = baixar, IMAP = treballar al servidor.)*
+
+----
+
+## SMTP/POP3 – demo a PT
+
+**Topologia típica:**
+
+- 1 **Email Server** (SMTP + POP3)
+- 2 PCs-client de correu
+- Mateixa xarxa local o amb router
+
+----
+
+**Al Simulation Mode:**
+
+- Afegeix filtres **SMTP** i **POP3**
+- Envia un correu des d’un PC a un altre
+- Mira:
+  - Paquets SMTP quan **s’envia**
+  - Paquets POP3 quan l’altre PC **consulta** la bústia
+
+---
+
+# FTP
+
+----
+
+## FTP – què és?
+
+- **File Transfer Protocol**
+- Serveix per **pujar i baixar fitxers** entre client i servidor
+- Port típic: **21** (control) i **20** (dades, segons mode)
+- Problema:
+  - El trànsit FTP **no està xifrat** (contrasenyes incloses)
+
+----
+
+## FTP – demo a PT
+
+**Topologia típica:**
+
+- 1 **FTP Server**
+- 1 PC client
+
+----
+
+**Al Simulation Mode:**
+
+- Afegeix filtre **FTP**
+- Des del PC:
+  - Obre la pestanya **FTP** (o client integrat) i connecta al servidor
+  - Prova de pujar/baixar un fitxer
+- Observa:
+  - Comandes (USER, PASS, LIST, RETR, STOR, …)
+  - Veureu usuari i contrasenya en text clar → bon exemple per parlar de **seguretat**
+
+---
+
+# VLAN 802.1Q
+
+----
+
+## VLAN – què és?
+
+- **Virtual LAN**
+- Permet **separar** una xarxa física en **xarxes lògiques** diferents
+- Exemple:
+  - Mateix switch físic
+  - VLAN 10 → alumnes
+  - VLAN 20 → professors
+- Objectiu:
+  - Més **seguretat** i **organització** de la xarxa
+
+----
+
+## VLAN – concepte 802.1Q
+
+- **802.1Q** és l’estàndard per etiquetar trames
+- En un **enllaç tronc (“trunk”)**:
+  - Les trames porten una **etiqueta VLAN** (VID)
+  - Això permet que **diverses VLAN** passin pel mateix cable entre switches
+
+----
+
+## VLAN – demo a PT
+
+**Topologia típica:**
+
+- 2 switches, 1 router (opcional per a inter-VLAN)
+- PCs de diferents “departaments” connectats a ports del switch
+
+**Configuració bàsica:**
+
+- Crear VLANs (10, 20, …)
+- Assignar ports a cada VLAN
+- Crear un **trunk** entre switches
+
+----
+
+**Al Simulation Mode:**
+
+- Afegeix filtre de **VLAN**
+- Envia ping entre:
+  - PCs de la **mateixa VLAN** → ha de funcionar
+  - PCs de **VLANs diferents** sense router L3 → no funciona
+- Mira a la PDU:
+  - L’etiqueta VLAN (VID)
+
+---
+
+# SNMP i NTP (visió general)
+
+----
+
+## SNMP – idea bàsica
+
+- **Simple Network Management Protocol**
+- Serveix per:
+  - **Monitoritzar** equips de xarxa (routers, switches, servidors…)
+  - Llegir estadístiques: CPU, memòria, interfaces, errors…
+- Components:
+  - **Agent SNMP** en l’equip
+  - **Servidor de monitoratge** (NMS) que recull les dades
+
+*A Packet Tracer la part d’SNMP és molt limitada; el fem servir sobretot per entendre el concepte.*
+
+----
+
+## NTP – idea bàsica
+
+- **Network Time Protocol**
+- Serveix per **sincronitzar l’hora** de tots els equips de la xarxa
+- Per què és important?
+  - Logs amb hora coherent
+  - Certificats, seguretat, auditoria…
+- Funcionament:
+  - Hi ha **servidors NTP**
+  - Els equips clients hi consulten l’hora periòdicament
+
+---
+
+# Resum final
+
+----
+
+## Què ens hem d’endur
+
+- **DHCP** → dóna IP i configuració automàtica (DORA)
+- **DNS** → tradueix noms a IPs
+- **HTTP/HTTPS** → web sense/xifrada
+- **SMTP + POP3/IMAP** → enviar i llegir correu
+- **FTP** → transferència de fitxers (no xifrat)
+- **VLAN (802.1Q)** → separar xarxes dins el mateix switch
+- **SNMP** → monitoratge
+- **NTP** → hora sincronitzada
+
+---
+
+## Mini qüestionari per parlar-ho
+
+1. Quina diferència hi ha entre **HTTP** i **HTTPS**?
+2. En quin moment entra en joc **DHCP** quan encens un PC a l’aula?
+3. Per què pot ser útil tenir **VLANs** en un institut?
+4. Per què és perillós fer servir **FTP** en una xarxa oberta?
+
+*(Preneu-vos 2–3 minuts per comentar-ho en parelles, i després posem en comú.)*

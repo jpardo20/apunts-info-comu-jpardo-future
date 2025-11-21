@@ -1,0 +1,33 @@
+# RA6 · Gestió d'informació en formats d'intercanvi: XML/JSON i consultes (XPath)
+
+## Objectius del RA
+Avaluar quan convé emmagatzemar i intercanviar **XML/JSON**, realitzar consultes bàsiques amb **XPath** (i nocions de JSONPath), i exportar dades des d'un SGBD relacional cap a formats d'intercanvi.
+
+## Continguts clau
+- XML vs JSON: avantatges/inconvenients (esquema, verbositat, tipatge, ecosistema).
+- XPath bàsic: eixos `/ //`, filtres `[condició]`, predicats, funcions senzilles (`starts-with`, `contains`, comparacions).
+- Nocions de JSONPath (sintaxi bàsica) per a documents JSON.
+- Exportacions des d'un SGBD relacional (p. ex. **botiga**): vistes → XML/JSON; criteris mínims de qualitat (claus, formats, encoding).
+- Bases de dades natives XML (BaseX, eXist-db) i NoSQL orientades a documents (MongoDB — només com a context).
+
+[comment]: <> (## Exemple breu (XPath))
+[comment]: <> (```)
+[comment]: <> (/cataleg/producte[preu &gt; 20]/nom)
+[comment]: <> (```)
+[comment]: <> (```)
+[comment]: <> (/cataleg/producte[starts-with(nom, 'R')]/@id)
+[comment]: <> (```)
+[comment]: <> ( )
+[comment]: <> (## Microexercicis)
+[comment]: <> (1. Escriu una expressió XPath per obtenir els noms de productes amb `preu` entre 10 i 30.)
+[comment]: <> (2. Dissenya un JSON d'exportació minimal per a `producte` (id, nom, preu) i proposa una expressió JSONPath per obtenir els `id` amb `preu` &gt; 20.)
+[comment]: <> (3. Llista 3 problemes habituals en exportacions (encoding, decimals vs coma, dates) i la seva solució.)
+
+## CA vinculats (resum)
+- Identifica mètodes i formats d'emmagatzematge/intercanvi (XML/JSON).
+- Aplica llenguatges de consulta/manipulació (XPath; nocions de JSONPath).
+- Exporta dades des d'un SGBD relacional assegurant qualitat bàsica.
+
+## Enllaços útils
+- Referència XPath (Noves o MDN-like) i guies de pràctica.
+- Introducció a JSON i JSON Schema (nocions).

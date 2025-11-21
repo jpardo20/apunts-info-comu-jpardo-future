@@ -1,0 +1,28 @@
+# RA3 · Guions de client: DOM i esdeveniments (JavaScript)
+
+---
+
+## Objectius del RA
+Manipular el **DOM** des de JavaScript de client: seleccionar elements, escoltar esdeveniments i crear/modificar/eliminar nodes i estils de manera accessible i segura.
+
+---
+
+## Continguts clau
+- Sintaxi mínima de JS al navegador; on col·locar els scripts; `defer`.
+- DOM API: `querySelector`, `classList`, atributs, propietats i estils.
+- Esdeveniments: `addEventListener`, delegació d'esdeveniments.
+- Creació i eliminació de nodes: `createElement`, `append`, `remove`.
+- Bones pràctiques: no bloquejar el render, evitar `innerHTML` indiscriminat, accessibilitat (`aria-*`).
+
+---
+
+## CA vinculats (resum)
+- Identifica llenguatges de guions de client i estàndards associats.
+- Accedeix, crea, modifica i elimina elements del DOM.
+- Canvia estils des de JS amb criteri d'accessibilitat.
+
+---
+
+## Enllaços útils
+- MDN: Guia DOM i events.
+- MDN: `querySelector`, `classList`, `addEventListener`.

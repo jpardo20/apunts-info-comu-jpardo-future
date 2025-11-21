@@ -1,0 +1,100 @@
+{
+    "meta": {
+        "curs": "2025-2026",
+        "centre": "Digitechfp"
+    },
+    "alumnes": [
+        [
+                        {
+                "firstname": "Lexter",
+                "lastname": "Abe Abag",
+                "email": "teralex142@digitechfp.com"
+            },
+            {
+                "firstname": "Berta",
+                "lastname": "Arenas Del Amo",
+                "email": "Berta.arenas2007@digitechfp.com"
+            },
+            {
+                "firstname": "Daniel",
+                "lastname": "Ciurana Jiménez",
+                "email": "itzciujis@digitechfp.com"
+            },
+            {
+                "firstname": "Juan Manuel",
+                "lastname": "Galán Pérez",
+                "email": "juanmagalan2007@digitechfp.com"
+            },
+            {
+                "firstname": "Lem Gerardo",
+                "lastname": "Quilca Rodríguez",
+                "email": "lemquilca22@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Gonzalez Ortega",
+                "email": "gonzalezHugoortega@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Martínez Santos",
+                "email": "hugomartinez310707@digitechfp.com"
+            },
+            {
+                "firstname": "Denise Andrea",
+                "lastname": "Name Ramírez",
+                "email": "dnameramirez@digitechfp.com"
+            },
+            {
+                "firstname": "David Santiago",
+                "lastname": "Rincón Mendez",
+                "email": "santisalserin.sr@digitechfp.com"
+            },
+            {
+                "firstname": "Carlos",
+                "lastname": "Ruiz Montesinos",
+                "email": "karlosruizmo@digitechfp.com"
+            },
+            {
+                "firstname": "Robinson Javier",
+                "lastname": "Tituaña Criollo",
+                "email": "itsjavii1610@digitechfp.com"
+            },
+            {
+                "firstname": "Marc",
+                "lastname": "López Vivies",
+                "email": "marclopezvives6@digitechfp.com"
+            },
+            {
+                "firstname": "Pau",
+                "lastname": "Díaz López",
+                "email": "paudiazlopez09@digitechfp.com"
+            },
+            {
+                "firstname": "Merouan",
+                "lastname": "Kiass",
+                "email": "kiassmerouan@digitechfp.com"
+            },
+            {
+                "firstname": "Antonia Lorena",
+                "lastname": "Cracana Cracana",
+                "email": "lorenacracana14@digitechfp.com"
+            },
+            {
+                "firstname": "Clemente",
+                "lastname": "Ramos Guiterrez",
+                "email": "clementeramosgutierrez@digitechfp.com"
+            },
+            {
+                "firstname": "Kristina",
+                "lastname": "Velkovska Kucinic",
+                "email": "kristina.velkovska.kucinic@digitechfp.com"
+            },
+            {
+                "firstname": "Joao Daniel",
+                "lastname": "De Paiva Oliveira",
+                "email": "joaodaniel.jd@digitechfp.com"
+            }
+        ]
+    ]
+}

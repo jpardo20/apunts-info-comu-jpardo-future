@@ -1,0 +1,168 @@
+# 0484 · Bases de Dades  
+## Activitat: Validació d’un MER a partir d’un enunciat (Agència de viatges)
+
+**Modalitat:** per parelles
+
+Podeu descarregar el fitxer XML del <a href="../../../assets/files/agencia-viatges-mer.drawio" target="_about">MER inicial de l'Agència de viatges</a>
+
+### Consigna
+A partir del <a href="../../../assets/img/agencia-viatges-mer.png" target="_about">MER inicial de l'Agència de viatges</a>,
+cal que per a cada escenari, indiqueu:
+
+
+----
+
+1) - **Es pot modelar amb el MER inicial?**
+
+ - [x] Sí
+ - [ ] No
+
+----
+
+2) - **On** ho representaríeu (entitats/relacions).  
+
+    En aquest apartat podeu pujar una captura del MER facilitat,
+
+<img src="../../../assets/img/escenari-001.png" height="300" ></img>
+
+   o bé indicar-ho amb un text,
+
+  ```bash
+  TOURS >|-(1,n)---- <programa-[1:N]> ----(1,n)-|< VIATGES 
+  ```
+
+###### Només cal que indiqueu una, o enganxeu una captura, podeu fer la captura i fent
+###### <kbd>Ctrl </kbd> + <kbd>V</kbd>, ja enganxareu la imatge al formulari, o escriviu el text.
+
+----
+
+3) - **Justifiqueu** breument la decisió.
+
+Al final de l’activitat,
+
+> Un tour pot programar diversos viatges en dates diferents i cada viatge pertany a un únic tour; per això és una 1:N.
+>
+> EXTRA: Si volguéssim tours en esborrany sense viatges, el mínim a TOURS passaria a 0..n.
+
+Lliuramnent des del formulari HTML, **genereu el vostre JSON** i pugeu-lo al campus.
+
+---
+
+## Els 10 escenaris (1/10) Exemple
+
+#### Escenari 1.  - Exemple (1/3)
+
+**Un tour amb diversos viatges**  
+   L’agència crea el tour *“Itàlia Essencial”* i programa tres viatges (V1, V2, V3) en mesos diferents per al mateix any.
+
+1) **Es pot modelar amb el MER inicial?** (Sí/No)  
+
+<br>
+
+- [x] Sí
+- [ ] No
+
+----
+
+## Els 10 escenaris (1/10) Exemple
+
+#### Escenari 1.  - Exemple (2/3)
+
+
+2) **On** ho representaríeu (entitats/relacions).  
+
+<img src="../../../assets/img/escenari-001.png" height="400" ></img>
+
+----
+
+## Els 10 escenaris (1/10) Exemple
+
+#### Escenari 1.  - Exemple (3/3)
+
+
+3) **Justifiqueu** breument la decisió.
+
+> Un tour pot programar diversos viatges en dates diferents i cada viatge pertany a un únic tour; per això és una 1:N.
+>
+> EXTRA: Si volguéssim tours en esborrany sense viatges, el mínim a TOURS passaria a 0..n.
+
+----
+
+## Els 10 escenaris (2/10)
+
+2. **Calendari d’un viatge**  
+   Al viatge V1 s’estableix l’ordre i les dates d’arribada/sortida pels punts: *Roma* → *Florència* → *Pisa*.
+
+----
+
+## Els 10 escenaris (3/10)
+
+3. **Un punt de ruta compartit per dos tours**  
+   El punt *Roma* ha d’aparèixer tant al tour *“Itàlia Essencial”* com al tour *“Grans Capitals Romanes”*.
+   <!-- DOCENT: DETECTOR #3 — inclou (TOURS–PUNTS_RUTA) no pot ser 1:N; hauria de ser N:M -->
+
+----
+
+## Els 10 escenaris (4/10)
+
+4. **Reserva amb diversos participants**  
+   En el viatge V1, el client Joan fa una reserva amb tres participants: Joan, Marta i Biel (parella + fill).
+
+----
+
+## Els 10 escenaris (5/10)
+
+5. **Punt de “visita només” sense hotels**  
+   *Pisa* és “visita” (no s’hi pernocta) i, per tant, no cal cap hotel admès en aquest punt de ruta.
+   <!-- DOCENT: DETECTOR #5 — admet no pot exigir 1..n a ambdós costats; ha d’admetre 0 hotels (0..n) i és N:M -->
+
+----
+
+## Els 10 escenaris (6/10)
+
+6. **Reserva que barreja dos viatges**  
+   La recepció, per error, intenta crear **una sola reserva** que cobreixi V1 i V2 per al mateix client.
+   <!-- DOCENT: DETECTOR #6 — correspon (RESERVES–VIATGES) no pot ser N:M; ha de ser 1:N (una reserva ↦ un viatge) -->
+
+----
+
+## Els 10 escenaris (7/10)
+
+7. **Múltiples hotels possibles per a un punt**  
+   Al punt *Roma* es consideren disponibles l’Hotel A i l’Hotel B (llista d’hotels permesos per a aquell punt).
+
+
+----
+
+## Els 10 escenaris (8/10)
+8. **Dues reserves diferents del mateix client al mateix viatge**  
+   La clienta Carla fa dues reserves separades a V1: una per a ella i una altra, més tard, per a dos amics que s’hi afegeixen.
+
+
+----
+
+## Els 10 escenaris (9/10)
+
+9. **Qui dorm on en un punt concret del viatge**  
+   En el viatge V1, al punt *Roma*, **Anna** dorm a l’**Hotel A** i **Biel** a l’**Hotel B** (mateix punt, hotels diferents per participant).
+   <!-- DOCENT: DETECTOR #9 — manca la relació d’assignació (Viatge–Punt–Participant–Allotjament) -->
+
+----
+
+## Els 10 escenaris (10/10)
+
+10. **Estat i senyal d’una reserva**  
+    Una reserva passa a **confirmada** quan s’ha rebut el **senyal** de 200 € i es registra la **data de reserva**.
+
+---
+
+## Lliurament
+- Completeu el <a href="../../../assets/forms/0484-bds-activitat-validacio-mer.html" target="_about">formulari HTML</a>
+ i **descarregueu** el fitxer `JSON`.  
+- **Nom recomanat:** `0484-validacio-mer__alumne1__alumne2.json`.
+
+## Rúbrica (resum, 10 punts)
+- (4p) Detecta com a mínim **un** escenari no modelable i l’explica correctament.  
+- (3p) Proposa la **millora** adequada (p.ex. relació quaternària d’assignació d’allotjament).  
+- (2p) Justifica amb entitats/relacions l’encaix dels escenaris que **sí** funcionen.  
+- (1p) Expressió i ordre en la resposta.

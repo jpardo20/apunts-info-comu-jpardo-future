@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "introduccio",
+    "title": "Introducció",
+    "description": "Primers conceptes del mòdul 0484 i logística del curs.",
+    "tags": ["general", "inici", "mòdul"]
+  },
+  {
+    "slug": "sql",
+    "title": "SQL - Introducció",
+    "description": "Sintaxi bàsica i SELECT.",
+    "tags": ["sql", "llenguatge"]
+  },
+  {
+    "slug": "normalitzacio",
+    "title": "Normalització",
+    "description": "1FN, 2FN, 3FN i exemples.",
+    "tags": ["disseny", "modelatge"]
+  }
+]

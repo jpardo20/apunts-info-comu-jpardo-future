@@ -1,0 +1,78 @@
+# Mòdul <u>0373 - Llenguatges de marques i sistemes de gestió d’informació</u>
+
+---
+
+## Objectiu de la presentació
+- Entendre el **contingut** i l’**abast** del mòdul.
+- Repassar **resultats d’aprenentatge** i **continguts**.
+- Conèixer la **metodologia**, **avaluació** i **recursos**.
+- Proposta de **projecte transversal** i primeres activitats.
+
+---
+
+## Per què aquest mòdul?
+
+> L’XML i els llenguatges de marques permeten *descriure i intercanviar* informació de manera **estructurada**, **portable** i **interoperable** entre sistemes i aplicacions.
+
+<br>
+<small>Exemples: HTML/XHTML, XML+XSD/DTD, SVG, RSS/Atom, XQuery, serveis web, configuracions.</small>
+
+---
+
+## Resultats d’aprenentatge (RA)
+- Característiques i **classificació** dels llenguatges de marques.
+- Ús de **marques per a la Web** i identificació d’elements.
+- **Validació** de documents XML (DTD / XSD).
+- **Sindicació** de continguts (RSS/Atom).
+- **Processament** i **conversió** de documents XML.
+- **Emmagatzematge** XML i `XQuery`.
+- **Sistemes de gestió**: ERP, serveis web, *cloud*.
+
+---
+
+## Continguts del mòdul (visió general)
+1. **Llenguatges de marques**: dades, etiquetes, estructura, espais de noms.
+2. **Web & Validació**: HTML/XHTML, CSS, DTD, XML Schema.
+3. **Àmbits d’aplicació**: sindicació, transformacions, `XQuery`.
+4. **Sistemes de gestió**: ERP, serveis web, *cloud*.
+
+---
+
+## Temes
+### Tema 1 · Llenguatges de marques
+- Introducció i **classificació**.  
+- **XML**: elements, atributs, entitats, CDATA.  
+- Correctesa i **processadors**.  
+- Estructura i **arbre** de documents.  
+- **Espais de noms**.
+
+----
+
+### Tema 2 · Web i Validació
+- **CSS** aplicat a XML/XHTML.  
+- HTML vs **XHTML**.  
+- **DTD** i **XSD**.  
+- Eines: `xmllint`, validadors, IDE.
+
+----
+
+### Tema 3 · Aplicacions XML
+- **RSS/Atom**, canals de continguts.  
+- **Transformacions** (introducció).  
+- **BBDD natives XML**, `XQuery`.
+
+----
+
+### Tema 4 · Sistemes de gestió
+- **ERP** i integració.  
+- **Serveis web** (visió general).  
+- **Computació al núvol**.
+
+---
+
+## Eines i recursos
+- **Editors**: VS Code / plugins XML, oXygen (demo), XML Copy Editor.  
+- **Validadors**: `xmllint`, Xerces, validadors web.  
+- **Repositori**: Git per a codi i entregues.  
+- **Dataset**: mostres XML (RSS, SVG, configuracions).  
+- Guies d’**estil** i plantilles.

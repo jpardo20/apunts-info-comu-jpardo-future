@@ -1,0 +1,295 @@
+# 0483 · Sistemes informàtics
+## Introducció a Linux — **Sessió 02**
+
+**Objectius d’aprenentatge (RA 0483)**  
+- Operar amb solvència en entorns **CLI** (navegació, cerca, filtres, pipes i redireccions).  
+- Gestionar **permisos, propietats, usuaris i processos**.  
+- Controlar **paquets**, **serveis**, **xarxa** i **emmagatzematge** bàsic.  
+- Automatitzar tasques i preparar **scripts** simples.  
+
+> Prerequisits: sessió 01 (fitxers/directoris, llistats, moviment, còpia, tar, grep bàsic).
+
+----
+
+```bash
+mkdir ~/intro-linux-2
+cd ~/intro-linux-2
+```
+
+```
+---
+
+## 1) Redireccions i *pipes* (E/S)
+Operadors clau:
+- <kbd style="background-color:LightGrey; color: blue;">></kbd> redirigeix **STDOUT** (sobrescriu)
+- <kbd style="background-color:LightGrey; color: blue;">>></kbd> afegeix
+- <kbd style="background-color:LightGrey; color: blue;"><</kbd> llegeix d’un fitxer
+- <kbd style="background-color:LightGrey; color: blue;">|</kbd>envia la sortida a una altra comanda (*pipe*)
+- <kbd style="background-color:LightGrey; color: blue;">2></kbd> redirigeix **STDERR** · `&>` envia STDOUT+STDERR
+- <kbd style="background-color:LightGrey; color: blue;">tee</kbd> escriu a fitxer **i** a la consola
+
+----
+
+**Exemple 1**
+
+Anem al directori `~/intro-linux-2` que hem creat.
+
+```bash
+cd ~/intro-linux-2
+```
+
+Veiem que mostra la comanda
+
+```bash
+ls -la /etc
+```
+
+Redirigim el que mostra la comanda `ls -la /etc` al fitxer `ll_estc.txt`.
+
+```bash
+ls -la /etc > ll_estc.txt          # a fitxer
+```
+
+Consultem el contingut del fitxer `ll_estc.txt`.
+
+```bash
+cat ll_estc.txt
+```
+
+----
+
+**Exemple 2**
+
+Anem al directori `~/intro-linux-2` que hem creat.
+
+```bash
+cd ~/intro-linux-2
+```
+
+Veiem que mostra la comanda
+
+```bash
+grep -i "ssh" /etc/*
+```
+
+Redirigim la sortida d'error de comanda `grep -i "ssh" /etc/*` al fitxer `errors.log`.
+
+```bash
+grep -i "ssh" /etc/* 2> errors.log # errors a un fitxer
+```
+
+Consultem el contingut del fitxer `errors.log`.
+
+```bash
+cat errors.log
+```
+
+----
+
+
+**Exemple 3**
+
+Anem al directori `~/intro-linux-2` que hem creat.
+
+```bash
+cd ~/intro-linux-2
+```
+
+Veiem que mostra la comanda `dmesg`
+
+```bash
+dmesg
+```
+
+De la sortida de la comanda `dmesg`, només ens interesa aquelles línies que tenen la cadena `ubs`.
+
+```bash
+dmesg | grep -i usb
+```
+
+I ara de la sortida de la comanda `dmesg` amb només aquelles línies que tenen la cadena `ubs`, ho volem afegir al fitxer `usb.log` i que alhora surtin per la consola.
+
+```bash
+dmesg | grep -i usb | tee usb.log  # pipe + tee
+```
+
+Consultem el contingut del fitxer `usb.log`.
+
+```bash
+cat usb.log
+```
+
+---
+
+## 2) Cerca i filtres potents
+Comandes i opcions útils:
+- <kbd style="background-color:LightGrey; color: blue;">find &lt;RUTA> -type f -name "*.log" -size +10M -mtime -7 -delete`</kbd>
+- <kbd style="background-color:LightGrey; color: blue;">locate nginx.conf</kbd> (*cal* <kbd style="background-color:LightGrey; color: blue;">updatedb</kbd> prèviament en algunes distros)
+- <kbd style="background-color:LightGrey; color: blue;">grep -Rin --color=never "usb" .</kbd> (recursiu (**`R`**), insensible a majúscules (**`i`**), n° de línia (**`n`**))
+- <kbd style="background-color:LightGrey; color: blue;">head<span style="background-color: white; color: black;">, </span>tail -n 50<span style="background-color: white; color: black;">, </span>tail -f fitxer.log</kbd> (seguiment en temps real)
+- <kbd style="background-color:LightGrey; color: blue;">cut -d: -f1 /etc/passwd</kbd> (columns)
+- <kbd style="background-color:LightGrey; color: blue;">sort<span style="background-color: white; color: black;">, </span>uniq -c<span style="background-color: white; color: black;">, </span>wc -l<span style="background-color: white; color: black;">, </span>xargs</kbd>
+
+----
+
+**Exemple combinat**
+
+`find . -type f -name "*.txt" -print0 | xargs -0 cat | grep -i "error" | sort | uniq -c`
+
+Anem a pams:
+
+1- Què mostra la comanda
+
+`find . -type f -name "*.txt" -print0`
+```
+
+
+
+
+---
+
+## 3) Permisos i propietats
+- `chmod` simbòlic (`u+rwx,g+rx,o-r`) o octal (`750`, `644`)
+- `chown usuari:grup fitxer` · `chgrp grup fitxer`
+- `umask` defineix permisos **per defecte** (p. ex. `umask 022` → fitxers `644`)
+
+**Exemples habituals**
+```bash
+chmod +x script.sh            # fer executable
+chmod -R 750 ~/projecte       # recursiu
+chown root:www-data /var/www # propietari i grup
+umask 027                     # per sessions actuals
+```
+
+> Recordatori: `r=4, w=2, x=1`. Per `750`: user=7(rwx), group=5(r-x), others=0(---).
+
+---
+
+## 4) Usuaris i grups
+- Info ràpida: `id`, `who`, `w`, `groups`, `getent passwd usuari`
+- Alta i canvis (Debian/Ubuntu): `sudo adduser nom`, `sudo passwd nom`, `sudo usermod -aG grup nom`
+- Baixa: `sudo deluser nom` (o `sudo userdel -r nom`)
+- Grups: `sudo groupadd docents`
+
+**Exemple**
+```bash
+sudo adduser marta
+sudo usermod -aG docker marta
+id marta
+```
+
+---
+
+## 5) Processos i treballs
+- Llistat: `ps aux | grep nom`, `top` (o `htop` si instal·lat)
+- Senyals: `kill -15 PID` (**TERM**), `kill -9 PID` (**KILL**), `pkill nom`
+- *Jobs* en segon pla: `comanda &` · `jobs` · `fg %1` · `bg %1`
+- Prioritat: `nice -n 10 comanda` · `renice +5 PID`
+
+**Exemple**
+```bash
+sleep 300 &   # job en 2n pla
+jobs; fg %1   # tornar-lo a 1r pla
+```
+
+---
+
+## 6) Paquets i actualitzacions
+**Debian/Ubuntu (APT):**
+```bash
+sudo apt update
+sudo apt install htop
+apt search nginx
+apt show nginx | less
+sudo apt remove nginx        # manté config
+sudo apt purge nginx         # elimina inclosa config
+sudo dpkg -i paquet.deb      # instal·lació manual
+```
+
+**Equivalències (resum)**
+
+| Acció | APT (Debian/Ubuntu) | DNF / YUM (Fedora/RHEL) |
+|---|---|---|
+| Actualitza catàleg | `apt update` | `dnf check-update` |
+| Instal·la | `apt install nom` | `dnf install nom` |
+| Elimina | `apt remove nom` | `dnf remove nom` |
+| Cerca | `apt search text` | `dnf search text` |
+
+---
+
+## 7) Xarxa bàsica
+- IP i rutes: `ip a`, `ip r`
+- Connectivitat: `ping -c 4 8.8.8.8`, `curl -I https://example.org`
+- Ports i sockets: `ss -tulpn` (llista serveis escoltant)
+- Descàrrega: `wget URL` o `curl -O URL`
+- Accés remot: `ssh usuari@host` · còpia segura: `scp fitxer usuari@host:/destí`
+
+**Exemple**
+```bash
+ssh alumne@192.168.56.101
+scp prova.tar.gz alumne@192.168.56.101:/home/alumne/
+```
+
+---
+
+## 8) Emmagatzematge i ús de disc
+- Espai: `df -h` (per sistema de fitxers), `du -sh *` (per directori)
+- Dispositius: `lsblk`, `blkid`
+- Muntatge: `sudo mount /dev/sdb1 /mnt/usb` · `sudo umount /mnt/usb`
+
+**Exemple ràpid**
+```bash
+du -sh ~/Downloads/*
+df -h | grep -E "Filesystem|/dev/"
+```
+
+---
+
+## 9) Serveis i *logs* (systemd)
+- Serveis: `systemctl status nginx`, `sudo systemctl start|stop|restart nginx`, `sudo systemctl enable nginx`
+- Registre: `journalctl -xe`, `journalctl -u nginx --since "10 min ago"`
+
+---
+
+## 10) Variables d’entorn i scripts
+- Mostrar: `env` · Exportar: `export PORT=8080`
+- PATH: `echo $PATH` · Afegir temporalment: `export PATH=$PATH:$HOME/bin`
+- Script bàsic `bash`:
+```bash
+cat > hola.sh <<'EOF'
+#!/usr/bin/env bash
+echo "Hola $(whoami)!"
+EOF
+chmod +x hola.sh
+./hola.sh
+```
+- **Cron** (tasques periòdiques): `crontab -e` → exemple cada dia a les 19:05
+```
+5 19 * * * /home/alumne/backup.sh >> /home/alumne/backup.log 2>&1
+```
+
+---
+
+## 11) Compressió alternativa
+- `gzip fitxer` / `gunzip fitxer.gz`
+- `zip -r arxiu.zip carpeta/` · `unzip arxiu.zip`
+
+---
+
+## 12) SSH i claus
+```bash
+ssh-keygen -t ed25519 -C "alumne@centre"
+ssh-copy-id alumne@host
+chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519
+```
+
+---
+
+## Apèndix · Xec ràpid de domini (autoavaluació guiada)
+- Redireccions i *pipes* (`>`, `>>`, `|`, `2>`, `tee`)
+- `find` amb *predicates* (`-name`, `-size`, `-mtime`, `-exec … {}`)
+- Permisos octals/simbòlics (`chmod`), propietats (`chown`), `umask`
+- Usuaris i grups (`adduser`, `usermod -aG`, `id`)
+- Processos i jobs (`ps`, `top`, `kill`, `bg/fg`, `nice`/`renice`)
+- APT (o DNF), `systemctl` i `journalctl`
+- Xarxa (IP/ports, `ssh`, `scp`, `curl`), disc (`df`, `du`, `lsblk`)

@@ -1,0 +1,424 @@
+### Optativa: Robòtica i Programació en Python
+
+# Python – Consolidació
+
+1. **`print`**,
+
+1. **`input`**, i
+
+explicació nous mètodes.
+
+1. **`f-strings`**
+
+1. **`.strip()`**
+
+1. **`.isdigit()`**
+
+1. **`date.today().year`**
+
+---
+
+## Definició de <u>variables</u>
+
+Tot i que, a <kbd class="minus codi">Python</kbd> <u>no cal</u>, cal que us acostumeu a definir les variables.  
+
+```python
+# Declaro variables
+nom  = str()  # str -> String -> Cadena de text
+edat = int()  # int -> Integer -> Enter (número sense decimals)
+nota = float()  # float -> Decimals (número amb decimals)
+```
+
+---
+
+## Comanda <kbd class="minus codi">print()</kbd> <span class="petit">(1/3)</span>
+
+- Què fa?
+   - Mostra el text que rep per paràmetre per consola.
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;"  target="_blank" rel="noopener noreferrer">Per més info sobre la funció <a href="https://docs.python.org/3/library/functions.html#print" target=_blank"><u><kbd class="minus codi">print()</kbd></u> (docs.python.org)</a> de Pyhton</p>
+
+----
+
+## Comanda <kbd class="minus codi">print()</kbd> <span class="petit">(2/3)</span>
+
+Ajuda que mostra **VSC** de  <kbd class="minus codi">print()</kbd>
+
+![alt text](../../../assets/img/info-vsc-python-print.png)
+
+- Què retorna?
+
+<kbd class="minus codi">-> None</kbd> indica que <strong>NO</strong> retorna res
+
+----
+
+## Comanda <kbd class="minus codi">print()</kbd> <span class="petit"><span class="petit">(3/3)</span>
+
+Ajuda que mostra **VSC** de  <kbd class="minus codi">print()</kbd>
+
+![alt text](../../../assets/img/info-vsc-python-print.png)
+
+- Quins arguments té?
+
+|Nom argument|Tipus argument|Valor per defecte|
+|----|----|----|
+|`sep`|`str`|`" "`|
+|`end`|`str`|`"\n"`|
+
+---
+
+## Comanda <kbd class="minus codi">input()</kbd> <span class="petit">(1/3)</span>
+
+- Què fa?
+   - Llegeix el que l'usuari escriu per consola fins a trobar un **salt de línia** (<kbd class="minus codi">Enter</kbd>).
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;"  target="_blank" rel="noopener noreferrer">Per més info sobre la funció <a href="https://docs.python.org/3/library/functions.html#input" target=_blank"><u><kbd class="minus codi">input()</kbd></u> (docs.python.org)</a> de Pyhton</p>
+
+----
+
+## Comanda <kbd class="minus codi">input</kbd> <span class="petit">(2/3)</span>
+
+Ajuda que mostra **VSC** de  <kbd class="minus codi">input()</kbd>
+
+![alt text](../../../assets/img/info-vsc-python-input.png)
+
+- Què retorna?
+
+<kbd class="minus codi">-> str</kbd> indica que  retorna una cadena de tipus  **`str`**
+
+----
+
+## Comanda <kbd class="minus codi">input()</kbd> <span class="petit">(3/3)</span>
+
+Ajuda que mostra **VSC** de  <kbd class="minus codi">input()</kbd>
+
+![alt text](../../../assets/img/info-vsc-python-strip.png)
+
+- Per què ho fem així?
+    ```python
+    edat = int(input())
+    ```
+
+> **Recordatori**: convertir l'entrada a `int`/`float` abans de fer càlculs
+
+
+---
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(1/9)</span>
+
+Què són les <kbd class="minus codi">f-strings</kbd>?
+- Des de **Python 3.6**: cadenes amb prefix  <kbd class="minus codi">f</kbd> que permeten posar **expressions** entre claus <kbd class="minus codi">{</kbd> <kbd class="minus codi">}</kbd>.
+- Fan el codi **més curt i llegible** que concatenar amb <kbd class="minus codi">+</kbd> o usar <kbd class="minus codi">format()</kbd>.
+
+```python
+nom: str = "Laia"
+edat: int = 17
+print(f"Hola, {nom}! Tens {edat} anys.")
+# Sortida per conmsola ->  Hola, Laia! Tens 17 anys.
+```
+
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(2/9)</span>
+
+Sintaxi bàsica
+
+- Escriu <kbd class="minus codi">f"..."</kbd> (o <kbd class="minus codi">f'...'</kbd>) i col·loca **expressions** dins <kbd class="minus codi">{expressio}</kbd>.
+
+```python
+a: int = 5
+b: int = 3
+print(f"{a} + {b} = {a + b}")  # 5 + 3 = 8
+
+nums = [10, 20, 30]
+print(f"El primer és {nums[0]}")    # 10
+```
+> <hr>
+> Recorda: dins <kbd class="minus codi">{</kbd> <kbd class="minus codi">}</kbd> hi van <strong>expressions</strong> (variables, operacions, crides a funció...).
+> 
+> No s'hi fan assignacions ni bucles.
+> <hr>
+
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(3/9)</span>
+
+Expressions típiques dins  <kbd class="minus codi">{</kbd> <kbd class="minus codi">}</kbd>
+
+- Variables: <kbd class="minus codi">{nom}</kbd>, <kbd class="minus codi">{edat}</kbd>
+- Operacions: <kbd class="minus codi">{preu * quantitat}</kbd>, <kbd class="minus codi">{(a+b)/2}</kbd>
+- Crides a funcions: <kbd class="minus codi">{abs(-7)}</kbd>, <kbd class="minus codi">{len(text)}</kbd>
+- Índexos i atributs: <kbd class="minus codi">{llista[2]}</kbd>, <kbd class="minus codi">{usuari.nom}</kbd>
+
+```python
+preu: float = 12.5
+q: int = 3
+print(f"Total: {preu * q} €")  # Total: 37.5 €
+```
+
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(4/9)</span>
+
+Format numèric
+
+| Especificador | Exemple | Sortida | Ús |
+|---|---:|---:|---|
+|<kbd class="minus codi petit">:.2f</kbd>|<kbd class="minus codi petit">f"{3.14159:.2f}"</kbd>|<kbd class="minus codi petit">3.14</kbd>| 2 decimals |
+|<kbd class="minus codi petit">:05d</kbd>|<kbd class="minus codi petit">f"{42:05d}"</kbd>|<kbd class="minus codi petit">00042</kbd>| farcit amb zeros |
+|<kbd class="minus codi petit">:>8</kbd> |<kbd class="minus codi petit">f"{42:>8}"</kbd>|<kbd class="minus codi petit">      42</kbd>| alineat a la dreta |
+|<kbd class="minus codi petit">:<8</kbd> |<kbd class="minus codi petit">f"{42:<8}"</kbd>|<kbd class="minus codi petit">42     <kbd class="minus codi petit"> | alineat a l’esquerra |
+|<kbd class="minus codi petit">:^8</kbd> |<kbd class="minus codi petit">f"{42:^8}"</kbd>|<kbd class="minus codi petit">   42  <kbd class="minus codi petit"> | centrat |
+
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(4/9)</span>
+
+Format numèric
+
+| Especificador | Exemple | Sortida | Ús |
+|---|---:|---:|---|
+|<kbd class="minus codi petit">:,</kbd>  |<kbd class="minus codi petit">f"{12000:,}"</kbd>|<kbd class="minus codi petit">12,000</kbd>| separador de milers <span class="minus petit" style="background-color: LightBlue">(1)</span> |
+|<kbd class="minus codi petit">:.1%</kbd>|<kbd class="minus codi petit">f"{0.875:.1%}"</kbd>|<kbd class="minus codi petit">87.5%</kbd>| percentatge |
+|<kbd class="minus codi petit">:b</kbd>  |<kbd class="minus codi petit">f"{13:b}"</kbd>|<kbd class="minus codi petit">1101</kbd>| binari |
+|<kbd class="minus codi petit">:x</kbd>  |<kbd class="minus codi petit">f"{255:x}"</kbd>|<kbd class="minus codi petit">ff</kbd>| hexadecimal minúsc. |
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">
+<span class="minus petit" style="background-color:LightBlue">(1)</span> Per defecte, Python usa el format anglosaxó per milers/decimals. Si vols control absolut, construeix el format manualment o usa llibreries de localització.
+</p>
+
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(5/9)</span>
+
+Dates i hores amb **`f-strings`**
+
+```python
+from datetime import datetime
+ara = datetime.now()
+print(f"Avui és {ara:%d/%m/%Y} i són les {ara:%H:%M}")
+# → Avui és 23/10/2025 i són les 09:15
+```
+- Després dels <kbd class="minus codi petit">:</kbd> pots usar codis de <kbd class="minus codi petit">strftime</kbd> (<kbd class="minus codi petit">%Y</kbd>, <kbd class="minus codi petit">%m</kbd>, <kbd class="minus codi petit">%d</kbd>, <kbd class="minus codi petit">%H</kbd>, <kbd class="minus codi petit">%M</kbd>, ...).
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">
+Docs: <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes" target="_blank" rel="noopener noreferrer">Codi de format de dates</a>
+</p>
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(6/9)</span>
+
+Errors típics (i com evitar-los) (1/3)
+
+- ❌ Oblidar el **prefix `f`**:
+
+```python
+  print("Hola, {nom}")
+        # literal, no s’avalua
+```
+  ✅ Correcte:
+  ```python
+    print(f"Hola, {nom}")
+  ```
+
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(7/9)</span>
+
+Errors típics (i com evitar-los) (2/3)
+
+- ❌ No convertir l’entrada d’usuari:
+```python
+  edat_text = input("Edat? ")
+  print(f"L'any vinent: {edat_text + 1}")
+  
+# ERROR
+  Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: can only concatenate str (not "int") to str
+```
+  ✅ Correcte:
+  ```python
+   edat = int(edat_text); print(f"L'any vinent: {edat + 1}")
+   ```
+
+----
+
+## Concepte <kbd class="minus codi">f-strings</kbd> <span class="petit">(8/9)</span>
+
+Errors típics (i com evitar-los) (3/3)
+
+- ❌ Expressions massa llargues dins <kbd class="minus codi">{</kbd> <kbd class="minus codi">}</kbd> → calcula-ho abans en variables.
+
+---
+
+## Comanda <kbd class="minus codi">.strip()</kbd> <span class="petit">(1/4)</span>
+
+Per a què serveix?
+
+- **Treu** espais en blanc **al començament i al final** d'una cadena.
+- Per defecte elimina: espai, tabulador (<kbd class="minus codi">\t</kbd>), **salt de línia** (<kbd class="minus codi">\n</kbd>), retorn de carro (<kbd class="minus codi">\r</kbd>), etc.
+- Variants:
+  - <kbd class="minus codi">.lstrip()</kbd> només a l'esquerra
+  - <kbd class="minus codi">.rstrip()</kbd> només a la dreta
+- També pot rebre un **conjunt de caràcters** a eliminar (no és un <kbd class="minus codi">substring</kbd>).
+
+```python
+text = "   Hola SMX!  \n"
+print(text.strip())    # "Hola SMX!"
+print(text.lstrip())   # "Hola SMX!  \n"
+print(text.rstrip())   # "   Hola SMX!"
+```
+
+----
+
+## Comanda <kbd class="minus codi">.strip()</kbd> <span class="petit">(2/4)</span>
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">
+<strong>Important:</strong> <code>strip(chars)</code> elimina <em>qualsevol</em> dels caràcters de <code>chars</code> als extrems, no la paraula sencera.
+</p>
+
+```python
+txt = "...Hola!!!"
+print(txt.strip(".!"))   # "Hola"   (treu punts i exclamacions dels extrems)
+```
+
+----
+
+## Comanda <kbd class="minus codi">.strip()</kbd> <span class="petit">(3/4)</span>
+
+
+## `.strip()` — casos d'ús típics
+- Netejar el que retorna <code>input()</code>:
+```python
+nom = input("Nom: ").strip()  # evita noms amb espais o \n als extrems
+```
+- Tractar línies d'un fitxer:
+```python
+for linia in fitxer:
+    linia = linia.strip()  # treu \n final
+    # processar linia...
+```
+
+----
+
+## Comanda <kbd class="minus codi">.strip()</kbd> <span class="petit">(4/4)</span>
+
+
+**Errors freqüents**
+
+- ❌ Pensar que elimina espais “del mig”:
+
+```python
+"a  b".strip()` ➜ segueix sent `"a  b"
+```
+
+  ✅ Per això calen altres mètodes
+```python
+replace("  ", " ")
+```
+
+ o processament específic.
+
+---
+
+## Comanda <kbd class="minus codi">.isdigit()</kbd> <span class="petit">(1/2)</span>
+
+### Què comprova?
+
+- Retorna <kb>True</kb> si **tots** els caràcters de la cadena són **dígits** i **hi ha almenys 1 caràcter**.
+- No permet signes ni punts decimals.
+
+```python
+"123".isdigit()     # True
+"0".isdigit()       # True
+"-3".isdigit()      # False (té signe '-')
+"3.14".isdigit()    # False (té punt)
+" 5".isdigit()      # False (espai)
+"".isdigit()        # False (cadena buida)
+```
+
+
+----
+
+## Comanda <kbd class="minus codi">.isdigit()</kbd> <span class="petit">(2/2)</span>
+
+### Patrons de validació
+
+Enter positiu (<kbd class="minus codi">>0</kbd>) amb <kbd class="minus codi">isdigit()</kbd>
+
+```python
+print("Edat (enter > 0): ", end="")
+edat_text = input().strip()
+while not (edat_text.isdigit() and int(edat_text) > 0):
+    print("Torna-ho a provar (enter > 0): ", end="")
+    edat_text = input().strip()
+edat = int(edat_text)
+```
+
+---
+
+## 1a Activitat: Fitxa persona
+
+1. Defineix les variables
+
+  * **`nom`** de tipus cadena (**`str`**), i
+  * **`edat`** de tipus enter (**`int`**)
+
+2. Demana a l'usuari el seu **`nom`** i la seva **`edat`**.
+
+3. Valida que **`edat`** sigui un ***enter*** més gran que **`0`** (bucle)
+
+4. Calcula l'any de naixement i mostra-ho amb <kbd class="minus codi">f-strings</kbd>
+
+5. Indica si és **major d'edat** (**`>=18`**)
+
+----
+
+## 1a Activitat: Fitxa persona
+
+```python
+from datetime import date
+
+# Definició de variables
+# Demana nom i edat
+# Valida que edat sigui > 0
+# Calcula any de naixement i mostra missatges
+```
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">Consulteu <a href="../../../assets/files/01_fitxa_persona_inici.py" target=_blank"><u><kbd class="minus codi">01_fitxa_persona_inici.py</kbd></u></a></p>
+
+---
+
+## A2. Classificador de notes (25’) – Enunciat
+- Demana una **nota** (0–10), permetent punt o coma
+- Valida el rang amb `while`
+- Mostra la menció:
+  - ≥9 **Excel·lent**
+  - ≥7 **Notable**
+  - ≥5 **Aprovat**
+  - <5 **Suspès**
+
+```python
+nota: float = 0.0
+# Llegeix la nota (0-10) i valida
+# Calcula i mostra la menció
+```
+
+----
+
+## A3. Semàfor del robot (20’) – Enunciat
+- Llindars:
+  - STOP < 20
+  - LENT 20–50
+  - RÀPID > 50
+- Bucle fins que l’alumne escrigui **q**
+- Mostra l'acció resultant
+
+```python
+DISTANCIA: int = 0
+LLINDAR_STOP: int = 20
+LLINDAR_LENT: int = 50
+accio: str = ""
+# Llegeix distància o 'q', valida, i decideix acció
+```

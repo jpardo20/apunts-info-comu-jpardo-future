@@ -1,0 +1,155 @@
+title: Python — Més explicacions (SMX)
+author: Optativa Programació en Python
+date: 2025-10-23
+theme: white
+
+# Python — Més explicacions
+### `.strip()` · `.isdigit()` · `date.today().year`
+
+---
+
+## Índex de la minisessió
+1. `.strip()` — neteja d'espais i caràcters als extrems
+2. `.isdigit()` — comprovar si un text és numèric (enter no signat)
+3. `date.today().year` — obtenir l'any actual per a càlculs
+
+---
+
+## 1) `.strip()` — per a què serveix?
+- **Treu** espais en blanc **al començament i al final** d'una cadena.
+- Per defecte elimina: espai, tabulador (`\t`), **salt de línia** (`\n`), retorn de carro (`\r`), etc.
+- Variants:
+  - `.lstrip()` només a l'esquerra
+  - `.rstrip()` només a la dreta
+- També pot rebre un **conjunt de caràcters** a eliminar (no és un “substring”).
+
+```python
+text = "   Hola SMX!  \n"
+print(text.strip())    # "Hola SMX!"
+print(text.lstrip())   # "Hola SMX!  \n"
+print(text.rstrip())   # "   Hola SMX!"
+```
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">
+<strong>Important:</strong> <code>strip(chars)</code> elimina <em>qualsevol</em> dels caràcters de <code>chars</code> als extrems, no la paraula sencera.
+</p>
+
+```python
+txt = "...Hola!!!"
+print(txt.strip(".!"))   # "Hola"   (treu punts i exclamacions dels extrems)
+```
+
+---
+
+## `.strip()` — casos d'ús típics
+- Netejar el que retorna <code>input()</code>:
+```python
+nom = input("Nom: ").strip()  # evita noms amb espais o \n als extrems
+```
+- Tractar línies d'un fitxer:
+```python
+for linia in fitxer:
+    linia = linia.strip()  # treu \n final
+    # processar linia...
+```
+
+**Errors freqüents**
+- ❌ Pensar que elimina espais “del mig”: `"a  b".strip()` ➜ segueix sent `"a  b"`  
+  ✅ Per això calen altres mètodes (p. ex. `replace("  ", " ")`) o processament específic.
+
+---
+
+## 2) `.isdigit()` — què comprova?
+- Retorna **True** si **tots** els caràcters de la cadena són **dígits** i **hi ha almenys 1 caràcter**.
+- No permet signes ni punts decimals.
+
+```python
+"123".isdigit()     # True
+"0".isdigit()       # True
+"-3".isdigit()      # False (té signe '-')
+"3.14".isdigit()    # False (té punt)
+" 5".isdigit()      # False (espai)
+"".isdigit()        # False (cadena buida)
+```
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">
+Nota: <code>isdigit()</code> també considera alguns dígits Unicode especials com a dígits. Per validar nombres d'usuari, sovint és més segur fer <code>try/except</code> amb <code>int()</code> o <code>float()</code>.
+</p>
+
+---
+
+## `.isdigit()` — patrons de validació
+### Enter positiu (>0) amb `isdigit()`
+```python
+edat_text = input("Edat (enter > 0): ").strip()
+while not (edat_text.isdigit() and int(edat_text) > 0):
+    edat_text = input("Torna-ho a provar (enter > 0): ").strip()
+edat = int(edat_text)
+```
+
+### Enter (pot ser negatiu) amb `try/except` (recomanat)
+```python
+while True:
+    txt = input("Introdueix un enter (pot ser negatiu): ").strip()
+    try:
+        valor = int(txt)
+        break
+    except ValueError:
+        print("⚠️ Escriu un enter vàlid (ex: -3, 0, 42).")
+```
+
+---
+
+## 3) `date.today().year` — any actual
+- `date.today()` dona la **data d'avui** (cal importar-la de `datetime`).
+- Afegint `.year` obtenim l'**any** com a enter (ex: `2025`).
+
+```python
+from datetime import date
+
+any_actual = date.today().year
+print(any_actual)  # ex: 2025
+
+edat = 15
+any_naixement = any_actual - edat
+print("Vas néixer l'any", any_naixement)
+```
+
+**Detalls útils**
+- `date.today()` fa servir la data del **sistema** (zona horària local).
+- Per a proves, pots fixar l'any manualment: `any_actual = 2025` (no a producció!).
+
+---
+
+## Exemples integrats (tots tres junts)
+```python
+from datetime import date
+
+# 1) .strip() per netejar l'entrada
+nom = input("Nom: ").strip()
+
+# 2) Validació d'edat amb .isdigit() (positiu)
+edat_txt = input("Edat (>0): ").strip()
+while not (edat_txt.isdigit() and int(edat_txt) > 0):
+    edat_txt = input("Torna-ho a provar (>0): ").strip()
+edat = int(edat_txt)
+
+# 3) Càlcul amb l'any actual
+any_actual = date.today().year
+print("Hola", nom + "!", "Vas néixer l'any", any_actual - edat)
+```
+
+---
+
+## Exercicis ràpids
+1) Demana un nom i mostra'l **sense espais als extrems** (usa `.strip()`).
+2) Demana una quantitat de productes i valida que sigui **enter ≥ 1** (amb `.isdigit()` o `try/except`).
+3) Donada una edat, calcula i mostra l'**any de naixement** amb `date.today().year`.
+4) Mini repte: demana un codi de producte i elimina només **els punts i guions** dels extrems (p. ex. `"--ABC."` → `"ABC"`).
+
+---
+
+## Errors típics (i com evitar-los)
+- `.strip("abc")` **no** treu el substring `"abc"`; elimina qualsevol dels caràcters `'a'`, `'b'`, `'c'` als extrems.
+- `.isdigit()` **no** accepta `-` ni `.`; per enters amb signe o decimals, usa `try/except` amb `int()`/`float()`.
+- No oblidis l'import: `from datetime import date` abans de `date.today().year`.

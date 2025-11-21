@@ -1,0 +1,39 @@
+{
+  "presentacions": [
+    {
+      "tema": "DHCP",
+      "firstname": "Kristina",
+      "lastname": "Velkovska Kucinic"
+    },
+    {
+      "tema": "DNS",
+      "firstname": "Antonia Lorena",
+      "lastname": "Cracana Cracana"
+    },
+    {
+      "tema": "HTTP/HTTPS + TLS",
+      "firstname": "Merouan",
+      "lastname": "Kiass"
+    },
+    {
+      "tema": "SMTP/IMAP/POP3",
+      "firstname": "Pau",
+      "lastname": "Díaz López"
+    },
+    {
+      "tema": "FTP/FTPS/SFTP",
+      "firstname": "Joao Daniel",
+      "lastname": "De Paiva Oliveira"
+    },
+    {
+      "tema": "VLAN 802.1Q",
+      "firstname": "Clemente",
+      "lastname": "Ramos Guiterrez"
+    },
+    {
+      "tema": "SNMP & NTP",
+      "firstname": "Marc",
+      "lastname": "López Vivies"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <title>SMR 0221 — Avaluació presentacions (Giscus / GitHub Discussions)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" id="theme">
+  <style>
+    .big { font-size: 1.2em; line-height: 1.5; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    .card { border: 2px solid #222; border-radius: 12px; padding: 1rem; }
+    .btn { display:inline-block; padding:0.7rem 1rem; border:2px solid #111; border-radius:10px; font-weight:700; text-decoration:none; }
+    .muted { color:#666; }
+    iframe { border: 2px solid #222; border-radius: 12px; width: 100%; height: 70vh; }
+    .box { border: 2px dashed #666; border-radius: 12px; padding: 1rem; }
+    .note { font-size: .9em; color: #666; }
+  </style>
+
+  <style>
+    .vote-form { border: 2px solid #222; border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+    .vote-form label { font-weight: 700; display: block; margin-top: 6px; }
+    .vote-form input, .vote-form select, .vote-form textarea {
+      width: 100%; padding: 8px; border: 1px solid #bbb; border-radius: 8px;
+    }
+    .vote-form button { margin-top: 8px; padding: 8px 12px; border: 2px solid #111; border-radius: 10px; font-weight: 700; background: #fff; }
+    .hint { color: #666; font-size: 0.9em; }
+    .giscus-editor-only { max-height: 460px; overflow: hidden; border: 1px dashed #aaa; border-radius: 10px; }
+  </style>
+  <script>
+    function setupVoteHelpers(){
+      function byId(id){ return document.getElementById(id); }
+      function copy(txt){
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(()=>alert('Comentari copiat! Enganxa-ho al quadre i envia.')).catch(()=>fallback());
+        } else { fallback(); }
+        function fallback(){
+          const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); alert('Comentari copiat! Enganxa-ho al quadre i envia.'); } finally { document.body.removeChild(ta); }
+        }
+      }
+      const groups = ["Grup 1","Grup 2","Grup 3"];
+      const students = {"Grup 1":["Pau","Clemente"],"Grup 2":["Merouan","Kristina"],"Grup 3":["Lorena","Joao","Marc"]};
+      const aFrom = byId('a_from'); const aTo = byId('a_to');
+      groups.forEach(g=>{ aFrom.appendChild(new Option(g,g)); aTo.appendChild(new Option(g,g)); });
+      const bFrom = byId('b_from'); const bStu = byId('b_student');
+      groups.forEach(g=> bFrom.appendChild(new Option(g,g)));
+      function refreshStudents(){ const g = bFrom.value || groups[0]; bStu.innerHTML=''; (students[g]||[]).forEach(n=> bStu.appendChild(new Option(n,n))); }
+      bFrom.addEventListener('change', refreshStudents); refreshStudents();
+      byId('btnA').addEventListener('click', ()=>{
+        const from=aFrom.value,to=aTo.value,score=byId('a_score').value,com=byId('a_com').value.trim();
+        if(!from||!to||score===''){ alert('Omple tots els camps'); return; }
+        copy(`Grup_del_rater: ${from} | Grup_avaluat: ${to} | Puntuacio: ${score}${com?' | Comentari: '+com:''}`);
+      });
+      byId('btnB').addEventListener('click', ()=>{
+        const from=bFrom.value,stu=bStu.value,score=byId('b_score').value,com=byId('b_com').value.trim();
+        if(!from||!stu||score===''){ alert('Omple tots els camps'); return; }
+        copy(`Grup_del_rater: ${from} | Alumne: ${stu} | Puntuacio: ${score}${com?' | Comentari: '+com:''}`);
+      });
+    }
+    document.addEventListener('DOMContentLoaded', setupVoteHelpers);
+  </script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section>
+        <h2>Avaluació de presentacions — SMR 0221</h2>
+        <p class="big">
+          Sense Google/Office Forms. L’entrada de respostes es fa <b>directament</b> a GitHub mitjançant <b>Giscus</b> (GitHub Discussions).
+          Les dades queden al repositori (públics o interns) i no cal descarregar fitxers.
+        </p>
+        <ul>
+          <li>Slide amb “<b>Comentaris</b>” per <b>GRUP</b> i per <b>INDIVIDUAL</b>.</li>
+          <li>Els alumnes inicien sessió a GitHub (un cop) i envien una puntuació + text.</li>
+          <li>El professor pot exportar i calcular punts amb el script inclòs.</li>
+        </ul>
+        <p class="note">Requereix tenir activat <b>Discussions</b> i instal·lat <b>Giscus</b> al repo. Vegeu README.</p>
+      </section>
+
+      <section>
+        <h3>Instruccions per a l’alumnat</h3>
+        <div class="card">
+          <ol>
+            <li>Fes <b>Sign in with GitHub</b> al widget de sota (només la primera vegada).</li>
+            <li>Escriu un comentari amb el format:<br>
+              <code>Grup_del_rater: Grup X | Grup_avaluat: Grup Y | Puntuacio: 8.5 | Comentari: ...</code>
+            </li>
+            <li>Prem <b>Comenta</b> — apareixerà a la discussió d’aquest tema.</li>
+          </ol>
+          <p class="muted">El professorat exportarà després totes les respostes i calcularà els punts.</p>
+        </div>
+      </section>
+
+      <section>
+        <h3>Formulari A — Valoració de <u>GRUP</u></h3>
+        <div class="box">
+          <p class="muted">Categoria: <b>GRUP</b> (configurable). Totes les respostes aquí.</p>
+          <div id="giscus-group"></div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Formulari B — Valoració <u>INDIVIDUAL</u></h3>
+        <div class="box">
+          <p class="muted">Categoria: <b>INDIVIDUAL</b> (configurable). Totes les respostes aquí.</p>
+          <div id="giscus-indiv"></div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Resum i exportació</h3>
+        <p>Executa a terminal: <code>python3 exporta_giscus_calculs.py --repo owner/repo --token &lt;PAT&gt; --category-grup "GRUP" --category-individual "INDIVIDUAL"</code></p>
+        <ul>
+          <li>Calcula mitjanes <b>excloent el propi grup</b>.</li>
+          <li>Genera <code>resum_grups.csv</code> i <code>resum_individuals.csv</code>.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({ hash:true, slideNumber:true, width:1280, height:720 });
+  </script>
+
+  <!-- Giscus (instal·la l'app al repo i omple els atributs següents) -->
+  <!-- Formulari A (GRUP) -->
+
+
+  
+  <div class="vote-form">
+    <div class="hint">Omple i prem “Copiar comentari”. Després enganxa'l al quadre de Giscus i envia.</div>
+    <label>De quin grup ets?</label>
+    <select id="a_from"></select>
+    <label>Quin grup avalues?</label>
+    <select id="a_to"></select>
+    <label>Puntuació (0–10)</label>
+    <input id="a_score" type="number" min="0" max="10" step="0.5" value="8" />
+    <label>Comentari (opcional)</label>
+    <textarea id="a_com" rows="2" placeholder="Breu justificació..."></textarea>
+    <button id="btnA">Copiar comentari (GRUP)</button>
+  </div>
+  
+<div class="giscus-editor-only">
+<script src="https://giscus.app/client.js"
+        data-repo="jpardo20/apunts-jpardo20"
+        data-repo-id="R_kgDOQA78Wg"
+        data-category="GRUP"
+        data-category-id="DIC_kwDOQA78Ws4CxBxP"
+        data-mapping="specific"
+        data-term="SMR0221-Valoracio-GRUP"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="ca"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+
+<!-- Formulari B (INDIVIDUAL) -->
+
+  <div class="vote-form">
+    <div class="hint">Omple i prem “Copiar comentari”. Després enganxa'l al quadre de Giscus i envia.</div>
+    <label>De quin grup ets?</label>
+    <select id="b_from"></select>
+    <label>Alumne avaluat</label>
+    <select id="b_student"></select>
+    <label>Puntuació (0–10)</label>
+    <input id="b_score" type="number" min="0" max="10" step="0.5" value="8" />
+    <label>Comentari (opcional)</label>
+    <textarea id="b_com" rows="2" placeholder="Breu justificació..."></textarea>
+    <button id="btnB">Copiar comentari (INDIVIDUAL)</button>
+  </div>
+  
+<div class="giscus-editor-only">
+<script src="https://giscus.app/client.js"
+        data-repo="jpardo20/apunts-jpardo20"
+        data-repo-id="R_kgDOQA78Wg"
+        data-category="INDIVIDUAL"
+        data-category-id="DIC_kwDOQA78Ws4CxBxQ"
+        data-mapping="specific"
+        data-term="SMR0221-Valoracio-INDIVIDUAL"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="ca"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,322 @@
+# Comanda `JOIN` a SQL  
+
+*Mòdul 0484 - Bases de Dades*
+
+---
+
+## Objectius de la sessió
+
+* Entendre què és una **JOIN** i per a què serveix.  
+
+* Diferenciar entre **INNER JOIN** i **LEFT JOIN**.  
+
+* Aplicar-les a la base de dades `botiga`.  
+
+* Realitzar consultes que combinen dades de diverses taules.
+
+---
+
+## Recordatori previ
+En SQL, cada taula conté un **conjunt de dades relacionades** (clients, comandes, productes...).  
+Quan necessitem **combinar informació de més d’una taula**, utilitzem una **JOIN**.
+
+Exemple:
+> “Vull veure les comandes amb el nom del client.”
+
+----
+
+“Vull veure les comandes amb el nom del client."
+
+![alt text](../../../assets/img/image.png)
+
+----
+
+“Vull veure les comandes amb el nom del client."
+
+
+![alt text](../../../assets/img/image-1.png)
+
+---
+
+## Què és una JOIN?
+
+Una **JOIN** serveix per **combinar files de dues (o més) taules** mitjançant una condició comuna, generalment un camp clau.
+
+----
+
+Exemple conceptual:
+```
+Clients(IdClient, NomClient)
+Comandes(IdComanda, IdClient, DataComanda)
+```
+
+Amb una JOIN podem obtenir:
+> IdComanda | NomClient | DataComanda
+
+----
+
+![alt text](../../../assets/img/image-2.png)
+
+
+
+
+---
+
+## INNER JOIN
+
+Mostra només les files que **tenen coincidència** a totes dues taules.
+
+Sintaxi:
+```sql
+SELECT Comandes.IdComanda, Clients.NomClient
+FROM Comandes
+INNER JOIN Clients
+ON Comandes.IdClient = Clients.IdClient;
+```
+----
+
+## INNER JOIN
+
+Mostra només les files que **tenen coincidència** a totes dues taules.
+
+
+![alt text](../../../assets/img/image-3.png)
+
+----
+
+Explicació:
+
+```sql
+SELECT Comandes.IdComanda, Clients.NomClient
+FROM Comandes
+INNER JOIN Clients
+ON Comandes.IdClient = Clients.IdClient;
+```
+
+
+* `Comandes` i `Clients` s'uneixen pel camp `IdClient`.
+* Només es mostren comandes que tenen un client associat.
+
+---
+
+## Exemple amb la BD `botiga`
+
+Mostrem totes les comandes amb el **nom del client** i la **data de comanda**:
+
+```sql
+SELECT Comandes.IdComanda, Clients.NomClient
+FROM Comandes
+INNER JOIN Clients
+ON Comandes.IdClient = Clients.IdClient;
+```
+
+---
+
+## INNER JOIN amb tres taules
+
+Podem afegir-hi més taules!  
+Exemple: volem saber **quin empleat** ha gestionat cada comanda.
+
+```sql
+SELECT Comandes.IdComanda, Clients.NomClient,
+       CONCAT (Empleats.Nom, " " ,Empleats.Cognom)
+       		AS NomEmpleat
+FROM Comandes
+INNER JOIN Clients
+ON Comandes.IdClient = Clients.IdClient
+INNER JOIN Empleats
+ON Comandes.IdEmpleat = Empleats.IdEmpleat;
+```
+
+---
+
+## Exemple amb productes (INNER JOIN)
+
+Per veure els detalls de les comandes:
+```sql
+SELECT  Comandes.IdComanda,
+        Productes.NomProducte,
+        DetallsComanda.Quantitat
+FROM DetallsComanda
+INNER JOIN  Comandes
+ON DetallsComanda.IdComanda = Comandes.IdComanda
+INNER JOIN Productes
+ON DetallsComanda.IdProducte = Productes.IdProducte;
+```
+
+Mostra només els productes que **estan dins d'una comanda**.
+
+---
+
+## LEFT JOIN
+
+Mostra **totes** les files de la taula de l’esquerra,
+i les de la dreta **només si hi ha coincidència**.
+
+Sintaxi:
+```sql
+SELECT ...
+FROM Taula1
+LEFT JOIN Taula2
+ON Taula1.clau = Taula2.clau;
+```
+
+----
+
+## LEFT JOIN
+
+Mostra **totes** les files de la taula de l’esquerra,
+i les de la dreta **només si hi ha coincidència**.
+
+![alt text](../../../assets/img/image-4.png)
+
+---
+
+## Exemple amb la BD `botiga`
+
+Volem veure **tots els clients**, encara que **no hagin fet cap comanda**:
+
+```sql
+SELECT  Clients.NomClient,
+        Comandes.IdComanda,
+        Comandes.DataComanda
+FROM Clients
+LEFT JOIN Comandes
+ON Clients.IdClient = Comandes.IdClient;
+```
+
+Els clients sense comandes mostraran `NULL` als camps de `Comandes`.
+
+---
+
+## Comparació gràfica
+
+| Tipus de JOIN | Què mostra |
+|----------------|-------------|
+| **INNER JOIN** | Només els registres amb coincidència a les dues taules |
+| **LEFT JOIN** | Tots els registres de l’esquerra, i els coincidents de la dreta |
+
+---
+
+## Exemple visual (esquema)
+
+```
+INNER JOIN
+[Clients] ⟷ [Comandes]
+Només coincidències
+
+LEFT JOIN
+[Clients] → [Comandes]
+Tots els clients, encara que no tinguin comandes
+```
+
+---
+
+## Exercicis guiats
+
+1. Mostra les comandes amb el nom del client i la data.  
+
+1. Mostra el nom del client i el nom de l’empleat que va atendre la seva comanda.  
+
+1. Mostra tots els clients i, si existeixen, les seves comandes (LEFT JOIN).  
+
+1. Mostra tots els empleats i, si han gestionat comandes, el número d’aquestes.
+
+----
+
+### Solució
+
+Mostra les comandes amb el nom del client i la data.  
+
+```sql
+SELECT 	Clients.NomClient,
+		Comandes.DataComanda
+FROM Comandes
+INNER JOIN Clients
+ON Comandes.IdClient = Clients.IdClient;
+```
+
+----
+
+### Solució
+
+Mostra el nom del client i el nom de l’empleat que va atendre la seva comanda.  
+
+
+```sql
+SELECT 	Comandes.IdComanda,
+		Clients.NomClient, 
+ 		Empleats.Nom
+FROM Comandes
+INNER JOIN Clients
+ON Comandes.IdClient = Clients.IdClient
+INNER JOIN Empleats
+ON Comandes.IdEmpleat = Empleats.IdEmpleat;
+```
+
+----
+### Solució
+
+Mostra tots els clients i, si existeixen, les seves comandes (LEFT JOIN).  
+
+```sql
+SELECT 	Clients.NomClient,
+		Comandes.IdComanda
+FROM Clients
+LEFT JOIN Comandes
+ON Clients.IdClient = Comandes.IdClient;
+```
+
+----
+
+### Solució
+
+Mostra tots els empleats i, si han gestionat comandes, el número d’aquestes.
+
+```sql
+SELECT CONCAT(Empleats.Nom, " " , 
+              Empleats.Cognom) As "Nom treballador",
+       COUNT(Comandes.IdComanda) "# Comandes"
+FROM   Empleats
+LEFT JOIN Comandes
+ON Empleats.IdEmpleat = Comandes.IdEmpleat
+GROUP BY Empleats.IdEmpleat;
+```
+
+---
+
+## Exercici final (repte)
+
+“Llista tots els productes que **no s’han venut mai**.”
+
+Pista:
+```sql
+SELECT ...
+...
+WHERE DetallsComanda.IdDetallComanda IS NULL;
+```
+
+----
+### Solució
+
+“Llista tots els productes que **no s’han venut mai**.”
+
+```sql
+
+SELECT 	Productes.NomProducte,
+		COUNT(DetallsComanda.IdProducte) as Aparicions
+FROM 	Productes
+LEFT JOIN DetallsComanda
+ON 		Productes.IdProducte = DetallsComanda.IdProducte
+WHERE DetallsComanda.IdDetallComanda IS NULL
+GROUP BY Productes.IdProducte;
+---
+
+## Resum final
+
+| **JOIN** | Resultat | Exemple pràctic |
+|------|-----------|-----------------|
+| **`INNER JOIN`** | Només coincidències | Comandes amb client associat |
+| **`LEFT JOIN`** | Tot l’esquerra + coincidències | Tots els clients, encara que no hagin fet cap comanda |
+
+

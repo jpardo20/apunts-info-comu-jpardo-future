@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lectura i qüestionari: Data centers d'IA a l'espai (Xataka)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 24px; }
+    h1, h2 { line-height: 1.2; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .muted { color: #666; font-size: 0.95rem; }
+    .question { margin-top: 16px; }
+    .ok { color: #0a7; font-weight: 600; }
+    .bad { color: #c00; font-weight: 600; }
+    button { padding: 10px 16px; border-radius: 10px; border: 1px solid #ccc; cursor: pointer; }
+    input[type="text"], textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+    .small { font-size: .9rem; }
+    .pill { display:inline-block; padding: 3px 8px; border:1px solid #999; border-radius:999px; margin-right:8px; font-size: .85rem; }
+    .footer { margin-top: 24px; font-size: .9rem; color:#666; }
+    .required::after { content:" *"; color:#c00; }
+    .row { display:flex; gap: 12px; flex-wrap: wrap; }
+    .row > div { flex: 1 1 260px; }
+  </style>
+</head>
+<body>
+  <h1>Lectura i qüestionari: Data centers d'IA a l'espai</h1>
+  <p class="muted">Data: <span id="todayISO">2025-11-07</span></p>
+  <div class="card">
+    <p><strong>Instruccions</strong> · Llegeix l'article i respon el qüestionari. Al final, prem <em>Corregeix</em> i després <em>Descarrega resultats (.json)</em>.</p>
+    <p><span class="pill">Tema: Eficiència energètica · IA</span></p>
+    <p><a href="https://www.xataka.com/energia/centros-datos-ia-consumen-demasiada-energia-plan-moonshot-google-llevarlos-al-espacio" target="_blank" rel="noopener noreferrer">Obrir l'article a Xataka (nova pestanya)</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Identificació</h2>
+    <div class="row">
+      <div>
+        <label class="required">Nom i cognoms</label>
+        <select id="alumneSelect" required></select>
+      </div>
+      <div style="display:none;">
+        <label>Si no surts a la llista, escriu el teu nom</label>
+        <input type="text" id="alumneManual" placeholder="Cognom1 Cognom2, Nom" />
+      </div>
+    </div>
+  </div>
+
+  <h2>Qüestionari</h2>
+  <form id="quiz">
+    <div class="question card">
+      <label class="required"><strong>1)</strong> Quin problema vol abordar Google amb el Projecte Suncatcher?</label><br>
+      <label><input type="radio" name="q1" value="a"> L'augment del preu dels llançaments espacials</label><br>
+      <label><input type="radio" name="q1" value="b"> El consum energètic creixent dels centres de dades d'IA</label><br>
+      <label><input type="radio" name="q1" value="c"> La seguretat dels satèl·lits militars</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>2)</strong> On preveu col·locar Google les seves TPUs?</label><br>
+      <label><input type="radio" name="q2" value="a"> En bases polars a l'Antàrtida</label><br>
+      <label><input type="radio" name="q2" value="b"> En satèl·lits a òrbita heliosíncrona</label><br>
+      <label><input type="radio" name="q2" value="c"> En vaixells data center a alta mar</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>3)</strong> Quina seria la <em>gran</em> avantatge energètica de l'espai per a aquests centres?</label><br>
+      <label><input type="radio" name="q3" value="a"> Energia solar gairebé contínua i fins a 8× més rendiment</label><br>
+      <label><input type="radio" name="q3" value="b"> Vent constant a totes les òrbites</label><br>
+      <label><input type="radio" name="q3" value="c"> Temperatura estable de 20 °C</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>4)</strong> Quina tecnologia de comunicació entre satèl·lits planteja el projecte?</label><br>
+      <label><input type="radio" name="q4" value="a"> Ones de ràdio de baixa freqüència</label><br>
+      <label><input type="radio" name="q4" value="b"> Enllaços òptics làser d'alt ample de banda</label><br>
+      <label><input type="radio" name="q4" value="c"> Cablejat físic desplegable</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>5)</strong> Segons l'article, abans de quin any Google vol provar dos satèl·lits prototip?</label><br>
+      <label><input type="radio" name="q5" value="a"> Abans de 2027</label><br>
+      <label><input type="radio" name="q5" value="b"> Abans de 2035</label><br>
+      <label><input type="radio" name="q5" value="c"> Ja n'hi ha dos operatius avui</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>6)</strong> Quin risc o impacte ambiental s'esmenta en relació amb aquests centres orbitals?</label><br>
+      <label><input type="radio" name="q6" value="a"> Cap risc ambiental destacable</label><br>
+      <label><input type="radio" name="q6" value="b"> Emissions de CO₂ dels llançaments i augment de la brossa espacial</label><br>
+      <label><input type="radio" name="q6" value="c"> Desertificació de l'òrbita geoestacionària</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>7)</strong> V/F · Ja hi ha un <em>data center</em> orbital de Google funcionant.</label><br>
+      <label><input type="radio" name="q7" value="true"> Vertader</label><br>
+      <label><input type="radio" name="q7" value="false"> Fals</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>8)</strong> V/F · Segons l'AIE, el consum elèctric dels centres de dades pot duplicar-se abans de 2030.</label><br>
+      <label><input type="radio" name="q8" value="true"> Vertader</label><br>
+      <label><input type="radio" name="q8" value="false"> Fals</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>9)</strong> Anomena una altra empresa/persona (a part de Google) que el text citi com a interessada en centres de dades en òrbita.</label><br>
+      <input type="text" name="q9" placeholder="Escriu aquí la teva resposta ..." />
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>10)</strong> Fes un resum de 3 frases amb les idees principals i una opinió personal (mínim 200 caràcters).</label><br>
+      <textarea name="q10" rows="6" minlength="200" placeholder="Escriu aquí el teu resum i opinió..."></textarea>
+      <div class="small muted">Consell: menciona el problema, la proposta i almenys un repte o risc.</div>
+    </div>
+
+    <div class="card">
+      <button type="button" onclick="grade()">Corregeix</button>
+      <button type="button" onclick="downloadResults()">Descarrega resultats (.json)</button>
+      <span id="score" class="pill"></span>
+      <div id="feedback" class="small"></div>
+    </div>
+  </form>
+
+  <div class="footer">
+    Referència: Xataka, <em>Los centros de datos de IA consumen demasiada energía. El plan 'moonshot' de Google es llevarlos al espacio</em> (06/11/2025).
+  </div>
+
+  <script id="alumnes_data" type="application/json">
+{
+    "meta": {
+        "curs": "2025-2026",
+        "centre": "Digitechfp"
+    },
+    "alumnes": [
+        [
+                        {
+                "firstname": "Lexter",
+                "lastname": "Abe Abag",
+                "email": "teralex142@digitechfp.com"
+            },
+            {
+                "firstname": "Berta",
+                "lastname": "Arenas Del Amo",
+                "email": "Berta.arenas2007@digitechfp.com"
+            },
+            {
+                "firstname": "Daniel",
+                "lastname": "Ciurana Jiménez",
+                "email": "itzciujis@digitechfp.com"
+            },
+            {
+                "firstname": "Juan Manuel",
+                "lastname": "Galán Pérez",
+                "email": "juanmagalan2007@digitechfp.com"
+            },
+            {
+                "firstname": "Lem Gerardo",
+                "lastname": "Quilca Rodríguez",
+                "email": "lemquilca22@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Gonzalez Ortega",
+                "email": "gonzalezHugoortega@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Martínez Santos",
+                "email": "hugomartinez310707@digitechfp.com"
+            },
+            {
+                "firstname": "Denise Andrea",
+                "lastname": "Name Ramírez",
+                "email": "dnameramirez@digitechfp.com"
+            },
+            {
+                "firstname": "David Santiago",
+                "lastname": "Rincón Mendez",
+                "email": "santisalserin.sr@digitechfp.com"
+            },
+            {
+                "firstname": "Carlos",
+                "lastname": "Ruiz Montesinos",
+                "email": "karlosruizmo@digitechfp.com"
+            },
+            {
+                "firstname": "Robinson Javier",
+                "lastname": "Tituaña Criollo",
+                "email": "itsjavii1610@digitechfp.com"
+            },
+            {
+                "firstname": "Marc",
+                "lastname": "López Vivies",
+                "email": "marclopezvives6@digitechfp.com"
+            },
+            {
+                "firstname": "Pau",
+                "lastname": "Díaz López",
+                "email": "paudiazlopez09@digitechfp.com"
+            },
+            {
+                "firstname": "Merouan",
+                "lastname": "Kiass",
+                "email": "kiassmerouan@digitechfp.com"
+            },
+            {
+                "firstname": "Antonia Lorena",
+                "lastname": "Cracana Cracana",
+                "email": "lorenacracana14@digitechfp.com"
+            },
+            {
+                "firstname": "Clemente",
+                "lastname": "Ramos Guiterrez",
+                "email": "clementeramosgutierrez@digitechfp.com"
+            },
+            {
+                "firstname": "Kristina",
+                "lastname": "Velkovska Kucinic",
+                "email": "kristina.velkovska.kucinic@digitechfp.com"
+            },
+            {
+                "firstname": "Joao Daniel",
+                "lastname": "De Paiva Oliveira",
+                "email": "joaodaniel.jd@digitechfp.com"
+            }
+        ]
+    ]
+}
+  </script>
+
+<script>
+const correct = {
+  q1: "b",
+  q2: "b",
+  q3: "a",
+  q4: "b",
+  q5: "a",
+  q6: "b",
+  q7: "false",
+  q8: "true"
+};
+function grade() {
+  let score = 0;
+  let total = 8; 
+  let fb = [];
+  for (let i=1;i<=8;i++) {
+    const name = "q"+i;
+    const selected = document.querySelector('input[name="'+name+'"]:checked');
+    if (!selected) { fb.push("Pregunta "+i+": sense resposta"); continue; }
+    if (selected.value === correct[name]) { score++; } else { fb.push("Pregunta "+i+": resposta incorrecta"); }
+  }
+  const q10 = document.querySelector('textarea[name="q10"]').value.trim();
+  if (q10.length < 200) { fb.push("P10: el resum ha de tenir mínim 200 caràcters."); }
+  const q9 = document.querySelector('input[name="q9"]').value.trim();
+  if (!q9) { fb.push("P9: cal escriure una empresa/persona mencionada."); }
+  const percent = Math.round((score/total)*100);
+  document.getElementById("score").textContent = "Puntuació autoavaluable: "+score+"/"+total+" ("+percent+"%)";
+  document.getElementById("score").className = "pill " + (percent>=60 ? "ok":"bad");
+  document.getElementById("feedback").textContent = fb.join(" · ");
+}
+</script>
+
+<script>
+function slugify(s) {
+  return s.normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-zA-Z0-9]+/g, '_')
+          .replace(/^_+|_+$/g, '')
+          .toLowerCase();
+}
+function getTodayISO() { return new Date().toISOString().slice(0,10); }
+function readAlumnes() {
+  try {
+    const raw = document.getElementById('alumnes_data').textContent;
+    const obj = JSON.parse(raw);
+    let arr = [];
+    if (Array.isArray(obj.alumnes)) {
+      if (Array.isArray(obj.alumnes[0])) arr = obj.alumnes[0];
+      else arr = obj.alumnes;
+    }
+    arr = arr.map(a => ({ firstname: a.firstname||'', lastname: a.lastname||'', email: a.email||'' }))
+             .sort((a,b) => (a.lastname.localeCompare(b.lastname,'ca') || a.firstname.localeCompare(b.firstname,'ca')));
+    return { meta: obj.meta || {}, alumnes: arr };
+  } catch(e) { console.error(e); return { meta: {}, alumnes: [] }; }
+}
+function populateSelect() {
+  const { alumnes } = readAlumnes();
+  const sel = document.getElementById('alumneSelect');
+  sel.innerHTML = '<option value="">— Selecciona el teu nom —</option>';
+  for (const a of alumnes) {
+    const opt = document.createElement('option');
+    opt.value = a.email || (a.lastname + ', ' + a.firstname);
+    opt.textContent = (a.lastname + ', ' + a.firstname).trim();
+    opt.dataset.firstname = a.firstname;
+    opt.dataset.lastname = a.lastname;
+    opt.dataset.email = a.email;
+    sel.appendChild(opt);
+  }
+  const optAlt = document.createElement('option');
+  optAlt.value = '__ALTRE__';
+  optAlt.textContent = '— No hi sóc (escriure manualment) —';
+  sel.appendChild(optAlt);
+}
+function onSelectChange() {
+  const sel = document.getElementById('alumneSelect');
+  const other = document.getElementById('alumneManual');
+  if (sel.value === '__ALTRE__') {
+    other.parentElement.style.display = 'block';
+    other.required = true;
+  } else {
+    other.value = '';
+    other.required = false;
+    other.parentElement.style.display = 'none';
+  }
+}
+window.addEventListener('DOMContentLoaded', () => {
+  populateSelect();
+  document.getElementById('alumneSelect').addEventListener('change', onSelectChange);
+  const dateEl = document.getElementById('todayISO');
+  if (dateEl) dateEl.textContent = getTodayISO();
+});
+function downloadResults() {
+  const sel = document.getElementById('alumneSelect');
+  let student = { firstname:'', lastname:'', email:'', display:'' };
+  if (!sel.value) { alert('Si us plau, tria el teu nom.'); return; }
+  if (sel.value === '__ALTRE__') {
+    const manual = (document.getElementById('alumneManual').value||'').trim();
+    if (!manual) { alert('Escriu el teu nom complet.'); return; }
+    student.display = manual;
+  } else {
+    const opt = sel.selectedOptions[0];
+    student.firstname = opt.dataset.firstname || '';
+    student.lastname = opt.dataset.lastname || '';
+    student.email = opt.dataset.email || sel.value;
+    student.display = (opt.textContent||'').trim();
+  }
+  const form = document.getElementById('quiz');
+  const data = new FormData(form);
+  const answers = {};
+  for (let [k,v] of data.entries()) { if (k.startsWith('q')) answers[k]=v; }
+  const scoreText = document.getElementById('score').textContent || '';
+  const percentMatch = scoreText.match(/(\d+)%/);
+  const scoreMatch = scoreText.match(/(\d+)\/(\d+)/);
+  const percent = percentMatch ? parseInt(percentMatch[1],10) : null;
+  const autos = scoreMatch ? { got: parseInt(scoreMatch[1],10), total: parseInt(scoreMatch[2],10) } : null;
+  const metaObj = readAlumnes().meta || {};
+  const payload = {
+    meta: {
+      curs: metaObj.curs || '',
+      centre: metaObj.centre || '',
+      data: getTodayISO(),
+      article_title: "Data centers d'IA a l'espai (Xataka)",
+      article_url: "https://www.xataka.com/energia/centros-datos-ia-consumen-demasiada-energia-plan-moonshot-google-llevarlos-al-espacio"
+    },
+    student: student,
+    answers: answers,
+    score_auto: autos,
+    percent_auto: percent
+  };
+  const jsonStr = JSON.stringify(payload, null, 2);
+  const blob = new Blob([jsonStr], {type: 'application/json'});
+  const who = student.display || (student.lastname + ' ' + student.firstname) || 'alumne';
+  const fname = "resultats_xataka_" + getTodayISO() + "_" + slugify(who) + ".json";
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = fname;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+
+</body>
+</html>

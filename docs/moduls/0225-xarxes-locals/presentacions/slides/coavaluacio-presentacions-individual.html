@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coavaluació — Presentacions individuals (Rúbrica + Tema) v7</title>
+  <style>
+    :root { --bg:#f8fafc; --fg:#0f172a; --muted:#475569; --card:#fff; --brand:#1d4ed8; --border:#e2e8f0; --ok:#0e7a33; --warn:#b45309; --err:#b42318;}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif;line-height:1.45}
+    body{padding-top:64px}
+    header{padding:24px 16px}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    h1{font-size:1.6rem;margin:0 0 6px}
+    .lead{color:var(--muted);margin:0 0 8px}
+    .pill{display:inline-block;padding:2px 10px;border-radius:999px;background:#e0e7ff;color:#3730a3;font-weight:700;font-size:.8rem;margin-left:6px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    .grid{display:grid;gap:12px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{font-weight:600;font-size:.95rem}
+    select,input[type=number],textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+    input[type=number]{text-align:center}
+    textarea{min-height:70px}
+    .hint{font-size:.85rem;color:var(--muted)}
+    .hint.warn{color:var(--warn);}
+    .section-title{font-weight:800;margin:8px 0 6px}
+    .topic{font-size:.9rem;color:#334155;margin-bottom:8px}
+    .crit{display:grid;grid-template-columns:1.6fr 110px 1fr;gap:10px;align-items:center;padding:8px;border-bottom:1px dashed var(--border)}
+    .crit:last-child{border-bottom:none}
+    .crit b{display:block}
+    .chips{display:flex;gap:6px;flex-wrap:wrap}
+    .chip{padding:2px 8px;border:1px solid var(--border);border-radius:999px;cursor:pointer;font-weight:700;font-size:.82rem;background:#fff}
+    .chip:hover{border-color:#cbd5e1}
+    .tot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+    .tot .val{font-size:1.2rem;font-weight:800}
+    .notice{padding:10px 12px;border-radius:12px;background:#eff6ff;border:1px solid #dbeafe}
+    .ok{background:#ecfdf3;border-color:#dcfce7}
+    .error{background:#fff1f2;border-color:#ffe4e6;color:#7f1d1d}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    button{appearance:none;border:1px solid var(--border);background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer}
+    button[disabled]{opacity:.45; cursor:not-allowed}
+    .footer-note{color:var(--muted);font-size:.88rem;margin-top:8px}
+    .invalid{border-color: var(--err) !important; box-shadow: 0 0 0 3px rgba(180,35,24,0.12);}
+    #missingBox{margin-top:8px}
+    #missingBox ul{margin:6px 0 0 18px}
+    #missingBox li{margin:2px 0}
+    #statusMsg{font-size:.9rem;color:var(--muted)}
+    .member{margin-top:8px}
+    .fixedbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(248,250,252,.95);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid var(--border)}
+    .fixedbar .inner{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
+    .fixedbar .progress{flex:1;height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+    .fixedbar .progress i{display:block;height:100%;background:var(--brand);width:0%;transition:width .2s ease}
+    .fixedbar .pct{min-width:20ch;font-weight:800;color:#1f2937;text-align:right}
+  </style>
+</head>
+<body>
+<div class="fixedbar">
+  <div class="inner">
+    <div class="progress" title="Completat"><i id="progbar" style="width:0%"></i></div>
+    <div class="pct" id="pct">0% · 0/0 criteris</div>
+  </div>
+</div>
+
+<header class="container">
+  <h1>Coavaluació — Presentacions individuals <span class="pill">Rúbrica</span></h1>
+  <p class="lead">Avalua per <b>criteris</b> (0–10) la <b>presentació individual</b> de cada alumne. El formulari mostra el <b>tema</b> de cada presentació.</p>
+</header>
+
+<div class="container grid">
+  <section class="card">
+    <div class="row">
+      <div>
+        <label for="raterSelect">Sóc (alumne que avalua)</label>
+        <select id="raterSelect"><option value="">— Selecciona el teu nom —</option></select>
+      </div>
+      <div style="align-self:end">
+        <div id="loadMsg" class="notice">Carregant dades (alumnes i presentacions)…</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="studentsZone" class="card">
+    <div class="notice">Esperant dades…</div>
+  </section>
+
+  <section class="card">
+    <div class="actions">
+      <button id="btnGen" disabled>Genera fitxer JSON</button>
+      <span id="statusMsg">Cal seleccionar el teu nom i emplenar tots els criteris.</span>
+      <button class="secondary" id="btnReset">Neteja formulari</button>
+    </div>
+    <div id="missingBox" class="notice error" style="display:none"></div>
+    <div id="outMsg" class="footer-note"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const IND_CRITERIA = [
+    {code:"C1", label:"Contingut tècnic", weight:40, desc:"<strong>|</strong>&nbsp;0&nbsp;=&nbsp;erroni/superficial&nbsp;<strong>|</strong>&nbsp;5&nbsp;=&nbsp;correcte bàsic&nbsp;<strong>|</strong>&nbsp;10&nbsp;=&nbsp;excel·lent i rigorós&nbsp;<strong>|</strong>"},
+    {code:"C2", label:"Claredat i estructura", weight:20, desc:"<strong>|</strong>&nbsp;0&nbsp;=&nbsp;caòtic&nbsp;<strong>|</strong>&nbsp;5&nbsp;=&nbsp;ordenat però millorable&nbsp;<strong>|</strong>&nbsp;10&nbsp;=&nbsp;molt ben estructurat&nbsp;<strong>|</strong>"},
+    {code:"C3", label:"Comunicació (veu, ritme)", weight:15, desc:"<strong>|</strong>&nbsp;0&nbsp;=&nbsp;molt pobre&nbsp;<strong>|</strong>&nbsp;5&nbsp;=&nbsp;acceptable&nbsp;<strong>|</strong>&nbsp;10&nbsp;=&nbsp;clar i convincent&nbsp;<strong>|</strong>"},
+    {code:"C4", label:"Suport visual/demos", weight:15, desc:"<strong>|</strong>&nbsp;0&nbsp;=&nbsp;inadequat&nbsp;<strong>|</strong>&nbsp;5&nbsp;=&nbsp;adequat&nbsp;<strong>|</strong>&nbsp;10&nbsp;=&nbsp;molt bo i coherent&nbsp;<strong>|</strong>"},
+    {code:"C5", label:"Temps i preguntes", weight:10, desc:"<strong>|</strong>&nbsp;0&nbsp;=&nbsp;malament&nbsp;<strong>|</strong>&nbsp;5&nbsp;=&nbsp;millorable&nbsp;<strong>|</strong>&nbsp;10&nbsp;=&nbsp;perfecte&nbsp;<strong>|</strong>"}
+  ];
+  const QUICK = [0,5,7,8,9,10];
+
+  const state = {
+    meta: { rubric: { individual: IND_CRITERIA } },
+    alumnes: [],
+    presentacions: [],
+    rater: null,
+    ready: false,
+    blocks: []
+  };
+
+  const $ = sel => document.querySelector(sel);
+  const studentsZone = $("#studentsZone");
+  const raterSelect = $("#raterSelect");
+  const outMsg = $("#outMsg");
+  const loadMsg = $("#loadMsg");
+  const missingBox = $("#missingBox");
+  const btnGen = $("#btnGen");
+  const statusMsg = $("#statusMsg");
+  const progbar = $("#progbar");
+  const pct = $("#pct");
+
+  async function tryFetchJSON(paths){
+    for (const p of paths){
+      try{
+        const res = await fetch(p, {cache:"no-store"});
+        if(res.ok){ return await res.json(); }
+      }catch(e){}
+    }
+    return null;
+  }
+
+  function fullName(a){ return [a.firstname, a.lastname].filter(Boolean).join(" ").trim(); }
+
+  async function loadData(){
+    loadMsg.textContent = "Carregant…";
+    let alumnes=null, pres=null;
+    alumnes = await tryFetchJSON(["dades_alumnes.json","./alumnes/dades_alumnes.json","../alumnes/dades_alumnes.json","../../alumnes/dades_alumnes.json"]);
+    pres = await tryFetchJSON(["dades_presentacions.json","./alumnes/dades_presentacions.json","../alumnes/dades_presentacions.json","../../alumnes/dades_presentacions.json"]);
+
+    if(!alumnes){
+      loadMsg.className = "notice error";
+      loadMsg.innerHTML = "No s'han trobat <code>dades_alumnes.json</code>.";
+      return;
+    }
+    const raw = Array.isArray(alumnes.alumnes) ? alumnes.alumnes.flat() : (alumnes.alumnes || []);
+    state.alumnes = raw.map(a => ({firstname:a.firstname||"", lastname:a.lastname||"", email:a.email||""}));
+    state.presentacions = Array.isArray((pres||{}).presentacions) ? pres.presentacions : [];
+    state.meta = {...state.meta, ...(alumnes.meta||{})};
+    state.ready = true;
+
+    loadMsg.className = "notice ok";
+    loadMsg.textContent = state.presentacions.length ? "Dades carregades (alumnes i presentacions)." : "Dades d'alumnes carregades. (Presentacions no trobades)";
+
+    renderRaterSelect();
+    renderStudentsUI();
+    checkCompleteness();
+  }
+
+  function renderRaterSelect(){
+    raterSelect.innerHTML = '<option value="">— Selecciona el teu nom —</option>';
+    for(const a of state.alumnes){
+      const opt = document.createElement("option");
+      opt.value = fullName(a);
+      opt.textContent = `${fullName(a)}${a.email ? " — " + a.email : ""}`;
+      raterSelect.appendChild(opt);
+    }
+    raterSelect.addEventListener("change", ()=>{
+      const selName = raterSelect.value;
+      state.rater = selName ? state.alumnes.find(a => fullName(a) === selName) : null;
+      renderStudentsUI(); // excloure autoavaluació
+      checkCompleteness();
+    });
+  }
+
+  function chipBar(input){
+    const wrap = document.createElement("div"); wrap.className="chips";
+    QUICK.forEach(v=>{
+      const c = document.createElement("span");
+      c.className="chip"; c.textContent=String(v);
+      c.addEventListener("click", ()=>{ input.value = v; input.dispatchEvent(new Event("input",{bubbles:true})); });
+      wrap.appendChild(c);
+    });
+    return wrap;
+  }
+
+  function critRow(crit, inputId){
+    const row = document.createElement("div"); row.className="crit";
+    const txt = document.createElement("div");
+    txt.innerHTML = `<b>${crit.label}</b><span class="hint">Pes: <strong>${crit.weight}%</strong><div class="hint">${crit.desc}</span></div>`;
+    const val = document.createElement("div");
+    const inp = document.createElement("input");
+    inp.type="number"; inp.min="0"; inp.max="10"; inp.step="0.1"; inp.id=inputId;
+    inp.addEventListener("input", ()=>{ inp.classList.remove("invalid"); checkCompleteness(); });
+    val.appendChild(inp);
+    const quick = document.createElement("div"); quick.appendChild(chipBar(inp));
+    row.appendChild(txt); row.appendChild(val); row.appendChild(quick);
+    return {row, inp};
+  }
+
+  function weightedScore(scores, criteria){
+    const wsum = criteria.reduce((a,c)=>a+c.weight,0) || 1;
+    let acc = 0;
+    for(let i=0;i<criteria.length;i++){
+      const sc = Number(scores[i]); const w = criteria[i].weight;
+      if(!isFinite(sc)) return null;
+      acc += (sc * w);
+    }
+    return Math.round((acc/wsum)*100)/100;
+  }
+
+  function topicFor(name){
+    if(!state.presentacions.length) return null;
+    const parts = name.split(" ");
+    const fn = parts.shift() || "";
+    const ln = parts.join(" ");
+    const lower = s => s.trim().toLowerCase();
+    let found = state.presentacions.find(p => lower(p.firstname)===lower(fn) && lower(p.lastname)===lower(ln));
+    if(found) return found.tema || null;
+    found = state.presentacions.find(p => lower((p.firstname+" "+p.lastname))===lower(name));
+    return found ? (found.tema || null) : null;
+  }
+
+  function studentBlock(name){
+    const card = document.createElement("div"); card.className="card member";
+    const topic = topicFor(name);
+    const title = document.createElement("div"); title.className="section-title"; title.textContent = `Alumne: ${name}`;
+    card.appendChild(title);
+    const t = document.createElement("div"); t.className="topic"; t.textContent = `Tema: ${topic || "—"}`;
+    card.appendChild(t);
+
+    const inputs = [];
+    IND_CRITERIA.forEach(c=>{
+      const {row, inp} = critRow(c, `s_${name}_${c.code}`);
+      inputs.push({crit:c, el:inp}); card.appendChild(row);
+    });
+
+    const tot = document.createElement("div"); tot.className="tot";
+    const left = document.createElement("div"); left.innerHTML = "<b>Nota ponderada (0–10)</b>";
+    const val = document.createElement("div"); val.className="val"; val.textContent="—";
+    tot.appendChild(left); tot.appendChild(val);
+    card.appendChild(tot);
+
+    const comLab = document.createElement("label"); comLab.textContent="Comentari (obligatori si alguna nota < 5)";
+    const com = document.createElement("textarea"); com.id = `s_${name}_comment`; card.appendChild(comLab); card.appendChild(com);
+    com.addEventListener("input", ()=>{ com.classList.remove("invalid"); checkCompleteness(); });
+
+    const hint = document.createElement("div");
+    hint.className = "hint warn";
+    hint.setAttribute("aria-live", "polite");
+    hint.style.display = "none";
+    hint.textContent = "Has posat alguna nota < 5: cal justificar amb un comentari.";
+    card.appendChild(hint);
+
+    function updateCommentRequirement(){
+      let anyBelow5 = inputs.some(i => {
+        const v = Number(i.el.value);
+        return Number.isFinite(v) && v < 5;
+      });
+      if(anyBelow5){
+        hint.style.display = "";
+      }else{
+        hint.style.display = "none";
+        com.classList.remove("invalid");
+      }
+    }
+
+    const recompute = ()=>{
+      const arr = inputs.map(i=>Number(i.el.value));
+      const sc = weightedScore(arr, IND_CRITERIA);
+      val.textContent = (sc==null ? "—" : sc.toFixed(2));
+      updateCommentRequirement();
+      checkCompleteness();
+    };
+    inputs.forEach(i=> i.el.addEventListener("input", recompute));
+
+    return {el: card, inputs, commentEl: com, hintEl: hint, get: ()=>({scores: inputs.map(i=>Number(i.el.value)), total: Number(val.textContent)||null, comment: com.value.trim()})};
+  }
+
+  function renderStudentsUI(){
+    studentsZone.innerHTML = "";
+    state.blocks = [];
+    if(!state.ready){ studentsZone.innerHTML = '<div class="notice">Falten dades.</div>'; return; }
+    let roster = [];
+    if(state.presentacions.length){
+      roster = state.presentacions.map(p => (p.firstname + " " + p.lastname).trim());
+    }else{
+      roster = state.alumnes.map(a => (a.firstname + " " + a.lastname).trim());
+    }
+    const rName = state.rater ? (state.rater.firstname + " " + (state.rater.lastname||"")).trim() : "";
+    roster.filter(n => n && n !== rName).forEach(name => {
+      const blk = studentBlock(name); studentsZone.appendChild(blk.el);
+      state.blocks.push({type:"student", name, criteria:IND_CRITERIA, inputs:blk.inputs, commentEl: blk.commentEl, hintEl: blk.hintEl, getter:blk.get});
+    });
+    checkCompleteness();
+  }
+
+  function collectMissing(highlight=false){
+    if(!highlight){
+      document.querySelectorAll(".invalid").forEach(el=> el.classList.remove("invalid"));
+    }
+    const missing = [];
+    for(const b of state.blocks){
+      const path = `Alumne: ${b.name}`;
+      let anyBelow5 = false;
+      b.inputs.forEach(({crit, el})=>{
+        const v = el.value;
+        if(v === "" || !isFinite(Number(v))){
+          if(highlight){ el.classList.add("invalid"); }
+          missing.push(`${path} — ${crit.code} ${crit.label}`);
+        } else if(Number(v) < 5){
+          anyBelow5 = true;
+        }
+      });
+      if(anyBelow5){
+        if(b.hintEl){ b.hintEl.style.display = ""; }
+        const cval = (b.commentEl?.value || "").trim();
+        if(!cval){
+          if(highlight && b.commentEl){ b.commentEl.classList.add("invalid"); }
+          missing.push(`${path} — Comentari obligatori (hi ha nota < 5)`);
+        }
+      }else{
+        if(b.hintEl){ b.hintEl.style.display = "none"; }
+      }
+    }
+    if(!state.rater){ missing.push("Selecció del teu nom (rater)"); }
+    return missing;
+  }
+
+  function updateProgress(){
+    let total = 0, filled = 0;
+    for(const b of state.blocks){
+      for(const {el} of b.inputs){
+        total += 1;
+        const v = el.value;
+        if(v !== "" && isFinite(Number(v))) filled += 1;
+      }
+    }
+    const percent = total ? Math.round(filled*100/total) : 0;
+    if(progbar){ progbar.style.width = percent + "%"; }
+    if(pct){ pct.textContent = percent + "% · " + filled + "/" + total + " criteris"; }
+  }
+
+  function checkCompleteness(){
+    const blanks = collectMissing(false);
+    const ok = (blanks.length === 0) && state.ready;
+    btnGen.disabled = !ok;
+    statusMsg.textContent = ok ? "Lliurament llest." : "Cal seleccionar el teu nom i emplenar tots els criteris.";
+    updateProgress();
+  }
+
+  function nowISO(){
+    const d = new Date();
+    const tz = -d.getTimezoneOffset();
+    const sgn = tz>=0?"+":"-";
+    const hh = String(Math.floor(Math.abs(tz)/60)).padStart(2,"0");
+    const mm = String(Math.abs(tz)%60).padStart(2,"0");
+    return d.toISOString().replace("Z", `${sgn}${hh}:${mm}`);
+  }
+
+  function buildJSON(){
+    const evals = [];
+    for(const b of state.blocks){
+      const sdata = b.getter();
+      const topic = (state.presentacions.length ? (function(name){
+        const parts = name.split(" ");
+        const fn = parts.shift() || "";
+        const ln = parts.join(" ");
+        const lower = s => s.trim().toLowerCase();
+        let found = state.presentacions.find(p => lower(p.firstname)===lower(fn) && lower(p.lastname)===lower(ln));
+        if(found) return found.tema || null;
+        found = state.presentacions.find(p => lower((p.firstname+" "+p.lastname))===lower(name));
+        return found ? (found.tema || null) : null;
+      })(b.name) : null);
+      evals.push({
+        student: b.name,
+        topic: topic || null,
+        rubric: IND_CRITERIA.map((c,idx)=>({code:c.code,label:c.label,weight:c.weight,score:sdata.scores[idx]})),
+        total_weighted: sdata.total,
+        comment: sdata.comment
+      });
+    }
+    return {
+      meta: { ...state.meta, rubric: { individual: IND_CRITERIA }, generated_at: nowISO() },
+      rater: {
+        firstname: state.rater?.firstname || "",
+        lastname: state.rater?.lastname || "",
+        email: state.rater?.email || ""
+      },
+      evaluations: evals
+    };
+  }
+
+  document.getElementById("btnGen").addEventListener("click", ()=>{
+    missingBox.style.display = "none"; missingBox.innerHTML = "";
+    const blanks = collectMissing(true);
+    if(blanks.length){
+      const ul = "<ul>" + blanks.map(x=>`<li>${x}</li>`).join("") + "</ul>";
+      missingBox.style.display = "block";
+      missingBox.innerHTML = "<b>Falten dades als camps següents:</b>" + ul + "<div class='hint'>Revisa els camps marcats en vermell (0–10). Si alguna nota és < 5, cal afegir un comentari.</div>";
+      const first = document.querySelector(".invalid");
+      if(first){ first.scrollIntoView({behavior:"smooth", block:"center"}); first.focus(); }
+      checkCompleteness();
+      return;
+    }
+    try{
+      const data = buildJSON();
+      const who = state.rater ? (state.rater.firstname + "_" + (state.rater.lastname||"")) : "alumne";
+      const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+      const fname = `coavaluacio_individual_temes_${who}_${ts}.json`;
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
+      outMsg.textContent = "Fitxer JSON generat i descarregat.";
+    }catch(e){
+      outMsg.textContent = e.message;
+    }
+  });
+
+  document.getElementById("btnReset").addEventListener("click", ()=>{
+    if(confirm("Segur que vols netejar totes les respostes?")){
+      document.querySelectorAll("input[type=number], textarea").forEach(el=> { el.value=""; el.classList.remove("invalid"); });
+      document.querySelectorAll(".val").forEach(v=> v.textContent="—");
+      missingBox.style.display = "none"; missingBox.innerHTML = "";
+      outMsg.textContent = "Formulari netejat.";
+      raterSelect.value = ""; state.rater = null;
+      renderStudentsUI();
+      checkCompleteness();
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+  });
+
+  loadData();
+})();
+</script>
+</body>
+</html>

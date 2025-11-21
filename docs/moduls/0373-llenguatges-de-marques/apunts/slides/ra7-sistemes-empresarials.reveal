@@ -1,0 +1,33 @@
+# RA7 · Sistemes empresarials de gestió d'informació (ERP/CRM/CMS)
+
+## Objectius del RA
+Reconèixer i utilitzar, com a **usuari avançat**, sistemes empresarials (ERP/CRM/CMS), realitzant **importació/exportació** bàsica, generant informes i aplicant criteris de seguretat i còpia de seguretat.
+
+## Continguts clau
+- Tipologies i objectius: **ERP** (processos i dades integrades), **CRM** (relació amb clients), **CMS** (publicació de contingut).
+- Operacions habituals: altes/baixes/modificacions, **importació/exportació** (CSV/XML/JSON), filtres i informes.
+- Qualitat de dades: codis únics, formats (dates, decimals), validacions.
+- Seguretat bàsica: rols i permisos, còpies de seguretat i restauració.
+- Exemple d'ecosistema: **Odoo** (mòdul Vendes/Inventari) o un **CMS** (WordPress) per a catàleg bàsic.
+
+[comment]: <> (## Exemple breu (CSV d'importació de productes))
+[comment]: <> (```csv)
+[comment]: <> (id,nom,preu,actiu)
+[comment]: <> (p1,Ratolí,14.95,1)
+[comment]: <> (p2,Teclat,29.90,1)
+[comment]: <> (```)
+[comment]: <> (**Notes:** `id` únic, `preu` amb punt decimal, `actiu` com a 0/1.)
+[comment]: <> ( )
+[comment]: <> (## Microexercicis)
+[comment]: <> (1. Dissenya un pla de camp obligatori per a importacions de productes (mínim 5 columnes) i justifica'l.)
+[comment]: <> (2. Genera un informe filtrat (CSV) dels productes amb `preu` &gt; 20.)
+[comment]: <> (3. Especifica una política de còpia de seguretat mínima (freqüència, retenció, verificació).)
+
+## CA vinculats (resum)
+- Identifica sistemes (ERP/CRM/CMS), avantatges i característiques.
+- Realitza importacions/exportacions i genera informes.
+- Aplica criteris de seguretat i gestiona còpies de seguretat bàsiques.
+
+## Enllaços útils
+- Documentació d'Odoo (demo) o CMS populars per a proves d'usuari.
+- Bones pràctiques de qualitat de dades i còpies de seguretat.

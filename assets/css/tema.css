@@ -1,0 +1,6 @@
+
+/* Espai per a personalitzar tema específic de curs */
+/* Exemple: mida de lletra lleugerament més gran */
+.reveal .slides section { font-size: 32px; }
+.reveal h1 { font-size: 2.2em; }
+.reveal h2 { font-size: 1.6em; }

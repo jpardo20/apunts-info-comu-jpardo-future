@@ -1,0 +1,382 @@
+# Aplicaciones Oﬁmáticas
+
+#### AOF - UD03 - Actividad evaluable 1
+##### (`aof-ud03-ae01`)
+
+---
+
+* **Paso 1**
+
+Crea en tu cuenta de **`github`** el repositorio<br><u><b>**`<PrimerApellidoAlumno>-aof-ud03-ae01`**</b></u><br>(<u>**todo en minúsculas**</u>), haz que sea <u>**privado**</u>, e invita  al usuario <u>**jpardo20**</u>.
+
+><hr>
+>
+> ###### Donde **`<PrimerApellidoAlumno>`** es solo el primer apellido del alumno, sin el nombre.
+>
+> ###### Por ejempo en el caso del alumno <b><u>Albert Einstein</u></b>, el nombre del repositorio sería <kbd><u><b>**`einstein-aof-ud03-ae01`**</b></u></kbd>.
+>
+><hr>
+
+----
+
+* **Paso 2**
+
+Una vez tengas el repositorio remoto (el de tu cuenta de github) debes de clonarlo en tu ordenador.
+
+```git
+git clone <URL de tu repositorio remoto>
+```
+
+Con el repositorio remoto, clonado, debes de seguir los pasos que se detallan a continuación.
+
+---
+
+## 1a entrega
+
+Antes de empezar, instala en tu sistema <a href="https://okular.kde.org/es/" target="blank">**`Okular`**</a> un lector y editor sencillo (pero potente) de PDF.
+
+![alt text](../../../assets/img/logo-okular.png)
+
+[okular-release_25.08-6777-windows-cl-msvc2022-x86_64.exe](https://cdn.kde.org/ci-builds/graphics/okular/release-25.08/windows/okular-release_25.08-6777-windows-cl-msvc2022-x86_64.exe)
+
+----
+
+#### 1a entrega
+
+* **Paso 3**
+
+Descarga el siguiente fichero
+
+  - [Prevención de riesgos en el uso de portátiles](https://www.unileon.es/intranet/prevencion/pvd_portatiles.pdf).
+
+Ábrelo con **`Okular`** para intentar utilizar sus herramientas de anotaciones y anotaciones rápidas.
+
+> <hr>
+>
+> #### ¿Se pueden realizar anotaciones?
+> <hr>
+
+----
+#### 1a entrega
+
+> <hr>
+>
+> #### Observarás que no se podrán realizar.
+> <hr>
+
+En este caso el problema es que este documento está **protegido contra edición**.
+
+Dado las características de este documento (todos los datos son todo datos públicos), podemos usar sin riesgos herramientas en la nube y desbloquearlo.
+
+
+Utilizaremos la web [www.ilovepdf.com](www.ilovepdf.com) para desbloquearlo y permitir su edición.
+
+----
+#### 1a entrega
+
+><hr> 
+>
+> ### A entregar
+>
+> En en el documento **`README.md`** de tu repositorio local, bajo el título <kbd>## 1a entrega<kbd>,
+>
+> 1. una captura de **`Okular`** donde se vea que estaba inicialmente bloqueado (herramientas de anotaciones desactivadas) y 
+><br> 
+><br> 
+> 1. otra captura donde se vea que está desbloqueado, con las herramientas activadas.
+>
+><hr> 
+
+----
+
+#### 1a entrega
+
+No oldives de hacer los comandos de **`git`** para subir tus canvios y ficheros a tulrepositorio remoto
+
+```git
+git add README.md # y otros ficheros, como los ficheros de las capturas
+
+git commit -m "un comentario indicando los canvios realizados."
+
+git push -u origin main
+
+```
+
+---
+
+## 2a entrega
+
+Suponiendo que debieras estudiar el documento de la actividad anterior para un examen, realiza las anotaciones que estimes necesarias para facilitar su comprensión y estudio.
+
+----
+
+#### 2a entrega
+
+En este caso, debe realizarse al menos estos tipos de anotaciones, incluyendo para cada una al menos dos usos, con distinto color y opacidad:
+
+*  Subrayado/resaltado.
+
+*  Añadir texto.
+
+*  Nota en línea (Post-it siempre visibles).
+
+*  Nota emergente (Post-it no visibles, se muestran cuando hacemos clic).
+
+*  Flechas y formas.
+
+----
+
+#### 2a entrega
+
+> <hr>
+>
+> ### Importante
+>
+> Al valorar esta actividad, se valorará un 25% el uso de los distintos tipos de anotaciones y un 75% la calidad en sí de las anotaciones para facilitar el estudio: tienen sentido, favorecen entender mejor el texto, resuelven dudas, etc.
+> <hr>
+
+----
+#### 2a entrega
+
+
+> <hr>
+> 
+> ### A entregar
+>
+> 1. Deberás subir a tu repositorio el PDF anotado con el título **`<PrimerApellidoAlumno>-aof-ud03-ae01-2a-ent.pdf`** (**todo en minúsculas**).
+>
+
+
+> En el documento **`README.md`** de tu repositorio local, bajo el título `## 2a entrega`, debes de crear un enlace al documento pdf que acabas de crear y subir.
+> <hr>
+
+----
+
+#### 2a entrega
+
+
+> <hr>
+> 
+> ### TIP
+>
+> Puedes encontrar información de cómo crear un enlace en el enlace [**Links de `markdownguide.org`**](https://www.markdownguide.org/basic-syntax/#links)
+>
+> <hr>
+
+----
+
+#### 2a entrega
+
+No oldives de hacer los comandos de **`git`** para subir tus canvios y ficheros a tulrepositorio remoto
+
+```git
+git add README.md # y otros ficheros, como los ficheros de las capturas
+
+git commit -m "un comentario indicando los canvios realizados."
+
+git push -u origin main
+
+```
+
+
+## 3a entrega
+
+Accede a este documento con consejos de seguridad sobre distintas redes sociales <a href="https://jpardo20.github.io/apunts-jpardo20/assets/files/combined_parental_guides.pdf" target="blank">combined_parent_al_guides.pdf</a>
+
+Se te va a solicitar la realización de un resumen de los consejos más relevantes en seguridad de redes sociales. Antes de realizar este resumen, realiza las anotaciones que estimes necesarias para facilitar el posterior resumen.
+
+Como el texto está **en inglés**, las anotaciones deben realizarse **en inglés**.
+
+----
+
+#### 3a entrega
+
+En este caso, debe realizarse al menos estos tipos de anotaciones, incluyendo para cada una al menos dos usos, con distinto color y opacidad:
+
+*  Resaltado.
+
+*  Nota en línea.
+
+*  Nota emergente.
+
+*  Línea a mano alzada.
+
+*  Flechas.
+
+----
+
+#### 3a entrega
+
+Finalmente, realiza un texto donde resuma los principales consejos del documento.
+
+> <hr>
+> 
+> ### Atención
+> No copies y pegues frases literales del documento. Intenta explicarte con tus propias
+>
+> <hr>
+
+----
+
+#### 3a entrega
+
+Este texto deberá constar de:
+
+*  Un párrafo introductorio (Ejemplo: párrafo explicando de que vais a hablar).
+
+*  Al menos un párrafo por cada aplicación. En ellos se resumirán los principales consejos de
+uso. Puedes utilizar viñetas/guiones si lo crees necesario.
+
+----
+
+#### 3a entrega
+
+> <hr>
+> 
+> ### A entregar
+> 1. Deberás subir a tu repositorio el PDF anotado con el título **`<PrimerApellidoAlumno>-aof-ud03-ae01-3a-ent.pdf`** (**todo en minúsculas**).
+>
+> En el documento **`README.md`** de tu repositorio local, bajo el título `## 3a entrega`, debes de crear un enlace al documento pdf que acabas de crear y subir.
+> <hr>
+
+----
+
+#### 3a entrega
+
+No oldives de hacer los comandos de **`git`** para subir tus canvios y ficheros a tulrepositorio remoto
+
+```git
+git add README.md # y otros ficheros, como los ficheros de las capturas
+
+git commit -m "un comentario indicando los canvios realizados."
+
+git push -u origin main
+
+---
+
+## 4a entrega
+
+Realiza las siguientes operaciones utilizando [www.ilovepdf.com](www.ilovepdf.com):
+
+*  Une en un solo PDF (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent.pdf`**) los documentos:
+
+- [Prevención de riesgos en el uso de portátiles](https://www.unileon.es/intranet/prevencion/pvd_portatiles.pdf).
+- [combined_parent_al_guides.pdf](https://jpardo20.github.io/apunts-jpardo20/assets/files/combined_parental_guides.pdf).
+
+
+----
+
+#### 4a entrega dividir
+
+*  Divide el PDF que acabáis de crear (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent.pdf`**), incluyendo solo páginas pares, con el nombre (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent-pares.pdf`**).
+
+----
+
+#### 4a entrega convertir a **`docx`**
+
+
+*  Convierte el PDF **`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent.pdf`** a Word (.docx), y guárdalo con el nombre (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent-word.docx`**).
+
+----
+
+#### 4a entrega añadir marca de agua
+
+
+*  Añade al PDF (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent.pdf`**) una marca de agua con tu nombre (sin apellidos), y guárdalo con el nombre (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent-marca.pdf`**).
+
+----
+
+#### 4a entrega proteger
+
+
+*  Protege el PDF , y guárdalo con el nombre (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent.pdf`**), y guárdalo con el nombre (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent-protegido.pdf`**).
+
+----
+
+#### 4a entrega proteger
+
+> <hr>
+> 
+> ### A entregar
+> 1. Deberás subir a tu repositorio un fichero comprimido con los cinco documentos PDF's con las actividades propuestas. El nombre del fichero comprimido será:
+> 
+> **`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent.zip`** (**todo en minúsculas**).
+>
+> En el documento **`README.md`** de tu repositorio local, bajo el título `## 4a entrega`, debes de crear un enlaces a cada uno de los documentos pdf que acabas de crear y subir, incluido el fichero comprimido.
+> <hr>
+
+----
+
+#### 4a entrega
+
+No oldives de hacer los comandos de **`git`** para subir tus canvios y ficheros a tulrepositorio remoto
+
+```git
+git add README.md # y otros ficheros, como los ficheros de las capturas
+
+git commit -m "un comentario indicando los canvios realizados."
+
+git push -u origin main
+
+---
+
+## 5a entrega
+
+En el siguiente enlace <a href="https://github.com/sergarb1/documentostutoriaciclos/blob/master/documentos/Tutor%C3%ADa%20-%20Consejos%20para%20realizar%20un%20estudio%20optimo.pdf" target="blank">Consejos para realizar un estudio optimo</a>  tenéis disponible un PDF.
+
+Utiliza las herramientas de anotación para editar ese PDF. En este caso, debe realizarse al menos estos tipos de anotaciones, incluyendo para cada una al menos dos usos, con distinto color y opacidad:
+
+*  Subrayado/resaltado. (**`XXXXX`** = **`marca`**)
+
+*  Añadir texto. (**`XXXXX`** = **`afegir`**)
+
+*  Nota en línea (Post-it siempre visibles).  (**`XXXXX`** = **`nota-linea`**)
+
+*  Nota emergente (Post-it no visibles, se muestran cuando hacemos clic). (**`XXXXX`** = **`nota-emer`**)
+
+*  Flechas y formas.  (**`XXXXX`** = **`flechas`**)
+
+----
+
+#### 5a entrega
+
+> <hr>
+>
+> ### Importante
+>
+> Al valorar esta actividad, se valorará un 25% el uso de los distintos tipos de anotaciones y un 75% la calidad en sí de las anotaciones para facilitar el estudio: tienen sentido, favorecen entender mejor el texto, resuelven dudas, etc.
+> <hr>
+
+----
+
+#### 5a entrega
+
+
+> <hr>
+> 
+> ### A entregar
+> Deberás entregar los PDFs de la entrega anotados, en un fichero comprimido 
+> **`<PrimerApellidoAlumno>-aof-ud03-ae01-5a-ent.zip`** (**todo en minúsculas**)
+>
+> teniendo cada uno el título
+> **`<PrimerApellidoAlumno>-aof-ud03-ae01-5a-ent-XXXXX.pdf`** (**todo en minúsculas**), donde “XXXXX” indica que PDF es.
+>
+> En el documento **`README.md`** de tu repositorio local, bajo el título `## 5a entrega`, debes de crear un enlaces a cada uno de los documentos pdf que acabas de crear y subir.
+> <hr>
+
+----
+
+#### 5a entrega
+
+No oldives de hacer los comandos de **`git`** para subir tus canvios y ficheros a tulrepositorio remoto
+
+```git
+git add README.md # y otros ficheros, como los ficheros de las capturas
+
+git commit -m "un comentario indicando los canvios realizados."
+
+git push -u origin main
+
+---
+
+### Muchas gracias!!

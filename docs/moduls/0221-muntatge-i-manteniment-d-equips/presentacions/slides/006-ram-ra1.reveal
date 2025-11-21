@@ -1,0 +1,288 @@
+### Components d’un equip microinformàtic
+
+# Memòria RAM
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+|Nom vídeo| Durada | Data | Enllaç |
+|------------------|-----|-----|-----|
+|¡Todo, TODO sobre la RAM! Parte 1<br>***Nate Gentile***|18.24 min|24/jun/2020|[¡Todo, TODO sobre la RAM! - Parte 1 (Nate Gentile) - 18.24 min - 24/jun/2020](../../../assets/img/https://www.youtube.com/watch?v=OZCEHXlHY4E)|
+|¿Cómo funciona la RAM por dentro?<br>Todo, TODO sobre la RAM pt. 2<br>**Nate Gentile**|18.14 min|8/nov/2020|[¿Cómo funciona la RAM por dentro? - Todo, TODO sobre la RAM pt. 2 (Nate Gentile) - 18.14 min - 8/nov/2020](../../../assets/img/https://www.youtube.com/watch?v=OZCEHXlHY4E)|
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## La memòria RAM
+
+- És un dispositiu on s’emmagatzemen les dades i les instruccions necessàries per executar el software de l’equip.
+- Són volàtils, és a dir, necessiten estar constantment alimentades. Si perden l’alimentació, perden la informació.
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Característiques (1/3)
+
+- Volatilitat
+  - És una característica de les memòries RAM que determina el temps que romanen les dades abans de desaparèixer.
+  - RAM dinàmiques (DRAM) Condensadors. Emmagatzemen la informació per un temps i necessita ser realimentada (refrescada) per conservar les dades.
+  - RAM estàtica (SRAM) Biestables. Constantment estan alimentades i no necessiten cicles de refresc.
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Característiques (2/3)
+
+- Capacitat
+  - Quantitat de dades que es poden emmagatzemar en memòria. Es mesura en múltiples de byte (MB, GB, etc.).
+  - Velocitat d’accés
+  - És el temps que triga la CPU en accedir a la memòria (per llegir o escriure). Es mesura en nanosegons.
+- Velocitat o freqüència de rellotge
+  - És el nombre d'accessos a memòria que es poden realitzar en 1 segon. Es mesura en Hertz (Hz).
+- Latència
+  - És el retard produït en cada accés a memòria.
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Característiques (3/3)
+
+- Taxa de transferència o ample de banda
+  - Representa el nombre de dades que es poden llegir o escriure per unitat de temps. Es mesura en MB/s o GB/s.
+- Voltatge
+  - És la tensió que necessita la RAM per funcionar. Com menys voltatge, menys consum.
+- **ECC** (***Error Checking and Correction***)
+  - Totes les **`RAM`**'s experimenten errors.
+    - Les memòria ECC són capaces de detectar i corregir alguns dels errors.
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Fórmules de latències (1/4)
+
+- Taxa de transferència = Freqüència  efectiva(MHz) x Ample bus de dades(bytes)
+
+&#x27A1; **`TaxaTran = FreqEfec x AmpleBus`**
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Fórmules de latències (2/4)
+
+- Freqüència efectiva = Velocitat de rellotge (MHz) x Nº d’accessos per cicle
+
+&#x27A1; **`FreqEfec = VelClock x QtatAccxCicle`**
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Fórmules de latències (3/4)
+
+- Taxa de transferència = Velocitat de rellotge (MHz) x
+Nº d’accessos per cicle x
+Ample de bus (bytes)
+
+&#x27A1; **`TaxaTran = VelClock x QtatAccxCicle x AmpleBus`**
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Fórmules de latències (4/4)
+
+- ***Nombre d'accessos per cicle***:
+  - **`SDR`**:  **`1n` accés/cicle**
+  - **`DDR`**:  **`2n` accessos/cicle**
+  - **`DDR2`**: **`4n` accessos/cicle**
+  - **`DDR3`**: **`8n` accessos/cicle**
+  - **`DDR4`**: **`8n` accessos x nº grups-banks/cicle (es pot considerar `16n`)**
+
+> **`SDR`**: *Single Data Rate* (**Simple taxa de dades**)
+>
+> **`DDR`**: *Double Data Rate* (**Doble taxa de dades**)
+
+- ***Ample de bus***:
+  - **`64 bits`** &#x27A1; `64/8` = **`8 Bytes`**
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Prefetch (accessos per cicle) (1/2)
+
+![alt text](../../../assets/img/prefetch-accessos-per-cicle.png)
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Prefetch (accessos per cicle) (2/2)
+
+![alt text](../../../assets/img/prefetch-accessos-per-cicle-ddr4.png)
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Exemple 1 de Fórmules de latències
+
+- Calcula l’equivalència d’una memòria **`DDR3-1600`**:
+  - **`DDR3`** &#x27A1; **`PC3`** &#x27A1; **`8` accessos/cicle**
+  - **`1600`** &#x27A1; **`1600 MHz` de freqüència efectiva**
+  - Ample de bus = **`8` Bytes**
+
+<br>
+
+> **Taxa transferència = Freq. Efectiva x Ample de bus**
+
+  - **`1600` x `8` = `12800` MB/s**
+  - Equivalència &#x27A1; **`PC3`** – **`12800`**
+
+<br>
+
+> **Velocitat de rellotge = Freq. efectiva/accessos**
+
+  - **`1600`/`8` = `200` MHz**
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Exemple 2 de Fórmules de latències
+
+- Calcula l’equivalència d’una memòria **`PC2-3200`**
+  - **`DDR2`** &#x27A1; **`PC2`** &#x27A1; **`4` accessos/cicle**
+  - **`3200`** &#x27A1; **`3200` MB/s de taxa de transferència**
+  - Ample de bus = 8 Bytes
+
+  <br>
+
+> **Taxa transferència = Freq. Efectiva x Ample de bus**
+  - &#x27A1; Freq. Efectiva = **`3200` / `8` = `400` MHz**
+  - Equivalència: **`DDR2-400`**
+
+<br>
+
+> **Velocitat de rellotge = Freq. efectiva/accessos**
+  - **`400`/`4` = `100` Mhz**
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Tipus de Mòduls (1/4)
+
+- Hi ha diferents tipus de mòduls, per a diferents sòcols.
+
+![alt text](../../../assets/img/tipus-moduls-ram.png)
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Tipus de Mòduls (2/4)
+
+- Hi ha diferents tipus de mòduls, per a diferents sòcols.
+
+![alt text](../../../assets/img/tipus-moduls-ram-2.png)
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Tipus de Mòduls (3/4)
+
+### Evolució
+
+![alt text](../../../assets/img/evolucio.png)
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Tipus de Mòduls (4/4)
+
+- Hi ha diferents tipus de mòduls, per a diferents sòcols.
+  - **`SIMM`**
+    - Antic (PCs 32 bits). 30 o 72 contactes.
+  - **`DIMM`**
+    - Actuals (PCs 64 bits). 168, 184 i 240 contactes
+    - **`SDR`**, **`DDR/DDR2`**, **`DDR3`**, i **`DDR4`**
+  - **`SO-DIMM`**
+    - Actuals (Portàtils). 144, 200, 204 contactes.
+    - **`SDR`**, **`DDR/DDR2`**, **`DDR3`**, i **`DDR4`**
+  - **`Micro-DIMM`**
+    - Actuals (Netbooks). 144, 172 i 214 contactes.
+    - **`SDR`**, **`DDR/DDR2`**, i **`DDR3`**
+
+---
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Tipus de memòria RAM (1/3)
+
+- **`SRAM`**
+  - Memòria RAM estàtica.
+    * Manté la informació mentre estigui alimentada.
+    * Ocupen més, tenen menys capacitat i són més cares i ràpides que les DRAM.
+    * Es fan servir com a cau
+- **`DRAM`**
+  - És la memòria principal dels ordinadors.
+    * Es diu dinàmica per que la seva informació es reescriu constantment.
+    - **SDRAM**: Se sincronitza amb el rellotge del sistema per llegir i escriure
+    - **RDRAM**: Antigues memòries de gama alta desenvolupades per Rambus Inc. En desús.
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Tipus de memòria RAM (2/3)
+
+- **`SDRAM`**
+  - **`SDR SDRAM`**
+    - Antigues, PCs antics 32 bits.
+  - **`DDR SDRAM`**
+    - Millora sobre les memòries **`SDRAM`** que incorpora doble taxa de transferència de dades.
+  - **`DDR2 SDRAM`**
+    - Millora sobre la **`DDR`** **`SDRAM`** que aumenta la velocitat, la capacitat i redueix el consum.
+  - **`DDR3 SDRAM`**
+    - Millora sobre la **`DDR2`** **`SDRAM`** que aumenta la taxa de transferència, la capacitat i redueix el consum.
+  - **`DDR4 SDRAM`**
+    - Millora sobre la **`DDR3`** **`SDRAM`** que aumenta la velocitat, la capacitat i redueix el consum.
+
+----
+
+##### Components d’un equip microinformàtic
+#### RAM
+
+## Tipus de memòria RAM (3/3)
+
+
+![alt text](../../../assets/img/tipus-memoria-ram.png)

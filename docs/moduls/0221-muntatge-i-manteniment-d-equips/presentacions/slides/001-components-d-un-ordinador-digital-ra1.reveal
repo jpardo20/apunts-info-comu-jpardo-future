@@ -1,0 +1,158 @@
+### Components d’un equip microinformàtic
+
+# Introducció
+
+---
+
+## L’ordinador digital
+
+* Un ordinador és un aparell electrònic capaç de rebre, processar i transmetre grans volums d’informació de forma molt ràpida.
+
+* Els ordinadors estan compostos de circuits integrats i d'altres components relacionats que pot executar amb exactitud, rapidesa i d'acord amb les instruccions que rep per part d'un usuari o d'un programa.
+
+----
+
+## Components d’un ordinador
+
+* Els ordinadors tenen 2 tipus de components:
+  * Maquinari (hardware): elements físics dels ordinadors.
+  * Programari (software): elements lògics o intangibles de l’ordinador.
+
+----
+
+## Unitats funcionals d’un ordinador
+
+- Els elements funcionals d’un ordinador són:
+  - La CPU.
+  - Unitats de memòria.
+  - Elements d’Entrada/Sortida.
+
+<hr>
+
+- Aquests elements estan units mitjançant uns bussos (cables) que permeten transmetre la informació.
+
+---
+
+## Unitats funcionals d’un ordinador(esquema Von Neumann)
+
+![esquema-von-neumann.png](../../../assets/img/esquema-von-neumann.png)
+
+---
+
+## La CPU
+
+* La CPU (Unitat Central de Procés) és l’element de l’ordinador encarregat d’executar les instruccions.
+
+* Físicament està format per circuits electrònics integrats en un chip anomenat microprocessador.
+
+* Està format per:
+
+  - **Unitat Aritmètica Lògica** (**`UAL`**): encarregada de fer les operacions matemàtiques i de càlcul.
+
+  - **Unitat de Control** (**`UC`**): encarregada de governar l’e/s d’informació dins del processador i l’ordre d’execució de les instruccions.
+
+  - **Unitat de Memòria** (**`Registres`**): Petits elements de memòria.
+
+----
+
+## Estructura lògica d’una CPU
+
+![esquema-von-neumann.png](../../../assets/img/esquema-von-neumann-logica.png)
+
+----
+
+### Unitat Aritmètico Lògica (UAL)
+
+- És l’encarregada de fer les operacions aritmètiques (**`+`**, **`-`**, **`*`**, **`/`**) i lògiques (**`and`**, **`or`**, **`not`**, **`xor`**).
+- Està compost de:
+
+  - **Circuit operacional**: L’encarregat de fer les operacions.
+
+  - **Registre d’estat**: Estat de l’última operació.
+
+  - **Registre acumulador**: Resultat de l’ultima operació.
+
+  - **Registres d’entrada**: Valors d’entrada al circuit operacional.
+
+----
+
+## Operacions Aritmètiques
+
+![operacions-aritmetiques-basiques.png](../../../assets/img/operacions-aritmetiques-basiques.png)
+
+----
+
+## Esquema de la UAL
+
+![alt text](../../../assets/img/esquema-de-la-ual.png)
+
+----
+
+## Unitat de Control (UC)
+
+- La Unitat de Control és l’encarregada de:
+  - Rebre les instruccions de la memòria en l’ordre establert pel programa.
+  - Identificar les instruccions a executar en cada cas.
+  - Generar la seqüència adequada d’ordres per la resta d’elements funcionals de l’ordinador.
+
+----
+
+## Unitat de Control (UC)
+
+- Està format per:
+  - Registre d’instrucció (RI): Instrucció a executar.
+  - Comptador de programa (CP): Direcció de memòria de la propera instrucció a executar.
+  - Rellotge: Marca els instants en que s’han d’executar les properes instruccions.
+  - Decodificador: Extreu el codi d’operació (del RI) i emet les senyals necessàries per a la seva execució.
+  - Seqüenciador: Microordres que sincronitzades pel rellotge s’envien a executar a la UAL.
+
+----
+
+## Esquema de la UC
+
+![esquema-de-la-uc.png](../../../assets/img/esquema-de-la-uc.png)
+
+----
+
+## Memòria interna
+
+- La memòria interna és on emmagatzemem les instruccions i les dades necessaris per fer un procés.
+- És un tipus de memòria basada en els semiconductors caracteritzada per un accés ràpid però d'emmagatzematge temporal.
+- Per exemple un DDR3-2200 té una velocitat de transferència de 350Mhz.
+
+----
+
+## Memòria interna
+
+- Hi ha 3 tipus:
+  - Banc de registres: Es troben a dins de la CPU. Cada un té capacitat per a una paraula (32 o 64 bits). Són la tecnologia d’emmagatzematge més ràpida que s’utilitza en un ordinador. Guarden temporalment dades que el processador necessita de forma immediata.
+  - Memòria cau (caché): situada en una etapa intermèdia entre els "súper" ràpids registres i la gran memòria RAM permeten  incrementar el rendiment de l’ordinador. Hi ha 2 tipus:
+    - L1: Interna al processador.
+    - L2: Externa al processador.
+
+----
+
+
+## Memòria principal (RAM)
+
+- Significa Random Acces Memory.
+- És la que té més capacitat de totes les primàries, però la seva velocitat és molt més lenta.
+- Està unida a la CPU pel Bus de Dades i pel bus de direccions.
+- Està formada per un conjunt de cel·les o posicions (direccions) de memòria.
+
+----
+
+## Els bussos del sistema
+
+- Un bus és una via de comunicació que connecta dos o més dispositius.
+- Un bus és un mitjà de transmissió compartit.
+- Al bus es connecten els dispositius. Una senyal transferida per qualsevol d’ells pot rebre’s per les altres unitats connectades.
+
+----
+
+## Bussos del sistema
+
+  - Bus de dades: Transmeten dades entre els diferents dispositius. El número de línies depèn de l’ample de la paraula de la memòria (32 o 64).
+  - Bus de direccions: S’utilitza per transferir solament direccions de memòria. L’ample d’aquest bus indica la RAM màxima que pot tenir l’ordinador.
+  - Mida màxima = 2linies
+  - Bus de control:  Transmeten tant ordres com informació de temporització als elements del sistema.

@@ -1,0 +1,151 @@
+/* Estils base per a totes les presentacions Reveal.js */
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+    font-weight: 700;
+}
+
+.reveal section img {
+    border-radius: 16px;
+}
+
+footer.footnote {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    text-align: center;
+    font-size: 16px;
+    opacity: .6;
+}
+
+/* Mini barra superior de navegació */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, .85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid #e5e7eb;
+    padding: .5rem .75rem;
+    z-index: 1000;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.topbar a {
+    text-decoration: none;
+}
+
+.topbar .back {
+    font-weight: 600;
+}
+
+.topbar .spacer {
+    flex: 1;
+}
+
+.reveal {
+    margin-top: 42px;
+}
+
+/* Evita que la topbar tapi el contingut */
+
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff; /* #115eaf; */
+    color: #009de0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 6px 12px;
+    z-index: 1000;
+    /* font-size: .95rem; */
+}
+
+.topbar a {
+    color: #009de0;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.topbar a:hover {
+    text-decoration: none;
+}
+
+:root {
+    --topbar-h: 40px;
+}
+
+.reveal {
+    position: fixed;
+    top: var(--topbar-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100dvh - var(--topbar-h));
+    width: 100%;
+    margin: 0;
+}
+
+/* Topbar: títol centrat i link a la dreta */
+.topbar{
+  display: grid;                       /* sobreescriu el flex anterior */
+  grid-template-columns: 1fr auto 1fr; /* enllaç | títol | logo */
+  align-items: center;
+  border-bottom: 3px solid #009de0;
+}
+
+.topbar img{
+  grid-column: 3;  
+}
+
+.topbar a{
+  grid-column: 1;
+  justify-self: end;                   /* a l'esquerra */
+  white-space: nowrap;                 /* evita que es trenqui el text */
+}
+
+#topbar-title{
+  grid-column: 2;
+  justify-self: center;                /* centrat real */
+  text-align: center;
+  font-size: 25px;
+}
+
+
+.minus{
+    text-transform: lowercase;
+}
+
+.codi,.entitat,.atribut{
+    font-family: monospace;
+    background-color:lightgray;
+    color: blue;
+    font-weight: bolder;
+}
+
+.petit{
+    font-size:x-large;
+}
+
+
+.entitat, .atribut{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.entitat{
+    text-transform: uppercase;
+}
+
+.atribut{
+    text-transform: lowercase;
+}

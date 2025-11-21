@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <title>0225 · Xarxes locals · RA1 · Exercicis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --border: #d1d5db;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --danger: #b91c1c;
+      --danger-soft: #fee2e2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Barra de progrés flotant (clara) */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: #ffffffee;
+      color: #111827;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .fixed-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .header-title {
+      font-weight: 600;
+    }
+
+    .header-meta {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #22c55e;
+      transition: width 0.2s ease-out;
+    }
+
+    .progress-label {
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 90px 1rem 2.5rem; /* separació per a la barra fixa */
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    }
+
+    .card h1,
+    .card h2,
+    .card h3 {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .intro-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .meta-tag {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    label {
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .required-mark {
+      color: var(--danger);
+      margin-left: 0.1rem;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      font: inherit;
+      background: #f9fafb;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    select {
+      background: #f9fafb;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+      background: #ffffff;
+    }
+
+    .question {
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .question:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .question p {
+      margin: 0 0 0.3rem 0;
+      font-size: 0.92rem;
+    }
+
+    .question small {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .question-number {
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.4rem 0 0.6rem 0;
+      font-size: 0.88rem;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.4rem;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+
+    td input[type="text"] {
+      width: 100%;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.4rem;
+    }
+
+    .matching-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.25rem 0 0.6rem 0;
+    }
+
+    .matching-list li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .info-box {
+      background: #eff6ff;
+      border-radius: 0.5rem;
+      padding: 0.6rem 0.7rem;
+      font-size: 0.82rem;
+      color: #1e3a8a;
+      border: 1px solid #bfdbfe;
+      margin-top: 0.4rem;
+    }
+
+    .recorda-box {
+      background: #ecfdf5;
+      border-radius: 0.5rem;
+      padding: 0.6rem 0.7rem;
+      font-size: 0.85rem;
+      color: #166534;
+      border: 1px dashed #6ee7b7;
+      margin-top: 0.6rem;
+    }
+
+    .recorda-box ul {
+      margin: 0.25rem 0 0 1.1rem;
+      padding: 0;
+    }
+
+    .error {
+      border-color: var(--danger) !important;
+      background: var(--danger-soft) !important;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.6rem 1.1rem;
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+      transition: transform 0.05s ease-out, box-shadow 0.05s ease-out,
+        background 0.1s ease-out;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.45);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--accent);
+      box-shadow: none;
+      border: 1px dashed var(--accent-soft);
+    }
+
+    .button-secondary:hover {
+      background: var(--accent-soft);
+      box-shadow: none;
+      transform: none;
+    }
+
+    .small-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .status-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Zona per enganxar imatges */
+    .paste-area {
+      border: 1px dashed var(--border);
+      border-radius: 0.5rem;
+      padding: 0.6rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #f9fafb;
+      margin-top: 0.4rem;
+    }
+
+    .paste-area-required-label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .paste-area-note {
+      margin-top: 0.15rem;
+      font-size: 0.78rem;
+    }
+
+    .paste-area.is-filled {
+      background: #ecfdf5;
+      border-color: #6ee7b7;
+      color: #166534;
+    }
+
+    .paste-preview {
+      display: block;
+      margin-top: 0.4rem;
+      max-width: 100%;
+      border-radius: 0.4rem;
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .fixed-header-inner {
+        padding: 0.5rem 0.75rem;
+      }
+      main {
+        padding: 80px 0.75rem 2rem;
+      }
+      .card {
+        padding: 1rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de progrés flotant -->
+  <header class="fixed-header">
+    <div class="fixed-header-inner">
+      <div class="header-top-row">
+        <div>
+          <div class="header-title">
+            0225 · Xarxes locals · RA1 · Exercicis
+          </div>
+          <div class="header-meta" id="headerMeta">
+            Carregant llista d'alumnes...
+          </div>
+        </div>
+        <div class="progress-label" id="progressLabel">0% completat</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Targeta d'intro + alumnat -->
+    <section class="card">
+      <span class="meta-tag">0225 · Xarxes locals · RA1</span>
+      <h1>Protocols, IP i màscares</h1>
+      <p class="intro-text">
+        Respon totes les preguntes amb cura. La barra de dalt t'indica el
+        percentatge de respostes completades. El fitxer JSON que es generarà al
+        final el pujaràs al campus virtual.
+      </p>
+
+      <div class="question">
+        <label for="studentSelect">
+          Alumne/a
+          <span class="required-mark">*</span>
+        </label>
+        <select id="studentSelect" name="alumne" data-required="true">
+          <option value="">
+            ─ Tria el teu nom de la llista ─
+          </option>
+          <!-- S'omplirà des de dades_alumnes.json -->
+        </select>
+        <div class="status-text" id="studentsStatus">
+          Carregant dades d'alumnes...
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Important:</strong> en algunes preguntes és
+        <strong>obligatori</strong> enganxar una captura (esquema o captura de
+        pantalla). Fes la captura (per exemple amb l'eina de retall de Windows)
+        i enganxa-la directament a la zona indicada amb
+        <strong>Ctrl+V</strong>.
+      </div>
+    </section>
+
+    <!-- ACTIVITAT 1: Protocols -->
+    <section class="card" id="a1-protocols">
+      <span class="meta-tag">Activitat 1 · Protocols</span>
+      <h2>Introducció de xarxes locals · Protocols</h2>
+
+      <div class="question">
+        <p>
+          <span class="question-number">1.</span>
+          Què és un protocol?
+        </p>
+        <textarea
+          name="a1_q1"
+          data-required="true"
+          placeholder="Explica amb les teves paraules què és un protocol en l'àmbit de les xarxes..."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">2.</span>
+          Per què creus que és tan important utilitzar un mateix protocol per a
+          establir una comunicació?
+        </p>
+        <textarea
+          name="a1_q2"
+          data-required="true"
+          placeholder="Raona per què és important que tots els dispositius utilitzin el mateix protocol..."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">3.</span>
+          Enumera les capes OSI i indica per a cadascuna quines són les seves
+          funcionalitats principals:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Capa OSI</th>
+              <th>Funcionalitats principals</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q3_osi_1"
+                  data-required="true"
+                  placeholder="Funcions de la capa 1..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q3_osi_2"
+                  data-required="true"
+                  placeholder="Funcions de la capa 2..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q3_osi_3"
+                  data-required="true"
+                  placeholder="Funcions de la capa 3..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q3_osi_4"
+                  data-required="true"
+                  placeholder="Funcions de la capa 4..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q3_osi_5"
+                  data-required="true"
+                  placeholder="Funcions de la capa 5..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q3_osi_6"
+                  data-required="true"
+                  placeholder="Funcions de la capa 6..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q3_osi_7"
+                  data-required="true"
+                  placeholder="Funcions de la capa 7..."
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">4.</span>
+          Fes un esquema on es mostri la correspondència entre les capes del
+          model OSI i les del model TCP/IP.
+        </p>
+        <small>
+          Fes l'esquema en qualsevol eina (paper, pissarra digital, recortes…)
+          i enganxa la captura a continuació. També cal que el descriguis amb
+          paraules.
+        </small>
+        <textarea
+          name="a1_q4"
+          data-required="true"
+          placeholder="Descriu l'esquema amb paraules (què hi has dibuixat, com es relacionen els models...)"
+        ></textarea>
+        <div class="paste-area" data-image-target="a1_q4_image">
+          <span class="paste-area-required-label">
+            Captura obligatòria de l'esquema OSI vs TCP/IP
+            <span class="required-mark">*</span>
+          </span>
+          Enganxa aquí (Ctrl+V) la captura de l'esquema.
+          <div class="paste-area-note">
+            Fes la captura amb l'eina que vulguis i enganxa-la directament des del portapapers.
+          </div>
+          <img class="paste-preview" alt="Previsualització de la imatge enganxada" style="display:none;">
+        </div>
+        <input type="hidden" name="a1_q4_image" data-required="true" data-paste-target="a1_q4_image" />
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">5.</span>
+          A part de la família de protocols de xarxa TCP/IP, quines altres
+          famílies de protocols podem trobar? Per a què s’utilitzen cadascuna
+          d’elles?
+        </p>
+        <textarea
+          name="a1_q5"
+          data-required="true"
+          placeholder="Exemples d'altres famílies de protocols (per exemple, IPX/SPX, AppleTalk, etc.) i el seu ús..."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">6.</span>
+          Relaciona els següents protocols i estàndards amb la capa del model
+          OSI corresponent:
+        </p>
+        <ul class="matching-list">
+          <li>
+            <span>HTTP</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_http" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>IP</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_ip" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>HTML</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_html" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>TCP</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_tcp" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>FTP</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_ftp" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>DNS</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_dns" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>ASCII</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_ascii" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>UDP</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_udp" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+          <li>
+            <span>XML</span>
+            <span class="badge">Capa OSI</span>
+            <select name="a1_q6_xml" data-required="true">
+              <option value="">Tria capa (1–7)</option>
+              <option value="1">1 · Física</option>
+              <option value="2">2 · Enllaç</option>
+              <option value="3">3 · Xarxa</option>
+              <option value="4">4 · Transport</option>
+              <option value="5">5 · Sessió</option>
+              <option value="6">6 · Presentació</option>
+              <option value="7">7 · Aplicació</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">7.</span>
+          Fes un esquema on es mostrin les quatre capes del model TCP/IP, tot
+          indicant 3–4 protocols que hi ha a cada capa.
+        </p>
+        <small>
+          Cal fer l'esquema i enganxar-ne la captura, i a més descriure'l amb
+          paraules.
+        </small>
+        <textarea
+          name="a1_q7"
+          data-required="true"
+          placeholder="Descriu les 4 capes del model TCP/IP i alguns protocols de cada capa..."
+        ></textarea>
+        <div class="paste-area" data-image-target="a1_q7_image">
+          <span class="paste-area-required-label">
+            Captura obligatòria de l'esquema de les 4 capes TCP/IP
+            <span class="required-mark">*</span>
+          </span>
+          Enganxa aquí (Ctrl+V) la captura de l'esquema.
+          <div class="paste-area-note">
+            Assegura't que a la captura es vegin les 4 capes i alguns protocols a cadascuna.
+          </div>
+          <img class="paste-preview" alt="Previsualització de la imatge enganxada" style="display:none;">
+        </div>
+        <input type="hidden" name="a1_q7_image" data-required="true" data-paste-target="a1_q7_image" />
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">8.</span>
+          A la capa d’aplicació és on trobem més protocols. Per què creus que en
+          aquesta capa n’hi ha tants?
+        </p>
+        <textarea
+          name="a1_q8"
+          data-required="true"
+          placeholder="Reflexiona sobre per què hi ha tants protocols a la capa d'aplicació..."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">9.</span>
+          Indica per a què s’utilitzen els diferents protocols següents:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Protocol</th>
+              <th>Per a què s’utilitza?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SMTP</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q9_smtp"
+                  data-required="true"
+                  placeholder="Ús del protocol SMTP..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>DNS</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q9_dns"
+                  data-required="true"
+                  placeholder="Ús del protocol DNS..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>POP3</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q9_pop3"
+                  data-required="true"
+                  placeholder="Ús del protocol POP3..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>IMAP</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q9_imap"
+                  data-required="true"
+                  placeholder="Ús del protocol IMAP..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>HTTP</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q9_http"
+                  data-required="true"
+                  placeholder="Ús del protocol HTTP..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>DHCP</td>
+              <td>
+                <input
+                  type="text"
+                  name="a1_q9_dhcp"
+                  data-required="true"
+                  placeholder="Ús del protocol DHCP..."
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">10.</span>
+          Troba un exemple on s’utilitzi el protocol de la capa de transport UDP.
+          Per què creus que es decideix fer-lo servir, si no assegura la
+          recepció de tots els paquets?
+        </p>
+        <textarea
+          name="a1_q10"
+          data-required="true"
+          placeholder="Exemple d'aplicació que utilitza UDP i justificació..."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">11.</span>
+          Explica la diferència entre el protocol IP i el protocol ARP.
+        </p>
+        <textarea
+          name="a1_q11"
+          data-required="true"
+          placeholder="Explica el paper de IP i el d'ARP dins d'una xarxa..."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">12.</span>
+          Dibuixa i explica el procés de transmissió del protocol TCP.
+        </p>
+        <small>
+          Fes un esquema del procés (establiment de connexió, transmissió,
+          tancament), enganxa la captura i explica'l amb paraules.
+        </small>
+        <textarea
+          name="a1_q12"
+          data-required="true"
+          placeholder="Descriu el procés de transmissió TCP (3-way handshake, ACK, etc.)..."
+        ></textarea>
+        <div class="paste-area" data-image-target="a1_q12_image">
+          <span class="paste-area-required-label">
+            Captura obligatòria de l'esquema del procés TCP
+            <span class="required-mark">*</span>
+          </span>
+          Enganxa aquí (Ctrl+V) la captura de l'esquema del procés TCP.
+          <div class="paste-area-note">
+            A la captura s'haurien de veure, com a mínim, les fases del 3-way handshake i el tancament de la connexió.
+          </div>
+          <img class="paste-preview" alt="Previsualització de la imatge enganxada" style="display:none;">
+        </div>
+        <input type="hidden" name="a1_q12_image" data-required="true" data-paste-target="a1_q12_image" />
+      </div>
+    </section>
+
+    <!-- ACTIVITAT 2: Consulta IP pròpia -->
+    <section class="card" id="a2-ip-propia">
+      <span class="meta-tag">Activitat 2 · Consulta IP</span>
+      <h2>Introducció de xarxes locals · Consulta IP</h2>
+
+      <div class="question">
+        <p>
+          <span class="question-number">1.</span>
+          Accedeix a la línia de comandes de Windows (<code>cmd</code>) i copia
+          les dades de la teva configuració de xarxa:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Paràmetre</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Direcció IP</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q1_ip"
+                  data-required="true"
+                  placeholder="Ex.: 192.168.1.23"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Màscara de subxarxa</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q1_mask"
+                  data-required="true"
+                  placeholder="Ex.: 255.255.255.0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Porta d’enllaç predeterminada</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q1_gateway"
+                  data-required="true"
+                  placeholder="Ex.: 192.168.1.1"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">2.</span>
+          Copia també les dades de la configuració avançada:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Paràmetre</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nom del host</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_hostname"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Sufix DNS principal</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_dns_suffix"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Enrutament habilitat</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_routing_enabled"
+                  data-required="true"
+                  placeholder="Sí/No"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Adaptador Wireless · Adreça física</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_mac"
+                  data-required="true"
+                  placeholder="Ex.: AA-BB-CC-DD-EE-FF"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Adaptador Wireless · DHCP habilitat</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_dhcp_enabled"
+                  data-required="true"
+                  placeholder="Sí/No"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Adaptador Wireless · Adreça IP</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_wifi_ip"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Adaptador Wireless · Màscara de subxarxa</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_wifi_mask"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Adaptador Wireless · Porta d’enllaç predeterminada</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_wifi_gateway"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Adaptador Wireless · Servidors DNS</td>
+              <td>
+                <input
+                  type="text"
+                  name="a2_q2_dns_servers"
+                  data-required="true"
+                  placeholder="Separa amb comes si n'hi ha més d'un"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">3.</span>
+          Quina és l’adreça MAC del nostre ordinador?
+        </p>
+        <textarea
+          name="a2_q3"
+          data-required="true"
+          placeholder="Indica l'adreça MAC i com l'has trobat..."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">4.</span>
+          Com podem esbrinar la nostra IP pública? Quina tenim? De quin tipus
+          és?
+        </p>
+        <textarea
+          name="a2_q4"
+          data-required="true"
+          placeholder="Explica el procediment (pàgina web, eina...) i indica la teva IP pública i si és dinàmica/fixa, etc."
+        ></textarea>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">5.</span>
+          Quines són les comprovacions que hauríem de fer quan no funciona la
+          connexió a Internet? Indica les passes i adjunta una captura.
+        </p>
+        <small>
+          Escriu aquí el procediment pas a pas i enganxa una captura d'alguna
+          de les passes de comprovació.
+        </small>
+        <textarea
+          name="a2_q5"
+          data-required="true"
+          placeholder="Ex.: 1) Comprovar cables i Wi-Fi, 2) Fer ping al router, 3) Revisar configuració IP..."
+        ></textarea>
+        <div class="paste-area" data-image-target="a2_q5_image">
+          <span class="paste-area-required-label">
+            Captura obligatòria d'alguna comprovació de la connexió
+            <span class="required-mark">*</span>
+          </span>
+          Enganxa aquí (Ctrl+V) la captura.
+          <div class="paste-area-note">
+            Per exemple, una captura del ping al router, de la configuració IP o d'una prova de connexió.
+          </div>
+          <img class="paste-preview" alt="Previsualització de la imatge enganxada" style="display:none;">
+        </div>
+        <input type="hidden" name="a2_q5_image" data-required="true" data-paste-target="a2_q5_image" />
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">6.</span>
+          Fes un <code>ping</code> a un dels teus companys de classe i adjunta
+          la captura.
+        </p>
+        <small>
+          Escriu aquí el resultat/resum del ping i enganxa la captura a
+          continuació.
+        </small>
+        <textarea
+          name="a2_q6"
+          data-required="true"
+          placeholder="Ex.: Ping a 192.168.1.45: 4 paquets enviats, 4 rebuts..."
+        ></textarea>
+        <div class="paste-area" data-image-target="a2_q6_image">
+          <span class="paste-area-required-label">
+            Captura obligatòria del ping al company
+            <span class="required-mark">*</span>
+          </span>
+          Enganxa aquí (Ctrl+V) la captura del ping.
+          <div class="paste-area-note">
+            Hauria de veure's la IP del company i el resum dels paquets enviats/rebuts.
+          </div>
+          <img class="paste-preview" alt="Previsualització de la imatge enganxada" style="display:none;">
+        </div>
+        <input type="hidden" name="a2_q6_image" data-required="true" data-paste-target="a2_q6_image" />
+      </div>
+    </section>
+
+    <!-- ACTIVITAT 4: Exercicis IP i màscares -->
+    <section class="card" id="a4-exercicis-ip">
+      <span class="meta-tag">Activitat 4 · IP i màscares</span>
+      <h2>Exercicis IP i màscares</h2>
+
+      <div class="question">
+        <p>
+          <span class="question-number">1.</span>
+          Per cadascuna de les següents adreces IP, digues de quina
+          <strong>classe IP</strong> es tracta, quina és la
+          <strong>màscara de subxarxa per defecte</strong>, i indica també
+          quina part de la IP és de <strong>xarxa</strong> i quina d'<strong
+            >host</strong
+          >.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Adreça IP</th>
+              <th>Classe</th>
+              <th>Màscara per defecte</th>
+              <th>Part de xarxa</th>
+              <th>Part d'host</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>194.168.1.101 /24</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip1_class"
+                  data-required="true"
+                  placeholder="Classe (A/B/C...)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip1_mask"
+                  data-required="true"
+                  placeholder="Ex.: 255.255.255.0"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip1_net"
+                  data-required="true"
+                  placeholder="Part de xarxa"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip1_host"
+                  data-required="true"
+                  placeholder="Part d'host"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>192.168.0.5 /24</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip2_class"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip2_mask"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip2_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip2_host"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>128.16.40.40 /16</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip3_class"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip3_mask"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip3_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip3_host"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>172.16.40.25 /16</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip4_class"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip4_mask"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip4_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip4_host"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>10.0.0.1 /8</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip5_class"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip5_mask"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip5_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q1_ip5_host"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="question">
+        <p>
+          <span class="question-number">2.</span>
+          Per cadascuna de les següents IP, digues quina seria la seva
+          corresponent <strong>adreça de xarxa</strong> i
+          <strong>adreça de broadcast</strong>.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Adreça IP</th>
+              <th>Adreça de xarxa</th>
+              <th>Adreça de broadcast</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>192.168.0.5 /24</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip1_net"
+                  data-required="true"
+                  placeholder="Xarxa..."
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip1_bc"
+                  data-required="true"
+                  placeholder="Broadcast..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>192.168.0.5 /16</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip2_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip2_bc"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>193.16.40.25 /16</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip3_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip3_bc"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>10.0.10.0 /8</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip4_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip4_bc"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>10.10.0.1 /8</td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip5_net"
+                  data-required="true"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="a4_q2_ip5_bc"
+                  data-required="true"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="recorda-box">
+          <strong>Recorda · IP privades</strong>
+          <ul>
+            <li>Classe A: 10.0.0.0 a 10.255.255.255</li>
+            <li>Classe B: 172.16.0.0 a 172.31.255.255</li>
+            <li>Classe C: 192.168.0.0 a 192.168.255.255</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accions finals -->
+    <section class="card">
+      <h2>Generar fitxer JSON</h2>
+      <p class="intro-text">
+        Quan hagis respost totes les preguntes i hagis enganxat totes les
+        captures obligatòries, prem el botó següent per descarregar un fitxer
+        <code>.json</code> amb totes les teves respostes. Aquest fitxer és el
+        que hauràs de pujar al campus virtual.
+      </p>
+      <div class="actions">
+        <button type="button" id="downloadBtn">
+          <span>Descarrega fitxer JSON</span>
+        </button>
+        <button type="button" class="button-secondary" id="checkBtn">
+          Comprova si falta alguna resposta o captura
+        </button>
+      </div>
+      <p class="small-note">
+        El nom del fitxer inclourà el teu nom i cognoms perquè el professor el
+        pugui identificar fàcilment. Tingues present que, com més captures
+        enganxis, més pesarà el fitxer JSON.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const studentSelect = document.getElementById("studentSelect");
+      const studentsStatus = document.getElementById("studentsStatus");
+      const headerMeta = document.getElementById("headerMeta");
+      const progressFill = document.getElementById("progressFill");
+      const progressLabel = document.getElementById("progressLabel");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const checkBtn = document.getElementById("checkBtn");
+
+      let metaInfo = {};
+
+      // Carregar dades d'alumnes
+      fetch("alumnes/dades_alumnes.json")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("No s'ha pogut carregar dades_alumnes.json");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          metaInfo = data.meta || {};
+          const raw = data.alumnes || [];
+          const students = Array.isArray(raw[0])
+            ? raw.reduce((acc, cur) => acc.concat(cur), [])
+            : raw;
+
+          students.forEach((st) => {
+            const opt = document.createElement("option");
+            opt.value = st.email || "";
+            opt.textContent = `${st.firstname || ""} ${st.lastname || ""}`;
+            opt.dataset.firstname = st.firstname || "";
+            opt.dataset.lastname = st.lastname || "";
+            opt.dataset.email = st.email || "";
+            studentSelect.appendChild(opt);
+          });
+
+          const metaParts = [];
+          if (metaInfo.curs) metaParts.push(`Curs ${metaInfo.curs}`);
+          if (metaInfo.promocio) metaParts.push(metaInfo.promocio);
+          if (metaInfo.centre) metaParts.push(metaInfo.centre);
+          headerMeta.textContent =
+            metaParts.join(" · ") || "Llista d'alumnes carregada";
+          studentsStatus.textContent = "Llista d'alumnes carregada correctament.";
+        })
+        .catch((err) => {
+          console.error(err);
+          studentsStatus.textContent =
+            "⚠️ Error en carregar dades_alumnes.json. Revisa la ruta (hauria de ser alumnes/dades_alumnes.json).";
+          headerMeta.textContent = "Error en carregar la llista d'alumnes.";
+        });
+
+      // Camps obligatoris (text, select i també les captures obligatòries)
+      const requiredFields = Array.from(
+        document.querySelectorAll("[data-required='true']")
+      );
+
+      function isFieldFilled(field) {
+        if (!field) return false;
+        if (field.tagName === "SELECT") {
+          return field.value.trim() !== "";
+        }
+        return (field.value || "").trim() !== "";
+      }
+
+      function updateProgress() {
+        const answered = requiredFields.filter(isFieldFilled).length;
+        const total = requiredFields.length;
+        const percent = total === 0 ? 0 : Math.round((answered / total) * 100);
+        progressFill.style.width = percent + "%";
+        progressLabel.textContent = percent + "% completat";
+      }
+
+      function clearErrors() {
+        document
+          .querySelectorAll(".error")
+          .forEach((el) => el.classList.remove("error"));
+      }
+
+      function validateForm(showMessages = true) {
+        clearErrors();
+        const messages = [];
+
+        // Validar alumne
+        if (!isFieldFilled(studentSelect)) {
+          studentSelect.classList.add("error");
+          messages.push("Has de seleccionar el teu nom.");
+        }
+
+        requiredFields.forEach((field) => {
+          if (!isFieldFilled(field)) {
+            field.classList.add("error");
+            // Si és un camp ocult d'imatge, marqueu també la zona d'enganxar
+            if (field.type === "hidden" && field.dataset.pasteTarget) {
+              const area = document.querySelector(
+                `.paste-area[data-image-target="${field.dataset.pasteTarget}"]`
+              );
+              if (area) {
+                area.classList.add("error");
+              }
+            }
+          }
+        });
+
+        const firstError = document.querySelector(".error");
+
+        if (firstError && showMessages) {
+          messages.push(
+            "Hi ha respostes o captures obligatòries sense omplir. Revisa els camps marcats en vermell."
+          );
+          alert(messages.join("\n\n"));
+          firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        return !firstError;
+      }
+
+      function getValue(name) {
+        const el = document.querySelector(`[name="${name}"]`);
+        if (!el) return null;
+        return (el.value || "").trim();
+      }
+
+      function slugify(str) {
+        return (str || "")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-zA-Z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .toLowerCase();
+      }
+
+      function buildPayload() {
+        const studentOption =
+          studentSelect.options[studentSelect.selectedIndex] || {};
+        const firstname = studentOption.dataset.firstname || "";
+        const lastname = studentOption.dataset.lastname || "";
+        const email = studentOption.dataset.email || studentSelect.value || "";
+
+        const a1_protocols = {
+          q1: getValue("a1_q1"),
+          q2: getValue("a1_q2"),
+          q3_osi: [1, 2, 3, 4, 5, 6, 7].map((n) => ({
+            layer: n,
+            functionality: getValue(`a1_q3_osi_${n}`),
+          })),
+          q4: getValue("a1_q4"),
+          q4_image: getValue("a1_q4_image"),
+          q5: getValue("a1_q5"),
+          q6_matching: {
+            http: getValue("a1_q6_http"),
+            ip: getValue("a1_q6_ip"),
+            html: getValue("a1_q6_html"),
+            tcp: getValue("a1_q6_tcp"),
+            ftp: getValue("a1_q6_ftp"),
+            dns: getValue("a1_q6_dns"),
+            ascii: getValue("a1_q6_ascii"),
+            udp: getValue("a1_q6_udp"),
+            xml: getValue("a1_q6_xml"),
+          },
+          q7: getValue("a1_q7"),
+          q7_image: getValue("a1_q7_image"),
+          q8: getValue("a1_q8"),
+          q9_protocols: {
+            smtp: getValue("a1_q9_smtp"),
+            dns: getValue("a1_q9_dns"),
+            pop3: getValue("a1_q9_pop3"),
+            imap: getValue("a1_q9_imap"),
+            http: getValue("a1_q9_http"),
+            dhcp: getValue("a1_q9_dhcp"),
+          },
+          q10_udp_example: getValue("a1_q10"),
+          q11_ip_vs_arp: getValue("a1_q11"),
+          q12_tcp_process: getValue("a1_q12"),
+          q12_image: getValue("a1_q12_image"),
+        };
+
+        const a2_ip_consulta = {
+          q1_config_basic: {
+            ip: getValue("a2_q1_ip"),
+            mask: getValue("a2_q1_mask"),
+            gateway: getValue("a2_q1_gateway"),
+          },
+          q2_config_advanced: {
+            hostname: getValue("a2_q2_hostname"),
+            dns_suffix: getValue("a2_q2_dns_suffix"),
+            routing_enabled: getValue("a2_q2_routing_enabled"),
+            wifi_mac: getValue("a2_q2_mac"),
+            wifi_dhcp_enabled: getValue("a2_q2_dhcp_enabled"),
+            wifi_ip: getValue("a2_q2_wifi_ip"),
+            wifi_mask: getValue("a2_q2_wifi_mask"),
+            wifi_gateway: getValue("a2_q2_wifi_gateway"),
+            dns_servers: getValue("a2_q2_dns_servers"),
+          },
+          q3_mac_address: getValue("a2_q3"),
+          q4_public_ip: getValue("a2_q4"),
+          q5_troubleshooting: getValue("a2_q5"),
+          q5_image: getValue("a2_q5_image"),
+          q6_ping_classmate: getValue("a2_q6"),
+          q6_image: getValue("a2_q6_image"),
+        };
+
+        const a4_exercicis_ip = {
+          q1_class_and_masks: [
+            {
+              ip: "194.168.1.101/24",
+              class: getValue("a4_q1_ip1_class"),
+              default_mask: getValue("a4_q1_ip1_mask"),
+              net_part: getValue("a4_q1_ip1_net"),
+              host_part: getValue("a4_q1_ip1_host"),
+            },
+            {
+              ip: "192.168.0.5/24",
+              class: getValue("a4_q1_ip2_class"),
+              default_mask: getValue("a4_q1_ip2_mask"),
+              net_part: getValue("a4_q1_ip2_net"),
+              host_part: getValue("a4_q1_ip2_host"),
+            },
+            {
+              ip: "128.16.40.40/16",
+              class: getValue("a4_q1_ip3_class"),
+              default_mask: getValue("a4_q1_ip3_mask"),
+              net_part: getValue("a4_q1_ip3_net"),
+              host_part: getValue("a4_q1_ip3_host"),
+            },
+            {
+              ip: "172.16.40.25/16",
+              class: getValue("a4_q1_ip4_class"),
+              default_mask: getValue("a4_q1_ip4_mask"),
+              net_part: getValue("a4_q1_ip4_net"),
+              host_part: getValue("a4_q1_ip4_host"),
+            },
+            {
+              ip: "10.0.0.1/8",
+              class: getValue("a4_q1_ip5_class"),
+              default_mask: getValue("a4_q1_ip5_mask"),
+              net_part: getValue("a4_q1_ip5_net"),
+              host_part: getValue("a4_q1_ip5_host"),
+            },
+          ],
+          q2_network_and_broadcast: [
+            {
+              ip: "192.168.0.5/24",
+              network: getValue("a4_q2_ip1_net"),
+              broadcast: getValue("a4_q2_ip1_bc"),
+            },
+            {
+              ip: "192.168.0.5/16",
+              network: getValue("a4_q2_ip2_net"),
+              broadcast: getValue("a4_q2_ip2_bc"),
+            },
+            {
+              ip: "193.16.40.25/16",
+              network: getValue("a4_q2_ip3_net"),
+              broadcast: getValue("a4_q2_ip3_bc"),
+            },
+            {
+              ip: "10.0.10.0/8",
+              network: getValue("a4_q2_ip4_net"),
+              broadcast: getValue("a4_q2_ip4_bc"),
+            },
+            {
+              ip: "10.10.0.1/8",
+              network: getValue("a4_q2_ip5_net"),
+              broadcast: getValue("a4_q2_ip5_bc"),
+            },
+          ],
+        };
+
+        const payload = {
+          meta: {
+            formulari: "0225-xarxes-locals-ra1-exercicis",
+            curs: metaInfo.curs || null,
+            promocio: metaInfo.promocio || null,
+            centre: metaInfo.centre || null,
+            generat: new Date().toISOString(),
+          },
+          alumne: {
+            firstname,
+            lastname,
+            email,
+          },
+          respostes: {
+            a1_protocols,
+            a2_ip_consulta,
+            a4_exercicis_ip,
+          },
+        };
+
+        const fnamePart1 = slugify(firstname) || "sense-nom";
+        const fnamePart2 = slugify(lastname) || "sense-cognoms";
+        const filename = `xlo-ra1-exercicis-${fnamePart1}-${fnamePart2}.json`;
+
+        return { payload, filename };
+      }
+
+      function downloadJSON() {
+        if (!validateForm(true)) {
+          return;
+        }
+
+        const { payload, filename } = buildPayload();
+        const blob = new Blob([JSON.stringify(payload, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      // Zones d'enganxar imatge (Ctrl+V)
+      const pasteAreas = document.querySelectorAll(".paste-area");
+
+      pasteAreas.forEach((area) => {
+        const targetName = area.dataset.imageTarget;
+        if (!targetName) return;
+        const hiddenInput = document.querySelector(`input[name="${targetName}"]`);
+        const preview = area.querySelector(".paste-preview");
+
+        area.addEventListener("paste", (event) => {
+          const items = event.clipboardData && event.clipboardData.items;
+          if (!items) return;
+          for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            if (item.type.indexOf("image") !== -1) {
+              const file = item.getAsFile();
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                const dataUrl = e.target.result;
+                if (hiddenInput) {
+                  hiddenInput.value = dataUrl;
+                  // netejar errors i actualitzar progrés
+                  hiddenInput.classList.remove("error");
+                  hiddenInput.dispatchEvent(new Event("input", { bubbles: true }));
+                }
+                if (preview) {
+                  preview.src = dataUrl;
+                  preview.style.display = "block";
+                }
+                area.classList.add("is-filled");
+                area.classList.remove("error");
+              };
+              reader.readAsDataURL(file);
+              event.preventDefault();
+              break;
+            }
+          }
+        });
+      });
+
+      // Enllaçar esdeveniments per actualitzar progrés
+      requiredFields.forEach((field) => {
+        field.addEventListener("input", updateProgress);
+        field.addEventListener("change", updateProgress);
+      });
+      studentSelect.addEventListener("change", updateProgress);
+
+      downloadBtn.addEventListener("click", downloadJSON);
+      checkBtn.addEventListener("click", () => validateForm(true));
+
+      // Inicialitzar progrés
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+# Aplicaciones Oﬁmáticas
+
+#### UD 05. Procesador de texto
+
+#### AOF - UD05 - Actividad evaluable 5
+##### (`aof-ud05-ae05`)
+
+---
+
+* **Paso 1**
+
+Crea en tu cuenta de **`github`** el repositorio<br><u><b>**`<PrimerApellidoAlumno>-aof-ud05-ae05`**</b></u><br>(<u>**todo en minúsculas**</u>), haz que sea <u>**privado**</u>, e invita  al usuario <u>**jpardo20**</u>.
+
+><hr>
+>
+> ###### Donde **`<PrimerApellidoAlumno>`** es solo el primer apellido del alumno, sin el nombre.
+>
+> ###### Por ejemplo en el caso del alumno <b><u>Albert Einstein</u></b>, el nombre del repositorio sería <kbd><u><b>**`einstein-aof-ud05-ae05`**</b></u></kbd>.
+>
+><hr>
+
+----
+
+* **Paso 2**
+
+Una vez tengas el repositorio remoto (el de tu cuenta de github) debes de clonarlo en tu ordenador.
+
+```git
+git clone <URL de tu repositorio remoto>
+```
+
+Con el repositorio remoto, clonado, debes de seguir los pasos que se detallan a continuación.
+
+---
+
+## 1a entrega
+
+* Realiza un documento con **Microsoft Word 365** que muestre un ejemplo de uso de elementos de **Microsoft Word 365**, seguidos de uno o dos párrafos explicándolos.
+
+* Pueden ayudarte para esta tarea tanto los tutoriales recomendados de la unidad como los <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> proporcionados.
+
+----
+
+#### 1a entrega:
+
+Los elementos son:    (1/2)
+
+ * Viñetas de los tipos puntos y numeradas. Estas viñetas deben incluir subniveles.
+
+ * Cursiva.
+
+ * Negrita/Subrayado/Tachado.
+
+ * Enlaces.
+
+ * Sangría.
+
+ * Imágenes.
+
+ * Cuadros de Texto.
+
+----
+
+#### 1a entrega:
+
+Los elementos son:    (2/2)
+
+ * Alineado el texto del título de forma "centrada".
+
+ * Alineado el texto de los contenidos de forma "justificada".
+
+ * Estilos.
+
+ * Encabezado.
+
+ * Pie de página.
+
+ * Números de página.
+
+----
+
+#### 1a entrega:
+
+><hr> 
+>
+> ### A entregar
+>
+> * Subir a vuestro repositorio el documento generado con el nombre <u><b>**`<PrimerApellidoAlumno>-aof-ud05-ae05-1a-ent.docx`**</b></u><br>(<u>**todo en minúsculas**</u>).
+>
+> ###### Donde **`<PrimerApellidoAlumno>`** es solo el primer apellido del alumno, sin el nombre.
+>
+> ###### Por ejemplo en el caso del alumno <b><u>Albert Einstein</u></b>, el nombre del fichero sería <kbd><u><b>**`einstein-aof-ud05-ae05-1a-ent.docx`**</b></u></kbd>.
+>
+> #### En en el documento **`README.md`** de tu repositorio local, bajo el título <kbd>## 1a entrega</kbd>, crear un enlace para descargar el documento docx, que habéis subido.
+>
+
+---
+
+
+## 2a entrega
+
+* Para esta actividad vamos a crear una **revista digital** utilizando Microsoft Word 365.
+
+* Dejamos la <u>temática libre</u> siempre que sea algo legal, respetuoso con compañeros y con la gente en general.
+
+* No vamos a hacer la revista entera, solo las partes indicadas.
+
+* Para facilitar la creación, se adjunta en el aula virtual videos con <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> que facilitan crear la revista.
+
+----
+
+#### 2a entrega:
+
+Si no se te ocurre ninguna idea, te damos algunas:
+
+ * Revistas sobre algún deporte que te guste.
+
+ * Revista sobre videojuegos (o sobre algún videojuego en concreto).
+
+ * Revistas sobre comics/manga que te gusten.
+
+ * Revista sobre novedades tecnológicas o algún tutorial tecnológico.
+
+----
+
+#### 2a entrega:
+
+La revista tendrá los siguientes elementos:
+
+ * **Portada**: debe ser bonita, atractiva y descriptiva. Debe contener el nombre de la revista, el nombre del autor y no contener número de página. Te recomiendo usar <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para hacer la portada.
+    
+     * En la versión escritorio podéis usar <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para guardar la portada como "plantilla de portada" (no es necesario hacerlo para la entrega).
+
+ * **Índice, encabezado y pie de página**: en la siguiente página a la portada se debe crear un índice automático de la revista. A partir de esta página, todas las páginas deben llevar encabezado y pie de página. Estos dos deben ser bonitos. En el encabezado debe estar el nombre del alumno y de la revista. En el pie de página simplemente el número de página.
+
+----
+
+#### 2a entrega:
+
+* Te recomiendo <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para hacer el índice.
+
+* Te recomiendo usar <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para poner encabezado y pie de página.
+
+----
+
+#### 2a entrega:
+
+ * **Artículos de opinión:** la primera página de la revista en sí, debe contener mínimo dos artículos de opinión. Antes de comenzar, el artículo debe haber una imagen de quien es el autor del artículo de opinión y un texto que sea el título de artículo hecho de forma que resalte (jugando con tamaños, tipografía, negrita, etc.). El texto debe estar en alineación "Justificada".
+
+----
+
+#### 2a entrega:
+
+* ¿No sabes como es un artículo de opinión a varias columnas? Prueba a hacer búsquedas en Google similares a "artículo opinión doble columna" para poder ver referencias de como debe quedar.
+
+* Podéis inventarios el texto del artículo sacándolo de alguno que os guste o generándolo con webs tipo [<span class="underline">https://www.blindtextgenerator.com/es</span>](https://www.blindtextgenerator.com/es)
+
+----
+
+#### 2a entrega:
+
+* Te recomiendo <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para crear el título.
+
+* Te recomiendo <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para insertar la imagen.
+
+* En la versión de escritorio, puedes crear textos multi-columna usando <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a>.
+
+----
+
+#### 2a entrega:
+
+ * **Noticia:** la segunda página puede ser una noticia. **Utiliza un estilo diferente al usado en los artículos de opinión.** Esta página debe tener imágenes, texto multi-columna y viñetas.
+    
+     * Te recomiendo <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para crear el texto multi-columna
+
+----
+
+#### 2a entrega:
+
+ * **Contraportada**: debe ser bonita, atractiva y descriptiva. No debe contener encabezado ni pie de página. Debe también tener el precio en código de barras y QR.
+    
+     * Para la versión en la nube, simplemente utilizará algún generador online (buscando "generador QR" y/o generador código de barras") impórtalo como imagen.
+    
+     * En la versión de escritorio puedes usar <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0223-aplicacions-ofimatiques/presentacions/presentador.html?src=slides%2Frecursos.reveal&title=7.%20Recursos%20para%20maquetar%20una%20revista%20en%20Word#/md-section" target="_blank">trucos de TikTok</a> para generar el código de barras y QR.
+
+----
+
+#### 2a entrega:
+
+><hr> 
+>
+> ### A entregar
+>
+> * Subir a vuestro repositorio el documento con la revista con el nombre <u><b>**`<PrimerApellidoAlumno>-aof-ud05-ae05-2a-ent.docx`**</b></u><br>(<u>**todo en minúsculas**</u>).
+>
+> ###### Donde **`<PrimerApellidoAlumno>`** es solo el primer apellido del alumno, sin el nombre.
+>
+> ###### Por ejemplo en el caso del alumno <b><u>Albert Einstein</u></b>, el nombre del fichero sería <kbd><u><b>**`einstein-aof-ud05-ae05-2a-ent.docx`**</b></u></kbd>.
+>
+> #### En en el documento **`README.md`** de tu repositorio local, bajo el título <kbd>## 2a entrega</kbd>, crear un enlace para descargar el documento docx, que habéis subido.
+>
+
+---
+
+## 3a entrega:
+
+* Realiza con **Microsoft Word 365** una "Cheat Sheet" atractiva, en formato apaisado, resumiendo los elementos descritos en el apartado anterior e indicando qué **<span class="underline">atajos de teclado</span>** existen para los elementos indicando en la actividad anterior. Recuerda el formato apaisado.
+
+----
+
+#### 3a entrega:
+
+><hr> 
+>
+> ### A entregar
+>
+> * Subir a vuestro repositorio el documento con la revista con el nombre <u><b>**`<PrimerApellidoAlumno>-aof-ud05-ae05-3a-ent.docx`**</b></u><br>(<u>**todo en minúsculas**</u>).
+>
+> ###### Donde **`<PrimerApellidoAlumno>`** es solo el primer apellido del alumno, sin el nombre.
+>
+> ###### Por ejemplo en el caso del alumno <b><u>Albert Einstein</u></b>, el nombre del fichero sería <kbd><u><b>**`einstein-aof-ud05-ae05-3a-ent.docx`**</b></u></kbd>.
+>
+> #### En en el documento **`README.md`** de tu repositorio local, bajo el título <kbd>## 3a entrega</kbd>, crear un enlace para descargar el documento docx, que habéis subido.
+>
+
+---
+
+## 4a entrega:
+
+* Realiza un documento con **Microsoft Word 365** preparado como plantilla para realizar trabajos en el ciclo formativo, con textos de ejemplo de contenidos básicos.
+
+* La entrega debe tener:  (1/2)
+
+ * Portada bonita con nombre y fecha. Se debe guardar como plantilla de portada
+
+ * Número de unidad a la que pertenece el trabajo hecho con un campo (variable). Este número se mostrará en portada junto a la fecha.
+
+ * Índice generado a partir de estilos aplicados para puntos principales y sub puntos.
+
+ * Números de página a partir de la segunda página.
+
+----
+
+#### 4a entrega:
+
+* La entrega debe tener:  (2/2)
+
+ * Cabecera y pie de página a partir de la segunda página.
+
+ * Estilo específico para definir el texto normal.
+
+ * Estilo específico para definir los puntos principales.
+
+ * Estilo específico para definir los sub-puntos.
+
+----
+
+#### 4a entrega:
+
+Además, en los ejemplos de contenido, se debe mostrar: (1/2)
+
+ * Estilos anteriormente nombrados, aplicados a los ejemplos.
+
+ * Viñetas de los tipos puntos y numeradas. Estas viñetas deben incluir subniveles.
+
+ * Negrita.
+
+ * Cursiva.
+
+ * Subrayado.
+
+ * Tachado.
+
+----
+
+#### 4a entrega:
+
+Además, en los ejemplos de contenido, se debe mostrar: (2/2)
+
+ * Enlaces.
+
+ * Imágenes.
+
+ * Cuadros de Texto.
+
+ * Alineado el texto del título de forma "centrada".
+
+ * Alineado el texto de los contenidos de forma "justificada".
+
+----
+
+#### 4a entrega:
+
+><hr> 
+>
+> ### A entregar
+>
+> * Subir a vuestro repositorio el documento que acabis de crear con el nombre <u><b>**`<PrimerApellidoAlumno>-aof-ud05-ae05-4a-ent.docx`**</b></u><br>(<u>**todo en minúsculas**</u>).
+>
+> ###### Donde **`<PrimerApellidoAlumno>`** es solo el primer apellido del alumno, sin el nombre.
+>
+> ###### Por ejemplo en el caso del alumno <b><u>Albert Einstein</u></b>, el nombre del fichero sería <kbd><u><b>**`einstein-aof-ud05-ae05-4a-ent.docx`**</b></u></kbd>.
+>
+> #### En en el documento **`README.md`** de tu repositorio local, bajo el título <kbd>## 4a entrega</kbd>, crear un enlace para descargar el documento docx, que habéis subido.
+>

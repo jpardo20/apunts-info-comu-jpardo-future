@@ -1,0 +1,205 @@
+# Muntatge i manteniment d’equips
+
+
+## Muntatge i manteniment d’equips
+
+- Components d’un equip microinformàtic
+- El Processador
+
+---
+
+
+## El processador
+
+- És l’element central de procés del ordinador.
+- Dirigeix i controla tots els components.
+- S'encarrega de dur a terme les operacions matemàtiques i lògiques en un curt període de temps.
+- Decodifica i executa les instruccions dels programes carregats en la memòria RAM.
+
+---
+
+
+## Arquitectura dels microprocesadors
+
+- Processadors CISC
+  - Basat en Hardware.
+  - Moltes operacions (joc d’instruccions).
+  - Molts operands per operació.
+  - Codis en poques línies PERÒ:
+    - Molts cicles de rellotge per instrucció.
+    - Descodificació i seqüenciació més complexes.
+- Processadors RISC
+  - Basat en Software.
+  - Poques operacions (joc d’instruccions)
+  - Operacions molt bàsiques i molt ràpides.
+  - Circuitería del micro molt més senzilla que CISC
+
+---
+
+
+## Característiques
+
+- Nivell d’integració
+- Freqüència de rellotge
+- Velocitat d’execució de les instruccions
+- Velocitat del bus del sistema
+- Joc d’instruccions
+- Longitud de paraula
+- Memòria cache
+- Nombre de nuclis
+- TDP (potencia de disseny tèrmic)
+
+---
+
+
+## Característiques – Nivell d’integració
+
+- Fa referència a la mida dels components del microprocessador.
+- Major nivell d'integració implica:
+  - Components de dimensions més petites.
+  - Menys espai entre components.
+  - Les senyals arriben abans.
+  - Major freqüència de rellotge.
+  - Menor consum d’energia.
+  - Més escalfor generada.
+
+---
+
+
+## Característiques – Freqüència de rellotge
+
+- És el nombre de cicles de rellotge que es poden realitzar per unitat de temps.
+- Amb aquest paràmetre s’identifica la potència del micro.
+  - És mesura en Gigahertz (GHz)
+
+---
+
+
+## Característiques – Velocitats
+
+- Velocitat d’execució de les instruccions
+  - Varia en funció del nombre de cicles de rellotge que necessita una instrucció per executar-se.
+- Velocitat del bus del sistema
+  - És la velocitat a la que el micro es comunica amb memòria RAM.
+  - És mesura igual que la freqüència de rellotge de la CPU.
+    - A major velocitat del canal, major rendiment del sistema.
+
+---
+
+
+## Característiques – Joc d’instruccions
+
+- Cada processador disposa d’un conjunt d’instruccions que pot executar.
+- Més instruccions 🡪 major complexitat de disseny
+
+---
+
+
+## Característiques – Longitud de paraula
+
+- És la quantitat màxima d’informació que es pot llegir o escriure en un accés a la memòria.
+- Longitud de paraula micros actuals: 32, 64bits
+- El terme d’arquitectura 32 i 64 bits fa referència a l’amplada dels registres amb els que treballa la UAL, o l’amplada dels busos de dades o d’adreces.
+
+---
+
+
+## Característiques – Arquitectures 32 i 64 bits
+
+- Límit d’adreçament:
+  - Rang adreçament: 2n_bits
+    - Amb 32bits l’adreça màxima és: 4.294.967.296
+    - Amb 64 bits l’adreça màxima és 18.446.744.073.709.551.616
+  - Límit de memòria a 4 GB
+    - L’arquitectura de 32 bits no pot controlar l’assignació per sobre de 4GB de memòria RAM.
+  - Ara mateix s’imposen els processadors de 64 bits, tot i això encara hi ha aplicacions dissenyades per a 32 bits que no milloraran el seu rendiment fent servir micros de 64 bits.
+
+---
+
+
+## Característiques - Memòria cau
+
+- La memòria cau (cache) la fa servir el processador per reduir el temps necessari per accedir a les dades de la memòria principal.
+- La cau és una "minimemoria" més ràpida, que guarda còpies de les dades que es fan servir amb major freqüència.
+- Tots els processadors actuals tenen una caché de nivell 1 (L1), una segona de nivell 2 (L2) i a vegades també un nivel 3 (L3).
+  - Capacitat				L3>L2>L1
+  - Velocitat (lectura i escriptura)  	L1>L2>L3
+
+---
+
+
+## Característiques – Nombre de nuclis
+
+- Un microprocessador pot estar constituït per diversos microprocessadors.
+  - Processador multinucli.
+- Cada microprocessador intern rep el nom de nucli.
+  - El nombre de nuclis sempre serà parell: 2, 4, 6...
+- Threads
+  - És una línia d’execució.
+  - Actualment els nuclis d’un micro poden executar diversos threads simultàniament.
+  - 1 nucli amb 2 thread es pot interpretar com a 2 nuclis virtuals.
+
+---
+
+
+## Característiques - TDP
+
+- TDP (potencia de disseny tèrmic)
+- És la màxima quantitat de potencia que el sistema de refrigeració pot dissipar sense excedir el límit de temperatura del microprocessador.
+
+---
+
+
+## Portàtils Intel
+
+
+---
+
+
+## Portàtils Intel
+
+
+---
+
+
+## Ordinadors Intel
+
+
+---
+
+
+## Ordinadors Intel
+
+
+---
+
+
+## Snapdragon 805 (32b)
+
+- Quad-core Krait 450 CPU at up to 2.7 GHz per core
+- ARMv7-A
+- 16 KiB / 16 KiB L1 cache per core
+
+--- MiB L2 cache
+
+---K UHD video upscale & play
+- Dual camera image signal processor supporting up to 55 Megapixel, stereoscopic 3D
+- Adreno 420 GPU
+- LPDDR3 25.6 GB/s memory bandwidth
+- IZat Gen8B GNSS location technology
+- USB 2.0 and 3.0
+- Hexagon, QDSP6V5A, 600 MHz
+- e-MMC V5.0
+- UFS V2.0
+- BT4.1, 802.11ac Wi-Fi
+- 28 nm HPm (high performance mobile)
+
+---
+
+
+## Família de processadors Intel® Core™
+
+- https://www.intel.es/content/www/es/es/products/processors/core.html
+- Família de processadors MD Ryzen™
+
+---

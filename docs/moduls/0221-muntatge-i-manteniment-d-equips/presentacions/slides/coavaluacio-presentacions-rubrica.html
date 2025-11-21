@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coavaluació de presentacions — Rúbrica</title>
+  <style>
+    :root { --bg:#f8fafc; --fg:#0f172a; --muted:#475569; --card:#fff; --brand:#1d4ed8; --border:#e2e8f0; --ok:#0e7a33; --warn:#b45309; --err:#b42318;}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif;line-height:1.45}
+    header{padding:24px 16px}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    h1{font-size:1.6rem;margin:0 0 6px}
+    .lead{color:var(--muted);margin:0 0 8px}
+    .pill{display:inline-block;padding:2px 10px;border-radius:999px;background:#e0e7ff;color:#3730a3;font-weight:700;font-size:.8rem;margin-left:6px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    .grid{display:grid;gap:12px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{font-weight:600;font-size:.95rem;}
+    select,input[type=number],textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+    input[type=number]{text-align:center}
+    textarea{min-height:70px}
+    .hint{font-size:.85rem;color:var(--muted)}
+    .section-title{font-size:1.5rem; font-weight:500; margin:8px 0 10px}
+    .section-title{font-size:1.5rem; font-weight:500; margin:8px 0 10px}
+    .crit{display:grid;grid-template-columns:1.6fr 110px 1fr;gap:10px;align-items:center;padding:8px;border-bottom:1px dashed var(--border)}
+    .crit:last-child{border-bottom:none}
+    .crit b{display:block}
+    .chips{display:flex;gap:6px;flex-wrap:wrap}
+    .chip{padding:2px 8px;border:1px solid var(--border);border-radius:999px;cursor:pointer;font-weight:700;font-size:.82rem;background:#fff}
+    .chip:hover{border-color:#cbd5e1}
+    .tot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;padding-bottom:8px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .tot .val{font-size:1.2rem;font-weight:800}
+    .notice{padding:10px 12px;border-radius:12px;background:#eff6ff;border:1px solid #dbeafe}
+    .ok{background:#ecfdf3;border-color:#dcfce7}
+    .error{background:#fff1f2;border-color:#ffe4e6;color:#7f1d1d}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    button{appearance:none;border:1px solid var(--border);background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer}
+    button[disabled]{opacity:.45; cursor:not-allowed}
+    button.secondary{background:#fff;color:#111}
+    .sticky{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg),rgba(248,250,252,.92));padding:8px 0 12px}
+    .footer-note{color:var(--muted);font-size:.88rem;margin-top:8px}
+    .member{margin-top:8px}
+    .invalid{border-color: var(--err) !important; box-shadow: 0 0 0 3px rgba(180,35,24,0.12);}
+    #missingBox{margin-top:8px}
+    #missingBox ul{margin:6px 0 0 18px}
+    #missingBox li{margin:2px 0}
+    #statusMsg{font-size:.9rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+<header class="container">
+  <h1>Coavaluació de presentacions <span class="pill">Rúbrica</span></h1>
+  <p class="lead">Avalua per <b>criteris</b> (0–10) cada <b>grup</b> i cada <b>membre</b>. Quan acabis, genera un <code>.json</code> i envia'l al professor.</p>
+</header>
+
+<div class="container grid">
+  <section class="card">
+    <div class="sticky">
+      <div class="row">
+        <div>
+          <label for="raterSelect">Sóc (alumne que avalua)</label>
+          <select id="raterSelect"><option value="">— Selecciona el teu nom —</option></select>
+          <div class="hint" id="raterMeta"></div>
+        </div>
+        <div style="align-self:end">
+          <div id="loadMsg" class="notice">Carregant dades (alumnes i grups)…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="groupsZone" class="card">
+    <div class="notice">Esperant dades…</div>
+  </section>
+
+  <section class="card">
+    <div class="actions">
+      <button id="btnGen" disabled>Genera fitxer JSON</button>
+      <span id="statusMsg">Cal emplenar tots els criteris i seleccionar el teu nom.</span>
+      <button class="secondary" id="btnReset">Neteja formulari</button>
+    </div>
+    <div id="missingBox" class="notice error" style="display:none"></div>
+    <div id="outMsg" class="footer-note"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const GROUP_CRITERIA = [
+    {code:"C1", label:"Contingut tècnic", weight:40, desc:"<strong>0</strong> = erroni/superficial&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = correcte bàsic&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = excel·lent i rigorós"},
+    {code:"C2", label:"Claredat i estructura", weight:20, desc:"<strong>0</strong> =  caòtic&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = ordenat però millorable&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = molt ben estructurat"},
+    {code:"C3", label:"Comunicació (veu, ritme)", weight:15, desc:"<strong>0</strong> =  molt pobre&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = acceptable&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = clar i convincent"},
+    {code:"C4", label:"Suport visual/demos", weight:15, desc:"<strong>0</strong> =  inadequat&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = adequat&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = molt bo i coherent"},
+    {code:"C5", label:"Temps i preguntes", weight:10, desc:"<strong>0</strong> =  malament&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = millorable&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = perfecte"}
+  ];
+  const IND_CRITERIA = [
+    {code:"I1", label:"Domini tècnic de la seva part", weight:50, desc:"<strong>0</strong> = no sap explicar-ho&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = coneix bàsic&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = domini profund"},
+    {code:"I2", label:"Expressió i comunicació", weight:30, desc:"<strong>0</strong> = confús&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = acceptable&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = molt clar"},
+    {code:"I3", label:"Interacció i respostes", weight:20, desc:"<strong>0</strong> = no respon&nbsp;&nbsp;|&nbsp;&nbsp;<strong>5</strong> = respon parcial&nbsp;&nbsp;|&nbsp;&nbsp;<strong>10</strong> = respon amb criteri"}
+  ];
+
+  const state = {
+    meta: { rubric: { group: GROUP_CRITERIA, individual: IND_CRITERIA } },
+    alumnes: [],
+    grups: { groups: [], students: {} },
+    rater: null,
+    ready: false,
+    blocks: []
+  };
+
+  const $ = sel => document.querySelector(sel);
+  const groupsZone = $("#groupsZone");
+  const raterSelect = $("#raterSelect");
+  const raterMeta = $("#raterMeta");
+  const outMsg = $("#outMsg");
+  const loadMsg = $("#loadMsg");
+  const missingBox = $("#missingBox");
+  const btnGen = $("#btnGen");
+  const statusMsg = $("#statusMsg");
+
+  async function tryFetchJSON(paths){
+    for (const p of paths){
+      try{
+        const res = await fetch(p, {cache:"no-store"});
+        if(res.ok){ return await res.json(); }
+      }catch(e){}
+    }
+    throw new Error("No s’ha pogut carregar");
+  }
+
+  async function loadData(){
+    loadMsg.textContent = "Carregant…";
+    let alumnes=null, grups=null;
+    try{
+      alumnes = await tryFetchJSON(["dades_alumnes.json","./alumnes/dades_alumnes.json","../alumnes/dades_alumnes.json","../../alumnes/dades_alumnes.json"]);
+    }catch(_){}
+    try{
+      grups = await tryFetchJSON(["dades_grups.json","./alumnes/dades_grups.json","../alumnes/dades_grups.json","../../alumnes/dades_grups.json"]);
+    }catch(_){}
+
+    if(!alumnes || !grups){
+      loadMsg.className = "notice error";
+      loadMsg.innerHTML = "No s'han trobat dades. Col·loca <code>dades_alumnes.json</code> i <code>dades_grups.json</code> a la mateixa carpeta (o <code>./alumnes/</code>).";
+      return;
+    }
+
+    state.meta = {...state.meta, ...(alumnes.meta||{})};
+    const raw = Array.isArray(alumnes.alumnes) ? alumnes.alumnes.flat() : (alumnes.alumnes || []);
+    state.alumnes = raw.map(a => ({firstname:a.firstname||"", lastname:a.lastname||"", email:a.email||""}));
+    state.grups = grups;
+    state.ready = true;
+    loadMsg.className = "notice ok";
+    loadMsg.textContent = "Dades carregades correctament.";
+    renderRaterSelect();
+    renderGroupsUI();
+    checkCompleteness();
+  }
+
+  function fullName(a){ return [a.firstname, a.lastname].filter(Boolean).join(" "); }
+  function nameKey(s){ return String(s).trim().toLowerCase(); }
+  function findGroupOfStudent(studentName){
+    const key = nameKey(studentName);
+    for(const g of state.grups.groups){
+      const list = state.grups.students[g] || [];
+      if(list.map(nameKey).includes(key)) return g;
+    }
+    return null;
+  }
+
+  function renderRaterSelect(){
+    raterSelect.innerHTML = '<option value="">— Selecciona el teu nom —</option>';
+    for(const a of state.alumnes){
+      const opt = document.createElement("option");
+      opt.value = fullName(a);
+      opt.textContent = `${fullName(a)}${a.email ? " — " + a.email : ""}`;
+      raterSelect.appendChild(opt);
+    }
+    raterSelect.addEventListener("change", ()=>{
+      if(!raterSelect.value){ state.rater = null; raterMeta.textContent=""; }
+      else {
+        const sel = state.alumnes.find(a => fullName(a) === raterSelect.value);
+        state.rater = sel || null;
+        const g = sel ? findGroupOfStudent(sel.firstname) || findGroupOfStudent(fullName(sel)) : null;
+        raterMeta.textContent = sel ? `Grup detectat: ${g || "—"}` : "";
+      }
+      checkCompleteness();
+    });
+  }
+
+  function chipBar(input){
+    const wrap = document.createElement("div"); wrap.className="chips";
+    [0,5,7,8,9,10].forEach(v=>{
+      const c = document.createElement("span");
+      c.className="chip"; c.textContent=String(v);
+      c.addEventListener("click", ()=>{ input.value = v; input.dispatchEvent(new Event("input",{bubbles:true})); });
+      wrap.appendChild(c);
+    });
+    return wrap;
+  }
+
+  function critRow(crit, inputId){
+    const row = document.createElement("div"); row.className="crit";
+    const txt = document.createElement("div");
+    txt.innerHTML = `<div><strong>${crit.label}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-align: right; font-weight: normal;">(pes: ${crit.weight}%)</span></div><div class="hint">${crit.desc} </div>`;
+    const val = document.createElement("div");
+    const inp = document.createElement("input");
+    inp.type="number"; inp.min="0"; inp.max="10"; inp.step="0.1"; inp.id=inputId;
+    inp.addEventListener("input", ()=>{ inp.classList.remove("invalid"); checkCompleteness(); });
+    val.appendChild(inp);
+    const quick = document.createElement("div"); quick.appendChild(chipBar(inp));
+    row.appendChild(txt); row.appendChild(val); row.appendChild(quick);
+    return {row, inp};
+  }
+
+  function weightedScore(scores, criteria){
+    const wsum = criteria.reduce((a,c)=>a+c.weight,0) || 1;
+    let acc = 0;
+    for(let i=0;i<criteria.length;i++){
+      const sc = Number(scores[i]); const w = criteria[i].weight;
+      if(!isFinite(sc)) return null;
+      acc += (sc * w);
+    }
+    return Math.round((acc/wsum)*100)/100;
+  }
+
+  function groupBlock(groupName){
+    const card = document.createElement("div"); card.className="card";
+    const nomGrup = "Presentació del grup:"
+    const title = document.createElement("div"); title.style="color: blue;";  title.className="section-title"; title.textContent = `${nomGrup} ${groupName}`;
+    card.appendChild(title);
+
+    const inputs = [];
+    GROUP_CRITERIA.forEach((c)=>{
+      const {row, inp} = critRow(c, `g_${groupName}_${c.code}`);
+      inputs.push({crit:c, el:inp}); card.appendChild(row);
+    });
+
+    const tot = document.createElement("div"); tot.className="tot";
+    const left = document.createElement("div"); left.style="margin: 15px;" ; left.innerHTML = "<b>Nota ponderada del grup (0–10)</b>";
+    
+    const val = document.createElement("div"); val.className="val"; val.textContent="—";
+    tot.appendChild(left); tot.appendChild(val);
+    card.appendChild(tot);
+
+    const comLab = document.createElement("label"); comLab.textContent="Comentari (opcional)";
+    const com = document.createElement("textarea"); com.id = `g_${groupName}_comment`; card.appendChild(comLab); card.appendChild(com);
+
+    const recompute = ()=>{
+      const arr = inputs.map(i=>Number(i.el.value));
+      const sc = weightedScore(arr, GROUP_CRITERIA);
+      val.textContent = (sc==null ? "—" : sc.toFixed(2));
+    };
+    inputs.forEach(i=> i.el.addEventListener("input", recompute));
+
+    return {el: card, inputs, get: ()=>({scores: inputs.map(i=>Number(i.el.value)), total: Number(val.textContent)||null, comment: com.value.trim()})};
+  }
+
+  function memberBlock(groupName, memberName){
+    const card = document.createElement("div"); card.className="card member";
+    const title = document.createElement("div"); title.className="section-title"; title.textContent = `Membre: ${memberName} (${groupName})`;
+    card.appendChild(title);
+
+    const inputs = [];
+    IND_CRITERIA.forEach(c=>{
+      const {row, inp} = critRow(c, `m_${groupName}_${memberName}_${c.code}`);
+      inputs.push({crit:c, el:inp}); card.appendChild(row);
+    });
+
+    const tot = document.createElement("div"); tot.className="tot";
+    const left = document.createElement("div"); left.innerHTML = "<b>Nota ponderada individual (0–10)</b>";
+    const val = document.createElement("div"); val.className="val"; val.textContent="—";
+    tot.appendChild(left); tot.appendChild(val);
+    card.appendChild(tot);
+
+    const comLab = document.createElement("label"); comLab.textContent="Comentari (opcional)";
+    const com = document.createElement("textarea"); com.id = `m_${groupName}_${memberName}_comment`; card.appendChild(comLab); card.appendChild(com);
+
+    const recompute = ()=>{
+      const arr = inputs.map(i=>Number(i.el.value));
+      const sc = weightedScore(arr, IND_CRITERIA);
+      val.textContent = (sc==null ? "—" : sc.toFixed(2));
+    };
+    inputs.forEach(i=> i.el.addEventListener("input", recompute));
+
+    return {el: card, inputs, get: ()=>({scores: inputs.map(i=>Number(i.el.value)), total: Number(val.textContent)||null, comment: com.value.trim()})};
+  }
+
+  function renderGroupsUI(){
+    groupsZone.innerHTML = "";
+    state.blocks = [];
+    if(!state.ready){ groupsZone.innerHTML = '<div class="notice">Falten dades.</div>'; return; }
+
+    for(const g of state.grups.groups){
+      const gBlock = groupBlock(g); groupsZone.appendChild(gBlock.el);
+      state.blocks.push({type:"group", group:g, criteria:GROUP_CRITERIA, inputs:gBlock.inputs, getter:gBlock.get});
+
+      (state.grups.students[g] || []).forEach(nom => {
+        const mBlock = memberBlock(g, nom); groupsZone.appendChild(mBlock.el);
+        state.blocks.push({type:"member", group:g, name:nom, criteria:IND_CRITERIA, inputs:mBlock.inputs, getter:mBlock.get});
+      });
+    }
+    checkCompleteness();
+  }
+
+  function collectMissing(highlight=false){
+    if(!highlight){
+      document.querySelectorAll(".invalid").forEach(el=> el.classList.remove("invalid"));
+    }
+    const missing = [];
+    for(const b of state.blocks){
+      const path = (b.type==="group") ? `Grup: ${b.group}` : `Membre: ${b.name} (Grup ${b.group})`;
+      b.inputs.forEach(({crit, el})=>{
+        const v = el.value;
+        if(v === "" || !isFinite(Number(v))){
+          if(highlight){ el.classList.add("invalid"); }
+          missing.push(`${path} — ${crit.code} ${crit.label}`);
+        }
+      });
+    }
+    if(!state.rater){ missing.push("Selecció del teu nom (rater)"); }
+    return missing;
+  }
+
+  function checkCompleteness(){
+    const blanks = collectMissing(false);
+    const ok = (blanks.length === 0) && state.ready;
+    btnGen.disabled = !ok;
+    statusMsg.textContent = ok ? "Lliurament llest." : "Cal emplenar tots els criteris i seleccionar el teu nom.";
+  }
+
+  function nowISO(){
+    const d = new Date();
+    const tz = -d.getTimezoneOffset();
+    const sgn = tz>=0?"+":"-";
+    const hh = String(Math.floor(Math.abs(tz)/60)).padStart(2,"0");
+    const mm = String(Math.abs(tz)%60).padStart(2,"0");
+    return d.toISOString().replace("Z", `${sgn}${hh}:${mm}`);
+  }
+
+  function buildJSON(){
+    const evals = [];
+    for(const g of state.grups.groups){
+      const gblk = state.blocks.find(b=>b.type==="group" && b.group===g);
+      const gdata = gblk.getter();
+
+      const individuals = [];
+      (state.grups.students[g] || []).forEach(nom=>{
+        const mblk = state.blocks.find(b=>b.type==="member" && b.group===g && b.name===nom);
+        const mdata = mblk.getter();
+        individuals.push({
+          name: nom,
+          rubric: IND_CRITERIA.map((c,idx)=>({code:c.code,label:c.label,weight:c.weight,score:mdata.scores[idx]})),
+          total_weighted: mdata.total,
+          comment: mdata.comment
+        });
+      });
+
+      evals.push({
+        group: g,
+        group_rubric: GROUP_CRITERIA.map((c,idx)=>({code:c.code,label:c.label,weight:c.weight,score:gdata.scores[idx]})),
+        group_total_weighted: gdata.total,
+        group_comment: gdata.comment,
+        individuals
+      });
+    }
+
+    const out = {
+      meta: {
+        ...state.meta,
+        rubric: {group: GROUP_CRITERIA, individual: IND_CRITERIA},
+        generated_at: nowISO()
+      },
+      rater: {
+        firstname: state.rater.firstname || "",
+        lastname: state.rater.lastname || "",
+        email: state.rater.email || "",
+        group: (findGroupOfStudent(state.rater.firstname) || findGroupOfStudent(state.rater.firstname+" "+(state.rater.lastname||"")) || "")
+      },
+      evaluations: evals
+    };
+    return out;
+  }
+
+  function downloadJSON(obj, filename){
+    const blob = new Blob([JSON.stringify(obj,null,2)], {type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
+  }
+
+  btnGen.addEventListener("click", ()=>{
+    missingBox.style.display = "none"; missingBox.innerHTML = "";
+    const blanks = collectMissing(true);
+    if(blanks.length){
+      const ul = "<ul>" + blanks.map(x=>`<li>${x}</li>`).join("") + "</ul>";
+      missingBox.style.display = "block";
+      missingBox.innerHTML = "<b>Falten dades als camps següents:</b>" + ul + "<div class='hint'>Revisa els camps marcats en vermell (0–10).</div>";
+      const first = document.querySelector(".invalid");
+      if(first){ first.scrollIntoView({behavior:"smooth", block:"center"}); first.focus(); }
+      checkCompleteness();
+      return;
+    }
+    try{
+      const data = buildJSON();
+      const who = state.rater ? (state.rater.firstname + "_" + (state.rater.lastname||"")) : "alumne";
+      const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+      const fname = `coavaluacio_rubrica_${who}_${ts}.json`;
+      downloadJSON(data, fname);
+      outMsg.textContent = "Fitxer JSON generat i descarregat.";
+    }catch(e){
+      outMsg.textContent = e.message;
+    }
+  });
+
+  $("#btnReset").addEventListener("click", ()=>{
+    if(confirm("Segur que vols netejar totes les respostes?")){
+      document.querySelectorAll("input[type=number], textarea").forEach(el=> { el.value=""; el.classList.remove("invalid"); });
+      document.querySelectorAll(".val").forEach(v=> v.textContent="—");
+      missingBox.style.display = "none"; missingBox.innerHTML = "";
+      outMsg.textContent = "Formulari netejat.";
+      raterSelect.value = ""; raterMeta.textContent = ""; state.rater = null;
+      checkCompleteness();
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+  });
+
+  loadData();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+# MP01 - Muntatge i manteniment d’equips
+
+
+- Components d’un equip microinformàtic
+- El sistema de refrigeració RA1
+
+---
+
+
+
+## El sistema de refrigeració
+
+- Conjunt d’elements que redueixen la calor que desprenen els components electrònics de l’ordinador.
+- Dos sistemes de refrigeració:
+  - Sistemes Passius.
+  - Sistemes Actius.
+
+---
+
+
+
+## Sistema de refrigeració passiva
+
+- Permeten refrigerar els dispositius sense mitjans mecànics.
+- Normalment es troben en components que no dissipen gaire calor.
+  - Memòries, chipset, font d'alimentació...
+- Elements:
+  - Dissipador
+  - Pasta tèrmica
+
+---
+
+
+
+## Sistemes de refrigeració passiva
+
+- Dissipador
+  - Refrigeració bàsica.
+  - Bloc de coure o alumini que es col·loca en contacte amb la superfície que s’escalfa.
+  - Dissenyat per alliberar l’escalfor a l’aire.
+- Pasta tèrmica
+  - Pasta viscosa conductora de calor (alumini, plata ...)
+  - Es col·loca entre el dispositiu i el dissipador.
+  - Redueix els espais vuits entre les dues superfícies i facilita la conducció tèrmica.
+
+---
+
+
+
+## Sistemes de refrigeració activa
+
+- Sistemes mitjans mecànics per refredar dispositius.
+- Ventilador
+  - S’afegeix al dissipador per poder dissipar major quantitat de calor.
+  - També els podem trobar en fonts d’alimentació, torres...
+  - Mesures:
+    - Més revolucions 🡪 més refredament 🡪 més soroll
+    - Més gran 🡪 més refredament amb menys revolucions.
+- Refrigeració líquida
+
+---
+
+
+
+## Sistemes de refrigeració activa
+
+- Refrigeració líquida
+  - Dissipa la calor amb un circuit líquid.
+  - Refrigera elements com: processador, tarja gràfica...
+  - Elements:
+    - Bomba: Manté el flux de líquid circulant.
+    - Radiador: Refreda el líquid calent.
+    - Tubs: Connecten els elements i permeten la circulació del líquid.
+    - Líquid: normalment és anticongelant amb aigua destil·lada.
+    - Diposit: On tenim el líquid que va circulant.
+
+---
+
+- Videos:
+- https://www.youtube.com/watch?v=EdjxbeQMWkM&ab_channel=PcComponentes
+- https://www.youtube.com/watch?v=iTD6Sayd8uw&ab_channel=ArjunMehta

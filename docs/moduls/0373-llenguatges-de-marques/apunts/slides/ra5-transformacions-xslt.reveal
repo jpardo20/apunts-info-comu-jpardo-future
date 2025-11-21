@@ -1,0 +1,37 @@
+# RA5 · Transformacions i conversió: XSLT → HTML/altres formats
+
+## Objectius del RA
+Construir especificacions de **transformació XSLT** per convertir documents XML a **HTML** o altres formats d'intercanvi (CSV, text), i integrar-les en un flux bàsic de publicació.
+
+## Continguts clau
+- Pipeline de conversió: origen XML → XSLT → sortida (HTML/CSV/altres).
+- XSLT 1.0: plantilles, `match`, `apply-templates`, `value-of`, `for-each`, condicions (`if`, `choose`), `sort`.
+- Nocions d'XSLT 2.0/3.0: funcions, agrupacions, formateig avançat (només cultura general).
+- Eines: processadors (Saxon, xsltproc), integració amb scripts.
+
+[comment]: <> (## Exemple breu (XML → HTML))
+[comment]: <> (```xslt)
+[comment]: <> (<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">)
+[comment]: <> (  <xsl:template match="/cataleg">)
+[comment]: <> (    <html><body><ul>)
+[comment]: <> (      <xsl:for-each select="producte">)
+[comment]: <> (        <li><xsl:value-of select="nom"/> — <xsl:value-of select="format-number(preu, '0.00')"/> €</li>)
+[comment]: <> (      </xsl:for-each>)
+[comment]: <> (    </ul></body></html>)
+[comment]: <> (  </xsl:template>)
+[comment]: <> (</xsl:stylesheet>)
+[comment]: <> (```)
+[comment]: <> ( )
+[comment]: <> (## Microexercicis)
+[comment]: <> (1. Ordena els productes per `preu` ascendent amb `<xsl:sort select="preu" data-type="number"/>`.)
+[comment]: <> (2. Mostra només productes amb `preu &gt; 20` mitjançant una condició.)
+[comment]: <> (3. Genera una taula HTML amb capçaleres `Nom` i `Preu`.)
+
+## CA vinculats (resum)
+- Identifica tecnologies de conversió (XSLT) i descriu la seva sintaxi.
+- Crea especificacions de transformació i obté sortides vàlides.
+- Integra les transformacions en un flux de publicació bàsic.
+
+## Enllaços útils
+- XSLT 1.0 (W3C) i tutorial introductori.
+- Processadors (Saxon, xsltproc) — guies d'ús.

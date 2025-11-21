@@ -1,0 +1,51 @@
+{
+  "module": {
+    "code": "0373",
+    "name": "Llenguatges de marques"
+  },
+  "presentations": [
+    {
+      "order": 1,
+      "title": "RA1 · Llenguatges de marques: concepte, estructura i namespaces",
+      "src": "slides/ra1-llenguatges-de-marques.reveal",
+      "description": "Introducció al mòdul 0373 - Llenguatges de marques"
+    },
+    {
+      "order": 2,
+      "title": "RA2 · Web: HTML5, CSS i validació",
+      "src": "slides/ra2-web-html-css.reveal",
+      "description": "Introducció al concepte XML"
+    },
+    {
+      "order": 3,
+      "title": "RA3 · Guions de client: DOM i esdeveniments (JavaScript)",
+      "src": "slides/ra3-guions-client-dom.reveal",
+      "description": "RA3 · Guions de client: DOM i esdeveniments (JavaScript)"
+    },
+    {
+      "order": 3,
+      "title": "HTML — Introducció i elements essencials",
+      "src": "slides/ra3-guions-client-dom.reveal",
+      "description": "HTML — Introducció i elements essencials"
+    },
+    {
+      "order": 3,
+      "title": "HTML — Introducció i elements essencials",
+      "src": "slides/ra3-guions-client-dom.reveal",
+      "description": "HTML — Introducció i elements essencials"
+    },
+    {
+      "order": 3,
+      "title": "HTML — Introducció i elements essencials",
+      "src": "slides/ra3-guions-client-dom.reveal",
+      "description": "HTML — Introducció i elements essencials"
+    },
+    {
+      "order": 3,
+      "title": "HTML — Introducció i elements essencials",
+      "src": "slides/ra3-guions-client-dom.reveal",
+      "description": "HTML — Introducció i elements essencials"
+    }
+  ]
+}
+

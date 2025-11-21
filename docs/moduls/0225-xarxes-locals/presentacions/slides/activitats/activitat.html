@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activitat 2 - IPs, màscares, xarxa i broadcast</title>
+  <link rel="stylesheet" href="../../assets/css/tema.css">
+  <style>
+    :root {
+      --fg:#111; --bg:#fff; --muted:#666; --card:#fafafa; --border:#ddd;
+    }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;background:var(--bg);color:var(--fg);margin:0;padding:24px;line-height:1.45}
+    h1,h2,h3{margin:0 0 8px}
+    .subtle{color:var(--muted);font-size:.95rem}
+    .wrap{max-width:900px;margin:0 auto}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:12px 0}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    label{display:flex; align-items:center; gap:8px; cursor:pointer; margin:6px 0}
+    input[type="radio"], input[type="checkbox"]{margin:0; accent-color:#111}
+    select, button{font:inherit}
+    select{padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#fff;min-width:280px}
+    .pregunta{padding:14px;border:1px solid var(--border);border-radius:10px;background:#fff;margin:16px 0}
+    .pregunta h3{font-size:1.05rem;margin:0 0 10px}
+    .footer{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid #111;background:#111;color:#fff;cursor:pointer}
+    .btn.secondary{background:#fff;color:#111}
+    .tag{padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#fff;font-size:.9rem}
+    .small{font-size:.9rem;color:#444}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:720px){.grid-2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body class="activity">
+  <div class="header-brand">
+    <div class="logos">
+      <img src="../../assets/img/Logo_Campus_GMQTECH_5.png" alt="Campus" />
+      <img src="../../assets/img/Logo_DIGIQTECH_343x99.png" alt="Digiqtech" />
+    </div>
+    <div class="title">Activitat · IPs, màscares, xarxa i broadcast</div>
+  </div>
+<div class="wrap">
+  <div class="card">
+    <div class="subtle">ID activitat: <strong>0225_ip_mascara_llarga</strong> · Versió: <strong>1.0</strong></div>
+    <h1>Xarxes Locals — IPs, màscares, xarxa i broadcast</h1>
+    <p class="small">Respon totes les preguntes. Es generarà un fitxer <code>.json</code> amb les teves respostes i la nota estimada. El sistema aplica <strong>penalització del 10%</strong> a partir del <strong>2n intent</strong> (per alumne).</p>
+    <div class="row">
+      <div style="flex:1 1 360px">
+        <label for="alumne"><strong>Tria el teu nom (llista del centre)</strong></label>
+        <select id="alumne">
+          <option value="">-- Tria el teu nom --</option>
+        </select>
+        <div id="alumne_info" class="small subtle"></div>
+      </div>
+    </div>
+  </div>
+
+  <form id="quiz">
+
+    <!-- Q1 -->
+    <div class="pregunta" data-qid="q1" data-type="single">
+      <h3>1. Classe de <code>194.168.1.101</code>?</h3>
+      <label><input type="radio" name="q1" value="A">Classe A</label>
+      <label><input type="radio" name="q1" value="B">Classe B</label>
+      <label><input type="radio" name="q1" value="C">Classe C</label>
+    </div>
+
+    <!-- Q2 -->
+    <div class="pregunta" data-qid="q2" data-type="single">
+      <h3>2. Màscara per defecte de <code>194.x.x.x</code>?</h3>
+      <label><input type="radio" name="q2" value="/8">/8 (255.0.0.0)</label>
+      <label><input type="radio" name="q2" value="/16">/16 (255.255.0.0)</label>
+      <label><input type="radio" name="q2" value="/24">/24 (255.255.255.0)</label>
+    </div>
+
+    <!-- Q3 -->
+    <div class="pregunta" data-qid="q3" data-type="single">
+      <h3>3. Classe de <code>192.168.0.5</code>?</h3>
+      <label><input type="radio" name="q3" value="A">Classe A</label>
+      <label><input type="radio" name="q3" value="B">Classe B</label>
+      <label><input type="radio" name="q3" value="C">Classe C</label>
+    </div>
+
+    <!-- Q4 -->
+    <div class="pregunta" data-qid="q4" data-type="single">
+      <h3>4. Màscara per defecte de <code>10.x.x.x</code>?</h3>
+      <label><input type="radio" name="q4" value="/8">/8 (255.0.0.0)</label>
+      <label><input type="radio" name="q4" value="/16">/16 (255.255.0.0)</label>
+      <label><input type="radio" name="q4" value="/24">/24 (255.255.255.0)</label>
+    </div>
+
+    <!-- Q5 -->
+    <div class="pregunta" data-qid="q5" data-type="single">
+      <h3>5. Adreça de <em>xarxa</em> de <code>192.168.0.5 /24</code>?</h3>
+      <label><input type="radio" name="q5" value="192.168.0.0">192.168.0.0</label>
+      <label><input type="radio" name="q5" value="192.168.0.255">192.168.0.255</label>
+      <label><input type="radio" name="q5" value="192.168.255.255">192.168.255.255</label>
+      <label><input type="radio" name="q5" value="192.168.1.0">192.168.1.0</label>
+    </div>
+
+    <!-- Q6 -->
+    <div class="pregunta" data-qid="q6" data-type="single">
+      <h3>6. Adreça de <em>broadcast</em> de <code>192.168.0.5 /24</code>?</h3>
+      <label><input type="radio" name="q6" value="192.168.0.0">192.168.0.0</label>
+      <label><input type="radio" name="q6" value="192.168.0.255">192.168.0.255</label>
+      <label><input type="radio" name="q6" value="192.168.255.255">192.168.255.255</label>
+      <label><input type="radio" name="q6" value="192.168.1.255">192.168.1.255</label>
+    </div>
+
+    <!-- Q7 -->
+    <div class="pregunta" data-qid="q7" data-type="single">
+      <h3>7. Adreça de <em>xarxa</em> de <code>192.168.0.5 /16</code>?</h3>
+      <label><input type="radio" name="q7" value="192.168.0.0">192.168.0.0</label>
+      <label><input type="radio" name="q7" value="192.168.255.0">192.168.255.0</label>
+      <label><input type="radio" name="q7" value="192.168.1.0">192.168.1.0</label>
+      <label><input type="radio" name="q7" value="192.168.0.255">192.168.0.255</label>
+    </div>
+
+    <!-- Q8 -->
+    <div class="pregunta" data-qid="q8" data-type="single">
+      <h3>8. Adreça de <em>broadcast</em> de <code>192.168.0.5 /16</code>?</h3>
+      <label><input type="radio" name="q8" value="192.168.0.255">192.168.0.255</label>
+      <label><input type="radio" name="q8" value="192.168.255.255">192.168.255.255</label>
+      <label><input type="radio" name="q8" value="192.168.1.255">192.168.1.255</label>
+      <label><input type="radio" name="q8" value="192.255.255.255">192.255.255.255</label>
+    </div>
+
+    <!-- Q9 -->
+    <div class="pregunta" data-qid="q9" data-type="single">
+      <h3>9. Adreça de <em>xarxa</em> de <code>172.16.40.25 /16</code>?</h3>
+      <label><input type="radio" name="q9" value="172.16.0.0">172.16.0.0</label>
+      <label><input type="radio" name="q9" value="172.16.40.0">172.16.40.0</label>
+      <label><input type="radio" name="q9" value="172.16.255.0">172.16.255.0</label>
+      <label><input type="radio" name="q9" value="172.0.0.0">172.0.0.0</label>
+    </div>
+
+    <!-- Q10 -->
+    <div class="pregunta" data-qid="q10" data-type="single">
+      <h3>10. Adreça de <em>broadcast</em> de <code>172.16.40.25 /16</code>?</h3>
+      <label><input type="radio" name="q10" value="172.16.255.255">172.16.255.255</label>
+      <label><input type="radio" name="q10" value="172.16.40.255">172.16.40.255</label>
+      <label><input type="radio" name="q10" value="172.16.0.255">172.16.0.255</label>
+      <label><input type="radio" name="q10" value="172.255.255.255">172.255.255.255</label>
+    </div>
+
+    <!-- Q11 -->
+    <div class="pregunta" data-qid="q11" data-type="single">
+      <h3>11. Adreça de <em>xarxa</em> de <code>10.0.10.0 /8</code>?</h3>
+      <label><input type="radio" name="q11" value="10.0.0.0">10.0.0.0</label>
+      <label><input type="radio" name="q11" value="10.0.10.0">10.0.10.0</label>
+      <label><input type="radio" name="q11" value="10.255.255.0">10.255.255.0</label>
+      <label><input type="radio" name="q11" value="10.0.255.0">10.0.255.0</label>
+    </div>
+
+    <!-- Q12 -->
+    <div class="pregunta" data-qid="q12" data-type="single">
+      <h3>12. Adreça de <em>broadcast</em> de <code>10.10.0.1 /8</code>?</h3>
+      <label><input type="radio" name="q12" value="10.0.0.255">10.0.0.255</label>
+      <label><input type="radio" name="q12" value="10.10.255.255">10.10.255.255</label>
+      <label><input type="radio" name="q12" value="10.255.255.255">10.255.255.255</label>
+      <label><input type="radio" name="q12" value="10.0.255.255">10.0.255.255</label>
+    </div>
+
+    <!-- Q13 multi -->
+    <div class="pregunta" data-qid="q13" data-type="multi">
+      <h3>13. Quines IPs són <em>hosts vàlids</em> dins de <code>192.168.1.0 /24</code>? (tria totes les que corresponguin)</h3>
+      <label><input type="checkbox" name="q13" value="192.168.1.0">192.168.1.0</label>
+      <label><input type="checkbox" name="q13" value="192.168.1.1">192.168.1.1</label>
+      <label><input type="checkbox" name="q13" value="192.168.1.255">192.168.1.255</label>
+      <label><input type="checkbox" name="q13" value="192.168.1.128">192.168.1.128</label>
+    </div>
+
+    <!-- Q14 match -->
+    <div class="pregunta" data-qid="q14" data-type="match">
+      <h3>14. Classifica segons <code>/24</code></h3>
+      <div class="grid-2">
+        <div>
+          <div class="small"><code>192.168.2.0</code></div>
+          <select data-item="192.168.2.0">
+            <option value="">-- Selecciona --</option>
+            <option value="xarxa">Xarxa</option>
+            <option value="broadcast">Broadcast</option>
+            <option value="host">Host</option>
+          </select>
+        </div>
+        <div>
+          <div class="small"><code>192.168.2.255</code></div>
+          <select data-item="192.168.2.255">
+            <option value="">-- Selecciona --</option>
+            <option value="xarxa">Xarxa</option>
+            <option value="broadcast">Broadcast</option>
+            <option value="host">Host</option>
+          </select>
+        </div>
+        <div>
+          <div class="small"><code>192.168.2.34</code></div>
+          <select data-item="192.168.2.34">
+            <option value="">-- Selecciona --</option>
+            <option value="xarxa">Xarxa</option>
+            <option value="broadcast">Broadcast</option>
+            <option value="host">Host</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="card footer">
+    <button class="btn" id="btnNota">Calcula nota</button>
+    <button class="btn secondary" id="btnExport">Genera lliurable (.json)</button>
+    <span id="nota" class="tag">Nota: —</span>
+    <span id="nota_penalitzada" class="tag">Nota penalitzada: —</span>
+    <span id="intents" class="small subtle"></span>
+  </div>
+
+  <div class="small subtle">El desplegable d'alumnes es carrega de: <code>../../alumnes/dades_alumnes.json</code></div>
+</div>
+
+<script>
+const ACT_ID = "0225_ip_mascara_llarga";
+const VERSION = "1.0";
+const ALUMNES_URL = "../../alumnes/dades_alumnes.json";
+
+// Carrega llista d'alumnes
+async function loadAlumnes() {
+  try {
+    const res = await fetch(ALUMNES_URL);
+    const data = await res.json();
+    const sel = document.getElementById("alumne");
+    // Format esperat (segons em vas indicar): { alumnes: [ [ {firstname, lastname, email}, ... ] ] }
+    const llistes = Array.isArray(data.alumnes) ? data.alumnes.flat() : [];
+    llistes.forEach((al, idx) => {
+      const name = [al.firstname, al.lastname].filter(Boolean).join(" ");
+      const opt = document.createElement("option");
+      opt.value = JSON.stringify(al);
+      opt.textContent = name || al.email || ("Alumne " + (idx+1));
+      sel.appendChild(opt);
+    });
+    sel.addEventListener("change", () => {
+      const info = document.getElementById("alumne_info");
+      if (!sel.value) { info.textContent = ""; return; }
+      const a = JSON.parse(sel.value);
+      const name = [a.firstname, a.lastname].filter(Boolean).join(" ");
+      info.textContent = name + (a.email ? " · " + a.email : "");
+    });
+  } catch(e) {
+    console.warn("No s'ha pogut carregar dades_alumnes.json", e);
+  }
+}
+loadAlumnes();
+
+// Correcció (clau integrada per mostrar nota inmediata; també existeix clau_respostes.json al pack)
+const CLAU = {
+  "q1":"C",
+  "q2":"/24",
+  "q3":"C",
+  "q4":"/8",
+  "q5":"192.168.0.0",
+  "q6":"192.168.0.255",
+  "q7":"192.168.0.0",
+  "q8":"192.168.255.255",
+  "q9":"172.16.0.0",
+  "q10":"172.16.255.255",
+  "q11":"10.0.0.0",
+  "q12":"10.255.255.255",
+  "q13":["192.168.1.1","192.168.1.128"],
+  "q14":{"192.168.2.0":"xarxa","192.168.2.255":"broadcast","192.168.2.34":"host"}
+};
+
+function getAnswers() {
+  const form = document.getElementById("quiz");
+  const res = {};
+  // single + multi
+  form.querySelectorAll(".pregunta").forEach(div => {
+    const qid = div.dataset.qid;
+    const type = div.dataset.type;
+    if (type === "single") {
+      const inp = div.querySelector("input[type=radio]:checked");
+      res[qid] = inp ? inp.value : null;
+    } else if (type === "multi") {
+      res[qid] = Array.from(div.querySelectorAll("input[type=checkbox]:checked")).map(i=>i.value);
+    } else if (type === "match") {
+      const items = {};
+      div.querySelectorAll("select[data-item]").forEach(sel => { items[sel.dataset.item] = sel.value || null; });
+      res[qid] = items;
+    }
+  });
+  return res;
+}
+
+function grade(res) {
+  let total = 14, ok = 0;
+  // compare
+  for (const [qid, ans] of Object.entries(res)) {
+    const key = CLAU[qid];
+    if (qid === "q13") {
+      const a = (ans||[]).slice().sort().join("|");
+      const b = key.slice().sort().join("|");
+      if (a === b) ok++;
+    } else if (qid === "q14") {
+      const all = Object.keys(key);
+      const correct = all.every(ip => (ans && ans[ip] === key[ip]));
+      if (correct) ok++;
+    } else {
+      if (ans && ans === key) ok++;
+    }
+  }
+  const nota10 = (ok/total)*10;
+  return {ok, total, nota10: Math.round(nota10*100)/100};
+}
+
+function getStudentKey() {
+  const sel = document.getElementById("alumne");
+  if (!sel.value) return "anon";
+  try {
+    const a = JSON.parse(sel.value);
+    return (a.email || (a.firstname+"_"+a.lastname) || "anon").toLowerCase();
+  } catch { return "anon"; }
+}
+
+function getAttempts(studentKey) {
+  const key = `attempts_${ACT_ID}_${studentKey}`;
+  return parseInt(localStorage.getItem(key) || "0", 10);
+}
+
+function bumpAttempts(studentKey) {
+  const key = `attempts_${ACT_ID}_${studentKey}`;
+  const n = getAttempts(studentKey) + 1;
+  localStorage.setItem(key, String(n));
+  return n;
+}
+
+function penalitza(nota, attempts) {
+  if (attempts <= 1) return nota; // 1r intent sense penalització
+  const factor = 1 - 0.10*(attempts-1); // 10% per cada reinent
+  return Math.max(0, Math.round(nota*factor*100)/100);
+}
+
+function sha256(str) {
+  // simple checksum
+  return crypto.subtle.digest("SHA-256", new TextEncoder().encode(str)).then(buf => {
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  });
+}
+
+function updateUI(nota, penal, attempts) {
+  document.getElementById("nota").textContent = "Nota: " + nota.toFixed(2) + " /10";
+  document.getElementById("nota_penalitzada").textContent = "Nota penalitzada: " + penal.toFixed(2) + " /10";
+  document.getElementById("intents").textContent = "(intents: " + attempts + ")";
+}
+
+document.getElementById("btnNota").addEventListener("click", (e)=>{
+  e.preventDefault();
+  const res = getAnswers();
+  const g = grade(res);
+  const attempts = getAttempts(getStudentKey());
+  const penal = penalitza(g.nota10, attempts||1);
+  updateUI(g.nota10, penal, attempts||1);
+});
+
+document.getElementById("btnExport").addEventListener("click", async (e)=>{
+  e.preventDefault();
+  const sel = document.getElementById("alumne");
+  if (!sel.value){ alert("Selecciona el teu nom abans de generar el fitxer."); return; }
+
+  const res = getAnswers();
+  const g = grade(res);
+  const studentKey = getStudentKey();
+  const attempts = bumpAttempts(studentKey);
+  const penal = penalitza(g.nota10, attempts);
+
+  const meta = {
+    activity_id: ACT_ID,
+    version: VERSION,
+    timestamp: new Date().toISOString(),
+    attempts,
+    penalty_policy: "10% per reinent a partir del 2n",
+  };
+  const alumne = JSON.parse(sel.value);
+
+  const payload = {
+    meta,
+    alumne,
+    responses: res,
+    score_raw_10: g.nota10,
+    score_after_penalty_10: penal,
+  };
+  const raw = JSON.stringify(payload);
+  const sum = await sha256(raw);
+  payload.checksum = sum;
+
+  const outName = `${ACT_ID}__${(alumne.lastname||'').replaceAll(' ','_')}_${(alumne.firstname||'').replaceAll(' ','_')}__v${VERSION.replaceAll('.','_')}__${Date.now()}.json`;
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = outName;
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  updateUI(g.nota10, penal, attempts);
+});
+</script>
+</body>
+</html>

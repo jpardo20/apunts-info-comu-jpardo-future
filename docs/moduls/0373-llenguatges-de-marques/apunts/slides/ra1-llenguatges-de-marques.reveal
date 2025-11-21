@@ -1,0 +1,29 @@
+# RA1 · Llenguatges de marques: concepte, estructura i namespaces
+
+---
+
+## Objectius del RA
+Comprendre els principis dels llenguatges de marques, distingint finalitats i característiques (text pla, metadades, interoperabilitat), i aplicar les regles de **ben format** i **namespaces** en documents XML.
+
+---
+
+## Continguts clau
+- Què és un llenguatge de marques: text + metadades; etiquetes i atributs.
+- Diferències d'ús: **XML** (intercanvi/estructura) vs **HTML** (presentació web).
+- Ben format XML: pròleg, elements/atributs, entitats i escapament, jerarquia i tancament correcte.
+- Encoding (`UTF-8`), caràcters especials i entitats (`&lt;`, `&amp;`, `&quot;`…).
+- **Namespaces**: URIs, declaració per defecte i prefixos; resolució de conflictes de noms.
+
+
+---
+
+## CA vinculats (resum)
+- Identifica característiques i avantatges dels llenguatges de marques.
+- Distingeix àmbits d'aplicació d'XML i HTML.
+- Justifica i aplica el **ben format** i els **namespaces** en documents XML.
+
+---
+
+## Enllaços útils
+- XML 1.0 (W3C) — objectius i regles de ben format.
+- MDN: introducció a XML i entitats.

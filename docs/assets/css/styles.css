@@ -1,0 +1,38 @@
+/* Esquema clar */
+:root,
+[data-md-color-scheme="default"]{
+  --md-primary-fg-color: #009de0;        /* color principal (barra superior, etc.) */
+  --md-primary-fg-color--light: #2a7ad6; /* opcional */
+  --md-primary-fg-color--dark:  #0d4a94; /* opcional */
+  --md-accent-fg-color: #009de0;         /* opcional */
+}
+
+/* Esquema fosc, si el fas servir */
+[data-md-color-scheme="slate"]{
+  --md-primary-fg-color: #009de0;
+  --md-accent-fg-color: #009de0;
+}
+
+/* Si només vols forçar NOMÉS la barra: */
+/* .md-header { background: #009de0; } */
+/* Logo com a imatge (logo:) */
+.md-header__button.md-logo img{
+  height: 49px;   /* prova 32–44px fins que t’agradi */
+  width: auto;
+}
+
+/* Si en comptes d’imatge uses icona integrada (icon.logo) */
+.md-header__button.md-logo .md-icon{
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+/* (Opcional) dóna una mica més d'alçada a la barra si cal */
+.md-header__inner{
+  min-height: 64px; /* per defecte és ~56px */
+}
+
+
+.md-header__title{
+    text-align: center;
+}

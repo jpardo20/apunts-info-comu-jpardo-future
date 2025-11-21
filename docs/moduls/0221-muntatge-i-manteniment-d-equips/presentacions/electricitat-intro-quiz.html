@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qüestionari — Introducció a l'electricitat (SMX)</title>
+  <style>
+    :root{
+      --maxw: 980px;
+      --gap: 14px;
+      --radius: 14px;
+      /* Tema clar */
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --muted: #475569;
+      --text: #0f172a;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-2: #059669;
+      --warn: #b45309;
+      --err: #b91c1c;
+      --shadow: 0 10px 25px rgba(2,6,23,.06);
+    }
+    html, body{background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif; line-height: 1.5;}
+    .container{max-width: var(--maxw); margin: 24px auto; padding: 0 16px;}
+    h1, h2, h3{line-height:1.2; margin: 0 0 12px;}
+    h1{font-size: clamp(22px, 4vw, 30px);}
+    h2{font-size: clamp(18px, 3vw, 22px); margin-top: 24px;}
+    p{margin: 0 0 var(--gap);}
+    .card{background: var(--card); padding: 18px; border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid var(--border);}
+    .row{display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);}
+    @media (max-width: 800px){ .row{grid-template-columns: 1fr;} }
+    label{display:block; font-weight:600; margin-bottom:6px;}
+    input[type="text"], select, textarea{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#fff; color:var(--text);
+    }
+    textarea{min-height: 90px; resize: vertical;}
+    .q{margin: 18px 0; padding: 16px; border: 1px dashed var(--border); border-radius: 12px; background: #fff;}
+    .q legend{font-weight:700; margin-bottom: 8px; color: var(--accent);}
+    .options{display:flex; flex-direction:column; gap:8px;}
+    .opt{display:flex; align-items:flex-start; gap:8px;}
+    .opt input[type="radio"], .opt input[type="checkbox"]{margin-top:4px;}
+    small.muted{color: var(--muted);}
+    .hint{font-size: 13px; color: var(--muted);}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;}
+    button{
+      border:0; padding:10px 14px; border-radius: 12px; cursor:pointer; font-weight:700;
+      background: var(--accent); color:#fff;
+    }
+    button.success{background: var(--accent-2);}
+    .result{margin-top: 16px; padding: 14px; background:#f8fafc; border-radius: 12px; border:1px solid var(--border);}
+    .warn{color: var(--warn);}
+    .err{color: var(--err);}
+    .ok{color: var(--accent-2);}
+    table{width:100%; border-collapse: collapse; margin-top: 8px;}
+    th, td{padding: 8px 10px; border-bottom:1px solid var(--border);}
+    th{text-align:left; color: var(--muted); font-weight:600;}
+    .badge{display:inline-block; padding:4px 8px; border-radius:999px; font-size:12px; border:1px solid var(--border); background:#fff;}
+    /* Marcatge d'errors / obligatoris */
+    .missing{ border-color: #fecaca !important; box-shadow: 0 0 0 2px rgba(248,113,113,.25) inset; }
+    .msg{margin-top:10px; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#fff;}
+    .msg.err{border-color:#fecaca; background:#fff1f2;}
+    .msg.ok{border-color:#bbf7d0; background:#f0fdf4;}
+    .msg.lock{border-color:#fde68a; background:#fffbeb;}
+    .muted-inline{color: var(--muted); font-size: 13px;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Qüestionari — Introducció a l'electricitat (SMX)</h1>
+  <p class="hint">Una sola resposta per alumne en aquest dispositiu. Es calcula una <b>nota orientativa</b> a partir de les preguntes tancades. Les preguntes obertes (<span class="badge">Q1, Q2, Q8, Q10</span>) <b>cal avaluar-les manualment</b>.</p>
+
+  <div class="card">
+    <div class="row">
+      <div>
+        <label for="student">Alumne/a</label>
+        <select id="student" disabled>
+          <option>Carregant llistat...</option>
+        </select>
+        <div id="studentFallback" style="display:none; margin-top:8px;">
+          <label for="studentManual">Nom i cognoms (si el llistat no carrega)</label>
+          <input id="studentManual" type="text" placeholder="Escriu el teu nom manualment" />
+          <div class="muted-inline">Evita accents i caràcters especials per consistència.</div>
+        </div>
+      </div>
+    </div>
+    <div id="lockMsg"></div>
+  </div>
+
+  <!-- PREGUNTES -->
+  <form id="quiz" class="card">
+    <!-- Q1 -->
+    <fieldset id="fs-q1" class="q">
+      <legend>1) Resposta curta — Què és la <i>diferència de potencial</i> (tensió)? En quina unitat s’expressa?</legend>
+      <textarea id="q1" placeholder="Escriu la teva resposta aquí"></textarea>
+      <small class="hint">Pregunta oberta (correcció manual).</small>
+    </fieldset>
+
+    <!-- Q2 -->
+    <fieldset id="fs-q2" class="q">
+      <legend>2) Resposta curta — Què és la <i>intensitat de corrent</i>? En quina unitat s’expressa?</legend>
+      <textarea id="q2" placeholder="Escriu la teva resposta aquí"></textarea>
+      <small class="hint">Pregunta oberta (correcció manual).</small>
+    </fieldset>
+
+    <!-- Q3 -->
+    <fieldset id="fs-q3" class="q">
+      <legend>3) Relació — Associa cada instrument amb la magnitud que mesura</legend>
+      <table>
+        <thead><tr><th>Instrument</th><th>Magnitud</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Voltímetre</td>
+            <td>
+              <select id="q3v">
+                <option value="">— Tria —</option>
+                <option>Intensitat</option>
+                <option>Resistència</option>
+                <option>Tensió</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Amperímetre</td>
+            <td>
+              <select id="q3a">
+                <option value="">— Tria —</option>
+                <option>Tensió</option>
+                <option>Resistència</option>
+                <option>Intensitat</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Ohmímetre</td>
+            <td>
+              <select id="q3o">
+                <option value="">— Tria —</option>
+                <option>Intensitat</option>
+                <option>Tensió</option>
+                <option>Resistència</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <small class="hint">Autoavaluable (1,5 punts: 0,5 per encert).</small>
+    </fieldset>
+
+    <!-- Q4 -->
+    <fieldset id="fs-q4" class="q">
+      <legend>4) Procediment — Com es connecta un <b>voltímetre</b> per mesurar la tensió?</legend>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q4" value="serie"> En sèrie amb el component</label>
+        <label class="opt"><input type="radio" name="q4" value="paralel"> En paral·lel amb el component</label>
+      </div>
+      <small class="hint">Autoavaluable (0,5 punts).</small>
+    </fieldset>
+
+    <!-- Q5 -->
+    <fieldset id="fs-q5" class="q">
+      <legend>5) Procediment — Com es connecta un <b>amperímetre</b> per mesurar la intensitat?</legend>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q5" value="serie"> En sèrie amb el circuit</label>
+        <label class="opt"><input type="radio" name="q5" value="paralel"> En paral·lel amb el circuit</label>
+      </div>
+      <small class="hint">Autoavaluable (0,5 punts).</small>
+    </fieldset>
+
+    <!-- Q6 -->
+    <fieldset id="fs-q6" class="q">
+      <legend>6) Opció múltiple — Quina és la diferència principal entre <b>CA</b> i <b>CC</b>?</legend>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q6" value="a"> a) La CA canvia de polaritat periòdicament i la CC manté polaritat constant.</label>
+        <label class="opt"><input type="radio" name="q6" value="b"> b) Totes dues mantenen polaritat constant.</label>
+        <label class="opt"><input type="radio" name="q6" value="c"> c) La CA només existeix a les bateries.</label>
+        <label class="opt"><input type="radio" name="q6" value="d"> d) La CC és sempre més perillosa que la CA.</label>
+      </div>
+      <small class="hint">Autoavaluable (1 punt).</small>
+    </fieldset>
+
+    <!-- Q7 -->
+    <fieldset id="fs-q7" class="q">
+      <legend>7) Conversió d’unitats</legend>
+      <div class="row">
+        <div>
+          <label for="q7a">a) 2,5 kV → (V)</label>
+          <input id="q7a" type="text" inputmode="decimal" placeholder="Escriu el valor en volts" />
+        </div>
+        <div>
+          <label for="q7b">b) 47 kΩ → (Ω)</label>
+          <input id="q7b" type="text" inputmode="decimal" placeholder="Escriu el valor en ohms" />
+        </div>
+      </div>
+      <small class="hint">Autoavaluable (2 punts: 1 per conversió). Admet punt o coma, i separadors.</small>
+    </fieldset>
+
+    <!-- Q8 -->
+    <fieldset id="fs-q8" class="q">
+      <legend>8) Aplicació — Quina funció té un <b>SAI</b> (UPS) en un entorn informàtic? Dona 2 beneficis.</legend>
+      <textarea id="q8" placeholder="Escriu la teva resposta aquí"></textarea>
+      <small class="hint">Pregunta oberta (correcció manual).</small>
+    </fieldset>
+
+    <!-- Q9 -->
+    <fieldset id="fs-q9" class="q">
+      <legend>9) Verdader/Fals — “L’aire és sempre aïllant i mai hi pot circular corrent.”</legend>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q9" value="V"> Verdader</label>
+        <label class="opt"><input type="radio" name="q9" value="F"> Fals</label>
+      </div>
+      <label for="q9txt">Raona breument (opcional):</label>
+      <textarea id="q9txt" placeholder="Escriu la teva resposta aquí"></textarea>
+      <small class="hint">Autoavaluable (0,5 punts per V/F). El text es corregirà manualment si cal.</small>
+    </fieldset>
+
+    <!-- Q10 -->
+    <fieldset id="fs-q10" class="q">
+      <legend>10) Concepte — Defineix <i>conductor</i> i <i>aïllant</i> i posa un exemple real de cadascun.</legend>
+      <textarea id="q10" placeholder="Escriu la teva resposta aquí"></textarea>
+      <small class="hint">Pregunta oberta (correcció manual).</small>
+    </fieldset>
+
+    <!-- Nota orientativa al final -->
+    <div id="noteOrientativa" class="result" aria-live="polite"></div>
+
+    <div id="msgArea"></div>
+
+    <div class="btns">
+      <button type="button" id="exportJSON" class="success">Genera fitxer JSON</button>
+      <button type="reset" id="resetBtn">Neteja respostes</button>
+    </div>
+  </form>
+</div>
+
+<script>
+// ---------- CONFIGURACIÓ BÀSICA ----------
+const WEIGHTS = {
+  autoTotal: 6.0, // punts autoavaluables
+  manualTotal: 4.0 // punts obertes
+};
+const ATTEMPT_NS = "electricitatIntroQuiz_v4"; // espai de noms per bloqueig d'intent
+
+// Claus de resposta i pesos interns (sumen 6.0)
+const ANSWERS = {
+  // Q3 (3 x 0.5 = 1.5)
+  q3v: { correct: "Tensió", pts: 0.5 },
+  q3a: { correct: "Intensitat", pts: 0.5 },
+  q3o: { correct: "Resistència", pts: 0.5 },
+
+  // Q4 (0.5)
+  q4: { correct: "paralel", pts: 0.5 },
+
+  // Q5 (0.5)
+  q5: { correct: "serie", pts: 0.5 },
+
+  // Q6 (1.0)
+  q6: { correct: "a", pts: 1.0 },
+
+  // Q7 (2.0: 1 + 1)
+  q7a: { correctNumeric: 2500, tolerance: 0.5, pts: 1.0 },
+  q7b: { correctNumeric: 47000, tolerance: 0.5, pts: 1.0 },
+
+  // Q9 V/F (0.5) la resposta correcta és Fals
+  q9: { correct: "F", pts: 0.5 }
+};
+
+// Rutes candidates per al JSON d'alumnes
+const DEFAULT_JSON_PATHS = [
+  new URLSearchParams(window.location.search).get("path"), // permet ?path=...
+  "alumnes/dades_alumnes.json",
+  "../alumnes/dades_alumnes.json",
+  "../../alumnes/dades_alumnes.json",
+  "../../../alumnes/dades_alumnes.json"
+].filter(Boolean);
+
+// ---------- UTILITATS ----------
+function normNum(str){
+  if (typeof str !== "string") return NaN;
+  let s = str.trim().replace(/\s/g, "").replace(/\./g, "");
+  s = s.replace(/,/g, ".");
+  s = s.match(/-?\d+(\.\d+)?/g);
+  if (!s || !s.length) return NaN;
+  return parseFloat(s[0]);
+}
+
+async function loadJSONFromPaths(paths){
+  for (const p of paths){
+    try{
+      const res = await fetch(p, {cache: "no-store"});
+      if (res.ok){
+        const data = await res.json();
+        return {data, path: p};
+      }
+    }catch(_e){ /* continua */ }
+  }
+  return null;
+}
+
+function formatDateISO(d = new Date()){
+  const pad = (n)=> (n<10? "0"+n : ""+n);
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+
+// ---------- BLOQUEIG PER ALUMNE ----------
+function getAttemptStore(){
+  try{ return JSON.parse(localStorage.getItem(ATTEMPT_NS) || "{}"); }
+  catch(_e){ return {}; }
+}
+function setAttemptStore(obj){
+  localStorage.setItem(ATTEMPT_NS, JSON.stringify(obj));
+}
+function studentKey(){
+  const sel = document.getElementById("student");
+  const sm = document.getElementById("studentManual");
+  if (!sel.disabled && sel.value) return `sel:${sel.value}`;
+  if (sel.disabled && sm && sm.value.trim()) return `man:${sm.value.trim()}`;
+  return null;
+}
+function isLocked(key){
+  const store = getAttemptStore();
+  return !!store[key];
+}
+function lockAttempt(key, meta){
+  const store = getAttemptStore();
+  store[key] = meta;
+  setAttemptStore(store);
+}
+function disableForm(reasonHtml){
+  // Deshabilita tots els controls
+  const form = document.getElementById("quiz");
+  form.querySelectorAll("input, textarea, select, button").forEach(el=>{
+    if (el.id === "resetBtn") {
+      // opcionalment el deixem actiu per netejar visualment, però no torna a habilitar exportació
+      el.disabled = false;
+    } else {
+      el.disabled = true;
+    }
+  });
+  const msg = document.getElementById("lockMsg");
+  msg.innerHTML = `<div class="msg lock">${reasonHtml}</div>`;
+}
+function tryLockUIIfNeeded(){
+  const key = studentKey();
+  if (!key) return;
+  if (isLocked(key)){
+    const store = getAttemptStore();
+    const meta = store[key];
+    disableForm(`Ja has respost aquest qüestionari amb aquest identificador d'alumne.<br>
+    <span class="muted-inline">Data: ${meta?.date ?? "—"} · Hora: ${meta?.ts ?? "—"} · Nota orientativa: ${typeof meta?.provisional10 === "number" ? meta.provisional10 : "—"}/10</span>`);
+  }
+}
+
+// ---------- CARREGA ALUMNES ----------
+async function initStudents(){
+  const sel = document.getElementById("student");
+  const fb = document.getElementById("studentFallback");
+
+  const loaded = await loadJSONFromPaths(DEFAULT_JSON_PATHS);
+  if (!loaded){
+    sel.innerHTML = '<option value="">(No s\'ha pogut carregar el llistat. Usa el camp manual.)</option>';
+    sel.disabled = true;
+    fb.style.display = "block";
+    // add listener per bloqueig amb nom manual
+    const sm = document.getElementById("studentManual");
+    sm.addEventListener("input", tryLockUIIfNeeded);
+    return;
+  }
+
+  const {data} = loaded;
+
+  let alumnes = [];
+  if (Array.isArray(data.alumnes)){
+    if (Array.isArray(data.alumnes[0])){
+      alumnes = data.alumnes[0];
+    } else {
+      alumnes = data.alumnes;
+    }
+  }
+
+  if (!alumnes.length){
+    sel.innerHTML = '<option value="">(Cap alumne trobat. Usa el camp manual.)</option>';
+    sel.disabled = true;
+    fb.style.display = "block";
+    const sm = document.getElementById("studentManual");
+    sm.addEventListener("input", tryLockUIIfNeeded);
+    return;
+  }
+
+  sel.innerHTML = '<option value="">— Tria el teu nom —</option>';
+  for (const a of alumnes){
+    const name = [a.firstname, a.lastname].filter(Boolean).join(" ");
+    const email = a.email || "";
+    const opt = document.createElement("option");
+    opt.value = name || email || Math.random().toString(36).slice(2);
+    opt.textContent = name ? `${name} ${email? "· "+email: ""}` : email;
+    opt.dataset.email = email;
+    sel.appendChild(opt);
+  }
+  sel.disabled = false;
+
+  sel.addEventListener("change", tryLockUIIfNeeded);
+}
+
+// ---------- AVALUACIÓ ----------
+function grade(){
+  let score = 0;
+  let details = [];
+
+  // Q3
+  for (const k of ["q3v","q3a","q3o"]){
+    const e = document.getElementById(k);
+    const val = e.value || "";
+    const ok = val === ANSWERS[k].correct;
+    if (ok) score += ANSWERS[k].pts;
+    details.push({id:k, ok, val, pts: ok? ANSWERS[k].pts: 0});
+  }
+
+  // Q4, Q5, Q6, Q9
+  for (const k of ["q4","q5","q6","q9"]){
+    const node = document.querySelector(`input[name="${k}"]:checked`);
+    const val = node ? node.value : "";
+    const ok = val === ANSWERS[k].correct;
+    if (ok) score += ANSWERS[k].pts;
+    details.push({id:k, ok, val, pts: ok? ANSWERS[k].pts: 0});
+  }
+
+  // Q7a, Q7b
+  for (const k of ["q7a","q7b"]){
+    const e = document.getElementById(k);
+    const val = normNum(e.value);
+    let ok = false;
+    if (!Number.isNaN(val)){
+      const target = ANSWERS[k].correctNumeric;
+      const tol = ANSWERS[k].tolerance ?? 0;
+      ok = Math.abs(val - target) <= tol;
+    }
+    if (ok) score += ANSWERS[k].pts;
+    details.push({id:k, ok, val: e.value, parsed: val, pts: ok? ANSWERS[k].pts: 0});
+  }
+
+  const autoPoints = score; // màxim 6
+  const provisional10 = Number(((autoPoints) * (10 / (WEIGHTS.autoTotal + WEIGHTS.manualTotal))).toFixed(2));
+  return {autoPoints, provisional10, details};
+}
+
+function renderOrientativeNote(){
+  const g = grade();
+  const zone = document.getElementById("noteOrientativa");
+  const pct = Math.round((g.autoPoints / WEIGHTS.autoTotal)*100);
+  zone.innerHTML = `
+    <div><b>Nota orientativa (provisional):</b> <span class="${pct>=60?'ok':(pct>=40?'warn':'err')}">${g.provisional10} / 10</span></div>
+    <div>Autoavaluable: <b>${g.autoPoints.toFixed(2)} / ${WEIGHTS.autoTotal.toFixed(1)}</b> · Obertes pendents: <b>${WEIGHTS.manualTotal.toFixed(1)} punts</b></div>
+  `;
+}
+
+// ---------- VALIDACIÓ I EXPORT ----------
+function unansweredList(){
+  const missing = [];
+
+  // Preguntes obertes
+  if (!(document.getElementById("q1").value || "").trim()) missing.push("Q1");
+  if (!(document.getElementById("q2").value || "").trim()) missing.push("Q2");
+  if (!(document.getElementById("q8").value || "").trim()) missing.push("Q8");
+  if (!(document.getElementById("q10").value || "").trim()) missing.push("Q10");
+
+  // Relació (totes 3)
+  if (!document.getElementById("q3v").value) missing.push("Q3 — Voltímetre");
+  if (!document.getElementById("q3a").value) missing.push("Q3 — Amperímetre");
+  if (!document.getElementById("q3o").value) missing.push("Q3 — Ohmímetre");
+
+  // Radio
+  if (!document.querySelector('input[name="q4"]:checked')) missing.push("Q4");
+  if (!document.querySelector('input[name="q5"]:checked')) missing.push("Q5");
+  if (!document.querySelector('input[name="q6"]:checked')) missing.push("Q6");
+  if (!document.querySelector('input[name="q9"]:checked')) missing.push("Q9");
+
+  // Conversió (només requerim que hi hagi resposta; la correcció és posterior)
+  if (!(document.getElementById("q7a").value || "").trim()) missing.push("Q7a");
+  if (!(document.getElementById("q7b").value || "").trim()) missing.push("Q7b");
+
+  // Alumne (requerit)
+  const stu = document.getElementById("student");
+  const sm = document.getElementById("studentManual");
+  const haveStudent = (!stu.disabled && stu.value) || (!!sm && sm.value.trim());
+  if (!haveStudent) missing.push("Alumne/a");
+
+  return missing;
+}
+
+function clearMissingMarks(){
+  for (let i=1;i<=10;i++){
+    const fs = document.getElementById(`fs-q${i}`);
+    if (fs) fs.classList.remove("missing");
+  }
+  document.getElementById("student").classList.remove("missing");
+  const sm = document.getElementById("studentManual");
+  if (sm) sm.classList.remove("missing");
+}
+
+function applyMissingMarks(missing){
+  const map = {
+    "Q1":"fs-q1","Q2":"fs-q2","Q3":"fs-q3","Q4":"fs-q4","Q5":"fs-q5",
+    "Q6":"fs-q6","Q7a":"fs-q7","Q7b":"fs-q7","Q8":"fs-q8","Q9":"fs-q9","Q10":"fs-q10"
+  };
+  missing.forEach(code=>{
+    if (code === "Alumne/a"){
+      const sel = document.getElementById("student");
+      const sm = document.getElementById("studentManual");
+      if (!sel.disabled) sel.classList.add("missing");
+      if (sel.disabled && sm) sm.classList.add("missing");
+    }
+    const fsid = map[code];
+    if (fsid){
+      const fs = document.getElementById(fsid);
+      if (fs) fs.classList.add("missing");
+    }
+  });
+}
+
+function showMessage(msg, type="err"){
+  const zone = document.getElementById("msgArea");
+  zone.innerHTML = `<div class="msg ${type}">${msg}</div>`;
+}
+
+function collectAnswers(){
+  const getRadio = (name)=>{
+    const n = document.querySelector(`input[name="${name}"]:checked`);
+    return n? n.value : "";
+  };
+  const payload = {
+    timestamp: new Date().toISOString(),
+    date: formatDateISO(),
+    student: document.getElementById("student").disabled
+      ? (document.getElementById("studentManual").value || "")
+      : (document.getElementById("student").value || ""),
+    answers: {
+      q1: document.getElementById("q1").value,
+      q2: document.getElementById("q2").value,
+      q3v: document.getElementById("q3v").value,
+      q3a: document.getElementById("q3a").value,
+      q3o: document.getElementById("q3o").value,
+      q4: getRadio("q4"),
+      q5: getRadio("q5"),
+      q6: getRadio("q6"),
+      q7a: document.getElementById("q7a").value,
+      q7b: document.getElementById("q7b").value,
+      q8: document.getElementById("q8").value,
+      q9: getRadio("q9"),
+      q9txt: document.getElementById("q9txt").value,
+      q10: document.getElementById("q10").value
+    }
+  };
+  const g = grade();
+  payload.autoPoints = g.autoPoints;
+  payload.provisional10 = g.provisional10;
+  return payload;
+}
+
+function downloadJSON(obj, filename){
+  const blob = new Blob([JSON.stringify(obj, null, 2)], {type:"application/json;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function handleExport(){
+  clearMissingMarks();
+  const missing = unansweredList();
+  if (missing.length){
+    applyMissingMarks(missing);
+    const nice = missing.map(m=>"• "+m).join("<br>");
+    showMessage(`<b>Falten respostes:</b><br>${nice}`, "err");
+    window.scrollTo({top: document.getElementById("msgArea").getBoundingClientRect().top + window.scrollY - 20, behavior: "smooth"});
+    return;
+  }
+  const key = studentKey();
+  if (!key){
+    showMessage("Cal seleccionar o escriure l'alumne/a abans de generar el fitxer.", "err");
+    return;
+  }
+  if (isLocked(key)){
+    tryLockUIIfNeeded();
+    showMessage("Aquest alumne/a ja ha respost el qüestionari en aquest dispositiu.", "err");
+    return;
+  }
+  const data = collectAnswers();
+  const safeName = (data.student || "sense_nom").replace(/[^\p{L}\p{N}\-_]+/gu,"_").slice(0,60);
+  const fname = `quiz_electricitat_intro_${safeName}_${data.date}.json`;
+  downloadJSON(data, fname);
+  // bloqueig i deshabilitació
+  lockAttempt(key, { ts: new Date().toISOString(), date: data.date, provisional10: data.provisional10 });
+  disableForm("S'ha registrat la teva resposta. No es permeten més intents en aquest dispositiu per a aquest alumne.");
+  showMessage("Fitxer JSON generat correctament. Puja'l al campus per a la correcció manual de les preguntes obertes.", "ok");
+}
+
+// ---------- INIT ----------
+document.addEventListener("DOMContentLoaded", async () => {
+  await initStudents();
+  renderOrientativeNote();
+
+  // Recalcula nota orientativa quan hi ha canvis
+  document.getElementById("quiz").addEventListener("input", renderOrientativeNote);
+  document.querySelectorAll('input[type="radio"]').forEach(r=> r.addEventListener("change", renderOrientativeNote));
+
+  document.getElementById("exportJSON").addEventListener("click", handleExport);
+});
+</script>
+</body>
+</html>

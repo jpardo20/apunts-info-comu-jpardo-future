@@ -1,0 +1,170 @@
+title: Python — f-strings (SMX)
+author: Optativa Programació en Python
+date: 2025-10-23
+theme: white
+
+# Python — f-strings
+### Robòtica i Programació en Python (1r SMX)
+
+---
+
+## Què són les **f-strings**?
+- Des de **Python 3.6**: cadenes amb prefix **`f`** que permeten posar **expressions** entre claus **`{ }`**.
+- Fan el codi **més curt i llegible** que concatenar amb `+` o usar `format()`.
+
+```python
+nom: str = "Laia"
+edat: int = 17
+print(f"Hola, {nom}! Tens {edat} anys.")
+# → Hola, Laia! Tens 17 anys.
+```
+
+---
+
+## Sintaxi bàsica
+- Escriu `f"..."` (o `f'...'`) i col·loca **expressions** dins `{expressio}`.
+
+```python
+a: int = 5
+b: int = 3
+print(f"{a} + {b} = {a + b}")  # 5 + 3 = 8
+
+nums = [10, 20, 30]
+print(f"El primer és {nums[0]}")    # 10
+```
+
+> Recorda: dins `{ }` hi van **expressions** (variables, operacions, crides a funció...). No s'hi fan assignacions ni bucles.
+
+---
+
+## Expressions típiques dins `{ }`
+- Variables: `{nom}`, `{edat}`
+- Operacions: `{preu * quantitat}`, `{(a+b)/2}`
+- Crides a funcions: `{abs(-7)}`, `{len(text)}`
+- Índexos i atributs: `{llista[2]}`, `{usuari.nom}`
+
+```python
+preu: float = 12.5
+q: int = 3
+print(f"Total: {preu * q} €")  # Total: 37.5 €
+```
+
+---
+
+## Format numèric — *mini xec-ràpid*
+| Especificador | Exemple | Sortida | Ús |
+|---|---:|---:|---|
+| `:.2f` | `f"{3.14159:.2f}"` | `3.14` | 2 decimals |
+| `:05d` | `f"{42:05d}"` | `00042` | farcit amb zeros |
+| `:>8`  | `f"{42:>8}"` | `      42` | alineat a la dreta |
+| `:<8`  | `f"{42:<8}"` | `42      ` | alineat a l’esquerra |
+| `:^8`  | `f"{42:^8}"` | `   42   ` | centrat |
+| `:,`   | `f"{12000:,}"` | `12,000` | separador de milers* |
+| `:.1%` | `f"{0.875:.1%}"` | `87.5%` | percentatge |
+| `:b`   | `f"{13:b}"` | `1101` | binari |
+| `:x`   | `f"{255:x}"` | `ff` | hexadecimal minúsc. |
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">
+*Per defecte, Python usa el format anglosaxó per milers/decimals. Si vols control absolut, construeix el format manualment o usa llibreries de localització.
+</p>
+
+---
+
+## Dates i hores amb `f-strings`
+```python
+from datetime import datetime
+ara = datetime.now()
+print(f"Avui és {ara:%d/%m/%Y} i són les {ara:%H:%M}")
+# → Avui és 23/10/2025 i són les 09:15
+```
+- Després dels **`:`** pots usar codis de `strftime` (`%Y`, `%m`, `%d`, `%H`, `%M`, ...).
+
+<p style="font-size: smaller; background-color:ivory; border: 1px blue dotted;">
+Docs: <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes" target="_blank" rel="noopener noreferrer">Codi de format de dates</a>
+</p>
+
+---
+
+## “Debug” exprés amb `=` (Python ≥ 3.8)
+- El patró `nom_variable=` imprimeix **nom i valor**.
+
+```python
+x: int = 7
+y: int = 3
+print(f"{x=}, {y=}, suma={x+y}")
+# → x=7, y=3, suma=10
+```
+
+---
+
+## Com escriure claus literals `{` i `}`
+- Duplica les claus per **escapar-les**.
+
+```python
+print(f"Plantilla: {{usuari}} ha entrat.")
+# → Plantilla: {usuari} ha entrat.
+```
+
+---
+
+## Multi-línia i cometes
+```python
+nom: str = "Nil"
+msg = f"""
+Hola, {nom}!
+Això és una cadena de
+múltiples línies.
+"""
+print(msg)
+```
+
+---
+
+## Errors típics (i com evitar-los)
+- ❌ Oblidar el **prefix `f`**:
+  ```python
+  print("Hola, {nom}")   # literal, no s’avalua
+  ```
+  ✅ `print(f"Hola, {nom}")`
+
+- ❌ No convertir l’entrada d’usuari:
+  ```python
+  edat_text = input("Edat? ")
+  print(f"L'any vinent: {edat_text + 1}")  # ERROR
+  ```
+  ✅ `edat = int(edat_text); print(f"L'any vinent: {edat + 1}")`
+
+- ❌ Expressions massa llargues dins `{ }` → calcula-ho abans en variables.
+
+---
+
+## Exercicis ràpids (3–5’)
+1) Demana **nom** i **edat** i mostra:  
+   `Hola, NOM. D'aquí a 5 anys en tindràs EDAT+5.` (amb `f-string`)
+2) Donats `preu` i `quantitat`, imprimeix **total** amb 2 decimals i milers, alineat a 10 espais.
+3) Mostra la data/hora actual com `dd-mm-YYYY HH:MM` amb `f"{ara:%d-%m-%Y %H:%M}"`.
+4) Escriu un missatge que contingui literalment la clau `{usuari}` sense avaluar-la.
+
+---
+
+## Comparació ràpida
+```python
+nom, edat = "Marta", 18
+
+# Concatenació (llarg i propens a errors)
+print("Hola " + nom + ", tens " + str(edat) + " anys.")
+
+# format() (correcte però més verbós)
+print("Hola {}, tens {} anys.".format(nom, edat))
+
+# f-string (recomanat)
+print(f"Hola {nom}, tens {edat} anys.")
+```
+
+---
+
+## Bones pràctiques
+- Prefereix **f-strings** per llegibilitat.
+- Mantén les expressions **curtes** dins `{ }` (si són llargues, calcula primer).
+- Usa **formatadors** (`:.2f`, `:>10`, `:%d/%m/%Y`, …) per presentar dades netes.
+- Revisa sortides amb el mode **debug `x=`** quan cal.

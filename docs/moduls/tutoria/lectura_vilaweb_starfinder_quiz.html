@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lectura i qüestionari: Starfinder: Afterlight (VilaWeb)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 24px; }
+    h1, h2 { line-height: 1.2; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .muted { color: #666; font-size: 0.95rem; }
+    .question { margin-top: 16px; }
+    .ok { color: #0a7; font-weight: 600; }
+    .bad { color: #c00; font-weight: 600; }
+    button { padding: 10px 16px; border-radius: 10px; border: 1px solid #ccc; cursor: pointer; }
+    input[type="text"], textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+    .small { font-size: .9rem; }
+    .pill { display:inline-block; padding: 3px 8px; border:1px solid #999; border-radius:999px; margin-right:8px; font-size: .85rem; }
+    .footer { margin-top: 24px; font-size: .9rem; color:#666; }
+    .required::after { content:" *"; color:#c00; }
+    .row { display:flex; gap: 12px; flex-wrap: wrap; }
+    .row > div { flex: 1 1 260px; }
+  </style>
+</head>
+<body>
+  <h1>Lectura i qüestionari: 'Starfinder: Afterlight'</h1>
+  <p class="muted">Data: <span id="todayISO">2025-11-07</span></p>
+  <div class="card">
+    <p><strong>Instruccions</strong> · Llegeix l'article i respon el qüestionari. Al final, prem <em>Corregeix</em> i després <em>Descarrega resultats (.json)</em>.</p>
+    <p><span class="pill">Tema: Indústria del videojoc · Finançament</span></p>
+    <p><a href="https://www.vilaweb.cat/noticies/starfinder-afterlight-videojoc-catala-rol/" target="_blank" rel="noopener noreferrer">Obrir l'article a VilaWeb (nova pestanya)</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Identificació</h2>
+    <div class="row">
+      <div>
+        <label class="required">Nom i cognoms</label>
+        <select id="alumneSelect" required></select>
+      </div>
+      <div style="display:none;">
+        <label>Si no surts a la llista, escriu el teu nom</label>
+        <input type="text" id="alumneManual" placeholder="Cognom1 Cognom2, Nom" />
+      </div>
+    </div>
+  </div>
+
+  <h2>Qüestionari</h2>
+  <form id="quiz">
+    <div class="question card">
+      <label class="required"><strong>1)</strong> Quant demanava inicialment la campanya i quant ha recaptat aproximadament?</label><br>
+      <label><input type="radio" name="q1" value="a"> 150.000 € i 2 milions €</label><br>
+      <label><input type="radio" name="q1" value="b"> 75.000 € i prop de 800.000 €</label><br>
+      <label><input type="radio" name="q1" value="c"> 20.000 € i 100.000 €</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>2)</strong> En quant de temps es va assolir l'objectiu inicial?</label><br>
+      <label><input type="radio" name="q2" value="a"> 80 minuts</label><br>
+      <label><input type="radio" name="q2" value="b"> 24 hores</label><br>
+      <label><input type="radio" name="q2" value="c"> 7 dies</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>3)</strong> Qui són els dos desenvolupadors principals entrevistats?</label><br>
+      <label><input type="radio" name="q3" value="a"> Ricard Pillosu i Albert Jané</label><br>
+      <label><input type="radio" name="q3" value="b"> Shigeru Miyamoto i Hideo Kojima</label><br>
+      <label><input type="radio" name="q3" value="c"> Tim Sweeney i Gabe Newell</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>4)</strong> Quan està previst l'accés anticipat i la publicació final?</label><br>
+      <label><input type="radio" name="q4" value="a"> Accés 2026T2 · Llençament 2027T2</label><br>
+      <label><input type="radio" name="q4" value="b"> Accés 2025T4 · Llençament 2026T1</label><br>
+      <label><input type="radio" name="q4" value="c"> Accés 2028T1 · Llençament 2029T3</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>5)</strong> En quins idiomes es publicarà d'inici? (tria la més encertada)</label><br>
+      <label><input type="radio" name="q5" value="a"> Només anglès</label><br>
+      <label><input type="radio" name="q5" value="b"> Català, castellà i anglès, amb menús/interfície traduïts; diàlegs en anglès</label><br>
+      <label><input type="radio" name="q5" value="c"> Tots els idiomes europeus amb doblatge complet</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>6)</strong> V/F · El doblatge serà en català.</label><br>
+      <label><input type="radio" name="q6" value="true"> Vertader</label><br>
+      <label><input type="radio" name="q6" value="false"> Fals</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>7)</strong> Aproximadament, quants mecenes han participat a la campanya?</label><br>
+      <label><input type="radio" name="q7" value="a"> Més de 13.000</label><br>
+      <label><input type="radio" name="q7" value="b"> Uns 1.300</label><br>
+      <label><input type="radio" name="q7" value="c"> Uns 130</label>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>8)</strong> Explica breument dos factors que, segons el text, han contribuït a l'èxit del projecte.</label><br>
+      <textarea name="q8" rows="4" minlength="120" placeholder="Escriu aquí la teva resposta ..."></textarea>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>9)</strong> Descriu en una o dues frases de què va el joc.</label><br>
+      <textarea name="q9" rows="3" minlength="80" placeholder="Idees clau de la història i la jugabilitat..."></textarea>
+    </div>
+
+    <div class="question card">
+      <label class="required"><strong>10)</strong> Fes un resum de 3 frases amb la teva opinió (mínim 180 caràcters).</label><br>
+      <textarea name="q10" rows="6" minlength="180" placeholder="Escriu aquí el teu resum i opinió..."></textarea>
+    </div>
+
+    <div class="card">
+      <button type="button" onclick="grade()">Corregeix</button>
+      <button type="button" onclick="downloadResults()">Descarrega resultats (.json)</button>
+      <span id="score" class="pill"></span>
+      <div id="feedback" class="small"></div>
+    </div>
+  </form>
+
+  <div class="footer">
+    Referència: VilaWeb, <em>El videojoc català de rol que ha trencat totes les expectatives...</em> (05–06/11/2025).
+  </div>
+
+  <script id="alumnes_data" type="application/json">
+{
+    "meta": {
+        "curs": "2025-2026",
+        "centre": "Digitechfp"
+    },
+    "alumnes": [
+        [
+                        {
+                "firstname": "Lexter",
+                "lastname": "Abe Abag",
+                "email": "teralex142@digitechfp.com"
+            },
+            {
+                "firstname": "Berta",
+                "lastname": "Arenas Del Amo",
+                "email": "Berta.arenas2007@digitechfp.com"
+            },
+            {
+                "firstname": "Daniel",
+                "lastname": "Ciurana Jiménez",
+                "email": "itzciujis@digitechfp.com"
+            },
+            {
+                "firstname": "Juan Manuel",
+                "lastname": "Galán Pérez",
+                "email": "juanmagalan2007@digitechfp.com"
+            },
+            {
+                "firstname": "Lem Gerardo",
+                "lastname": "Quilca Rodríguez",
+                "email": "lemquilca22@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Gonzalez Ortega",
+                "email": "gonzalezHugoortega@digitechfp.com"
+            },
+            {
+                "firstname": "Hugo",
+                "lastname": "Martínez Santos",
+                "email": "hugomartinez310707@digitechfp.com"
+            },
+            {
+                "firstname": "Denise Andrea",
+                "lastname": "Name Ramírez",
+                "email": "dnameramirez@digitechfp.com"
+            },
+            {
+                "firstname": "David Santiago",
+                "lastname": "Rincón Mendez",
+                "email": "santisalserin.sr@digitechfp.com"
+            },
+            {
+                "firstname": "Carlos",
+                "lastname": "Ruiz Montesinos",
+                "email": "karlosruizmo@digitechfp.com"
+            },
+            {
+                "firstname": "Robinson Javier",
+                "lastname": "Tituaña Criollo",
+                "email": "itsjavii1610@digitechfp.com"
+            },
+            {
+                "firstname": "Marc",
+                "lastname": "López Vivies",
+                "email": "marclopezvives6@digitechfp.com"
+            },
+            {
+                "firstname": "Pau",
+                "lastname": "Díaz López",
+                "email": "paudiazlopez09@digitechfp.com"
+            },
+            {
+                "firstname": "Merouan",
+                "lastname": "Kiass",
+                "email": "kiassmerouan@digitechfp.com"
+            },
+            {
+                "firstname": "Antonia Lorena",
+                "lastname": "Cracana Cracana",
+                "email": "lorenacracana14@digitechfp.com"
+            },
+            {
+                "firstname": "Clemente",
+                "lastname": "Ramos Guiterrez",
+                "email": "clementeramosgutierrez@digitechfp.com"
+            },
+            {
+                "firstname": "Kristina",
+                "lastname": "Velkovska Kucinic",
+                "email": "kristina.velkovska.kucinic@digitechfp.com"
+            },
+            {
+                "firstname": "Joao Daniel",
+                "lastname": "De Paiva Oliveira",
+                "email": "joaodaniel.jd@digitechfp.com"
+            }
+        ]
+    ]
+}
+  </script>
+
+<script>
+const correct = {
+  q1: "b",
+  q2: "a",
+  q3: "a",
+  q4: "a",
+  q5: "b",
+  q6: "false",
+  q7: "a"
+};
+function grade() {
+  let score = 0;
+  let total = 7; 
+  let fb = [];
+  for (let i=1;i<=7;i++) {
+    const name = "q"+i;
+    const selected = document.querySelector('input[name="'+name+'"]:checked');
+    if (!selected) { fb.push("Pregunta "+i+": sense resposta"); continue; }
+    if (selected.value === correct[name]) { score++; } else { fb.push("Pregunta "+i+": resposta incorrecta"); }
+  }
+  const q8 = document.querySelector('textarea[name="q8"]').value.trim();
+  if (q8.length < 120) fb.push("P8: mínim 120 caràcters.");
+  const q9 = document.querySelector('textarea[name="q9"]').value.trim();
+  if (q9.length < 80) fb.push("P9: mínim 80 caràcters.");
+  const q10 = document.querySelector('textarea[name="q10"]').value.trim();
+  if (q10.length < 180) fb.push("P10: mínim 180 caràcters.");
+  const percent = Math.round((score/total)*100);
+  document.getElementById("score").textContent = "Puntuació autoavaluable: "+score+"/"+total+" ("+percent+"%)";
+  document.getElementById("score").className = "pill " + (percent>=60 ? "ok":"bad");
+  document.getElementById("feedback").textContent = fb.join(" · ");
+}
+</script>
+
+<script>
+function slugify(s) {
+  return s.normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-zA-Z0-9]+/g, '_')
+          .replace(/^_+|_+$/g, '')
+          .toLowerCase();
+}
+function getTodayISO() { return new Date().toISOString().slice(0,10); }
+function readAlumnes() {
+  try {
+    const raw = document.getElementById('alumnes_data').textContent;
+    const obj = JSON.parse(raw);
+    let arr = [];
+    if (Array.isArray(obj.alumnes)) {
+      if (Array.isArray(obj.alumnes[0])) arr = obj.alumnes[0];
+      else arr = obj.alumnes;
+    }
+    arr = arr.map(a => ({ firstname: a.firstname||'', lastname: a.lastname||'', email: a.email||'' }))
+             .sort((a,b) => (a.lastname.localeCompare(b.lastname,'ca') || a.firstname.localeCompare(b.firstname,'ca')));
+    return { meta: obj.meta || {}, alumnes: arr };
+  } catch(e) { console.error(e); return { meta: {}, alumnes: [] }; }
+}
+function populateSelect() {
+  const { alumnes } = readAlumnes();
+  const sel = document.getElementById('alumneSelect');
+  sel.innerHTML = '<option value="">— Selecciona el teu nom —</option>';
+  for (const a of alumnes) {
+    const opt = document.createElement('option');
+    opt.value = a.email || (a.lastname + ', ' + a.firstname);
+    opt.textContent = (a.lastname + ', ' + a.firstname).trim();
+    opt.dataset.firstname = a.firstname;
+    opt.dataset.lastname = a.lastname;
+    opt.dataset.email = a.email;
+    sel.appendChild(opt);
+  }
+  const optAlt = document.createElement('option');
+  optAlt.value = '__ALTRE__';
+  optAlt.textContent = '— No hi sóc (escriure manualment) —';
+  sel.appendChild(optAlt);
+}
+function onSelectChange() {
+  const sel = document.getElementById('alumneSelect');
+  const other = document.getElementById('alumneManual');
+  if (sel.value === '__ALTRE__') {
+    other.parentElement.style.display = 'block';
+    other.required = true;
+  } else {
+    other.value = '';
+    other.required = false;
+    other.parentElement.style.display = 'none';
+  }
+}
+window.addEventListener('DOMContentLoaded', () => {
+  populateSelect();
+  document.getElementById('alumneSelect').addEventListener('change', onSelectChange);
+  const dateEl = document.getElementById('todayISO');
+  if (dateEl) dateEl.textContent = getTodayISO();
+});
+function downloadResults() {
+  const sel = document.getElementById('alumneSelect');
+  let student = { firstname:'', lastname:'', email:'', display:'' };
+  if (!sel.value) { alert('Si us plau, tria el teu nom.'); return; }
+  if (sel.value === '__ALTRE__') {
+    const manual = (document.getElementById('alumneManual').value||'').trim();
+    if (!manual) { alert('Escriu el teu nom complet.'); return; }
+    student.display = manual;
+  } else {
+    const opt = sel.selectedOptions[0];
+    student.firstname = opt.dataset.firstname || '';
+    student.lastname = opt.dataset.lastname || '';
+    student.email = opt.dataset.email || sel.value;
+    student.display = (opt.textContent||'').trim();
+  }
+  const form = document.getElementById('quiz');
+  const data = new FormData(form);
+  const answers = {};
+  for (let [k,v] of data.entries()) { if (k.startsWith('q')) answers[k]=v; }
+  const scoreText = document.getElementById('score').textContent || '';
+  const percentMatch = scoreText.match(/(\d+)%/);
+  const scoreMatch = scoreText.match(/(\d+)\/(\d+)/);
+  const percent = percentMatch ? parseInt(percentMatch[1],10) : null;
+  const autos = scoreMatch ? { got: parseInt(scoreMatch[1],10), total: parseInt(scoreMatch[2],10) } : null;
+  const metaObj = readAlumnes().meta || {};
+  const payload = {
+    meta: {
+      curs: metaObj.curs || '',
+      centre: metaObj.centre || '',
+      data: getTodayISO(),
+      article_title: "Starfinder: Afterlight (VilaWeb)",
+      article_url: "https://www.vilaweb.cat/noticies/starfinder-afterlight-videojoc-catala-rol/"
+    },
+    student: student,
+    answers: answers,
+    score_auto: autos,
+    percent_auto: percent
+  };
+  const jsonStr = JSON.stringify(payload, null, 2);
+  const blob = new Blob([jsonStr], {type: 'application/json'});
+  const who = student.display || (student.lastname + ' ' + student.firstname) || 'alumne';
+  const fname = "resultats_vilaweb_" + getTodayISO() + "_" + slugify(who) + ".json";
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = fname;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+
+</body>
+</html>

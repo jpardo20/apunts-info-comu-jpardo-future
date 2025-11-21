@@ -1,0 +1,8 @@
+{
+  "groups": ["Grup 1", "Grup 2", "Grup 3"],
+  "students": {
+    "Grup 1": ["Pau", "Clemente"],
+    "Grup 2": ["Merouan", "Kristina"],
+    "Grup 3": ["Lorena", "Joao", "Marc"]
+  }
+}

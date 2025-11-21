@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>0483 · Sistemes informàtics — Activitat avaluable 003 (JSON)</title>
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #16a34a;
+      --danger: #dc2626;
+      --danger-ink: #991b1b;
+      --border: #e5e7eb;
+      --shadow: 0 6px 24px rgba(2, 6, 23, .08);
+      --radius: 14px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
+      background:
+        radial-gradient(850px 500px at 0% -10%, rgba(37,99,235,.08), transparent 60%),
+        radial-gradient(900px 500px at 100% -10%, rgba(16,163,69,.07), transparent 55%),
+        var(--bg);
+      color: var(--ink);
+      line-height:1.48;
+      padding: 24px;
+    }
+    .wrap{ max-width: 980px; margin:0 auto; }
+    header{ display:grid; gap:6px; margin-bottom:16px; }
+    h1{ margin:0; font-size: clamp(22px, 4vw, 30px); }
+    .subtitle{ color: var(--muted); font-size: 14px; }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    fieldset{
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 14px 0;
+      background: #fbfdff;
+    }
+    legend{ color: var(--muted); padding: 0 8px; }
+    .grid{ display:grid; gap:12px; }
+    .grid.cols-2{ grid-template-columns: 1fr 1fr; }
+    .grid.cols-10{ grid-template-columns: 1fr; }
+    @media (max-width: 780px){
+      .grid.cols-2{ grid-template-columns: 1fr; }
+      .grid.cols-10{ grid-template-columns: 1fr; }
+    }
+    label{ font-weight:600; font-size:14px; }
+    .hint, .muted-inline{ color:var(--muted); font-size:12px; }
+    input[type="text"], select, textarea{
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #d6d9e0;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
+    }
+    textarea{ min-height: 96px; resize: vertical; }
+    .row{ display:grid; gap:8px; }
+    .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+    button{
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fff, #f1f5f9);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button.good{ background: linear-gradient(180deg, #22c55e, #16a34a); color: #fff; border-color: #16a34a; }
+    button.warn{ background: linear-gradient(180deg, #ef4444, #dc2626); color: #fff; border-color:#dc2626; }
+    button:disabled{ opacity:.6; cursor:not-allowed; }
+    .sticky-progress{
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(246,247,251,.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+    }
+    .progress{ position:relative; height:10px; background:#eef2f7; border:1px solid #e5e7eb; border-radius:999px; overflow:hidden; }
+    .progress>i{ position:absolute; inset:0; width:0%; background: linear-gradient(90deg, #16a34a, #2563eb); transition: width .3s ease; }
+    .pct { text-align: right; font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .toast{
+      position:fixed; bottom:16px; right:16px;
+      background:#111827; color:#fff; border:1px solid #1f2937; border-radius:12px; padding:10px 14px; box-shadow: var(--shadow);
+      display:none;
+    }
+    ul.steps{ margin: 8px 0 0 16px; padding:0; }
+    ul.steps li{ margin: 6px 0; }
+    .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    @media (max-width: 780px){ .two-col{ grid-template-columns: 1fr; } }
+    .small{ font-size:12px; color: var(--muted); }
+    /* Missing list + invalid fields */
+    .dangerbox{ background:#fee2e2; border-color:#fecaca; color:var(--danger-ink); }
+    .dangerbox h3{ margin: 0 0 8px 0; }
+    .dangerbox ul{ margin: 0; padding-left: 20px; }
+    .invalid{ border-color:#ef4444 !important; background:#fff7f7 !important; box-shadow: 0 0 0 3px rgba(239,68,68,.15); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>0483 · Sistemes informàtics — Activitat avaluable 003</h1>
+      <div class="subtitle">Operacions bàsiques amb el terminal · Entrega en JSON</div>
+    </header>
+
+    <div class="card">
+      <p><strong>Objectiu:</strong> demostrar domini de les comandes bàsiques de Linux i entregar les evidències en un <strong>fitxer JSON</strong>.</p>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div>
+          <label for="student">Alumne/a</label>
+          <select id="student" disabled>
+            <option>Carregant llistat...</option>
+          </select>
+          <div id="studentFallback" style="display:none; margin-top:8px;">
+            <label for="studentManual">Nom i cognoms (si el llistat no carrega)</label>
+            <input id="studentManual" type="text" placeholder="Escriu el teu nom manualment" />
+            <div class="muted-inline">Evita accents i caràcters especials per consistència.</div>
+          </div>
+          <div class="small" id="studentEmailNote"></div>
+        </div>
+      </div>
+      <div id="lockMsg" class="muted-inline" style="margin-top:8px;"></div>
+    </div>
+
+    <!-- Missing box -->
+    <div id="missingBox" class="card dangerbox" style="display:none;">
+      <h3>Falten respostes:</h3>
+      <ul id="missingList"></ul>
+    </div>
+
+    <section class="card">
+      <h2 style="margin-top:0">Tasques</h2>
+      <div class="sticky-progress">
+        <div class="progress" title="Completat"><i id="progbar"></i></div>
+        <div class="pct" id="pct">0%</div>
+      </div>
+
+      <!-- Tasca 1 -->
+      <fieldset>
+        <legend><strong>Tasca 1</strong> · Preparació de l’espai de treball</legend>
+        <p class="hint">Fes aquestes passes:</p>
+        <ul class="steps">
+          <li><strong>Pas 1</strong>: Crea el directori <code>prova/</code> i entra-hi.</li>
+        </ul>
+        <div class="grid cols-10">
+          <div class="row two-col">
+            <div>
+              <label for="tasca001pas001_cmd">Comanda</label>
+              <input id="tasca001pas001_cmd" type="text" placeholder="Escriu la comanda que has executat">
+            </div>
+            <div>
+              <label for="tasca001pas001_out">Sortida</label>
+              <textarea id="tasca001pas001_out" placeholder="Enganxa la sortida (si n'hi ha)"></textarea>
+            </div>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps">
+          <li><strong>Pas 2</strong>: Crea tres fitxers buits: <code>a.txt</code>, <code>b.txt</code>, <code>c.txt</code> amb <code>touch</code>.</li>
+        </ul>
+        <div class="grid cols-10">
+          <div class="row two-col">
+            <div>
+              <label for="tasca001pas002_cmd">Comanda</label>
+              <input id="tasca001pas002_cmd" type="text" placeholder="Escriu la comanda que has executat">
+            </div>
+            <div>
+              <label for="tasca001pas002_out">Sortida</label>
+              <textarea id="tasca001pas002_out" placeholder="Enganxa la sortida"></textarea>
+            </div>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps">
+          <li><strong>Pas 3</strong>: Mostra el directori actual (<code>pwd</code>) i el llistat detallat (<code>ls -la</code>).</li>
+        </ul>
+        <div class="grid cols-10">
+          <div class="row two-col">
+            <div>
+              <label for="tasca001pas003_cmd">Comanda</label>
+              <input id="tasca001pas003_cmd" type="text" placeholder="Escriu la comanda que has executat">
+            </div>
+            <div>
+              <label for="tasca001pas003_out">Sortida</label>
+              <textarea id="tasca001pas003_out" placeholder="Enganxa la sortida"></textarea>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Tasca 2 -->
+      <fieldset>
+        <legend><strong>Tasca 2</strong> · Còpia amb metadades</legend>
+        <p class="hint">Crea <code>backup/</code> i copia-hi els fitxers preservant metadades amb <code>cp -a</code>. Llista el directori.</p>
+        <ul class="steps"><li><strong>Pas 1</strong>: Crear <code>backup/</code> i copiar amb <code>cp -a</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca002pas001_cmd">Comanda</label>
+            <input id="tasca002pas001_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca002pas001_out">Sortida</label>
+            <textarea id="tasca002pas001_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps"><li><strong>Pas 2</strong>: Llistar <code>backup/</code> amb <code>ls -la</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca002pas002_cmd">Comanda</label>
+            <input id="tasca002pas002_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca002pas002_out">Sortida</label>
+            <textarea id="tasca002pas002_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Tasca 3 -->
+      <fieldset>
+        <legend><strong>Tasca 3</strong> · Concatenació i verificació</legend>
+        <p class="hint">Concatena <code>a.txt</code> i <code>b.txt</code> a <code>ab.txt</code>, mostra'n el contingut i calcula el <code>sha256sum</code>.</p>
+        <ul class="steps"><li><strong>Pas 1</strong>: Crear <code>ab.txt</code> a partir d'<code>a.txt</code> i <code>b.txt</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca003pas001_cmd">Comanda</label>
+            <input id="tasca003pas001_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca003pas001_out">Sortida</label>
+            <textarea id="tasca003pas001_out" placeholder="Enganxa la sortida (si n'hi ha)"></textarea>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps"><li><strong>Pas 2</strong>: Mostrar el contingut de <code>ab.txt</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca003pas002_cmd">Comanda</label>
+            <input id="tasca003pas002_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca003pas002_out">Sortida</label>
+            <textarea id="tasca003pas002_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps"><li><strong>Pas 3</strong>: Calcular <code>sha256sum</code> d'<code>ab.txt</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca003pas003_cmd">Comanda</label>
+            <input id="tasca003pas003_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca003pas003_out">Sortida</label>
+            <textarea id="tasca003pas003_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Tasca 4 -->
+      <fieldset>
+        <legend><strong>Tasca 4</strong> · Enllaç simbòlic</legend>
+        <p class="hint">Crea l’enllaç simbòlic <code>link_ab</code> → <code>ab.txt</code> i verifica amb <code>ls -l</code> i <code>readlink -f</code>.</p>
+        <ul class="steps"><li><strong>Pas 1</strong>: Crear l’enllaç simbòlic.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca004pas001_cmd">Comanda</label>
+            <input id="tasca004pas001_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca004pas001_out">Sortida</label>
+            <textarea id="tasca004pas001_out" placeholder="Enganxa la sortida (si n'hi ha)"></textarea>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps"><li><strong>Pas 2</strong>: Verificar amb <code>ls -l</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca004pas002_cmd">Comanda</label>
+            <input id="tasca004pas002_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca004pas002_out">Sortida</label>
+            <textarea id="tasca004pas002_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps"><li><strong>Pas 3</strong>: Verificar amb <code>readlink -f</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca004pas003_cmd">Comanda</label>
+            <input id="tasca004pas003_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca004pas003_out">Sortida</label>
+            <textarea id="tasca004pas003_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Tasca 5 -->
+      <fieldset>
+        <legend><strong>Tasca 5</strong> · Compressió</legend>
+        <p class="hint">Comprimeix <code>prova/</code> i llista el contingut del <code>.tar.gz</code>.</p>
+        <ul class="steps"><li><strong>Pas 1</strong>: Crear <code>prova.tar.gz</code> amb <code>tar -czf</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca005pas001_cmd">Comanda</label>
+            <input id="tasca005pas001_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca005pas001_out">Sortida</label>
+            <textarea id="tasca005pas001_out" placeholder="Enganxa la sortida (si n'hi ha)"></textarea>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps"><li><strong>Pas 2</strong>: Llistar contingut amb <code>tar -tf</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca005pas002_cmd">Comanda</label>
+            <input id="tasca005pas002_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca005pas002_out">Sortida</label>
+            <textarea id="tasca005pas002_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Tasca 6 -->
+      <fieldset>
+        <legend><strong>Tasca 6</strong> · Cerca amb grep</legend>
+        <p class="hint">Afegeix una línia amb <code>TODO:</code> a algun fitxer i cerca-la amb <code>grep -R -n</code>.</p>
+        <ul class="steps"><li><strong>Pas 1</strong>: Afegir <code>TODO</code> a algun fitxer.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca006pas001_cmd">Comanda</label>
+            <input id="tasca006pas001_cmd" type="text" placeholder="Escriu la comanda que has executat">
+          </div>
+          <div>
+            <label for="tasca006pas001_out">Sortida</label>
+            <textarea id="tasca006pas001_out" placeholder="Enganxa la sortida (si n'hi ha)"></textarea>
+          </div>
+        </div>
+        <br><hr>
+        <ul class="steps"><li><strong>Pas 2</strong>: Cercar amb <code>grep -R -n</code>.</li></ul>
+        <div class="row two-col">
+          <div>
+            <label for="tasca006pas002_cmd">Comanda</label>
+            <input id="tasca006pas002_cmd" type="text" placeholder='Escriu la comanda que has executat'>
+          </div>
+          <div>
+            <label for="tasca006pas002_out">Sortida</label>
+            <textarea id="tasca006pas002_out" placeholder="Enganxa la sortida"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="btns">
+        <button class="good" id="btnDownload">Descarrega JSON</button>
+        <button class="warn" id="btnReset" type="button">Neteja formulari</button>
+      </div>
+    </section>
+
+    <div class="card" style="text-align:center; color: var(--muted); font-size:12px;">
+      © DAM · Activitat 003 · HTML+JS · Carrega d'alumnes des de <code>../alumnes/dades_alumnes.json</code>.
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+  const $ = (s)=>document.querySelector(s);
+  const $$ = (s)=>Array.from(document.querySelectorAll(s));
+
+  const studentSelect = $('#student');
+  const studentFallback = $('#studentFallback');
+  const lockMsg = $('#lockMsg');
+  const emailNote = $('#studentEmailNote');
+
+  async function loadStudents(){
+    try{
+      lockMsg.textContent = "Carregant llistat d'alumnes...";
+      const res = await fetch('../alumnes/dades_alumnes.json', {cache:'no-store'});
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const arr = flattenAlumnes(data);
+      if(!arr.length) throw new Error('Sense alumnes');
+      studentSelect.innerHTML = '<option value="">Selecciona el teu nom…</option>' + arr.map(s=>{
+        const txt = escapeHtml((s.firstname||'') + ' ' + (s.lastname||''));
+        const em = s.email ? ` data-email="${escapeHtml(s.email)}"` : '';
+        return `<option${em}>${txt}</option>`;
+      }).join('');
+      studentSelect.disabled = false;
+      studentFallback.style.display = 'none';
+      lockMsg.textContent = 'Selecciona el teu nom del desplegable.';
+      studentSelect.addEventListener('change', ()=>{
+        const opt = studentSelect.selectedOptions[0];
+        const mail = opt?.dataset?.email || '';
+        emailNote.textContent = mail ? ('Email: ' + mail) : '';
+      });
+    }catch(err){
+      studentSelect.innerHTML = '<option value="">No s\'ha pogut carregar el llistat</option>';
+      studentSelect.disabled = true;
+      studentFallback.style.display = 'block';
+      lockMsg.textContent = 'No s’ha pogut carregar el llistat (potser estàs obrint el fitxer localment). Escriu el teu nom manualment.';
+      console.error(err);
+    }
+  }
+
+  function flattenAlumnes(data){
+    const out = [];
+    function pushIfValid(x){
+      if(!x) return;
+      const fn = x.firstname || x.name || x.nom || '';
+      const ln = x.lastname || x.cognoms || x.surname || '';
+      const em = x.email || x.correu || '';
+      if(fn || ln || em){
+        out.push({firstname: fn, lastname: ln, email: em});
+      }
+    }
+    function walk(node){
+      if(Array.isArray(node)){
+        node.forEach(walk);
+      }else if(node && typeof node === 'object'){
+        if('firstname' in node || 'lastname' in node || 'email' in node){
+          pushIfValid(node);
+        }else if('alumnes' in node){
+          walk(node.alumnes);
+        }else if('students' in node){
+          walk(node.students);
+        }else{
+          Object.values(node).forEach(walk);
+        }
+      }
+    }
+    walk(data);
+    return out;
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>\"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#039;' }[m]));
+  }
+
+  loadStudents();
+
+  const steps = [
+    'tasca001pas001','tasca001pas002','tasca001pas003',
+    'tasca002pas001','tasca002pas002',
+    'tasca003pas001','tasca003pas002','tasca003pas003',
+    'tasca004pas001','tasca004pas002','tasca004pas003',
+    'tasca005pas001','tasca005pas002',
+    'tasca006pas001','tasca006pas002'
+  ];
+  const requiredFields = steps.flatMap(id => [`#${id}_cmd`, `#${id}_out`] );
+
+  const nameMap = {
+    tasca001pas001: 'T1 — Pas 1',
+    tasca001pas002: 'T1 — Pas 2',
+    tasca001pas003: 'T1 — Pas 3',
+    tasca002pas001: 'T2 — Pas 1',
+    tasca002pas002: 'T2 — Pas 2',
+    tasca003pas001: 'T3 — Pas 1',
+    tasca003pas002: 'T3 — Pas 2',
+    tasca003pas003: 'T3 — Pas 3',
+    tasca004pas001: 'T4 — Pas 1',
+    tasca004pas002: 'T4 — Pas 2',
+    tasca004pas003: 'T4 — Pas 3',
+    tasca005pas001: 'T5 — Pas 1',
+    tasca005pas002: 'T5 — Pas 2',
+    tasca006pas001: 'T6 — Pas 1',
+    tasca006pas002: 'T6 — Pas 2'
+  };
+
+  function toast(msg, ms=2200){
+    const t = $('#toast'); t.textContent = msg; t.style.display='block';
+    setTimeout(()=>{ t.style.display='none'; }, ms);
+  }
+
+  function progress(){
+    const total = requiredFields.length + 1; // + nom alumne
+    let done = requiredFields.filter(s => ( $(s) && $(s).value.trim().length>0 )).length;
+    if(getStudentName()) done += 1;
+    const pct = Math.round((done/total)*100);
+    $('#progbar').style.width = pct + '%';
+    $('#pct').textContent = pct + '%';
+  }
+  document.addEventListener('input', e => { if(e.target.classList.contains('invalid') && e.target.value.trim()) e.target.classList.remove('invalid'); progress(); });
+  document.addEventListener('change', progress);
+  progress();
+
+  function getStudentName(){
+    const v = studentSelect.disabled ? '' : (studentSelect.value || '').trim();
+    const manual = ($('#studentManual')?.value || '').trim();
+    return v || manual;
+  }
+
+  function buildJSON(){
+    const nom = getStudentName();
+    const email = (!studentSelect.disabled && studentSelect.selectedOptions[0]?.dataset?.email) ? studentSelect.selectedOptions[0].dataset.email : '';
+    if(!nom) throw new Error('Alumne/a');
+    for(const sel of requiredFields){
+      const el = $(sel);
+      if(!el || !el.value.trim()){
+        throw new Error(sel.replace('#','')); // handled upstream
+      }
+    }
+    const data = {
+      alumne: { nom, email: email || undefined, origen: studentSelect.disabled ? 'manual' : (studentSelect.value ? 'llistat' : ( $('#studentManual').value.trim() ? 'manual' : 'llistat')) },
+      tasques: {
+        tasca001: {
+          pas001: { cmd: $('#tasca001pas001_cmd').value.trim(), out: $('#tasca001pas001_out').value },
+          pas002: { cmd: $('#tasca001pas002_cmd').value.trim(), out: $('#tasca001pas002_out').value },
+          pas003: { cmd: $('#tasca001pas003_cmd').value.trim(), out: $('#tasca001pas003_out').value }
+        },
+        tasca002: {
+          pas001: { cmd: $('#tasca002pas001_cmd').value.trim(), out: $('#tasca002pas001_out').value },
+          pas002: { cmd: $('#tasca002pas002_cmd').value.trim(), out: $('#tasca002pas002_out').value }
+        },
+        tasca003: {
+          pas001: { cmd: $('#tasca003pas001_cmd').value.trim(), out: $('#tasca003pas001_out').value },
+          pas002: { cmd: $('#tasca003pas002_cmd').value.trim(), out: $('#tasca003pas002_out').value },
+          pas003: { cmd: $('#tasca003pas003_cmd').value.trim(), out: $('#tasca003pas003_out').value }
+        },
+        tasca004: {
+          pas001: { cmd: $('#tasca004pas001_cmd').value.trim(), out: $('#tasca004pas001_out').value },
+          pas002: { cmd: $('#tasca004pas002_cmd').value.trim(), out: $('#tasca004pas002_out').value },
+          pas003: { cmd: $('#tasca004pas003_cmd').value.trim(), out: $('#tasca004pas003_out').value }
+        },
+        tasca005: {
+          pas001: { cmd: $('#tasca005pas001_cmd').value.trim(), out: $('#tasca005pas001_out').value },
+          pas002: { cmd: $('#tasca005pas002_cmd').value.trim(), out: $('#tasca005pas002_out').value }
+        },
+        tasca006: {
+          pas001: { cmd: $('#tasca006pas001_cmd').value.trim(), out: $('#tasca006pas001_out').value },
+          pas002: { cmd: $('#tasca006pas002_cmd').value.trim(), out: $('#tasca006pas002_out').value }
+        }
+      }
+    };
+    return data;
+  }
+
+  function listMissing(missingIds){
+    const box = $('#missingBox');
+    const ul = $('#missingList');
+    ul.innerHTML = '';
+    const items = [];
+    // Include Alumne/a if needed
+    if(!getStudentName()){
+      items.push('Alumne/a');
+    }
+    for(const id of missingIds){
+      const base = id.replace(/_(cmd|out)$/,'');
+      const nice = nameMap[base] || base;
+      if(!items.includes(nice)) items.push(nice);
+      // highlight fields
+      const el = document.getElementById(id);
+      if(el) el.classList.add('invalid');
+    }
+    if(items.length){
+      box.style.display = 'block';
+      ul.innerHTML = items.map(x => `<li>${x}</li>`).join('');
+      box.scrollIntoView({behavior:'smooth', block:'center'});
+    }else{
+      box.style.display = 'none';
+    }
+  }
+
+  function download(){
+    // compute missing
+    const missing = [];
+    if(!getStudentName()) missing.push('alumne');
+    for(const sel of requiredFields){
+      const el = $(sel);
+      if(!el || !el.value.trim()) missing.push(sel.slice(1)); // store id without #
+    }
+    if(missing.length){
+      listMissing(missing);
+      toast('Revisa els camps pendents.');
+      return;
+    }
+
+    try{
+      const obj = buildJSON();
+      const pretty = JSON.stringify(obj, null, 2);
+      const blob = new Blob([pretty], {type: 'application/json;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'intro-linux-acti-aval-003.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+      $('#missingBox').style.display = 'none';
+      toast('Fitxer descarregat. Ara puja’l al LMS.');
+    }catch(e){
+      toast('No es pot descarregar: ' + e.message, 3200);
+    }
+  }
+
+  function resetAll(){
+    if(!confirm('Vols buidar tots els camps?')) return;
+    $$('input[type=text], textarea').forEach(el => { el.value = ''; el.classList.remove('invalid'); });
+    if(!studentSelect.disabled) studentSelect.value = '';
+    $('#missingBox').style.display = 'none';
+    progress();
+  }
+
+  $('#btnDownload').addEventListener('click', (e)=>{ e.preventDefault(); download(); });
+  $('#btnReset').addEventListener('click', (e)=>{ e.preventDefault(); resetAll(); });
+
+  // init
+  loadStudents();
+</script>
+</body>
+</html>

@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <title>RA2 – Activitats Xarxes locals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color-scheme: light;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f5f7;
+      color: #222;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem 1rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 0.25rem;
+    }
+
+    h3 {
+      margin-top: 1rem;
+    }
+
+    section {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #eef2ff;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .question {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed #e5e7eb;
+    }
+
+    .question:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .question-label {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .question small {
+      display: block;
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 0.1rem;
+    }
+
+    textarea,
+    input[type="text"],
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      font: inherit;
+      padding: 0.45rem 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      margin-top: 0.25rem;
+      resize: vertical;
+      min-height: 2.4rem;
+    }
+
+    textarea {
+      min-height: 4rem;
+    }
+
+    textarea:focus,
+    input[type="text"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px #6366f1;
+      background: #ffffff;
+    }
+
+    label span.required {
+      color: #dc2626;
+      margin-left: 0.15rem;
+    }
+
+    .paste-area {
+      margin-top: 0.4rem;
+      border-radius: 0.75rem;
+      border: 1px dashed #9ca3af;
+      padding: 0.75rem;
+      background: #f9fafb;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+      cursor: pointer;
+    }
+
+    .paste-area img {
+      max-width: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+    }
+
+    .paste-area.has-image {
+      justify-content: flex-start;
+      text-align: left;
+      padding: 0.5rem;
+    }
+
+    .info-note {
+      font-size: 0.85rem;
+      color: #4b5563;
+      background: #eff6ff;
+      border-left: 4px solid #60a5fa;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Barra de progrés */
+    .progress-container {
+      position: sticky;
+      top: 0;
+      background: #f5f5f7cc;
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 0.5rem 0.75rem 0.5rem;
+      z-index: 20;
+      border-bottom: 1px solid #e5e7eb;
+      margin: 0 -1rem 1rem -1rem;
+    }
+
+    .progress-bar-outer {
+      position: relative;
+      width: 100%;
+      height: 0.8rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #a5b4fc, #38bdf8);
+      transition: width 0.25s ease-out;
+    }
+
+    .progress-text {
+      margin-top: 0.25rem;
+      font-size: 0.8rem;
+      color: #4b5563;
+      text-align: right;
+    }
+
+    .btn-row {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 0.5rem 1rem;
+      font: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-primary {
+      background: #4f46e5;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #4338ca;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .btn-secondary:hover {
+      background: #d1d5db;
+    }
+
+    .status-message {
+      font-size: 0.85rem;
+      color: #b91c1c;
+    }
+
+    .status-message.ok {
+      color: #166534;
+    }
+
+    @media (max-width: 700px) {
+      section {
+        padding: 0.75rem 0.8rem;
+      }
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>RA2 – Activitats de Xarxes locals</h1>
+
+    <div class="progress-container">
+      <div class="progress-bar-outer">
+        <div id="progress-bar" class="progress-bar-inner"></div>
+      </div>
+      <div id="progress-text" class="progress-text">
+        Progrés: 0% (0 de 0 camps omplerts)
+      </div>
+    </div>
+
+    <!-- APARTAT 0: Dades alumne -->
+    <section id="dades-alumne">
+      <div class="section-header">
+        <h2>0. Dades de l'alumne</h2>
+        <span class="section-tag">Meta + identificació</span>
+      </div>
+      <p class="info-note">
+        El selector d'alumne es carrega del fitxer <code>dades_alumnes.json</code>.
+        Revisa que el teu nom apareix correctament i assegura't de triar el teu.
+      </p>
+
+      <div class="question">
+        <label class="question-label" for="alumne-select">
+          Alumne<span class="required">*</span>
+        </label>
+        <select id="alumne-select" data-required="true">
+          <option value="">— Tria el teu nom —</option>
+        </select>
+        <small>
+          Si no hi apareixes, avisa el professor.
+        </small>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="alumne-email">
+          Correu electrònic (centre)
+        </label>
+        <input type="text" id="alumne-email" readonly
+               placeholder="Es carregarà automàticament en triar l'alumne" />
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="alumne-grup">
+          Grup / classe<span class="required">*</span>
+        </label>
+        <input type="text" id="alumne-grup" data-required="true"
+               placeholder="Exemples: 1SMX-A, 1SMX-B…" value="1SMX-A"/>
+      </div>
+    </section>
+
+    <!-- APARTAT 1: Cablejat (A6) -->
+    <section id="cablejat">
+      <div class="section-header">
+        <h2>1. Cablejat (Activitat 6)</h2>
+        <span class="section-tag">Tipus de cables, STP/UTP, 10BASE-X…</span>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q1">
+          1. Tipus de cable (Ethernet, telefònic, coaxial, fibra òptica)
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q1" data-section="cablejat" data-question="q1_tipus_cables" data-required="true"
+          placeholder="Fes una taula textual. Exemple:
+- Ethernet: velocitat màxima, ús principal, observacions
+- Telefònic: ...
+- Coaxial: ...
+- Fibra òptica: ..."></textarea>
+        <small>
+          Indica per a cada cable: velocitat màxima aproximada, ús principal i alguna observació.
+        </small>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q2">
+          2. Categories de cable Ethernet (Cat5e, Cat6, Cat6a, Cat7, Cat8…)
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q2" data-section="cablejat" data-question="q2_categories_ethernet" data-required="true"
+          placeholder="Organitza-ho com una taula: Categoria, velocitat màxima, freqüència, distància màxima recomanada."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q3">
+          3. Velocitat màxima d'un cable Ethernet
+          <span class="required">*</span>
+        </label>
+        <input type="text" id="cablejat-q3" data-section="cablejat" data-question="q3_velocitat_max" data-required="true"
+               placeholder="Exemples: 10 Gbps, 40 Gbps, 100 Gbps…" />
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q4">
+          4. Diferència entre STP i UTP
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q4" data-section="cablejat" data-question="q4_stp_vs_utp" data-required="true"
+          placeholder="Explica què vol dir cada sigla, com estan construïts els cables i en quins casos es recomana STP o UTP."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q5">
+          5. Atenuació i impedància
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q5" data-section="cablejat" data-question="q5_atenuacio_impedancia" data-required="true"
+          placeholder="Defineix:
+- Atenuació
+- Impedància
+i comenta per què són importants en el cablejat de xarxa."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q6">
+          6. Família 10BASE-X
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q6" data-section="cablejat" data-question="q6_familia_10base" data-required="true"
+          placeholder="Descriu 10BASE-T, 10BASE-5 i 10BASE-2: medi (UTP/coaxial...), topologia típica, i significat de 10, BASE i T/5/2."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q7">
+          7. Dades per cables elèctrics
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q7" data-section="cablejat" data-question="q7_dades_per_cable_electric" data-required="true"
+          placeholder="Explica si es poden fer servir els cables elèctrics per enviar dades i com (tecnologies PLC, etc.)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q8">
+          8. Backbone o troncal de la xarxa
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q8" data-section="cablejat" data-question="q8_backbone" data-required="true"
+          placeholder="Explica què és el backbone i posa un exemple d'on el trobaríem dins d'un edifici o campus."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q9">
+          9. Connectors de xarxa
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q9" data-section="cablejat" data-question="q9_connectors_text" data-required="true"
+          placeholder="Descriu com a mínim 3 connectors (per exemple RJ45, RJ11, BNC, LC, SC...). Per a cada un: nom, tipus de cable i ús principal."></textarea>
+
+        <div class="info-note">
+          A continuació, enganxa imatges dels connectors (fetes amb una eina de captura, des del portapapers).
+        </div>
+        <div class="paste-area"
+             data-section="cablejat"
+             data-question="q9_connectors_imatges"
+             data-required="true">
+          Clica aquí i fes <strong>Ctrl+V</strong> (o ⌘+V) per enganxar una o diverses imatges dels connectors.
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q10">
+          10. Coaxial, topologia i terminador
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q10" data-section="cablejat" data-question="q10_coaxial_topologia_terminador" data-required="true"
+          placeholder="Indica en quina topologia s'utilitzava sovint el cable coaxial i què és un terminador."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q11">
+          11. Diferència entre Mbps i MBps
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q11" data-section="cablejat" data-question="q11_mbps_vs_MBps" data-required="true"
+          placeholder="Explica la diferència entre megabits per segon (Mb/s) i megabytes per segon (MB/s), i com fer la conversió."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q12">
+          12. Ample de banda vs velocitat
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q12" data-section="cablejat" data-question="q12_ample_vs_velocitat" data-required="true"
+          placeholder="Explica la diferència entre ample de banda i velocitat de connexió, amb algun exemple."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q13">
+          13. Colors en els parells trenats
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q13" data-section="cablejat" data-question="q13_colors_parells" data-required="true"
+          placeholder="Explica per què es fan servir colors diferents als fils, i què significa cada parell en un cable Ethernet estàndard."></textarea>
+
+        <div class="info-note">
+          Enganxa un esquema (captura) amb els colors d'un cable Ethernet.
+        </div>
+        <div class="paste-area"
+             data-section="cablejat"
+             data-question="q13_colors_diagrama"
+             data-required="true">
+          Clica i fes <strong>Ctrl+V</strong> per enganxar l'esquema de colors.
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q14">
+          14. HUB vs Switch
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q14" data-section="cablejat" data-question="q14_hub_vs_switch" data-required="true"
+          placeholder="Explica com funcionen un HUB i un Switch i quines diferències tenen (trànsit, col·lisions, seguretat, etc.)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q15">
+          15. Dispositius de xarxa vs hosts
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q15" data-section="cablejat" data-question="q15_dispositius_vs_hosts" data-required="true"
+          placeholder="Defineix 'dispositius de xarxa' i 'hosts' i dóna com a mínim dos exemples de cada categoria."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="cablejat-q16">
+          16. Cables directes i creuats
+          <span class="required">*</span>
+        </label>
+        <textarea id="cablejat-q16" data-section="cablejat" data-question="q16_cables_directes_creuats" data-required="true"
+          placeholder="Explica en quins casos es fan servir cables directes i en quins cables creuats."></textarea>
+
+        <div class="info-note">
+          Enganxa un esquema amb la combinació de colors d'un cable directe i un de creuat.
+        </div>
+        <div class="paste-area"
+             data-section="cablejat"
+             data-question="q16_cables_diagrama"
+             data-required="true">
+          Clica i fes <strong>Ctrl+V</strong> per enganxar l'esquema de cable directe/creuat.
+        </div>
+      </div>
+    </section>
+
+    <!-- APARTAT 2: Fibra òptica (A7) -->
+    <section id="fibra">
+      <div class="section-header">
+        <h2>2. Fibra òptica (Activitat 7)</h2>
+        <span class="section-tag">Materials, avantatges, cables submarins…</span>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q1">
+          1. Història i materials de la fibra òptica
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q1" data-section="fibra" data-question="q1_historia_materials" data-required="true"
+          placeholder="Indica quan es va crear per primer cop un cable de fibra òptica, de què estan fets i què passaria sense revestiment de protecció."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q2">
+          2. Avantatges de la fibra òptica
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q2" data-section="fibra" data-question="q2_avantatges" data-required="true"
+          placeholder="Llista els principals avantatges (amplada de banda, distància, seguretat, immunitat a interferències...)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q3">
+          3. Inconvenients de la fibra òptica
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q3" data-section="fibra" data-question="q3_inconvenients" data-required="true"
+          placeholder="Llista inconvenients (cost, fragilitat, instal·lació, equipament...)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q4">
+          4. Implantació de la fibra a Espanya
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q4" data-section="fibra" data-question="q4_implantacio_espanya" data-required="true"
+          placeholder="Explica quins factors han frenat que hi hagi fibra a totes les ciutats i pobles (cost, orografia, densitat de població, etc.)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q5">
+          5. Velocitat màxima amb fibra òptica
+          <span class="required">*</span>
+        </label>
+        <input type="text" id="fibra-q5" data-section="fibra" data-question="q5_velocitat_max" data-required="true"
+               placeholder="Indica una velocitat màxima aproximada segons les tecnologies actuals (Gbps / Tbps)." />
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q6">
+          6. Cables submarins
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q6" data-section="fibra" data-question="q6_cables_submarins" data-required="true"
+          placeholder="Defineix què és un cable submarí i descriu almenys dues rutes importants (per exemple Europa-Amèrica...)."></textarea>
+
+        <div class="info-note">
+          Pots enganxar una imatge d'un mapa de cables submarins (opcional).
+        </div>
+        <div class="paste-area"
+             data-section="fibra"
+             data-question="q6_cables_submarins_imatge"
+             data-required="false">
+          Opcional: clica i fes <strong>Ctrl+V</strong> per enganxar un mapa de cables submarins.
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q7">
+          7. Cable TAT-1 i percentatge de comunicacions
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q7" data-section="fibra" data-question="q7_tat1_percentatge" data-required="true"
+          placeholder="Explica per a què servia el TAT-1 i quin percentatge aproximat de les comunicacions mundials passen per cables submarins."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q8">
+          8. Primera línia submarina amb fibra òptica
+          <span class="required">*</span>
+        </label>
+        <input type="text" id="fibra-q8" data-section="fibra" data-question="q8_primera_linia_nom" data-required="true"
+               placeholder="Nom de la primera línia submarina amb fibra òptica." />
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q9">
+          9. Notícia (incident amb vaixell i xarxa submarina)
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q9" data-section="fibra" data-question="q9_noticia_vaixell" data-required="true"
+          placeholder="Indica en quin país va passar l'incident, quina empresa era propietària de la xarxa i què és ARCOS."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="fibra-q10">
+          10. Taula comparativa de costos
+          <span class="required">*</span>
+        </label>
+        <textarea id="fibra-q10" data-section="fibra" data-question="q10_taula_costos" data-required="true"
+          placeholder="Compara el preu i la velocitat d'1 metre de fibra òptica, cable Ethernet i cable coaxial. Ex.: 
+- Fibra: preu €/m, velocitat màx, comentaris...
+- Ethernet: ...
+- Coaxial: ..."></textarea>
+      </div>
+    </section>
+
+    <!-- APARTAT 3: Sistemes sense fils i mòbils (A8) -->
+    <section id="sense-fils">
+      <div class="section-header">
+        <h2>3. Sistemes sense fils i mòbils (Activitat 8)</h2>
+        <span class="section-tag">FM/AM, infrarojos, salut, GPS, Galileo, 5G…</span>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q1">
+          1. Origen de les ones de ràdio
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q1" data-section="sense_fils" data-question="q1_origen_radios" data-required="true"
+          placeholder="Des de quan s'utilitzen les ones de ràdio per transmetre informació i qui en van ser els inventors principals."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q2">
+          2. FM vs AM
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q2" data-section="sense_fils" data-question="q2_fm_vs_am" data-required="true"
+          placeholder="Explica la diferència entre modulació FM i AM, avantatges i inconvenients de cadascuna."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q3">
+          3. Dispositius amb infrarojos
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q3" data-section="sense_fils" data-question="q3_dispositius_ir" data-required="true"
+          placeholder="Llista almenys 3 dispositius que utilitzen o han utilitzat infrarojos (mando TV, ports IR de mòbil antic, etc.)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q4">
+          4. IR direccionals vs omnidireccionals
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q4" data-section="sense_fils" data-question="q4_ir_direccional_omni" data-required="true"
+          placeholder="Explica la diferència entre transmissions per infrarojos direccionals i omnidireccionals, amb exemples."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q5">
+          5. Entrevista sobre wifi a les escoles
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q5" data-section="sense_fils" data-question="q5_entrevista_wifi" data-required="true"
+          placeholder="Resumeix qui és l'entrevistat, què opina de la wifi a les escoles i quines solucions proposa."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q6">
+          6. Contaminació electromagnètica
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q6" data-section="sense_fils" data-question="q6_contaminacio_em" data-required="true"
+          placeholder="Defineix què és la contaminació electromagnètica i quins possibles efectes té sobre les persones segons les fonts que hagis consultat."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q7">
+          7. GPS i satèl·lits
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q7" data-section="sense_fils" data-question="q7_gps_satel_lits" data-required="true"
+          placeholder="Indica aproximadament quants satèl·lits calen per al GPS i a quina distància es troben de la Terra."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q8">
+          8. Projecte Galileo
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q8" data-section="sense_fils" data-question="q8_galileo" data-required="true"
+          placeholder="Explica en què consisteix Galileo i en què es diferencia del GPS (propietat, cobertura, objectius...)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q9">
+          9. Generacions mòbils (2G–5G)
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q9" data-section="sense_fils" data-question="q9_generacions_mobils" data-required="true"
+          placeholder="Completa una taula textual amb 2G, 2.5G, 2.75G, 3G, 3.5G, 3.75G, 4G, 5G: tecnologia, velocitat aproximada i usos típics."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q10">
+          10. 5G a l'Estat espanyol
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q10" data-section="sense_fils" data-question="q10_5g_operadors" data-required="true"
+          placeholder="Indica alguns operadors que ofereixin 5G, amb exemples de tarifes (preu, dades, condicions)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="sensefils-q11">
+          11. Avantatges del 5G respecte el 4G
+          <span class="required">*</span>
+        </label>
+        <textarea id="sensefils-q11" data-section="sense_fils" data-question="q11_5g_vs_4g" data-required="true"
+          placeholder="Explica quins avantatges té el 5G respecte el 4G (latència, velocitat, IoT, etc.)."></textarea>
+      </div>
+    </section>
+
+    <!-- APARTAT 4: Cablejat estructurat (A9) -->
+    <section id="cablejat-estructurat">
+      <div class="section-header">
+        <h2>4. Cablejat estructurat (Activitat 9)</h2>
+        <span class="section-tag">Subsistemes, racks, proves de cablejat…</span>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q1">
+          1. Definició de cablejat estructurat
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q1" data-section="cablejat_estructurat" data-question="q1_definicio" data-required="true"
+          placeholder="Defineix què és el cablejat estructurat i per què s'utilitza en edificis i oficines."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q2">
+          2. Característiques (modular, ampliable, flexible, econòmic)
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q2" data-section="cablejat_estructurat" data-question="q2_caracteristiques" data-required="true"
+          placeholder="Per a cada característica (modular, ampliable, flexible, barat) explica què vol dir en el context del cablejat estructurat."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q3">
+          3. Avantatges en el disseny de la xarxa
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q3" data-section="cablejat_estructurat" data-question="q3_avantatges_disseny" data-required="true"
+          placeholder="Explica per què és important tenir en compte el cablejat estructurat a l'hora de dissenyar una xarxa i quins avantatges aporta."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q4">
+          4. Subsistema horitzontal vs vertical (backbone)
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q4" data-section="cablejat_estructurat" data-question="q4_horitzontal_vs_vertical" data-required="true"
+          placeholder="Descriu les diferències entre cablejat horitzontal i vertical, i indica en què consisteix principalment cada un."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q5">
+          5. Sostres i terres tècnics
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q5" data-section="cablejat_estructurat" data-question="q5_sostres_terres_tecnics" data-required="true"
+          placeholder="Explica què són sostres i terres tècnics i com ajuden en la instal·lació i manteniment del cablejat."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q6">
+          6. Contingut d'un armari de connexions (rack)
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q6" data-section="cablejat_estructurat" data-question="q6_armari_connexions" data-required="true"
+          placeholder="Llista alguns dispositius típics que podem trobar en un rack (patch panels, switches, routers, SAI...)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q7">
+          7. Proves de verificació del cablejat
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q7" data-section="cablejat_estructurat" data-question="q7_proves_verificacio" data-required="true"
+          placeholder="Descriu les proves que cal fer després d'instal·lar la xarxa (continuïtat, certificació, etiquetatge...)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q8">
+          8. Aparells per comprovar el cablejat
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q8" data-section="cablejat_estructurat" data-question="q8_aparells_comprovacio" data-required="true"
+          placeholder="Cerca alguns testers i certificadors de cablejat i explica nom, marca/model i per a què serveixen."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="ce-q9">
+          9. SAI (sistema d'alimentació ininterrompuda)
+          <span class="required">*</span>
+        </label>
+        <textarea id="ce-q9" data-section="cablejat_estructurat" data-question="q9_sai" data-required="true"
+          placeholder="Explica què és un SAI, per a què serveix i per què és important en una sala de comunicacions."></textarea>
+      </div>
+    </section>
+
+    <!-- APARTAT 5: Xarxes de comunicacions i tecnologies d'accés (A10) -->
+    <section id="xarxes-comunicacions">
+      <div class="section-header">
+        <h2>5. Xarxes de comunicacions i tecnologies d'accés (Activitat 10)</h2>
+        <span class="section-tag">Impacte social, FTTH, ADSL, altres tecnologies…</span>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="xc-q1">
+          1. Impacte en l'àmbit domèstic i personal
+          <span class="required">*</span>
+        </label>
+        <textarea id="xc-q1" data-section="xarxes_comunicacions" data-question="q1_impacte_domestic" data-required="true"
+          placeholder="Indica 5 aspectes concrets en què les xarxes i Internet han canviat la vida personal/familiar. Per a cada un, indica si ho veus positiu o negatiu i per què."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="xc-q2">
+          2. Impacte en les empreses
+          <span class="required">*</span>
+        </label>
+        <textarea id="xc-q2" data-section="xarxes_comunicacions" data-question="q2_impacte_empreses" data-required="true"
+          placeholder="Indica 5 aspectes en què les xarxes han canviat la forma de treballar de les empreses (teletreball, comerç electrònic, etc.) i valora si el canvi és positiu o negatiu."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="xc-q3">
+          3. Bretxa digital i analfabetisme digital
+          <span class="required">*</span>
+        </label>
+        <textarea id="xc-q3" data-section="xarxes_comunicacions" data-question="q3_bretxa_analfabetisme" data-required="true"
+          placeholder="Defineix què és la bretxa digital i explica si té relació amb l'analfabetisme digital. Posa exemples."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="xc-q4">
+          4. Tecnologies d'accés (FTTH, ADSL, HDSL, SDSL, VDSL…)
+          <span class="required">*</span>
+        </label>
+        <textarea id="xc-q4" data-section="xarxes_comunicacions" data-question="q4_taula_tecnologies" data-required="true"
+          placeholder="Fes una taula textual comparativa de FTTH, ADSL, HDSL, SDSL, VDSL: medi físic, velocitat, simètrica/asimètrica, avantatges i inconvenients. Explica per què FTTH és la més usada actualment."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="xc-q5">
+          5. Operadors FTTH
+          <span class="required">*</span>
+        </label>
+        <textarea id="xc-q5" data-section="xarxes_comunicacions" data-question="q5_operadors_ftth" data-required="true"
+          placeholder="Llista almenys 4 companyies que ofereixen FTTH i fes una taula textual amb tarifes (preu, velocitat, permanència...). Indica quin operador és més econòmic, quin et sembla més fiable i quin és més car."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="xc-q6">
+          6. Operadors ADSL
+          <span class="required">*</span>
+        </label>
+        <textarea id="xc-q6" data-section="xarxes_comunicacions" data-question="q6_operadors_adsl" data-required="true"
+          placeholder="Indica si encara hi ha ofertes ADSL. Si n'hi ha, fes una taula similar a la de FTTH. Si no, explica per què ha desaparegut i/o exemples històrics."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="xc-q7">
+          7. Altres tecnologies d'accés a casa
+          <span class="required">*</span>
+        </label>
+        <textarea id="xc-q7" data-section="xarxes_comunicacions" data-question="q7_altres_tecnologies" data-required="true"
+          placeholder="Descriu altres tecnologies per fer arribar Internet a les llars (4G/5G FWA, satèl·lit, cable HFC, radioenllaç...). Compara algunes ofertes de companyies."></textarea>
+      </div>
+    </section>
+
+    <!-- APARTAT 6: Projecte Taara (A11) -->
+    <section id="taara">
+      <div class="section-header">
+        <h2>6. Projecte Taara i reflexió (Activitat 11)</h2>
+        <span class="section-tag">Enllaços òptics, cobertura global, impacte social…</span>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q1">
+          1. Què és el projecte Taara?
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q1" data-section="taara" data-question="q1_que_es" data-required="true"
+          placeholder="Explica en què consisteix el projecte Taara i qui el lidera (empresa / grup)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q2">
+          2. Esquema de funcionament
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q2" data-section="taara" data-question="q2_esquema_text" data-required="true"
+          placeholder="Descriu textualment com funciona el sistema (punts d'enllaç, feix de llum, receptors...)."></textarea>
+
+        <div class="info-note">
+          A sota pots enganxar un esquema o dibuix del funcionament (captura d'alguna imatge o dibuix propi).
+        </div>
+        <div class="paste-area"
+             data-section="taara"
+             data-question="q2_esquema_imatge"
+             data-required="true">
+          Clica i fes <strong>Ctrl+V</strong> per enganxar l'esquema del sistema Taara.
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q3">
+          3. Primeres proves i tecnologia
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q3" data-section="taara" data-question="q3_proves_tecnologia" data-required="true"
+          placeholder="Indica on s'han fet les primeres proves i quina tecnologia hi ha al darrere (tipus d'enllaç, medi, principi físic)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q4">
+          4. Tipus de connexió i capacitat
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q4" data-section="taara" data-question="q4_connexio_capacitat" data-required="true"
+          placeholder="Indica quin tipus de connexió ofereix (per a què serveix) i la capacitat aproximada de transmissió de dades."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q5">
+          5. Avantatges respecte la fibra òptica
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q5" data-section="taara" data-question="q5_avantatges_vs_fibra" data-required="true"
+          placeholder="Llista els avantatges que ofereix aquest sistema respecte la fibra òptica (costs, desplegament, zones rurals...)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q6">
+          6. Què es sacrifica amb aquest projecte?
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q6" data-section="taara" data-question="q6_que_sacrifica" data-required="true"
+          placeholder="Indica quins aspectes es poden veure sacrificats (fiabilitat, disponibilitat amb mal temps, latència, etc.)."></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q7">
+          7. Reflexió personal
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q7" data-section="taara" data-question="q7_reflexio" data-required="true"
+          placeholder="Respon breument:
+- Avantatges i desavantatges d'una bona cobertura mundial a Internet.
+- És millor millorar xarxes als països desenvolupats o crear-ne de noves a països amb pocs recursos?
+- Quin impacte podria tenir Taara sobre les ISP tradicionals?"></textarea>
+      </div>
+
+      <div class="question">
+        <label class="question-label" for="taara-q8">
+          8. Cerca addicional
+          <span class="required">*</span>
+        </label>
+        <textarea id="taara-q8" data-section="taara" data-question="q8_cerca_addicional" data-required="true"
+          placeholder="Cerca informació actualitzada sobre Taara i resumeix una dada o projecte pilot que no surti als materials inicials."></textarea>
+      </div>
+    </section>
+
+    <!-- BOTONS FINALS -->
+    <section id="final">
+      <div class="section-header">
+        <h2>7. Enviament</h2>
+        <span class="section-tag">Generar i pujar el fitxer JSON</span>
+      </div>
+
+      <p class="info-note">
+        Quan hagis respost <strong>totes</strong> les preguntes i afegit les captures necessàries,
+        prem el botó <strong>Descarrega JSON</strong>. Es crearà un fitxer amb totes les teves respostes.
+        Després l'hauràs de pujar al campus virtual.
+      </p>
+
+      <div class="btn-row">
+        <span id="status-message" class="status-message"></span>
+        <button type="button" class="btn-secondary" id="btn-recalcula">
+          Recalcula progrés
+        </button>
+        <button type="button" class="btn-primary" id="btn-descarrega">
+          💾 Descarrega JSON
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Variables globals per dades d'alumnes
+    let alumnesData = null;
+    let metaData = null;
+
+    async function carregaAlumnes() {
+      try {
+        const res = await fetch("./alumnes/dades_alumnes.json");
+        if (!res.ok) {
+          throw new Error("No s'ha pogut carregar dades_alumnes.json");
+        }
+        const data = await res.json();
+
+        // Accepta tant:
+        //   "alumnes": [ { ... }, { ... } ]
+        // com:
+        //   "alumnes": [ [ { ... }, { ... } ] ]
+        let alumnesBrut = data.alumnes || [];
+        if (Array.isArray(alumnesBrut[0])) {
+          alumnesBrut = alumnesBrut[0];
+        }
+        alumnesData = alumnesBrut;
+        metaData = data.meta || {};
+
+        const select = document.getElementById("alumne-select");
+        alumnesData.forEach((alumne, idx) => {
+          const opt = document.createElement("option");
+          opt.value = idx;
+          const firstname = alumne.firstname || "";
+          const lastname = alumne.lastname || "";
+          opt.textContent = (firstname + " " + lastname).trim() || "Alumne " + (idx + 1);
+          select.appendChild(opt);
+        });
+      } catch (err) {
+        console.error(err);
+        const msg = document.getElementById("status-message");
+        msg.textContent = "No s'ha pogut carregar dades_alumnes.json. Revisa la ubicació del fitxer.";
+        msg.classList.remove("ok");
+      }
+    }
+
+    function actualitzaEmailAlumne() {
+      const select = document.getElementById("alumne-select");
+      const emailInput = document.getElementById("alumne-email");
+      const idx = select.value;
+      if (idx !== "" && alumnesData && alumnesData[idx]) {
+        emailInput.value = alumnesData[idx].email || "";
+      } else {
+        emailInput.value = "";
+      }
+    }
+
+    function getRequiredFields() {
+      return Array.from(document.querySelectorAll("[data-required='true']"));
+    }
+
+    function isFieldFilled(el) {
+      if (el.classList.contains("paste-area")) {
+        return !!el.dataset.imageData;
+      }
+      const tag = el.tagName.toLowerCase();
+      if (tag === "textarea" || tag === "input") {
+        return el.value.trim() !== "";
+      }
+      if (tag === "select") {
+        return el.value !== "";
+      }
+      return false;
+    }
+
+    function updateProgress() {
+      const fields = getRequiredFields();
+      const total = fields.length;
+      let filled = 0;
+      fields.forEach((el) => {
+        if (isFieldFilled(el)) filled++;
+      });
+
+      const percent = total > 0 ? Math.round((filled / total) * 100) : 0;
+      const bar = document.getElementById("progress-bar");
+      const text = document.getElementById("progress-text");
+
+      bar.style.width = percent + "%";
+      text.textContent = `Progrés: ${percent}% (${filled} de ${total} camps omplerts)`;
+    }
+
+    function setupListeners() {
+      // Inputs i textareas
+      const inputs = document.querySelectorAll("textarea, input[type='text'], select");
+      inputs.forEach((el) => {
+        el.addEventListener("input", updateProgress);
+        el.addEventListener("change", updateProgress);
+      });
+
+      // Selector alumne -> actualitza email
+      const selectAlumne = document.getElementById("alumne-select");
+      selectAlumne.addEventListener("change", () => {
+        actualitzaEmailAlumne();
+        updateProgress();
+      });
+
+      // Zones d'enganxar imatges
+      const pasteAreas = document.querySelectorAll(".paste-area");
+      pasteAreas.forEach((area) => {
+        area.addEventListener("click", () => {
+          // per facilitar que el focus vagi aquí
+        });
+
+        area.addEventListener("paste", (e) => {
+          const items = e.clipboardData && e.clipboardData.items;
+          if (!items) return;
+
+          let trobat = false;
+          for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            if (item.type && item.type.indexOf("image") !== -1) {
+              const file = item.getAsFile();
+              const reader = new FileReader();
+              reader.onload = (ev) => {
+                const dataUrl = ev.target.result;
+                area.innerHTML = "";
+                const img = document.createElement("img");
+                img.src = dataUrl;
+                area.appendChild(img);
+                area.classList.add("has-image");
+                area.dataset.imageData = dataUrl;
+                updateProgress();
+              };
+              reader.readAsDataURL(file);
+              trobat = true;
+              e.preventDefault();
+              break;
+            }
+          }
+        });
+      });
+
+      document.getElementById("btn-recalcula").addEventListener("click", () => {
+        updateProgress();
+      });
+
+      document.getElementById("btn-descarrega").addEventListener("click", () => {
+        descarregaJSON();
+      });
+    }
+
+    function recullRespostes() {
+      const respostes = {
+        cablejat: {},
+        fibra: {},
+        sense_fils: {},
+        cablejat_estructurat: {},
+        xarxes_comunicacions: {},
+        taara: {}
+      };
+
+      // Camps de text / select
+      const camps = document.querySelectorAll("[data-section][data-question]");
+      camps.forEach((el) => {
+        const seccio = el.dataset.section;
+        const pregunta = el.dataset.question;
+        const tag = el.tagName.toLowerCase();
+
+        let valor = null;
+        if (tag === "textarea" || tag === "input" || tag === "select") {
+          valor = el.value.trim();
+        }
+
+        if (el.classList.contains("paste-area")) {
+          valor = el.dataset.imageData || null;
+        }
+
+        if (!respostes[seccio]) {
+          respostes[seccio] = {};
+        }
+        respostes[seccio][pregunta] = valor;
+      });
+
+      return respostes;
+    }
+
+    function validaFormulari() {
+      const missing = [];
+      const fields = getRequiredFields();
+
+      fields.forEach((el) => {
+        if (!isFieldFilled(el)) {
+          // busca el label més proper
+          let q = el.closest(".question");
+          let labelText = "";
+          if (q) {
+            const lbl = q.querySelector(".question-label");
+            if (lbl) labelText = lbl.textContent.trim();
+          }
+          if (!labelText) {
+            labelText = el.id || el.name || "(camp sense nom)";
+          }
+          missing.push(labelText);
+        }
+      });
+
+      // Comprova que hi ha alumne seleccionat
+      const selectAlumne = document.getElementById("alumne-select");
+      if (!selectAlumne.value) {
+        missing.push("Alumne (tria el teu nom)");
+      }
+
+      const grup = document.getElementById("alumne-grup");
+      if (!grup.value.trim()) {
+        missing.push("Grup / classe");
+      }
+
+      return missing;
+    }
+
+    function slugify(str) {
+      return str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "")
+        .toLowerCase();
+    }
+
+    function descarregaJSON() {
+      const msg = document.getElementById("status-message");
+      msg.textContent = "";
+      msg.classList.remove("ok");
+
+      const missing = validaFormulari();
+      if (missing.length > 0) {
+        msg.textContent =
+          "Falten camps per omplir. Revisa, si us plau:\n- " +
+          missing.join("\n- ");
+        msg.classList.remove("ok");
+        window.alert(
+          "Encara falten camps per omplir. Revisa aquests punts:\n\n- " +
+            missing.join("\n- ")
+        );
+        return;
+      }
+
+      const selectAlumne = document.getElementById("alumne-select");
+      const idx = selectAlumne.value;
+      const grup = document.getElementById("alumne-grup").value.trim();
+      const email = document.getElementById("alumne-email").value.trim();
+
+      let alumneObj = null;
+      if (alumnesData && alumnesData[idx]) {
+        alumneObj = alumnesData[idx];
+      }
+
+      const nomComplet = selectAlumne.options[selectAlumne.selectedIndex].textContent.trim();
+
+      const jsonFinal = {
+        meta: {
+          curs: metaData && metaData.curs ? metaData.curs : null,
+          promocio: metaData && metaData.promocio ? metaData.promocio : null,
+          centre: metaData && metaData.centre ? metaData.centre : null,
+          generat_el: new Date().toISOString()
+        },
+        alumne: {
+          nom_complet: nomComplet,
+          email: email || (alumneObj ? alumneObj.email : null),
+          grup: grup,
+          raw: alumneObj || null
+        },
+        respostes: recullRespostes()
+      };
+
+      const blob = new Blob([JSON.stringify(jsonFinal, null, 2)], {
+        type: "application/json"
+      });
+
+      const nomArxiu =
+        "ra2_xarxes_locals_" +
+        (nomComplet ? slugify(nomComplet) : "sense_nom") +
+        ".json";
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = nomArxiu;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      msg.textContent =
+        "Fitxer JSON generat correctament: " + nomArxiu + ". Ara el pots pujar al campus virtual.";
+      msg.classList.add("ok");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      carregaAlumnes();
+      setupListeners();
+      updateProgress();
+    });
+  </script>
+</body>
+</html>

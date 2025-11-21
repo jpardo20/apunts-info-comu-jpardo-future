@@ -1,0 +1,99 @@
+{
+  "module": {
+    "code": "0484",
+    "name": "Bases de dades"
+  },
+  "presentations": [
+    {
+      "id": "0484-aof-ud03-ae01",
+      "title": "Informació caòtica (**`0484-aof-ud03-ae01`**)",
+      "description": "",
+      "src": "slides/bases-de-dades-activitat-dades-caotiques.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD", "activitat"
+      ]
+        
+    },
+    {
+      "id": "001_Introduccio_Bases_Dades",
+      "title": "1: Introducció a Bases de Dades",
+      "description": "",
+      "src": "slides/001_Introduccio_Bases_Dades.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    },
+    {
+      "id": "002_Conceptes_Basics_Bases_Dades",
+      "title": "2: Conceptes bàsics: de Bases de Dades",
+      "description": "",
+      "src": "slides/002_Conceptes_Basics_Bases_Dades.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    },
+    {
+      "id": "003_MER_Model_Entitat_Relacio",
+      "title": "3: Model Entitat-Relació (MER)",
+      "description": "",
+      "src": "slides/003_MER_Model_Entitat_Relacio.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    },
+    {
+      "id": "004_Join",
+      "title": "4 Comanda `JOIN` a SQL",
+      "description": "",
+      "src": "slides/004_Join.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    },
+    {
+      "id": "004_Relacions_MER",
+      "title": "5 Relacions (MER)",
+      "description": "",
+      "src": "slides/004_Relacions_MER.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    },
+    {
+      "id": "DAM_Act_004_MER_14_Enunciats",
+      "title": "Enunciats: Model Entitat-Relació (MER)",
+      "description": "Enunciats: Model Entitat-Relació (MER)",
+      "src": "slides/DAM_Act_004_MER_14_Enunciats.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    },
+    {
+      "id": "0484-bds-activitat-validacio-mer-escenaris.reveal",
+      "title": "0484-bds-activitat-validacio-mer-escenaris.reveal",
+      "description": "Enunciats: Model Entitat-Relació (MER)",
+      "src": "slides/0484-bds-activitat-validacio-mer-escenaris.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    },
+    {
+      "id": "del-mer-al-model-relacional",
+      "title": "TEORIA: Del MER al model relacional",
+      "description": "TEORIA: Del MER al model relacional",
+      "src": "slides/del-mer-al-model-relacional.reveal",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    }
+  ]
+}

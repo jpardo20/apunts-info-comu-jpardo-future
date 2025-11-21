@@ -1,0 +1,240 @@
+# 0483 · Sistemes informàtics
+## Introducció a Linux — **Sessió 01**
+
+**Objectius d’aprenentatge (RA 0483)**  
+- Operar amb solvència en entorns **CLI** (navegació, cerca, filtres, pipes i redireccions).  
+- Gestionar **permisos, propietats, usuaris i processos**.  
+- Controlar **paquets**, **serveis**, **xarxa** i **emmagatzematge** bàsic.  
+- Automatitzar tasques i preparar **scripts** simples.  
+
+---
+
+## Taula ràpida de referència (1/3)
+
+| Comanda | Què fa | Exemple ràpid |
+|---|---|---|
+| `ls` | Llista fitxers i carpetes | `ls -lah` |
+| `pwd` | Mostra el directori actual | `pwd` |
+| `cd` | Canvia de directori | `cd /etc` |
+| `mkdir` | Crea directoris | `mkdir -p dades/projecte` |
+| `mv` | Mou o reanomena | `mv informe.txt docs/` |
+| `cp` | Copia fitxers/carpetes | `cp -r src/ backup/` |
+| `rm` | Elimina fitxers/carpetes | `rm -r tmp/` |
+
+----
+
+## Taula ràpida de referència (2/3)
+
+| Comanda | Què fa | Exemple ràpid |
+|---|---|---|
+| `touch` | Crea fitxers buits o actualitza dates | `touch notes.txt` |
+| `ln` | Crea enllaços (hard/soft) | `ln -s /opt/app bin/app` |
+| `clear` | Neteja la pantalla | `clear` |
+| `cat` | Mostra contingut de fitxers | `cat README.md` |
+| `echo` | Imprimeix text o variables | `echo $HOME` |
+----
+
+## Taula ràpida de referència (3/3)
+
+| Comanda | Què fa | Exemple ràpid |
+|---|---|---|
+| `less` | Visualitza per pàgines | `less /etc/services` |
+| `man` | Manual d’ajuda | `man tar` |
+| `uname` | Info bàsica del sistema | `uname -a` |
+| `whoami` | Usuari actiu | `whoami` |
+| `tar` | Comprimeix/Descomprimeix | `tar -czf arxiu.tar.gz carpeta/` |
+| `grep` | Cerca text en sortides/fitxers | `grep -R "main" src/` |
+
+---
+
+## 1) `ls` — llistar fitxers i directoris
+**Sintaxi:** `ls [opcions] [ruta]`  
+**Flags útils:** `-l` (llarg), `-a` (inclou ocults), `-h` (mides humanes), `-R` (recursiu), `-t` (ordena per data).
+
+**Exemples**
+```bash
+ls -lah         # llista detallada, amb ocults, mides legibles
+ls -R /etc | less  # llista recursivament i ho passa a less
+```
+
+---
+
+## 2) `pwd` — directori de treball actual
+Mostra la **ruta absoluta** on ets.
+```bash
+pwd
+# Ex.: /home/alumne/projectes
+```
+
+---
+
+## 3) `cd` — canviar de directori
+**Exemples habituals**
+```bash
+cd /var/log     # ves a una ruta absoluta
+cd ..           # puja un nivell
+cd -            # torna al directori anterior
+cd ~            # vés al teu HOME
+```
+
+---
+
+## 4) `mkdir` — crear directoris
+**Flags útils:** `-p` crea també els directors pare si no existeixen.
+```bash
+mkdir exercicis
+mkdir -p dades/2025/trimestre1
+```
+
+---
+
+## 5) `mv` — moure o reanomenar
+**Flags útils:** `-i` (pregunta abans de sobreescriure), `-n` (no sobreescriguis), `-v` (verbós).
+```bash
+mv borrador.txt informe.txt     # reanomena
+mv informe.txt docs/            # mou a una carpeta
+mv -i * /destinacio/            # demana confirmació per fitxer
+```
+
+---
+
+## 6) `cp` — copiar fitxers o carpetes
+**Flags útils:** `-r` (recursiu), `-i`, `-n`, `-v`, `-a` (preserva permisos/propietat/enllaços).
+```bash
+cp foto.png imatges/foto.png
+cp -r src/ backup/              # copia un directori sencer
+cp -a projecte/ projecte_copia/ # còpia “arquival” amb metadades
+```
+
+---
+
+## 7) `rm` — eliminar fitxers o carpetes
+> ⚠️ **Compte!** No hi ha “paperera” per defecte. Revisa bé la ruta abans d’executar.
+
+**Flags útils:** `-r` (recursiu), `-i` (confirma), `-f` (força).
+```bash
+rm fitxer.log
+rm -r tmp/               # elimina carpeta i contingut
+rm -ri dades/            # recursiu amb confirmació
+```
+
+---
+
+## 8) `touch` — crear fitxers buits o actualitzar marca de temps
+```bash
+touch notes.txt          # crea si no existeix
+touch -t 202501011200 informe.txt  # canvia la data (AAAAmmddHHMM)
+```
+
+---
+
+## 9) `ln` — enllaços (hard link i symbolic link)
+**Hard link:** apunta al mateix contingut al disc.  
+**Enllaç simbòlic (soft):** és un “accés directe” a un altre fitxer.
+
+```bash
+ln original.txt copia_hard.txt      # hard link
+ln -s /opt/app/bin/exe ~/bin/exe    # enllaç simbòlic (recomanat: rutes absolutes)
+```
+
+---
+
+## 10) `clear` — netejar la pantalla
+```bash
+clear
+# Truc: Ctrl+L fa el mateix en molts terminals
+```
+
+---
+
+## 11) `cat` — mostrar contingut / concatenar
+```bash
+cat README.md
+cat part1.txt part2.txt > tot.txt      # concatena a un nou fitxer
+cat /etc/passwd | grep "/bin/bash"     # combina amb pipes
+```
+
+---
+
+## 12) `echo` — imprimir text o variables
+```bash
+echo "Hola, DAM!"
+echo $HOME
+echo "Usuari: $(whoami)"
+```
+
+---
+
+## 13) `less` — visualització paginada
+**Tecles bàsiques:** `q` sortir, `/paraula` cercar, `n` següent, `g` inici, `G` final.
+```bash
+less /etc/services
+dmesg | less
+```
+
+---
+
+## 14) `man` — manual d’ajuda
+**Trucs:** `q` sortir, `/paraula` cercar, `n` següent. `man -k clau` cerca per paraula clau.
+```bash
+man tar
+man -k compressio    # índex de temes relacionats
+```
+
+---
+
+## 15) `uname` — informació del sistema
+```bash
+uname -a   # kernel, host, arquitectura, etc.
+uname -r   # versió del kernel
+uname -m   # arquitectura (ex.: x86_64, aarch64)
+```
+
+---
+
+## 16) `whoami` — usuari actiu
+```bash
+whoami     # ex.: alumne
+```
+
+---
+
+## 17) `tar` — comprimir i descomprimir
+**Formats típics:** `.tar.gz` (gzip), `.tar.bz2` (bzip2), `.tar.xz` (xz)  
+**Flags clau:** `-c` (crear), `-x` (extreure), `-t` (llistar), `-f` (fitxer), `-z` (gzip), `-j` (bzip2), `-J` (xz), `-v` (verbós).
+
+```bash
+# Crear
+tar -czf projecte.tar.gz carpeta/        # gzip
+tar -cJf arxiu.tar.xz carpeta/           # xz
+
+# Llistar contingut d’un tar
+tar -tf projecte.tar.gz
+
+# Extreure
+tar -xzf projecte.tar.gz
+tar -xJf arxiu.tar.xz -C /destinacio
+```
+
+---
+
+## 18) `grep` — cercar text (amb regex) en fitxers o sortides
+**Flags útils:** `-R` (recursiu), `-n` (número de línia), `-i` (case-insensitive), `-E` (regex esteses), `--color=auto` (ressalta).
+```bash
+grep "ERROR" app.log
+grep -nE "^(GET|POST) " access.log
+grep -R --color=auto "main" src/
+dmesg | grep -i "usb"
+```
+
+---
+
+
+## Bones pràctiques i consells
+- Amb comandes destructives (`rm`, `mv`, `cp`) usa `-i` o fes **còpies de seguretat** primer.
+- Evita executar com a `root` si no és imprescindible.
+- Combina comandes amb **pipes** (`|`) per a fluxos potents (ex.: `ls -lah | grep "config"`).
+- Usa `man` sempre que tinguis dubtes i crea’t un fitxer de *notes* al teu HOME.
+
+> **Recorda:** practica en un directori de proves. Les mans al teclat són la millor teoria. :)
+

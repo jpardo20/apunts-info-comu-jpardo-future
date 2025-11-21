@@ -1,0 +1,274 @@
+<h1 class="minuscules">HTML — Introducció i elements essencials</h1>
+
+<br>
+
+**Objectiu**: entendre l’estructura d’un document HTML i dominar els elements bàsics per crear una pàgina web accessible.
+
+---
+
+## index
+1. Què és HTML i per a què serveix
+2. Estructura bàsica d’un document
+3. Text, enllaços i llistes
+4. Imatges i multimèdia
+5. Taules
+6. Semàntica i layout
+7. Formularis bàsics
+8. Bones pràctiques i accessibilitat
+9. Mini projecte + exercicis ràpids
+
+Note:
+Durada orientativa per secció: 5–12 minuts cadascuna segons el grup.
+
+---
+
+## 1) Què és HTML?
+- **HTML** = *HyperText Markup Language* (llenguatge de marques).
+- Defineix l’**estructura** i el **significat** del contingut d’una pàgina web.
+- Treballa junt amb **CSS** (presentació) i **JavaScript** (interactivitat).
+- El navegador **interpreta** l’HTML i construeix el **DOM** (***Document Object Model***).
+
+**Conceptes clau**
+
+- Etiquetes (<span class="codi">tags</span>), elements, atributs.
+- Elements **de bloc** (ocupa tota l’amplada) i **en línia**.
+
+----
+
+### Exemple d’element
+```html
+<p title="infotip">Hola món!</p>
+```
+- `<p>` és l’etiqueta d’obertura, `</p>` la de tancament.
+- `title` és un **atribut**. El valor és `"infotip"`.
+
+---
+
+## 2) Estructura bàsica d’un document
+```html
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>La meva primera pàgina</title>
+    <meta name="description" content="Exemple bàsic d'HTML per DAM" />
+  </head>
+  <body>
+    <h1>Hola, DAM!</h1>
+    <p>Això és una pàgina mínima.</p>
+  </body>
+</html>
+```
+
+Note:
+- `lang="ca"` ajuda als lectors de pantalla i SEO.
+- `viewport` fa que la pàgina sigui responsive per defecte.
+
+----
+
+### Capçalera (`<head>`) imprescindible
+- `charset="utf-8"` per accents/emoji.
+- `viewport` per a mòbils.
+- `title` curt i descriptiu.
+- `meta description` de 120–160 caràcters.
+
+---
+
+## 3) Text, titulars i enllaços
+**Titulars**
+```html
+<h1>Títol principal</h1>
+<h2>Secció</h2>
+<h3>Subsecció</h3>
+```
+**Paràgrafs i èmfasi**
+```html
+<p>Un <strong>concepe clau</strong> amb <em>èmfasi</em>.</p>
+<blockquote>Una citació breu.</blockquote>
+<pre><code>Bloc de codi sense format.</code></pre>
+```
+**Enllaços**
+```html
+<a href="https://exemple.com" target="_blank" rel="noopener">Anar al recurs</a>
+```
+
+----
+
+### Llistes
+```html
+<ul>
+  <li>Element A</li>
+  <li>Element B</li>
+</ul>
+
+<ol>
+  <li>Pas 1</li>
+  <li>Pas 2</li>
+</ol>
+
+<dl>
+  <dt>HTML</dt><dd>Llenguatge d’estructura</dd>
+  <dt>CSS</dt><dd>Estils/presentació</dd>
+</dl>
+```
+
+---
+
+## 4) Imatges i multimèdia
+**Imatge amb text alternatiu i peu**
+```html
+<figure>
+  <img src="img/logo.png" alt="Logotip del centre" width="180" />
+  <figcaption>Logotip utilitzat al web del cicle</figcaption>
+</figure>
+```
+**Vídeo i àudio**
+```html
+<video src="media/intro.mp4" controls></video>
+<audio src="media/tema.mp3" controls></audio>
+```
+Bones pràctiques: **`alt` descriptiu**, formats moderns (webp/mp4), pes optimitzat.
+
+---
+
+## 5) Taules (dades tabulars)
+```html
+<table>
+  <caption>Alumnes i equip</caption>
+  <thead>
+    <tr><th scope="col">Nom</th><th scope="col">Rol</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ada</td><td>Analista</td></tr>
+    <tr><td>Joan</td><td>Dev</td></tr>
+  </tbody>
+</table>
+```
+- Usa `caption` i `scope` per millorar l’accessibilitat.
+- Evita taules per a layout (usa CSS/Grid/Flex).
+
+---
+
+## 6) Semàntica i layout
+Elements semàntics principals:
+```html
+<header>Capçalera</header>
+<nav>Navegació</nav>
+<main>
+  <article>
+    <h1>Títol de l'article</h1>
+    <section>Secció 1</section>
+    <section>Secció 2</section>
+  </article>
+  <aside>Contingut relacionat</aside>
+</main>
+<footer>Peu de pàgina</footer>
+```
+Beneficis: **claror**, **SEO**, **accessibilitat** i mantenibilitat.
+
+----
+
+### Exemple d’estructura de pàgina
+```html
+<body>
+  <header>
+    <h1>Portfolio de l'Ada</h1>
+    <nav>
+      <a href="#sobre-mi">Sobre mi</a>
+      <a href="#projectes">Projectes</a>
+      <a href="#contacte">Contacte</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sobre-mi">
+      <h2>Sobre mi</h2>
+      <p>Desenvolupadora DAM.</p>
+    </section>
+
+    <section id="projectes">
+      <h2>Projectes</h2>
+      <article>
+        <h3>Gestor de tasques</h3>
+        <p>Aplicació web senzilla per organitzar tasques.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>&copy; 2025 Ada</footer>
+</body>
+```
+
+---
+
+## 7) Formularis bàsics
+```html
+<form action="/enviar" method="post">
+  <label for="nom">Nom</label>
+  <input id="nom" name="nom" type="text" required placeholder="Escriu el teu nom" />
+
+  <label for="email">Correu</label>
+  <input id="email" name="email" type="email" required />
+
+  <label for="tipus">Tipus de consulta</label>
+  <select id="tipus" name="tipus">
+    <option value="info">Informació</option>
+    <option value="suport">Suport</option>
+  </select>
+
+  <label for="missatge">Missatge</label>
+  <textarea id="missatge" name="missatge" rows="4"></textarea>
+
+  <button type="submit">Enviar</button>
+</form>
+```
+Bones pràctiques: **`label` vinculat** (for/id), `required`, `type` adequat (email, number...).
+
+----
+
+### Inputs útils
+```html
+<input type="date" />
+<input type="number" min="0" max="10" step="1" />
+<input type="url" />
+<input type="checkbox" id="ok" /><label for="ok">Accepto</label>
+```
+
+---
+
+## 8) Bones pràctiques i accessibilitat
+- **Estructura clara de titulars** (un sol `<h1>` per pàgina).
+- Text alternatiu a imatges (`alt`) i **enllaços descriptius**.
+- `lang="ca"` i formularis amb **labels**.
+- Carpeta de projecte ordenada: `index.html`, `/img`, `/css`, `/js`.
+- **Valida** el codi (W3C Validator) i evita errors comuns.
+- Evita atributs presentacionals; reserva l’estil per a CSS.
+
+---
+
+## 9) Mini projecte (20’): “Mini-portfolio”
+**Repte**: crea una pàgina `index.html` amb:
+- `<header>` amb títol i `nav` d’ancores.
+- Seccions: *Sobre mi*, *Projectes* (mín. 1 `<article>`), *Contacte* (formulari).
+- Una imatge amb `figure` + `figcaption` i un enllaç extern rellevant.
+- Taula simple amb 2–3 files (ex.: habilitats/rols).
+
+**Extres** (si hi ha temps): afegeix un `video` o una llista `dl`.
+
+----
+
+### Exercicis ràpids (10’)
+1. Converteix un llistat en **llista ordenada**.
+2. Afegeix `alt` significatiu a una `img`.
+3. Canvia `<div>` genèrics per `<section>/<article>` adequats.
+4. Afegeix `label` i `required` a inputs d’un formulari.
+
+---
+
+## Recursos recomanats
+- MDN Web Docs (HTML)
+- W3C HTML Living Standard (referència)
+- W3C HTML Validator
+
+**Fi · Preguntes?**

@@ -1,0 +1,18 @@
+{
+  "module": {
+    "code": "0484",
+    "name": "Bases de dades"
+  },
+  "presentations": [
+    {
+      "id": "0484-bds-ae02",
+      "title": "0484-bds-ae02 · Activitat JOIN (botiga)",
+      "description": "",
+      "src": "0484-bds-ae02-interactiva.html",
+      "theme": "white",
+      "tags": [
+        "BBDD"
+      ]
+    }
+  ]
+}

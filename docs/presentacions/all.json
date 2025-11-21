@@ -1,0 +1,90 @@
+{
+  "modules": [
+    {
+      "code": "0373",
+      "name": "Llenguatges de marques",
+      "base": "moduls/0373-llenguatges-de-marques/presentacions/",
+      "presentations": [
+        {
+          "order": 0,
+          "title": "Introducció · Mòdul 0373 - Llenguatges de marques",
+          "src": "slides/introduccio.reveal",
+          "description": "Introducció · Mòdul 0373 - Llenguatges de marques"
+        },
+        {
+          "order": 0,
+          "title": "Introducció XML · Mòdul 0373 - Llenguatges de marques",
+          "src": "slides/002_Introduccio_XML.reveal",
+          "description": "Introducció XML · Mòdul 0373 - Llenguatges de marques"
+        }
+      ]
+    },
+    {
+      "code": "0484",
+      "name": "Bases de dades",
+      "base": "moduls/0484-bases-de-dades/presentacions/",
+      "presentations": [
+        {
+          "id": "001_Introduccio_Bases_Dades",
+          "title": "Tema 1: Introducció a Bases de Dades",
+          "description": "",
+          "src": "slides/001_Introduccio_Bases_Dades.md",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        },
+        {
+          "id": "002_Conceptes_Basics_Bases_Dades",
+          "title": "Tema 2: Conceptes bàsics: de Bases de Dades",
+          "description": "",
+          "src": "slides/002_Conceptes_Basics_Bases_Dades.md",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        },
+        {
+          "id": "003_MER_Model_Entitat_Relacio",
+          "title": "Tema 3: Model Entitat-Relació (MER)",
+          "description": "",
+          "src": "slides/003_MER_Model_Entitat_Relacio.md",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        },
+        {
+          "id": "004_Join",
+          "title": "Comanda `JOIN` a SQL",
+          "description": "",
+          "src": "slides/004_Join.md",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        },
+        {
+          "id": "004_Relacions_MER",
+          "title": "Pres_004_Relacions_MER",
+          "description": "",
+          "src": "slides/004_Relacions_MER.md",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        },
+        {
+          "id": "005_Claus_MER",
+          "title": "Pres_005_Claus_MER",
+          "description": "",
+          "src": "slides/005_Claus_MER.md",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        }
+      ]
+    }
+  ]
+}

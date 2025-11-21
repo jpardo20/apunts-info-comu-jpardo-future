@@ -1,0 +1,487 @@
+---
+title: "Del model entitat-relació al model relacional"
+---
+
+# Del MER al model relacional
+
+M0484 – Bases de dades  
+1r DAM
+
+Note:
+- Presenta l’objectiu general de la sessió.
+- Explica que avui veurem com “traduir” els diagrames MER que ja saben fer a taules del model relacional.
+- Remarca que és un pas intermedi abans de passar a SQL i al model físic.
+
+---
+
+## Objectius de la sessió
+
+- Recordar què és un **model entitat-relació (MER)**.
+- Entendre què és el **model relacional**.
+- Aprendre les **regles mecàniques**:
+  - Entitat forta → taula  
+  - Entitat feble → taula amb PK formada  
+  - Relació 1:N → FK al costat N  
+  - Relació N:M → taula nova
+- Practicar amb **exemples i exercicis**.
+
+Note:
+- Llegeix els objectius un per un.
+- Insisteix que avui no escriurem molt SQL, sinó que ens centrarem en el “disseny de taules”.
+- Explica que les regles que veurem són com una “recepta” que aplicarem sempre que tinguem un MER.
+
+---
+
+## Recordatori: què és un MER?
+
+- Representació **conceptual** de la informació.
+- Elements principals:
+  - **Entitats** (ex.: CLIENT, COMANDA, PRODUCTE).
+  - **Atributs** (ex.: nom, adreça, data).
+  - **Relacions** (ex.: CLIENT *fa* COMANDA).
+  - **Cardinalitats** (1:1, 1:N, N:M, opcionalitat).
+
+![Esquema MER senzill](img/mer-exemple-client-comanda.png)
+
+Note:
+- Explica que el MER serveix per parlar amb el “client” en llenguatge visual i entendre les dades.
+- Comenta els elements bàsics: entitats (caixes), relacions (rombes o connectors), atributs (ovals o llistes).
+- Si no tens la imatge, dibuixa a la pissarra un exemple: CLIENT–COMANDA amb cardinalitat 1:N.
+
+---
+
+## I el model relacional?
+
+- Representació **lògica** basada en:
+  - **Taules** (relacions)
+  - **Files** (tuples, registres)
+  - **Columnes** (atributs, camps)
+- Cada taula té:
+  - Una **clau primària (PK)**.
+  - Zero o més **claus foranes (FK)**.
+- És el pas previ a escriure el **SQL**.
+
+![Esquema model relacional](img/model-relacional-taules.png)
+
+Note:
+- Contrasta el MER (dibuix conceptual) amb el model relacional (taules).
+- Remarca que el model relacional encara és independent del SGBD concret (MariaDB, PostgreSQL…).
+- Explica que la PK identifica unívocament cada fila i que les FK connecten taules.
+
+---
+
+## De MER a relacional: visió general
+
+```text
+MER (conceptual)
+    ↓
+Model relacional (taules, PK, FK)
+    ↓
+Model físic (tipus dades, índexos, CREATE TABLE…)
+```
+
+- Avui ens centrem en el pas:
+  - **MER → Model relacional**
+
+Note:
+- Dibuixa també l’esquema a la pissarra si cal.
+- Deixa clar que no parlarem encara de `VARCHAR(30)`, `INT`, etc. (això és model físic).
+- Destaca que les regles que veurem són per fer aquest pas del diagrama a taules.
+
+---
+
+## Regla 1 · Entitat forta → taula
+
+- **Entitat forta**: existeix per si sola.
+  - Ex.: CLIENT, PRODUCTE, PROVEÏDOR.
+- **Conversió**:
+  - Cada entitat forta es converteix en **una taula**.
+  - Atribut clau de l’entitat → **PK** de la taula.
+
+**Exemple MER**
+
+- Entitat CLIENT  
+  Atributs: `id_client`, `nom`, `email`
+
+**Model relacional**
+
+- Taula `CLIENT(id_client PK, nom, email)`
+
+Note:
+- Recorda què és una entitat forta: no depèn d’una altra entitat per existir.
+- Insisteix que, en general, la PK del MER es converteix en la PK de la taula.
+- Comentari pràctic: acostumem a fer PK simples (un sol camp) quan sigui possible.
+
+---
+
+## Esquema visual · Entitat forta
+
+```text
+[CLIENT]
+---------
+id_client
+nom
+email
+```
+
+↓ **taula CLIENT**
+
+```text
+CLIENT
+-------------------------
+id_client (PK)
+nom
+email
+```
+
+Note:
+- Utilitza aquest esquema per fer visible la transformació.
+- Si vols, demana a algun alumne que proposi una altra entitat forta (p. ex. PRODUCTE) i la converteixi a taula.
+
+---
+
+## Regla 2 · Entitat feble → taula amb PK formada
+
+- **Entitat feble**:
+  - Depèn d’una altra entitat (la seva “forta”).
+  - No té sentit sense ella.
+- **Conversió**:
+  - També passa a ser **taula**.
+  - La PK de la taula es forma amb:
+    - PK de l’entitat forta
+    - + l’atribut clau de l’entitat feble.
+
+**Exemple**
+
+- Entitat forta: `CLIENT(id_client, nom, ...)`
+- Entitat feble: `ADREÇA_CLIENT(id_adreça, carrer, ciutat, …)`  
+  Depèn de CLIENT.
+
+**Model relacional**
+
+- `CLIENT(id_client PK, nom, …)`  
+- `ADREÇA_CLIENT(id_client PK, id_adreça PK, carrer, ciutat, …)`
+
+Note:
+- Explica que l’entitat feble sola no identifica prou: necessitem la referència al “pare”.
+- Remarca que la PK de la taula d’entitat feble és **composta** (més d’un camp).
+- Comenta que, en alguns llibres, això també es pot veure com una relació 1:N amb atributs, però aquí seguim la notació clàssica d’entitats febles.
+
+---
+
+## Esquema visual · Entitat feble
+
+```text
+[CLIENT] 1 ────────< [ADREÇA_CLIENT]
+ id_client           id_adreça
+                     carrer
+                     ciutat
+```
+
+↓ **taules**
+
+```text
+CLIENT
+----------------
+id_client (PK)
+nom
+...
+
+ADREÇA_CLIENT
+-------------------------------
+id_client (PK, FK → CLIENT)
+id_adreça (PK)
+carrer
+ciutat
+...
+```
+
+Note:
+- Subratlla visualment la FK `id_client` a `ADREÇA_CLIENT` (si ho escrius a la pissarra).
+- Explica que la combinació `(id_client, id_adreça)` identifica de manera única cada adreça.
+
+---
+
+## Regla 3 · Relació 1:N → FK al costat N
+
+- TENIM un MER amb relació **1:N**:
+
+```text
+CLIENT 1 ────────< COMANDA
+```
+
+- Interpretació:
+  - Un **CLIENT** pot fer **moltes COMANDES**.
+  - Cada **COMANDA** pertany exactament a **un CLIENT**.
+
+- **Conversió**:
+  - L’entitat del costat **N** rep una **FK** que apunta a la PK del costat **1**.
+
+**Model relacional**
+
+- `CLIENT(id_client PK, nom, …)`  
+- `COMANDA(id_comanda PK, data, id_client FK → CLIENT)`
+
+Note:
+- Explica la idea: “molts” han de tenir una referència al “un”.
+- Mostra com la FK fa de “punta de fletxa” des de la taula COMANDA cap a CLIENT.
+- Aclariment: la FK no cal que tingui exactament el mateix nom, però ajuda molt que s’assembli (`id_client`).
+
+---
+
+## Esquema visual · Relació 1:N
+
+```text
+[CLIENT] 1 ────────< [COMANDA]
+  id_client           id_comanda
+                      data
+```
+
+↓ **taules**
+
+```text
+CLIENT
+----------------
+id_client (PK)
+nom
+...
+
+COMANDA
+----------------------------
+id_comanda (PK)
+data
+id_client (FK → CLIENT)
+```
+
+Note:
+- Fes notar que, conceptualment, no hem creat una taula “relació”, només hem afegit un camp FK.
+- Demana als alumnes: si la relació fos PRODUCTE 1 ─< LINIA_COMANDA, on va la FK?
+
+---
+
+## Regla 4 · Relació N:M → taula nova
+
+- TENIM un MER amb relació **N:M**:
+
+```text
+ALUMNE >──────< MODUL
+```
+
+- Interpretació:
+  - Un **ALUMNE** es pot matricular a **molts MÒDULS**.
+  - Un **MÒDUL** té **molts ALUMNES**.
+
+- **Conversió**:
+  - Es crea una **nova taula** per a la relació.
+  - La taula nova conté:
+    - FK cap a `ALUMNE`
+    - FK cap a `MODUL`
+    - La PK acostuma a ser la combinació de totes dues FK.
+
+**Model relacional**
+
+- `ALUMNE(id_alumne PK, nom, ...)`
+- `MODUL(id_modul PK, nom, ...)`
+- `MATRICULA(id_alumne FK → ALUMNE, id_modul FK → MODUL, …, PK(id_alumne, id_modul))`
+
+Note:
+- Explica per què no podem resoldre N:M només amb una FK: necessitaríem duplicar llista d’IDs dins d’un camp (mal disseny).
+- Destaca que la taula nova sovint rep el nom de la relació (MATRICULA, PARTICIPA, ASSISTEIX…).
+- Comenta que es poden afegir atributs a la relació, com `nota_final`, `any_academic`, etc.
+
+---
+
+## Esquema visual · Relació N:M
+
+```text
+[ALUMNE] >──────< [MODUL]
+ id_alumne        id_modul
+ nom              nom
+```
+
+↓ **taules**
+
+```text
+ALUMNE
+-------------------
+id_alumne (PK)
+nom
+...
+
+MODUL
+-------------------
+id_modul (PK)
+nom
+...
+
+MATRICULA
+---------------------------------------------
+id_alumne (PK, FK → ALUMNE)
+id_modul  (PK, FK → MODUL)
+data_matricula
+nota_final
+...
+```
+
+Note:
+- Subratlla que aquí SÍ que hem creat una taula nova.
+- Demana un altre exemple de N:M a l’aula (p. ex.: PROFESSOR–MÒDUL, ESTUDIANT–ACTIVITAT EXTRAESCOLAR…).
+
+---
+
+## Resum de les regles mecàniques
+
+| Element MER             | Element model relacional                          |
+|-------------------------|---------------------------------------------------|
+| Entitat forta           | 1 taula (PK simple si és possible)               |
+| Entitat feble           | 1 taula (PK composta: PK “pare” + clau pròpia)   |
+| Relació 1:N             | FK al costat N                                   |
+| Relació N:M             | Taula nova amb 2 FK (PK composta)                |
+
+Note:
+- Llegeix la taula de resum.
+- Digues que aquest esquema servirà com a “chuleta mental” per a tots els exercicis.
+- Anima’ls a copiar aquesta taula al seu quadern.
+
+---
+
+## Exemple complet · MER → taules (1/3)
+
+**Situació**
+
+- Un **EQUIP** juega molts **PARTITS**.
+- Un **PARTIT** es juga en un **CAMP**.
+- Cada PARTIT:
+  - Té una **data** i una **hora**.
+  - Té un **equip local** i un **equip visitant**.
+
+*(Esquema suggerit)*  
+![MER equips i partits](img/mer-equips-partits.png)
+
+Note:
+- Recorda que aquest exemple s’assembla al que ja van treballar amb el MER d’equips i partits.
+- Si no tens la imatge, dibuixa un MER a la pissarra amb entitats EQUIP, PARTIT, CAMP i les relacions pertinents.
+- No entris en tots els detalls tècnics del MER, només el necessari per fer la transformació.
+
+---
+
+## Exemple complet · MER → taules (2/3)
+
+**Entitats fortes → taules**
+
+- `EQUIP(id_equip PK, nom, ciutat, …)`
+- `CAMP(id_camp PK, nom, adreça, …)`
+- `PARTIT(id_partit PK, data, hora, …)`
+
+**Relacions 1:N**
+
+- CAMP 1 ─< PARTIT  
+  → `PARTIT` rep `id_camp` com a FK:
+
+`PARTIT(id_partit PK, data, hora, id_camp FK → CAMP, …)`
+
+Note:
+- Pregunta: és raonable que `id_partit` sigui la PK? Sí, perquè és un identificador únic de partit.
+- Demana als alumnes: si un camp pot tenir molts partits, a quina taula col·loquem la FK? (Resposta: PARTIT.)
+
+---
+
+## Exemple complet · MER → taules (3/3)
+
+**Relació amb dos rols (local/visitant)**
+
+- Un PARTIT té:
+  - 1 equip local
+  - 1 equip visitant
+
+**Model relacional (simplificat)**
+
+```text
+EQUIP
+-------------------
+id_equip (PK)
+nom
+ciutat
+...
+
+CAMP
+-------------------
+id_camp (PK)
+nom
+adreça
+...
+
+PARTIT
+-----------------------------------------------------
+id_partit (PK)
+data
+hora
+id_camp   (FK → CAMP)
+id_local  (FK → EQUIP)   -- equip local
+id_visitant (FK → EQUIP) -- equip visitant
+```
+
+Note:
+- Explica que aquí no hem creat una taula intermitja, perquè la relació “equip que juga el partit” es resol amb dues FK diferents dins de PARTIT.
+- Comenta que, si es volguessin més estadístiques per jugadors, sí que podríem necessitar taules addicionals.
+
+---
+
+## Exercicis guiats (classe)
+
+### Exercici 1
+
+A partir d’un MER senzill (CLIENT–COMANDA–PRODUCTE):
+
+1. Identifiqueu **entitats fortes** i **febles** (si n’hi ha).
+2. Convertiu cada entitat en **taula** amb la seva **PK**.
+3. Convertiu cada relació 1:N i N:M:
+   - Decidiu on van les **FK**.
+   - Creeu les taules necessàries.
+
+Note:
+- Pots repartir-los en grups de 2–3 alumnes.
+- Si ja tenen MERs fets d’altres activitats, fes que utilitzin el seu propi MER.
+- Passeja per la classe i revisa si apliquen correctament les regles (sobretot N:M).
+
+---
+
+## Més exercicis (per casa o aula)
+
+### Exercici 2
+
+- Doneu un MER amb una **entitat feble** (p. ex. ADREÇA_CLIENT, TELEFON_ALUMNE).
+- Demana’ls:
+  1. Quina és l’entitat forta?
+  2. Quina serà la **PK composta** de la taula de l’entitat feble?
+  3. Quines seran les FKs?
+
+### Exercici 3
+
+- A partir d’un cas N:M (ALUMNE–ACTIVITAT_EXTRAESCOLAR):
+  1. Dissenyeu la taula de la relació.
+  2. Indiqueu PK i FKs.
+  3. Afegiu algun atribut addicional (data_inscripció, preu, …).
+
+Note:
+- Recomana als alumnes que facin aquests exercicis al quadern o a l’ordinador.
+- Pots recollir-ne alguns com a tasca d’avaluació contínua.
+- Insisteix que no cal que facin SQL ara; només el disseny de taules (nom taula, camps, PK, FK).
+
+---
+
+## Tancament
+
+- Hem vist com passar de **MER → Model relacional** amb regles **mecàniques**.
+- Ara ja sabem:
+  - Entitat forta → taula
+  - Entitat feble → taula amb PK composta
+  - Relació 1:N → FK al costat N
+  - Relació N:M → taula nova
+- Proper pas:
+  - Afegir **tipus de dades** i escriure el **SQL (`CREATE TABLE`)**.
+
+Note:
+- Resumeix la sessió i torna a la taula de resum de les regles, si cal.
+- Explica que la propera classe “baixarem un nivell” fins a SQL.
+- Deixa un parell de minuts per preguntes o dubtes.

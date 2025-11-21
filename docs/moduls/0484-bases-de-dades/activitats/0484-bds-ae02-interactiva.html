@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activitat · JOIN en SQL (BD botiga)</title>
+  <style>
+    /* --- Tema clar --- */
+    :root {
+      --bg: #f8fafc;          /* Slate-50 */
+      --card: #ffffff;        /* White */
+      --muted: #475569;       /* Slate-600 */
+      --ink: #0f172a;         /* Slate-900 */
+      --accent: #0ea5e9;      /* Sky-500 */
+      --accent2: #7c3aed;     /* Violet-600 */
+      --border: #e2e8f0;      /* Slate-200 */
+      --soft: #f1f5f9;        /* Slate-100 */
+      --danger: #dc2626;      /* Red-600 */
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Inter, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #ffffff, var(--bg) 60%, #eef2f7);
+    }
+
+    .wrap { max-width: 1000px; margin: 32px auto; padding: 0 16px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+    }
+    h1 { font-size: clamp(22px, 3.6vw, 34px); margin: 8px 0 2px; letter-spacing: .2px; }
+    .sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+
+    .grid { display: grid; gap: 16px; }
+    @media(min-width:900px){ .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+    label { display: block; font-weight: 600; margin: 6px 0 6px; }
+
+    select, input[type="text"], textarea {
+      width: 100%;
+      background: #ffffff;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 15px;
+      outline: none;
+      box-shadow: 0 1px 0 rgba(2,6,23,.02) inset;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    textarea { min-height: 96px; resize: vertical; }
+
+    .invalid { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(220, 38, 38, .12); }
+
+    .q {
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+      margin: 10px 0 14px;
+      color: var(--muted);
+      background: var(--soft);
+      border-radius: 8px;
+      padding-top: 8px; padding-bottom: 8px;
+    }
+    .muted { color: var(--muted); font-size: 13px; }
+    .btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+    button {
+      appearance: none; border: 0; border-radius: 12px;
+      padding: 10px 14px; font-weight: 700; cursor: pointer;
+    }
+    .primary { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #ffffff; }
+    .ghost { background: transparent; color: var(--ink); border: 1px solid var(--border); }
+
+    .ok { color: #16a34a; font-weight: 600; }
+    .err { color: var(--danger); font-weight: 600; }
+
+    .hr {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 18px 0;
+    }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      padding: 2px 6px; border-radius: 6px; font-size: 12px;
+    }
+    .pill {
+      display: inline-block; padding: 2px 8px; border-radius: 999px;
+      background: var(--soft); border: 1px solid var(--border); font-size: 12px;
+      color: var(--muted); margin-left: 6px;
+    }
+    .footer { text-align: center; color: var(--muted); font-size: 12px; margin: 22px 0 6px; }
+    details > summary { cursor: pointer; }
+
+    /* Modal base */
+    .modal {
+      position: fixed; inset: 0; display: none; place-items: center;
+      background: rgba(2,6,23,.45); z-index: 50; padding: 16px;
+    }
+    .modal.show { display: grid; }
+    .modal-card {
+      width: min(680px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(2, 6, 23, .18);
+      padding: 18px;
+      animation: pop .12s ease-out;
+    }
+    @keyframes pop { from { transform: translateY(6px) scale(.98); opacity: .8 } to { transform: none; opacity: 1 } }
+    .modal-header { display:flex; align-items:center; gap:10px; }
+    .badge-err {
+      display:inline-flex; align-items:center; gap:8px;
+      background: #fee2e2; color: var(--danger);
+      border: 1px solid #fecaca; border-radius: 999px;
+      padding: 4px 10px; font-weight: 700; font-size: 12px;
+    }
+    .badge-info {
+      display:inline-flex; align-items:center; gap:8px;
+      background: #e0f2fe; color: #0369a1; /* Sky-100/700 */
+      border: 1px solid #bae6fd;
+      border-radius: 999px;
+      padding: 4px 10px; font-weight: 700; font-size: 12px;
+    }
+    .modal-title { font-size: 18px; margin: 0; }
+    .modal-body { margin-top: 12px; color: var(--muted); }
+    .modal-body ul { margin: 8px 0 0 20px; }
+    .modal-footer { display:flex; justify-content: flex-end; gap:10px; margin-top: 16px; }
+    .danger { background: var(--danger); color: #fff; }
+    .outline { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+
+    .paraulaClau{
+        background-color:#e0f2fe;
+        color: navy;
+    }
+
+    .fontPetita{
+        font-size: small;
+        font-weight: normal;
+    }
+    .gran{
+        font-size: larger;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card nocopy">
+      <h1>Activitat · JOIN en SQL (BD <code>botiga</code>)</h1>
+      <div>
+        Mòdul <strong>0484 - Bases de Dades (DAM).</strong><br>
+        Codi: <strong>0484-bds-ae02</strong><br>
+        <h3>Respon les preguntes i descarrega el teu fitxer <span class="paraulaClau"><kbd>.json</kbd></span> per lliurar a l'aula virtual.</h3>
+      </div>
+
+      <div class="grid grid-2">
+        <div>
+            <br>
+          <label for="alumneSelect"><strong>Alumne</strong></label>
+          <select id="alumneSelect" required>
+            <option value="">Carregant llista...</option>
+          </select>
+          <div id="alumneStatus" class="muted" style="margin-top:16px;">
+            Intentant carregar <code>alumnes/dades_alumnes.json</code>...
+          </div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <section>
+        <h2>Exercici 1 — Comandes i clients (<span class="paraulaClau"><kbd>INNER JOIN</kbd></span>)</h2>
+        <p class="q">Mostra el <strong>nom del client</strong>, la <strong>ciutat</strong> i la
+          <strong>data de comanda</strong> per a totes les comandes existents.</p>
+        <label for="q1sql">Consulta SQL</label>
+        <textarea id="q1sql" spellcheck="false" placeholder="Escriu aquí la teva consulta SQL..."></textarea>
+        <label for="q1ans">Quants clients diferents han fet comandes? - <span class="fontPetita">(Resposta curta)</span></label>
+        <input id="q1ans" type="text" placeholder="Nombre de clients" />
+      </section>
+
+      <div class="hr"></div>
+
+      <section>
+        <h2>Exercici 2 — Empleats que gestionen comandes</h2>
+        <p class="q">Mostra el <strong>nom</strong> i <strong>cognom</strong> de l’empleat, amb el
+          <strong>número de comanda</strong> que ha gestionat.</p>
+        <label for="q2sql">Consulta SQL</label>
+        <textarea id="q2sql" spellcheck="false" placeholder="Escriu aquí la teva consulta SQL..."></textarea>
+        <label for="q2ans">Quin empleat ha gestionat més comandes? - <span class="fontPetita">(Resposta curta)</span></label>
+        <input id="q2ans" type="text" placeholder="Nom i cognom" />
+      </section>
+
+      <div class="hr"></div>
+
+      <section>
+        <h2>Exercici 3 — Clients sense comandes (<span class="paraulaClau"><kbd>LEFT JOIN</kbd></span>)</h2>
+        <p class="q">Mostra <strong>tots els clients</strong> i, si han fet alguna comanda, indica l’<span class="paraulaClau gran"><code>IdComanda</code></span>.</p>
+        <label for="q3sql">Consulta SQL</label>
+        <textarea id="q3sql" spellcheck="false" placeholder="Escriu aquí la teva consulta SQL..."></textarea>
+        <label for="q3ans">Quins clients surten amb <span class="paraulaClau gran"><code>IdComanda = NULL</code></span>? - <span class="fontPetita">(Resposta curta)</span></label>
+        <textarea id="q3ans" placeholder="Pots llistar noms separats per comes"></textarea>
+      </section>
+
+      <div class="hr"></div>
+
+      <section>
+        <h2>Exercici 4 — Productes sense vendes</h2>
+        <p class="q">Mostra els <strong>productes</strong> que <strong>no s’han venut mai</strong>.</p>
+        <label for="q4sql">Consulta SQL</label>
+        <textarea id="q4sql" spellcheck="false" placeholder="Escriu aquí la teva consulta SQL..."></textarea>
+        <label for="q4ans">Quants productes no tenen cap comanda associada? - <span class="fontPetita">(Resposta curta)</span></label>
+        <input id="q4ans" type="text" placeholder="Nombre de productes" />
+      </section>
+
+      <div class="hr"></div>
+        <section>
+        <h2>Exercici 5 — Total de comandes per client</h2>
+        <p class="q">Per a cada client, mostra el <strong>nom</strong> i el <strong>total de comandes</strong> que ha fet.</p>
+
+        <label for="q5sql">Consulta SQL</label>
+        <textarea id="q5sql" spellcheck="false" placeholder="Escriu aquí la teva consulta SQL..."></textarea>
+
+        <label for="q5ans">Explica com ho has resolt - (Resposta llarga)</label>
+        <textarea id="q5ans" placeholder="Explica amb les teves paraules quins passos has fet per obtenir el total de comandes"></textarea>
+        </section>
+
+      <div class="btns">
+        <button class="ghost" id="btnReset" type="button">Neteja respostes</button>
+        <button class="primary" id="btnExport" type="button">Descarrega respostes (.json)</button>
+      </div>
+
+      <p id="msg" class="muted" style="margin-top:10px"></p>
+
+      <div class="footer">© DAM — Activitat JOIN · <code>botiga</code></div>
+    </div>
+  </div>
+
+  <!-- Modal d'errors -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalBody">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="badge-err" id="errCount">0 errors</span>
+        <h3 class="modal-title" id="modalTitle">Hi ha errors per revisar</h3>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <p>Revisa els punts següents abans de descarregar les respostes:</p>
+        <ul id="errList"></ul>
+      </div>
+      <div class="modal-footer">
+        <button class="outline" id="btnCloseModal" type="button">Tanca</button>
+        <button class="danger" id="btnGotoError" type="button">Anar al primer error</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal informatiu (per a bloqueig d'enganxar) -->
+  <div id="modalInfo" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalInfoTitle" aria-describedby="modalInfoBody">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="badge-info">Avís</span>
+        <h3 class="modal-title" id="modalInfoTitle">Acció no permesa</h3>
+      </div>
+      <div class="modal-body">
+        <p id="modalInfoBody">Enganxar deshabilitat. Escriu la resposta amb les teves paraules.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="outline" id="btnCloseInfo" type="button">D'acord</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Utilitats ---
+    const $ = (sel) => document.querySelector(sel);
+    const byId = (id) => document.getElementById(id);
+
+    function flattenAlumnes(raw) {
+      const out = [];
+      const pushIf = (x) => {
+        if (!x) return;
+        if (Array.isArray(x)) x.forEach(pushIf);
+        else if (typeof x === 'object' && ('firstname' in x || 'email' in x)) out.push(x);
+      };
+      if (raw && Array.isArray(raw.alumnes)) pushIf(raw.alumnes);
+      else if (Array.isArray(raw)) pushIf(raw);
+      return out;
+    }
+
+    async function loadAlumnes() {
+      const sel = byId('alumneSelect');
+      const status = byId('alumneStatus');
+      try {
+        const res = await fetch('alumnes/dades_alumnes.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const alumnes = flattenAlumnes(data);
+        sel.innerHTML = '<option value="">— Selecciona el teu nom —</option>' +
+          alumnes.map(a => {
+            const name = `${a.firstname ?? ''} ${a.lastname ?? ''}`.trim();
+            const label = `${name || a.email} (${a.email})`; 
+            const val = a.email || label;
+            return `<option value="${encodeURIComponent(val)}" data-name="${encodeURIComponent(name)}">${label}</option>`;
+          }).join('');
+        status.innerHTML = `<span class="ok">Llista carregada</span> (${alumnes.length} alumne/s).`;
+      } catch (e) {
+        status.innerHTML = `<span class="err">No s'ha pogut carregar el fitxer d'alumnes</span>.`;
+        sel.innerHTML = '<option value="">— No disponible —</option>';
+      }
+    }
+
+    function collectPayload() {
+      const sel = byId('alumneSelect');
+      const emailFromSel = sel.value ? decodeURIComponent(sel.value) : '';
+      const nameFromSel = sel.selectedOptions[0]?.dataset?.name ? decodeURIComponent(sel.selectedOptions[0].dataset.name) : '';
+      const studentEmail = emailFromSel;
+      const studentName = nameFromSel || '';
+
+      const payload = {
+        activity_code: '0484-bds-ae02',
+        activity_title: 'Treballem les JOIN (botiga)',
+        version: 1,
+        submitted_at: new Date().toISOString(),
+        student: { name: studentName || undefined, email: studentEmail || undefined },
+        answers: [
+          { id: 'ex1', sql: byId('q1sql').value.trim(), answer: byId('q1ans').value.trim() },
+          { id: 'ex2', sql: byId('q2sql').value.trim(), answer: byId('q2ans').value.trim() },
+          { id: 'ex3', sql: byId('q3sql').value.trim(), answer: byId('q3ans').value.trim() },
+          { id: 'ex4', sql: byId('q4sql').value.trim(), answer: byId('q4ans').value.trim() },
+          { id: 'ex5', sql: byId('q5sql').value.trim(), answer: byId('q5ans').value.trim() }
+        ]
+      };
+      return payload;
+    }
+
+    function validateBeforeDownload(payload) {
+      // Tornem errors estructurats per poder-los marcar i enfocar
+      const errors = [];
+      if (!payload.student.email) errors.push({ id: 'alumneSelect', msg: 'Email d\'alumne (selecciona del desplegable)' });
+      if (!payload.answers[0].sql) errors.push({ id: 'q1sql', msg: 'SQL exercici 1' });
+      if (!payload.answers[1].sql) errors.push({ id: 'q2sql', msg: 'SQL exercici 2' });
+      if (!payload.answers[2].sql) errors.push({ id: 'q3sql', msg: 'SQL exercici 3' });
+      if (!payload.answers[3].sql) errors.push({ id: 'q4sql', msg: 'SQL exercici 4' });
+      if (!payload.answers[4].sql) errors.push({ id: 'q5sql', msg: 'SQL exercici 5' });
+      if (!payload.answers[0].answer) errors.push({ id: 'q1ans', msg: 'Resposta curta exercici 1' });
+      if (!payload.answers[1].answer) errors.push({ id: 'q2ans', msg: 'Resposta curta exercici 2' });
+      if (!payload.answers[2].answer) errors.push({ id: 'q3ans', msg: 'Resposta curta exercici 3' });
+      if (!payload.answers[3].answer) errors.push({ id: 'q4ans', msg: 'Resposta curta exercici 4' });
+      if (!payload.answers[4].answer) errors.push({ id: 'q5ans', msg: 'Resposta llarga exercici 5' });
+      return errors;
+    }
+
+    function clearInvalids() {
+      ['alumneSelect','q1sql','q1ans','q2sql','q2ans','q3sql','q3ans','q4sql','q4ans','q5sql','q5ans']
+        .forEach(id => byId(id)?.classList.remove('invalid'));
+    }
+
+    function markInvalids(errors) {
+      errors.forEach(e => byId(e.id)?.classList.add('invalid'));
+    }
+
+    // --- Modal d'errors helpers ---
+    const modal = byId('modal');
+    const errList = byId('errList');
+    const errCount = byId('errCount');
+    let firstErrorId = null;
+
+    function showModal(errors) {
+      // Llista d'errors
+      errList.innerHTML = errors.map(e => `<li>${e.msg}</li>`).join('');
+      errCount.textContent = `${errors.length} error${errors.length>1?'s':''}`;
+      firstErrorId = errors[0]?.id || null;
+      modal.classList.add('show');
+      // focus trap bàsic: focus al botó tancar
+      byId('btnCloseModal').focus();
+      // tancar amb ESC
+      document.addEventListener('keydown', escHandler);
+    }
+
+    function hideModal() {
+      modal.classList.remove('show');
+      document.removeEventListener('keydown', escHandler);
+    }
+    function escHandler(ev){ if (ev.key === 'Escape') hideModal(); }
+
+    byId('btnCloseModal').addEventListener('click', hideModal);
+    byId('btnGotoError').addEventListener('click', () => {
+      hideModal();
+      if (firstErrorId) {
+        const el = byId(firstErrorId);
+        el?.focus();
+        el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // --- Modal informatiu helpers ---
+    const modalInfo = byId('modalInfo');
+    const modalInfoBody = byId('modalInfoBody');
+    const btnCloseInfo = byId('btnCloseInfo');
+    let lastInfoAt = 0;
+
+    function showInfo(message) {
+      const now = Date.now();
+      if (now - lastInfoAt < 1200) return; // anti-spam
+      lastInfoAt = now;
+      modalInfoBody.textContent = message || 'Acció no permesa.';
+      modalInfo.classList.add('show');
+      btnCloseInfo.focus();
+    }
+    function hideInfo(){ modalInfo.classList.remove('show'); }
+    btnCloseInfo.addEventListener('click', hideInfo);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalInfo.classList.contains('show')) hideInfo();
+    });
+
+    // --- Botons principals ---
+    byId('btnExport').addEventListener('click', () => {
+      const payload = collectPayload();
+      const errors = validateBeforeDownload(payload);
+      clearInvalids();
+      if (errors.length) {
+        markInvalids(errors);
+        showModal(errors);
+        return;
+      }
+      downloadJSON(payload);
+    });
+
+    byId('btnReset').addEventListener('click', () => {
+      ['q1sql','q1ans','q2sql','q2ans','q3sql','q3ans','q4sql','q4ans','q5sql','q5ans'].forEach(id => byId(id).value = '');
+      byId('msg').textContent = '';
+      clearInvalids();
+    });
+
+    function downloadJSON(payload) {
+      const email = payload.student.email?.replace(/[^a-zA-Z0-9_.-]/g, '_') || 'alumne';
+      const filename = `${email}_0484-bds-ae02_respostes.json`;
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      byId('msg').innerHTML = `<span class="ok">Fitxer descarregat:</span> <span class="kbd">${filename}</span>`;
+    }
+
+    window.addEventListener('DOMContentLoaded', loadAlumnes);
+  </script>
+  <style>
+  /* No selecció per defecte als enunciats */
+  .nocopy {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* Permetre selecció a les respostes */
+  .allow-copy, textarea, input[type="text"], input[type="search"] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+</style>
+
+<script>
+(() => {
+  // Ajusta aquestes opcions:
+  const BLOCK_PASTE = false;       // ara activat: bloqueja "enganxar" a les respostes amb modal
+  const USE_FULLSCREEN = false;   // posa-ho a true si vols el botó d'inici amb pantalla completa
+  const MAX_BLURS = 2;            // # cops que pot perdre el focus abans d’avisar/bloquejar
+
+  // 1) Bloquejar copiar fora de les respostes
+  const isAnswerField = (el) =>
+    el?.closest('textarea, input[type="text"], input[type="search"], .allow-copy');
+
+  document.addEventListener('copy', (e) => {
+    if (!isAnswerField(e.target)) {
+      e.preventDefault();
+      // info modal, no errors
+      const modalInfoBody = document.getElementById('modalInfoBody');
+      modalInfoBody.textContent = 'Copiar deshabilitat mentre respons l\'activitat.';
+      document.getElementById('modalInfo').classList.add('show');
+      document.getElementById('btnCloseInfo').focus();
+    }
+  });
+
+  document.addEventListener('contextmenu', (e) => {
+    if (!isAnswerField(e.target)) e.preventDefault();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const k = e.key.toLowerCase();
+    const mod = e.ctrlKey || e.metaKey;
+    // Evita Ctrl/Cmd+C, Ctrl/Cmd+X, Ctrl/Cmd+S, Ctrl/Cmd+P fora de respostes
+    const blocked = ['c','x','s','p','u','a']; // copia, retalla, desa, imprimeix, view-source, select all
+    if (!isAnswerField(e.target) && mod && blocked.includes(k)) {
+      e.preventDefault();
+      // Mostrar modal informatiu només per C o X
+      if (['c','x'].includes(k)) {
+        const modalInfoBody = document.getElementById('modalInfoBody');
+        modalInfoBody.textContent = 'Acció no permesa en aquesta zona.';
+        document.getElementById('modalInfo').classList.add('show');
+        document.getElementById('btnCloseInfo').focus();
+      }
+    }
+  });
+
+  // 2) (Opcional) Bloquejar enganxar a les respostes
+  if (BLOCK_PASTE) {
+    document.addEventListener('paste', (e) => {
+      if (isAnswerField(e.target)) {
+        e.preventDefault();
+        const modalInfoBody = document.getElementById('modalInfoBody');
+        modalInfoBody.textContent = 'Enganxar deshabilitat. Escriu la resposta amb les teves paraules.';
+        document.getElementById('modalInfo').classList.add('show');
+        document.getElementById('btnCloseInfo').focus();
+      }
+    });
+  }
+
+  // 3) (Opcional) Pantalla completa + monitor d’atenció
+  if (USE_FULLSCREEN) {
+    const btn = document.createElement('button');
+    btn.textContent = 'Inicia activitat (Pantalla completa)';
+    btn.style = 'position:sticky; top:0; z-index:9999; padding:.6rem 1rem; margin:.5rem;';
+
+    let blurCount = 0;
+
+    btn.addEventListener('click', async () => {
+      try { await document.documentElement.requestFullscreen(); } catch {}
+      btn.disabled = true;
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        blurCount++;
+        if (blurCount === 1) {
+          const modalInfoBody = document.getElementById('modalInfoBody');
+          modalInfoBody.textContent = 'Has sortit de la finestra de l\'activitat. Si torna a passar massa vegades, es bloquejarà el lliurament.';
+          document.getElementById('modalInfo').classList.add('show');
+          document.getElementById('btnCloseInfo').focus();
+        }
+        // Ex.: si supera el límit, desactivar el botó de lliurament
+        if (blurCount > MAX_BLURS) {
+          const submitBtn = document.querySelector('#btnExport, #descarrega-json, #btn-enviar, button[type="submit"]');
+          if (submitBtn) submitBtn.disabled = true;
+        }
+      }
+    });
+
+    document.body.prepend(btn);
+  }
+})();
+</script>
+
+</body>
+</html>

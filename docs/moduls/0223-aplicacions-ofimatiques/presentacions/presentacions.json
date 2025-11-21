@@ -1,0 +1,57 @@
+{
+  "module": {
+    "code": "0223",
+    "name": "Aplicacions Ofimàtiques"
+  },
+  "presentations": [
+    {
+      "order": 1,
+      "title": "1. Introducción a aplicaciones ofimáticas",
+      "src": "slides/ud01-iao.reveal",
+      "description": "TEORIA: Introducción a aplicaciones ofimáticas",
+      "status": "active"
+    },
+    {
+      "order": 2,
+      "title": "2. Organización individual y Colectiva",
+      "src": "slides/organizacio.reveal",
+      "description": "TEORIA: Organización individual y Colectiva",
+      "status": "active"
+    },
+    {
+      "order": 3,
+      "title": "3. Utilidades PDF",
+      "src": "slides/aof-03-utilidades-pdf.reveal",
+      "description": "TEORIA: Utilidades PDF",
+      "status": "active"
+    },
+    {
+        "order": 4,
+        "title": "4. Actividad evaluable (Utilidades PDF): 1 (`aof-ud03-ae01`)",
+        "src": "slides/aof-ud03-actividades-evaluables-01.reveal",
+        "description": "Actividad evaluable (Utilidades PDF): 1 (`aof-ud03-ae01`)",
+        "status": "active"
+    },
+    {
+      "order": 5,
+      "title": "5. Procesadores de texto",
+      "src": "slides/aof-ud05-procesador-de-texto.reveal",
+      "description": "TEORIA: ¿Qué es un procesador de texto?",
+      "status": "active"
+    },
+    {
+      "order": 6,
+      "title": "6. Actividad evaluable (Procesadores de texto): 5 (`aof-ud05-ae05`)",
+      "src": "slides/aof-ud05-ae05.reveal",
+      "description": "Actividad evaluable (Procesadores de texto): 5 (`aof-ud05-ae05`)",
+      "status": "active"
+    },
+    {
+      "order": 7,
+      "title": "7. Recursos para Word",
+      "src": "slides/recursos.reveal",
+      "description": "Recursos-estilo-TikTok--para-Word",
+      "status": "active"
+    }
+  ]
+}

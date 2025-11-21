@@ -1,0 +1,1376 @@
+### Muntatge i manteniment d'equips
+
+# Electricitat a l'ordinador
+
+* L'electricitat i l'electromagnetisme es troben presents en la naturalesa en formes de vegades tan espectaculars com els llamps.
+
+* El seu origen té a veure amb la mateixa estructura de la matèria.
+
+* Gràcies al seu descobriment i estudi posterior, avui dia els podem aplicar per a aconseguir coses tan imprescindibles com il·luminar o condicionar la temperatura d'un habitatge, fer funcionar tota una sèrie d'aparells electrònics que ens faciliten la vida i formar part fonamental dels processos productius o de serveis de la nostra societat.
+
+----
+
+#### Introducció
+
+* L'energia elèctrica és la més utilitzada en la nostra societat, gràcies a la seva capacitat de transformació en qualsevol altre tipus d'energia: lluminosa, caloríﬁca, mecànica, sonora, etc.
+
+* Quan, al ﬁnal del segle XIX i al principi del segle XX, i com a conseqüència dels avenços tecnològics, se'n va estendre la utilització, els cientíﬁcs van discutir sobre quin tipus d'energia elèctrica, contínua o alterna, era més convenient.
+
+* Es va imposar l'alterna pels avantatges que oferia la seva transformació i el transport des de les centrals de producció.
+
+
+----
+
+#### Introducció
+
+* A causa d'això en els endolls de les nostres llars disposem d'energia elèctrica alterna amb la qual alimentem els aparells elèctrics i electrònics que utilitzem en la nostra vida quotidiana.
+
+* Però tots aquests aparells disposen d'un transformador que converteix l'energia elèctrica alterna en contínua, que els aparells elèctrics podran fer servir.
+
+* Evidentment un d'aquests aparells electrònics, que cada dia adquireix més importància a les nostres llars, és l'ordinador personal.
+
+* A més del fet que funciona amb electricitat, cada cop trobem més ordinadors integrats en altres electrodomèstics, la qual cosa els afegeix noves funcionalitats que ens fan la vida més fàcil.
+
+----
+
+#### Introducció
+
+* L'energia elèctrica de tipus altern es caracteritza per la variabilitat dels valors de les magnituds de tensió i intensitat i el seu canvi de polaritat en el temps.
+
+* En aquesta unitat formativa aprendreu quina és la naturalesa de l'electricitat i com es fa per a mesurar-ne els valors.
+
+* Coneixereu els components de les fonts d'alimentació d'un ordinador i quins valors típics donen per a garantir el funcionament correcte dels dispositius.
+
+* A més, veureu la importància de la prevenció de riscos laborals en el sector de la microinformàtica, fent èmfasi en el risc elèctric i d'exposició a ones, com també en el muntatge de sistemes informàtics.
+
+----
+
+#### Introducció
+
+* En l'apartat “Mesura de paràmetres elèctrics” coneixereu el fenomen elèctric d'una manera general i aprendreu mesurar valors elèctrics tant en circuits senzills com en fonts d'alimentació.
+
+
+
+----
+
+#### Introducció
+
+* En l'apartat “Sistema d'alimentació ininterrompuda” aprendreu el funcionament i característiques dels sistemes d'alimentació ininterrompuda, que permeten el funcionament sense talls d'energia dels sistemes informàtics.
+
+* En l'apartat “Normes de prevenció de riscos laborals i protecció ambiental” esbrinareu la manera d'identiﬁcar els riscos que es presenten a l'hora de treballar amb components elèctrics, i com es poden evitar accidents seguint les normes de prevenció de riscos laborals.
+
+
+----
+
+#### Introducció
+
+* Per a fer les mesures de valors elèctrics, haureu de disposar de components electrònics i d'una placa protoboard que permeti fer muntatges senzills de circuits, com també d'aparells de mesura adequats.
+
+* Algunes de les mesures també es poden fer utilitzant un programari simulador de circuits elèctrics.
+
+* Quant a la mesura de valors d'una font d'alimentació, caldrà que tingueu la possibilitat de desmuntar la font d'algun equip o aconseguir-ne una que encara no s'hagi instal·lat en un ordinador.
+
+----
+
+#### Introducció
+
+* L'apartat relacionat amb els sistemes d'alimentació ininterrompuda (SAI) també s'haurà de realitzar utilitzant recursos en línia, a més de manuals de models especíﬁcs i el seu programari de control.
+
+* L'apartat de prevenció de riscos té un fort component teòric, ja que la prevenció es troba regulada per llei, i cal conèixer aquesta llei per a poder-la aplicar correctament.
+
+---
+
+## Resultats d’aprenentatge
+
+### **RA1.** Mesura paràmetres elèctrics, identiﬁcant el tipus de senyal i relacionant-la amb les seves unitats característiques.
+
+* Identiﬁca el tipus de senyal a mesurar amb l'aparell corresponent.
+
+* Selecciona la magnitud, el rang de mesura i s'ha connectat l'aparell segons la magnitud a mesurar.
+
+* Relaciona la mesura obtinguda amb els valors típics.
+
+* Identiﬁca els blocs d'una font d'alimentació (FA) per a un ordinador personal.
+
+----
+
+#### **RA1.** Mesura paràmetres elèctrics, identiﬁcant el  ...   (cont..)
+
+* Enumera les tensions proporcionades per una FA típica.
+
+* Mesura les tensions en FA típiques d'ordinadors personals.
+
+* Identiﬁca els blocs d'un sistema d'alimentació ininterrompuda.
+
+* Mesura els senyals en els punts signiﬁcatius d'un SAI.
+
+----
+
+### **RA2.** Veriﬁca que compleix les normes de prevenció de riscos laborals i de protecció ambiental, identiﬁcant els riscos associats, les mesures i equips per prevenir-los.
+
+* Identiﬁca els riscos i el nivell de perillositat que representen la manipulació dels materials, eines, estris, màquines i mitjans de transport.
+
+* Opera amb les màquines respectant les normes de seguretat.
+
+* Identiﬁca les causes més freqüents d'accidents en la manipulació de materials, eines, màquines de tall i conformacions, entre d'altres.
+
+----
+
+#### **RA2.** Veriﬁca que compleix les normes de prevenció ...   (cont..)
+
+* Descriu els elements de seguretat (proteccions, alarmes, passos d'emergència, entre d'altres) de les màquines i els equips de protecció individual (calçat, protecció ocular, indumentària, entre d'altres) que s'han d'ocupar en les diferents operacions de muntatge i manteniment.
+
+* Relaciona la manipulació de materials, eines i màquines amb les mesures de seguretat i protecció personal requerits.
+
+* Identiﬁca les possibles fonts de contaminació de l'entorn ambiental.
+
+* Classiﬁca els residus generats per a la seva retirada selectiva.
+
+* Valora l'ordre i la netedat d'instal·lacions i equips com a primer factor de prevenció de riscos.
+
+
+---
+
+
+## 1. Mesura de paràmetres elèctrics.
+
+* En aquest apartat es donarà una visió general del funcionament i mesurament de l'electricitat.
+
+* Per a això se n'estudiarà el fenomen natural, com també els aparells que s'utilitzen per a fer-ne mesures qualitatives.
+
+* L'electricitat es mesura amb aparells que ens permeten avaluar el voltatge, intensitat i potència dels circuits i aparells electrònics.
+
+* Aquesta informació ens permetrà abordar amb coneixement de causa els components que conformen un ordinador personal i que estan relacionats amb l'electricitat i el subministrament d'energia, com són la font d'alimentació i els components informàtics que se n'alimenten.
+
+---
+
+### 1.1 Fonaments d'electricitat
+
+* Així, per a ser capaços de reparar ordinadors personals en totes les seves parts funcionals, heu de comprendre el fenomen elèctric i conèixer els diferents senyals elèctrics que es poden mesurar en un ordinador personal, des de la font d'alimentació ﬁns als valors que trobarem en els circuits integrats.
+
+* Els valors que utilitzarem amb més freqüència i que s'utilitzen habitualment per a caracteritzar els components informàtics són el voltatge, la intensitat i la potència.
+
+
+----
+
+#### 1.1.1 L'electricitat i els senyals elèctrics
+
+* L'electricitat és un fenomen físic originat per càrregues estàtiques o en moviment i per la seva interacció.
+
+* Quan una càrrega es troba en repòs produeix forces sobre d'altres situades al seu voltant.
+
+* Si la càrrega es desplaça, també produeix forces magnètiques
+
+* Hi ha dos tipus de càrregues elèctriques, anomenades positives i negatives.
+
+----
+
+#### 1.1.1 L'electricitat i els senyals elèctrics
+
+* L'electricitat està present en algunes partícules subatòmiques.
+
+* La partícula fonamental més lleugera que porta càrrega elèctrica és l'electró, que transporta una unitat de càrrega negativa
+
+* En circumstàncies normals, els àtoms contenen electrons, i sovint els que estan més allunyats del nucli es desprenen amb molta facilitat
+
+* En algunes substàncies, com els metalls, proliferen els electrons lliures
+
+* Un àtom normal té quantitats iguals de càrrega elèctrica positiva i negativa, per tant, és elèctricament neutre
+
+----
+
+#### 1.1.1 L'electricitat i els senyals elèctrics
+
+* La quantitat de càrrega transportada per tots els electrons de l'àtom, que per convenció és càrrega negativa, es troba equilibrada per la càrrega positiva localitzada al nucli
+
+* D'aquesta manera si un cos conté un excés d'electrons queda carregat negativament
+
+* Si al contrari el cos té una absència d'electrons, queda carregat positivament, perquè hi ha més càrregues positives al nucli.
+
+----
+
+><hr>
+>
+> **Partícula**: es considera la part més petita que resulta quan es descompon un cos per procediments mecànics.
+>
+><hr>
+>
+> **Molècula**: és la part més petita que resulta de la descomposició d'un cos per procediments físics.
+>
+><hr>
+>
+> **Àtom**: és la part més petita que resulta de la descomposició d'un cos per procediments químics.
+><hr>
+
+----
+
+##### Constitució de la matèria i estructura atòmica
+
+* Per a estudiar la naturalesa de l'electricitat i els fenòmens relacionats amb aquesta, cal conèixer, encara que sigui de manera elemental, la constitució de la matèria
+
+  * La matèria està formada per partícules.
+
+* Vegem-ne un exemple
+
+   * Si agafem una pedra de sucre i la triturem en un morter, obtindrem una mena de pols molt ﬁna, de manera que encara que continuem picant no aconseguirem reduir-ne la grandària
+
+   * Si tastem aquesta pols comprovarem que té el mateix gust, ja que continua essent sucre.
+
+----
+
+##### Constitució de la matèria i estructura atòmica
+
+* Aquestes partícules de sucre ja no es poden fraccionar utilitzant procediments mecànics (cops, fregaments, etc.), però sí que es pot fer amb un altre tipus de procediments
+
+  * Per exemple, si agafem una quantitat d'aquesta pols de sucre, la dipositem en un got d'aigua i l'agitem, veurem que aparentment ha desaparegut, les partícules s'han dividit en molècules d'una grandària tan petita que són inapreciables a simple vista
+
+* Aquest procés també és un fenomen físic, ja que el sucre és present en la dissolució, com ho demostra el fet que l'aigua té un gust dolç.
+
+
+----
+
+##### Constitució de la matèria i estructura atòmica
+
+* La molècula, al seu torn, es pot fraccionar mitjançant fenòmens químics en trossos més petits, anomenats àtoms, però el resultant d'aquest fraccionament, en el nostre exemple, ja no és sucre, sinó altres cossos de naturalesa distinta.
+
+* L'àtom, en un principi considerat indivisible, està format per diferents parts, tal com podeu veure en la **Figura 1.1**
+
+
+----
+
+##### Constitució de la matèria i estructura atòmica
+
+![fp_smx_m01_u1_pdfindex_p10_block259_460.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p10_block259_460.png)
+
+> Figura 1.1 - Estructura d'un àtom
+
+----
+
+##### Constitució de la matèria i estructura atòmica
+
+* **Nucli**, que està format per **dos tipus d'elements**:
+
+  * **Protó**, que és la part de l'**àtom** que té una **càrrega elèctrica positiva**, que s'agafa com a unitat, i una **massa** que també s'agafa com a unitat.
+
+  * **Neutró**, que és la partícula amb la mateixa massa que el protó però que no té càrrega elèctrica.
+
+* **Òrbites**, on giren, al voltant del **nucli**, els **electrons**.
+
+* Els **electrons** són **partícules atòmiques** amb la mateixa **càrrega elèctrica** que el **protó** però de **signe contrari**, és a dir, **negatiu**, i amb una **massa pràcticament insigniﬁcant** comparada amb la del **protó** o la del **neutró** (recordeu que les **masses del protó i del neutró són iguals**).
+
+----
+
+##### Constitució de la matèria i estructura atòmica
+
+* Cal tenir present que, des del punt de vista elèctric, la característica que ens interessa és la càrrega elèctrica de la partícula, i no pas la seva massa
+
+* Com a resum, observeu la **taula 1.1**
+
+
+|Nom|Càrrega elèctrica|Massa|
+|----|----:|----:|
+|Protó|**`+1`**|**`1`**|
+|Neutró|**`0`**|**`1`**|
+|Electró|**`-1`**|**`≈0`**|
+
+> Taula 1.1 - Estructura atòmica
+
+----
+
+##### Constitució de la matèria i estructura atòmica
+
+* En *condicions normals*, **l'àtom és elèctricament neutre**, és a dir, tendeix a tenir **el mateix nombre d'electrons que de protons**
+
+* Ara bé, en determinades circumstàncies, els àtoms, i en conseqüència els cossos formats per aquests àtoms, poden guanyar o perdre càrregues elèctriques i donar lloc a dos tipus d'electricitat:
+
+  * Electricitat positiva, quan els cossos han perdut electrons.
+
+  * Electricitat negativa, quan els cossos han guanyat electrons.
+
+* Fixeu-vos en el detall que parlem de guanyar o perdre electrons, ja que només aquests tenen la possibilitat de desplaçar-se, ja que els protons estan tancats al nucli.
+
+---
+
+##### Electrització per fricció
+
+* A l'antiga **Grècia** ja coneixien les propietats d'alguns cossos (com l'**ambre**, anomenat en grec **`elektron`**) d'atraure petits trossos de paper, suro, plomes, etc., immediatament després d'haver estat fregats
+
+* Altres tipus de cossos amb aquestes propietats són el **`vidre`**, la **`resina`**, l'**`ebonita`**.
+
+----
+
+##### Electrització per fricció
+
+* Quan dos cossos es freguen l'un amb l'altre es pot establir entre ells una transferència d'electrons
+
+* Si freguem una barra de plàstic amb un drap de llana, el plàstic quedarà carregat negativament (electricitat negativa), ja que agafarà electrons de la llana
+
+* En canvi, si freguem una barra de vidre amb un mocador de seda, el vidre quedarà carregat positivament (electricitat positiva), ja que haurà cedit electrons a la seda.
+
+----
+
+##### Electrització per fricció
+
+* Tot fenomen d'electrització és conseqüència d'una transferència d'electrons
+
+  * Les càrregues elèctriques no es creen ni es destrueixen, sinó que passen d'un cos a un altre, de manera que tots dos cossos queden electritzats.
+
+* Amb les barres de plàstic i vidre carregades elèctricament, podem comprovar que si apropem dues barres de plàstic o dues barres de vidre sorgeix entre elles una força de repulsió; en canvi, si apropem una barra de cada tipus apareix una força d'atracció
+
+* Podeu veure una representació gràﬁca d'aquest fenomen en la ﬁgura 1.2.
+
+----
+
+##### Electrització per fricció
+
+* Estudiant les atraccions i repulsions entre els pols de dues brúixoles, es va adonar que els cossos electritzats segueixen la mateixa llei, i que passa el mateix entre pols magnètics de dos imants.
+
+> **`ε`** = Constant dielèctrica del medi
+
+* Càrregues elèctriques del mateix signe es repel·len i càrregues de signe diferent s'atreuen.
+
+----
+
+##### Càrrega elèctrica
+
+![fp_smx_m01_u1_pdfindex_p12_block209_140.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p12_block209_140.png) 
+
+
+Figura 1.2 - Repulsió i atracció de càrregues
+
+----
+
+##### Càrrega elèctrica
+
+* La càrrega elèctrica es deﬁneix com la quantitat d'electrons que té un cos tant per defecte com per excés
+
+  * Es representa amb la lletra **`q`**.
+
+* La càrrega elèctrica, també anomenada quantitat d'electricitat, és una magnitud física fonamental
+
+  * En principi semblaria lògic pensar que la unitat de la càrrega elèctrica hauria de ser l'electró,
+  * ara bé, com que és d'un valor molt petit es va optar per utilitzar un múltiple, el **`coulomb`**.
+
+El **`coulomb`** és la unitat de càrrega elèctrica i equival aproximadament a **`6,2 × 10 <sup>18</sup>` electrons**.
+
+----
+
+> ##### Unitats de mesura
+> 
+> * La força d'atracció o repulsió entre càrregues es mesura en newtons (N)
+> 
+> * les càrregues elèctriques es mesuren en coulombs (C)
+> 
+> * la distància entre les càrregues es mesura en metres (m).
+> 
+
+![constant-de-proporcionalitat.png](../../../assets/img/mim/constant-de-proporcionalitat.png)
+
+----
+
+##### Llei de Coulomb
+
+>
+> * L'enginyer militar francès **Charles-Augustin de Coulomb** (1736-1806) va descobrir que la força d'atracció o repulsió entre cossos electritzats és directament proporcional al producte de les càrregues i inversament proporcional al quadrat de la distància entre ells.
+>
+
+----
+
+##### Llei de Coulomb
+
+![formula-llei-de-coulomb.png](../../../assets/img/mim/formula-llei-de-coulomb.png)
+
+En què:
+
+* **`F`** és la força d'atracció o repulsió entre càrregues.
+
+* **`K`** és la **constant de proporcionalitat**.
+
+* **`q`** i **`q'`** són les càrregues elèctriques.
+
+* **`d`** és la distància entre les càrregues.
+
+----
+
+##### Llei de Coulomb
+
+* La força d’atracció o repulsió depèn del medi en què estan immerses les càrregues: no és el mateix que siguin a l’aire que, per exemple, a l’aigua. Per això s’utilitza la constant de proporcionalitat, que és determinada pel medi i, en concret, per la seva constant dielèctrica, de manera que:
+
+----
+
+##### Llei de Coulomb
+
+En el sistema internacional de mesures:
+
+![constant-de-proporcionalitat-si.png](../../../assets/img/mim/constant-de-proporcionalitat-si.png)
+
+----
+
+##### Llei de Coulomb
+
+###### Exemple de càlcul de la força d'atracció o repulsió entre càrregues
+
+* En l'àtom d'hidrogen l'electró està separat del protó per una distància de:
+
+![constant-de-proporcionalitat-exemple.png](../../../assets/img/mim/constant-de-proporcionalitat-exemple.png)
+
+----
+
+##### Llei de Coulomb
+
+* La càrrega de l'electró és:
+
+![constant-de-proporcionalitat-carrega-de-l-electro.png](../../../assets/img/mim/constant-de-proporcionalitat-carrega-de-l-electro.png)
+
+----
+
+##### Llei de Coulomb
+
+* La constant de proporcionalitat:
+
+![constant-de-proporcionalitat-si.png](../../../assets/img/mim/constant-de-proporcionalitat-si.png)
+
+----
+
+##### Llei de Coulomb
+
+![fp_smx_m01_u1_pdfindex_p13_block56_364.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p13_block56_364.png) 
+
+> Figura 1.3
+
+----
+
+##### Llei de Coulomb
+
+* Quina és la força exercida pel protó sobre l'electró?
+
+
+   #### Solució
+
+   <img src="../../../assets/img/mim/formula-llei-de-coulomb.png" height="100">
+
+
+* Així
+
+   <img src="../../../assets/img/mim/devel-forca-exercida-pel-proto-sobre-l-electro-01.png" height="200">
+
+
+----
+
+##### Camp elèctric
+
+* Tothom sap que la Terra exerceix una inﬂuència anomenada *gravitatòria*, que es pot apreciar quan, en qualsevol dels seus punts, se situa un cos de prova i se'n mesura el pes, és a dir, *la força amb què la Terra l'atreu*. Aquesta inﬂuència es coneix com a *camp gravitatori terrestre*. De la mateixa manera, la física introdueix **Camp elèctric** la noció de camp magnètic i també la de camp elèctric o electrostàtic.
+
+----
+
+> #### Camp elèctric
+>
+> * Si col·loquem una càrrega dins la zona grisa de la ﬁgura serà atreta o repel·lida per la càrrega positiva la zona on es percep l'acció de la càrrega positiva s'anomena camp elèctric.
+>
+> ![fp_smx_m01_u1_pdfindex_p14_block42_75.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p14_block42_75.png) 
+
+----
+
+* S'anomena **camp elèctric** d'una càrrega **`q`** la regió de l'espai, al voltant de la càrrega, en què es manifesten forces d'origen elèctric.
+
+* Una manera de comprovar la presència o no de camp elèctric en un punt és col·locant-hi un cos carregat i observant si s'hi exerceix alguna força d'origen elèctric.
+
+* Els camps elèctrics es representen amb les anomenades *línies de força*, Aquestes són les trajectòries que seguiria una càrrega elèctrica positiva abandonada lliurement en el camp. Les línies de força tindran el sentit de les càrregues positives a les negatives.
+
+----
+
+* Observeu la ***ﬁgura 1.4***
+
+![fp_smx_m01_u1_pdfindex_p14_block197_383.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p14_block197_383.png) 
+
+> Figura 1.4 - Línies de força de camp elèctric
+
+* si la càrrega està aïllada i és positiva, les línies de força surten d'aquesta i es dirigeixen cap al límit del camp (***figura 1.4 a***).
+
+----
+
+![fp_smx_m01_u1_pdfindex_p14_block197_383.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p14_block197_383.png) 
+
+> Figura 1.4 - Línies de força de camp elèctric
+
+* Si, al contrari, la càrrega és negativa, les línies tenen sentit contrari a l'anterior (***ﬁgura 1.4 b***).
+
+----
+
+![fp_smx_m01_u1_pdfindex_p14_block197_383.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p14_block197_383.png) 
+
+> Figura 1.4 - Línies de força de camp elèctric
+
+
+* En el cas de dos cossos electritzats amb càrregues de signe diferent, les línies de força aniran del positiu al negatiu (***ﬁgura 1.4 c***).
+
+----
+
+![fp_smx_m01_u1_pdfindex_p14_block197_383.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p14_block197_383.png) 
+
+> Figura 1.4 - Línies de força de camp elèctric
+
+* Per acabar, si tots dos cossos estan carregats amb el mateix signe, per exemple positiu, les línies de força es dispersen cap al límit del camp (***ﬁgura 1.4 d***); si són negatives, tindran el sentit contrari.
+
+----
+
+##### Diferència de potencial
+
+* S'anomena *diferència de potencial*, entre dos punts d'un camp elèctric, el treball que cal realitzar sobre la unitat de càrrega per a transportar-la des del primer punt ﬁns al segon.
+
+<p>Si anomenem w el treball, la diferència de potencial <strong><kbd>V<sub>1</sub> −V<sub>2</sub></kbd></strong>:</p>
+
+![alt text](../../../assets/img/mim/formula-diferencia-de-potencial.png)
+
+----
+
+* La unitat de diferència de potencial serà la que hi ha entre dos punts d'un camp elèctric de manera que per traslladar un **`coulomb`** de càrrega elèctrica, la força que calgui realitzar sigui d'un joule.
+
+* Aquesta unitat s'anomena volt.
+
+![alt text](../../../assets/img/mim/unitat-diferencia-de-potencial.png)
+
+* La diferència de potencial també rep el nom de **tensió**.
+
+----
+
+* Si dos cossos carregats elèctricament, amb diferent potencial, s'uneixen mitjançant un ﬁl conductor, es produeix un pas de càrrega ﬁns que tots dos cossos, i el conductor que els uneix, queden al mateix potencial, anomenat potencial d'equilibri.
+
+* Recordeu que els àtoms i els cossos tenen tendència a romandre en estat neutre.
+
+----
+
+#### 1.1.2 El corrent elèctric
+
+> * El corrent elèctric és el desplaçament continu de càrregues (electrons) al llarg d'un conductor.
+
+* Aquest desplaçament d'electrons es mantindrà sempre que hi hagi una diferència de potencial entre els seus extrems.
+
+----
+
+* El corrent elèctric pot produir diferents efectes:
+
+  * ***Tèrmic*** o ***caloríﬁc***. Pensem, per exemple, en les estufes elèctriques, que tan sols s'han d'endollar perquè comencin a escalfar, o bé en les làmpades d'incandescència, en què el pas del corrent elèctric en travessar un ﬁlament produeix lluminositat.
+
+  * ***Magnètic***. Quan un corrent elèctric passa per un conductor es crea un camp magnètic. Trobem un exemple en els motors.
+
+  * ***Químic***- El més important és l'electròlisi que s'aplica en determinats processos industrials.
+
+----
+
+##### El circuit elèctric
+
+<img src="../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p15_block439_537.png" height="400">
+
+> **Figura 6A**: El circuit elèctric es pot veure com a circuit hidràulic
+
+----
+
+##### El circuit elèctric
+
+Començarem fent un símil amb un circuit hidràulic.
+
+<img src="../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p15_block439_537.png" height="200">
+
+* Com que els dos dipòsits estan a diferent nivell (hi ha una **diferència de potencial**) s'estableix un corrent d'aigua des del **dipòsit A** ﬁns al **dipòsit B** ﬁns que tots dos estiguin al **mateix nivell**.
+
+* Quan això es produeixi (que tots dos estiguin al **mateix nivell**), com que ***no hi haurà una diferència de potencial***, el corrent d'aigua desapareixerà.
+
+----
+
+##### El circuit elèctric
+
+* Si a aquest símil hidràulic, en què heu pogut comprovar que quan els dos dipòsits estan al mateix nivell el corrent desapareix, afegim algun element que mantingui la diferència de potencial, el corrent d'aigua des del dipòsit A ﬁns al B no s'aturarà.
+
+----
+
+##### El circuit elèctric
+
+<img src="../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p15_block439_652.png" height="400">
+
+> **Figura 6B**: La ***bomba hidràulica*** representa el generador elèctric
+
+----
+
+##### El circuit elèctric
+
+<img src="../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p15_block439_652.png" height="200">
+
+* Aquest element, que podria ser una **bomba**, també el podríem anomenar **generador de diferència de potencial**.
+
+* En la **ﬁgura 6B** es representa la modiﬁcació plantejada.
+
+----
+
+##### El circuit elèctric
+
+* Observeu en la **ﬁgura 1.5** que el comportament del circuit elèctric és molt semblant a l'hidràulic.
+
+![fp_smx_m01_u1_pdfindex_p16_block272_81.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p16_block272_81.png)
+> **Figura 1.5**: El corrent recorre el circuit elèctric com l'aigua el circuit hidràulic
+
+----
+
+##### El circuit elèctric
+
+
+> ###### Sentits convencional i real del corrent elèctric
+> 
+> Abans de conèixer els electrons, els físics creien que eren les càrregues positives les que es movien de positiu a negatiu, per la qual cosa van assignar al pol positiu un potencial més gran que al negatiu com si es tractés d'un circuit hidràulic.
+> 
+> Després es va veure que la realitat és diferent, és a dir, que el que es mou són els electrons.
+
+----
+
+##### El circuit elèctric
+
+
+> ###### Interruptor obert i tancat
+> 
+> ![fp_smx_m01_u1_pdfindex_p16_block170_463.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p16_block170_463.png)
+>
+> **Figura 1.6**
+> 
+> En el **circuit a** l’interruptor **obert** impedeix el pas del corrent. En el **circuit b** l’interruptor **tanca** el circuit i permet el pas del corrent.
+
+----
+
+##### El circuit elèctric
+
+
+* El circuit elèctric està format per una pila, que fa les funcions de generador mantenint la diferència de potencial, i uns elements conductors que connecten un pol del generador amb l'element receptor (el que transforma l'energia elèctrica en altres formes d'energia), i aquest amb l'altre pol del generador, i d'aquesta manera es tanca el circuit.
+
+* Els electrons es desplacen des del pol negatiu ﬁns al positiu (sentit real del corrent elèctric).
+
+* El fet d'utilitzar el sentit real o el convencional no afecta l'estudi del corrent elèctric; per aquest motiu, podeu trobar publicacions en què s'utilitza el sentit real (de negatiu a positiu) o el sentit convencional (de positiu a negatiu).
+
+* No n'hi ha prou de disposar dels elements generador, receptor i conductors: a més és condició indispensable que el circuit estigui tancat.
+
+----
+
+##### Generadors elèctrics
+
+* Els generadors elèctrics són elements imprescindibles en qualsevol circuit elèctric. L'energia elèctrica es pot generar de diferents maneres. Segons el tipus de procediment emprat trobem:
+
+----
+
+##### Generadors elèctrics
+
+###### Generadors electromagnètics:
+
+* Basats en el fet de fer girar un conductor dins d'un camp magnètic. El gir d'aquest conductor es pot fer aproﬁtant un salt d'aigua (centrals hidroelèctriques), la força del vapor d'aigua (centrals tèrmiques de diferents tipus de combustible, sòlid, líquid, gas, nuclear, etc.) o la força del vent (centrals eòliques).
+
+###### Generadors solars:
+
+* Utilitzen cèl·lules formades per elements semiconductors que tenen la propietat de, sotmetent-los a l'exposició de la llum solar, ser capaços de generar unes petites diferències de potencial entre els seus extrems. La combinació de múltiples cèl·lules permet aconseguir diferències de potencial d'uns valors suﬁcients per a poder ser utilitzades.
+
+----
+
+##### Generadors elèctrics
+
+###### Generadors químics:
+
+* Són els coneguts com a piles i bateries, que es basen en reaccions químiques d'oxidació i reducció.
+
+----
+
+##### Generadors elèctrics
+
+* En qualsevol cas, cal tenir present el principi de conservació de l'energia.
+
+  * Recordeu que, segons el primer principi de la termodinàmica, l'energia no es crea ni es destrueix sinó que només es transforma.
+
+----
+
+##### Conductors
+
+*  Els materials que connecten els diferents elements del circuit elèctric han de facilitar el pas del corrent elèctric o, més ben dit, n'han de diﬁcultar el pas el mínim possible.
+
+   * Tots els metalls són bons conductors, tot i que hi ha diferència entre ells.
+
+----
+
+##### Conductors
+
+#### 1.1.3 Magnituds elèctriques i les seves unitats
+
+* Diferents magnituds, amb les seves respectives unitats i múltiples i submúltiples, intervenen en els circuits elèctrics.
+
+   * Aquestes magnituds i les relacions entre elles són les que permeten fer l'anàlisi dels circuits elèctrics.
+
+> <hr>
+> De vegades els tres termes diferència de potencial, força electromotriu i tensió elèctrica es barregen, en part perquè tots tres utilitzen la mateixa unitat; ara els veureu separadament.
+> <hr>
+
+----
+##### Conductors
+
+###### Diferència de potencial (**`ddp`**)
+
+* Es pot considerar com la primera condició perquè es produeixi un corrent elèctric.
+
+  * En el símil hidràulic equival a tenir una diferència de nivell entre els dipòsits.
+
+----
+
+##### Conductors
+
+* Si tornem al circuit hidràulic de la **ﬁgura 6**, la bomba tenia per objecte establir una diferència de pressió entre tots dos dipòsits perquè l'aigua pogués circular en el sentit de més pressió (dipòsit A) a menys pressió (dipòsit B).
+
+<img src="../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p15_block439_537.png" height="400">
+
+----
+
+##### Conductors
+
+![fp_smx_m01_u1_pdfindex_p16_block272_81.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p16_block272_81.png)
+> **Figura 1.5**: El corrent recorre el circuit elèctric com l'aigua el circuit hidràulic
+
+* De la mateixa manera, la pila del circuit de la ﬁgura 1.5 té per objecte establir una diferència de tensió entre els extrems del circuit. Si no hi ha aquesta diferència de tensió elèctrica el corrent no circula.
+
+----
+
+##### Conductors
+
+* Aquesta **diferència de tensió elèctrica** s'anomena normalment **diferència de potencial (`ddp`)**, la seva unitat en el sistema internacional (SI) és el **`volt`** i es representa de manera abreujada amb una **`V`** majúscula.
+
+----
+
+##### Força electromotriu (**`fem`**)
+
+* Aquesta magnitud va associada de manera directa amb els generadors.
+
+* S'anomena **força electromotriu (`fem`) d'un generador** l'energia que es proporciona per a fer circular una *quantitat de corrent d'1 **`coulomb`*** pel circuit tancat.
+
+  * D'una manera més entenedora podríem dir que és **l'energia necessària per a mantenir la circulació dels electrons pel circuit**.
+
+* La **força electromotriu** s'acostuma a representar amb la lletra **`E`** i es mesura, igual que la diferència de potencial, en **volts** (**`V`**).
+
+----
+
+##### Força electromotriu (**`fem`**)
+
+> <hr>
+>
+> ##### Tensió, múltiples i submúltiples
+> 
+> Dels múltiples, el més emprat és el **`kV`**, i només quan parlem dels nivells de les línies de mitjana i alta tensió utilitzades pel transport de l'energia elèctrica.
+> 
+> Dels submúltiples, els més emprats són el **`mV`** i el **`µV`**, especialment en circuits electrònics i en senyals de comunicacions.
+> 
+> El **`nV`** i el **`pV`** rarament es referencien.
+>
+> <hr>
+
+----
+
+##### Tensió elèctrica
+
+> <img src="../../../assets/img/mim/../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p18_block42_330.png" height="400">
+>
+> La diferència de tensió entre el **punts a** i el **punt b** s'anomena **voltatge**.
+
+----
+
+##### Tensió elèctrica
+
+* És la manera més comuna de fer referència a la **diferència de potencial**, i també a la **força electromotriu**. Es pot deﬁnir com la **diferència de nivell elèctric que hi ha entre dos punts qualsevol d'un circuit elèctric**. S'acostuma a representar com a **`V`**. La tensió es mesura també en **volts** (**`V`**). L'aparell per a mesurar els nivells de tensió s'anomena **voltímetre**.
+
+* De vegades cal indicar valors molt més grans que la unitat (**`volt`**) o, al contrari, molt més petits, i això ens obliga a utilitzar múltiples i submúltiples.
+
+----
+
+##### Tensió elèctrica
+
+A la taula 1.2 podeu consultar els valors equivalents en volts d'aquests múltiples i submúltiples.
+
+|Múltiples|Submúltiples|Equivalència|
+|----|----|----|
+|Megavolt (MV)||10<sup>6</sup> V|
+|Quilovolt (kV)||10<sup>3</sup> V|
+||mil·livolt (mV)|10<sup>-3</sup> V|
+||microvolt (µV)|10<sup>-6</sup> V|
+|nanovolt (nV)||10<sup>-9</sup> V|
+|picovolt (pV)||10<sup>-12</sup> V|
+> Taula 1.2 - Múltiples i submúltiples del volt
+
+----
+
+##### Tensió elèctrica
+
+*  **`220 kV = 220 × 103 V = 220.000 V`**
+
+*  **`135 mV = 135 × 10-3 V = 0,135 V`**
+
+*  **`350 µV = 350 × 10-6 V = 0,350 mV = 0,000350 V`**
+
+----
+
+##### Tensió elèctrica
+
+> ###### Corrent elèctric sense bifurcacions
+> 
+> * Per a entendre el concepte de corrent elèctric sense bifurcacions, us pot ajudar pensar en un passadís sense portes als costats i sense possibilitat de tirar enrere.
+
+----
+
+##### Intensitat del corrent
+
+> <img src="../../../assets/img/mim/../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p19_block439_82.png" height="400">
+>
+> La intensitat per al conductor 2 és més gran que per al conductor 1
+
+----
+
+##### Intensitat del corrent
+
+* S'anomena intensitat del corrent elèctric o corrent elèctric la càrrega elèctrica que travessa una secció d'un conductor en la unitat de temps.
+
+![alt text](../../../assets/img/mim/intensitat-del-corrent.png)
+
+----
+
+##### Intensitat del corrent
+
+
+* La unitat del corrent elèctric en el sistema internacional és l'ampere (A), que és la intensitat d'un corrent que transporta un **`coulomb`** en cada segon.
+
+----
+
+##### Intensitat del corrent
+
+* La intensitat del corrent elèctric en un circuit que no tingui bifurcacions és sempre la mateixa en qualsevol punt del circuit, ja que el nombre d'electrons que passen en un segon per un punt del circuit serà el mateix si els mesurem en un altre punt del mateix circuit. Així, en la següent ﬁgura, el corrent en el **`punt A`** i en el **`punt B`** és el mateix.
+
+> <img src="../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p19_block439_197.png" height="350">
+
+----
+
+##### Intensitat del corrent
+
+* Quan parlem de circuits elèctrics domèstics, els que hi ha a les instal·lacions dels nostres habitatges, la unitat ampere és una unitat força adequada.
+
+* Ara bé, quan parlem de circuits d'equips electrònics, en la majoria dels casos és una unitat força gran i, per aquest motiu, en aquest cas només farem referència a submúltiples.
+
+----
+
+##### Intensitat del corrent
+
+* A la taula 1.3 hi podeu consultar els valors equivalents dels submúltiples de l'ampere.
+
+|Submúltiples | Equivalència|
+|----|----|
+|mil·liamper (mA) | 10-3 A|
+|microamper (µA) | 10-6 A|
+|nanoamper (nA) | 10-9 A|
+|picoamper (pA) | 10-12 A|
+> Taula 1.3 - Múltiples i submúltiples de l'Ampère
+
+* L'aparell per mesurar la quantitat de corrent s'anomena amperímetre.
+
+----
+
+##### Intensitat del corrent
+
+Una magnitud associada al corrent elèctric és la **densitat de corrent** (**`J`**), que és la relació entre el corrent elèctric que circula i la secció del conductor.
+
+
+![alt text](../../../assets/img/mim/intensitat-del-corrent.png)
+
+----
+
+##### Intensitat del corrent
+
+Exemple de càlcul de la densitat del corrent
+
+* Calculeu la densitat de corrent en un conductor de <strong>2,5 mm<sup>2</sup></strong> si el corrent que circula és de <strong>5 amperes</strong>.
+
+* Si apliquem la fórmula de la densitat de corrent (**`J`**) tindrem:
+
+![alt text](../../../assets/img/mim/exemple-intensitat-del-corrent.png)
+
+----
+
+##### Intensitat del corrent
+
+* La densitat màxima de corrent que pot suportar un conductor dependrà:
+
+  * del material amb què hagi estat fabricat,
+
+  * de la seva secció i
+
+  * de si es tracta d'un conductor amb coberta d'aïllant o sense.
+----
+
+##### Conductors i aïllants perfectes
+
+><hr>
+>
+> * No hi ha conductors ni aïllants perfectes, sinó que depenen de les circumstàncies.
+> 
+>    * L'aire és un aïllant, entre els dos cables d'una línia d'alta tensió no salta l'arc elèctric (no es tanca el circuit), en canvi, si es tracta d'una tempesta amb una gran càrrega elèctrica, sí que salta l'arc entre el núvol i la terra (llamp).
+> 
+>    * L'aire és un aïllant, però no és un aïllant perfecte.
+>
+><hr>
+
+
+----
+
+##### Unitat de resistència
+
+* De la mateixa manera que hi ha la deﬁnició del patró del metre, també es va deﬁnir l'**`ohm`** patró.
+
+  * Un **ohm** és la resistència elèctrica d'una columna de mercuri de **`106,3 cm`** de longitud i <strong>1 mm<sup>2</sup></strong> de secció a la temperatura de **`0 °C`**.
+
+
+----
+
+##### Unitat de resistència
+
+A tall d'exemple, en la taula 1.4 s'indica la densitat màxima de corrent en conductors de coure, sense aïllament i amb aïllament.
+
+
+|Secció mm<sup>2</sup>|Conductor<br>sense<br>aïllament|Conductor<br>aïllat<br>(plàstic)|Secció mm<sup>2</sup>|Conductor<br>sense<br>aïllament|Conductor aïllat (plàstic)|
+|:----:|:----:|:----:|:----:|:----:|:----:|
+|0,75|8,0|6,0|50|3,0|2,2|
+|1,50|7,5|5,6|95|2,1|1,6|
+|4|6,1|4,6|120|1,9|1,4|
+|10|5,1|3,8|200|1,7|1,3|
+|25|3,8|2,8|400|1,5|1,1|
+> Taula 1.4 - Densitat màxima de corrent en conductors de coure en (A/mm<sup>2</sup>)
+
+----
+##### Unitat de resistència
+
+* En principi, i segons la taula, si per exemple es tractés d'un conductor de coure d'1,5 mm<sup>2</sup> de secció i amb aïllament de tipus plàstic, el corrent màxim que podria suportar seria:
+
+    1,5 mm<sup>2</sup> × 5,6 A/mm<sup>2</sup> = 8,4 amperes
+
+* Tot i això, també caldria tenir present si es tracta d'un conductor exposat a l'aire o encastat directament o sota la protecció d'un tub.
+
+----
+
+##### Unitat de resistència
+
+* En qualsevol cas, el fabricant ens donarà tots aquests paràmetres.
+
+* Han de ser conductors per transportar el corrent amb les mínimes pèrdues.
+
+----
+
+##### Resistència
+
+* Els materials que connecten els diferents elements del circuit han de diﬁcultar el mínim possible el pas del corrent elèctric.
+
+  * Els metalls, en general, tenen aquesta característica, per això es diu que són bons conductors.
+
+* Des del punt de vista d'un circuit elèctric, els materials es classiﬁquen, bàsicament, en els següents:
+
+  * Conductors: són els que no ofereixen gaire resistència al pas del corrent elèctric.
+
+  * Aïllants: són els que ofereixen molta resistència al pas del corrent elèctric.
+
+----
+
+##### Semiconductors
+
+* Encara que, des del punt de vista d'un circuit elèctric, classiﬁquem els materials en conductors i aïllants, hi ha un tercer grup, anomenat semiconductors.
+
+* Els semiconductors no són materials mig conductors o mig aïllants, sinó que en determinades circumstàncies es comporten com a conductors i en d'altres, com a aïllants.
+
+* La resistència (**`R`**) és la diﬁcultat que ofereix un circuit elèctric al pas d'un corrent elèctric.
+
+  * La seva unitat és l'**ohm** (**`Ω`**).
+
+* Un ohm és la resistència que, quan en un circuit s'estableix una diferència de potencial d'1 volt, deixa passar un corrent d'1 ampere.
+
+----
+
+##### Factor de proporcionalitat
+
+* La **resistivitat** o resistència especíﬁca depèn del material amb què estigui fet el conductor, ja que cada tipus de material ofereix una diﬁcultat diferent al pas del corrent elèctric.
+
+* Quan parlem de circuits elèctrics domèstics o industrials, la unitat ohm es pot considerar com una unitat gran; ara bé, en els circuits que formen els equips electrònics trobem molt sovint valors de resistència força més elevats, la qual cosa ens obliga a treballar amb múltiples.
+
+Taula 1.5 - Múltiples de l'ohm
+
+|Múltiples|Equivalència|
+|-----|-----|
+|Megaohm (MΩ)|10<sup>6</sup> ohm|
+|Kiloohm (kΩ)|10<sup>3</sup> ohm|
+
+----
+
+##### Factor de proporcionalitat
+
+* L'aparell per a mesurar la resistència s'anomena ohmímetre o òhmmetre.
+
+* En els circuits elèctrics, la resistència no la ofereix només el receptor, sinó que també hi intervenen els conductors.
+
+----
+
+##### Resistència dels conductors
+
+* La resistència elèctrica d'un conductor és la diﬁcultat que ofereix al pas del corrent elèctric.
+
+  * El seu valor dependrà del material del conductor i serà directament proporcional a la seva longitud (L) i inversament proporcional a la seva secció (S).
+
+![alt text](../../../assets/img/mim/resistencia-electrica-d-un-conductor.png)
+
+----
+
+##### Resistència dels conductors
+
+* És fàcil d'entendre que com més llarg sigui el conductor, i també com més estret, més diﬁcultat tindran els electrons per a desplaçar-se.
+
+* La constant de proporcionalitat s'anomena **resistivitat** o **resistència especíﬁca del conductor**, i indica la resistència del conductor (en ohms) per unitat de longitud (en metres) i per unitat de secció (en mm<sup>2</sup>).
+
+* El valor de **resistivitat** s'acostuma a indicar a la temperatura de 20 ºC, però aquest es pot veure afectat per les variacions de temperatura.
+
+  * Si la **resistivitat** varia en funció de la temperatura, és evident que això afectarà la resistència del conductor.
+
+----
+
+##### Resistència dels conductors
+
+En la taula 1.6 podeu veure la **resistivitat** d'alguns materials emprats en els circuits elèctrics.
+
+
+----
+
+##### Resistència dels conductors
+
+|Material|**resistivitat** en<br>Ω&nbsp;·&nbsp;mm<sup>2</sup>/m&nbsp;×&nbsp;m|Coeﬁcient de variació<br>amb la temperatura<br> α per cada °C|
+|-----|------:|------:|
+|Argent|0,016 (1,6 × 10<sup>-2</sup>)|0,0037|
+|Coure|0,017 (1,7 × 10<sup>-2</sup>)|0,0039|
+|Alumini|0,028 (2,8 × 10<sup>-2</sup>)|0,0037|
+|Ferro|0,12 (12 × 10<sup>-2</sup>)|0,0047|
+|Plom|0,22 (22 × 10<sup>-2</sup>)|0,0043|
+|Manganina|0,43 (43 × 10<sup>-2</sup>)|Despreciable|
+
+> Taula 1.6 - **resistivitat** d'alguns materials (continua)
+
+----
+
+##### Resistència dels conductors (cont...)
+
+|Material|**resistivitat** en<br>Ω&nbsp;·&nbsp;mm<sup>2</sup>/m&nbsp;×&nbsp;m|Coeﬁcient de variació<br>amb la temperatura<br> α per cada °C|
+|-----|------:|------:|
+|Constantà|0,49 (49 × 10<sup>-2</sup>)|Despreciable|
+|Mercuri|0,94 (94 × 10<sup>-2</sup>)|0,00088|
+|Llautó|7|0,0002|
+|Nicrom|100|0,0004|
+|Carbó|3500|0,0005|
+
+> Taula 1.6 - **resistivitat** d'alguns materials
+
+----
+
+> 
+> <hr>
+> 
+> ##### Resistència i temperatura
+>
+> * Com heu pogut observar en la taula, la **resistivitat** de tots els materials indicats, tret del carbó (coeﬁcient negatiu), augmenta amb la temperatura, per tant, podem aﬁrmar que la resistència dels conductors augmenta amb la temperatura.
+>
+> <hr>
+
+----
+
+##### Coeﬁcient de **resistivitat**
+
+Per a conèixer el coeﬁcient de **resistivitat** del material a una temperatura diferent de la de referència (20 °C), cal aplicar la fórmula següent:
+
+![alt text](../../../assets/img/mim/coeﬁcient-de-resistivitat.png)
+
+
+En què:
+
+* **`ρt`** és la temperatura a la qual volem conèixer el coeﬁcient de **resistivitat**;
+
+* **`ρ20`** és la **resistivitat** a 20 °C;
+
+* **`α`** és el coeﬁcient de variació amb la temperatura;
+
+* **`∆t`** és la diferència de temperatura respecte a 20 °C.
+
+----
+
+##### Coeﬁcient de **resistivitat**
+
+Exemple de càlcul de la **resistivitat** d'un conductor
+
+Si volem conèixer la **resistivitat** d'un conductor de coure a una temperatura de 38 °C, aplicant la fórmula tindrem que:
+
+![alt text](../../../assets/img/mim/exemple-de-calcul-de-la-resistivitat.png)
+
+
+----
+
+##### Coeﬁcient de **resistivitat**
+
+* Per acabar aquest apartat podeu veure un exemple de càlcul de la resistència d'un conductor:
+
+* Volem conèixer la resistència d'un conductor de coure de secció 1,5 mm<sup>2</sup> i d'una llargada de 30 m.
+
+* Aplicarem la fórmula per calcular la resistència d'un conductor i substituirem les variables pels seus valors.
+
+
+![alt text](../../../assets/img/mim/solucio-de-calcul-de-la-resistivitat.png)
+
+La resistència d'aquest conductor serà de 0,34; en principi, pot semblar molt baixa, però més endavant veureu que té els seus efectes, ja que com més gran sigui la resistència més gran serà la caiguda de tensió i, per tant, la pèrdua de diferència de potencial en el circuit.
+
+----
+
+><hr>
+>
+> ##### Galvanòmetre
+> 
+> El galvanòmetre és l'element base dels aparells analògics (amb agulla) de mesures elèctriques. Cada vegada més s'utilitzen aparells digitals, que ens donen la lectura numèrica de la magnitud mesurada.
+>
+> <hr>
+
+----
+
+><hr>
+>
+> ##### L'oscil·loscopi
+> És un aparell de mesura que permet visualitzar senyals elèctrics en temps real, tant continus com alterns. Generalment es representa una tensió (eix vertical) en funció del temps (eix horitzontal).
+>
+> <hr>
+
+![fp_smx_m01_u1_pdfindex_p23_block439_421.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p23_block439_421.png) 
+
+----
+
+#### 1.2 Mesura de paràmetres elèctrics bàsics.
+
+* Instruments de mesura
+
+  * Els instruments de mesura elèctrics es basen en la mesura del corrent elèctric a partir del camp magnètic que genera el pas d'aquest corrent.
+
+
+* El galvanòmetre és un instrument d'alta sensibilitat que permet detectar, comparar i mesurar, petits corrents elèctrics.
+
+----
+
+* Un galvanòmetre està format per dues parts:
+
+![fp_smx_m01_u1_pdfindex_p23_block439_115.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p23_block439_115.png)
+
+* **a)** Una part ﬁxa, consistent en un imant permanent, en forma de ferradura que produeix entre els seus pols N i S un camp magnètic uniforme.
+
+* **b)** Una part mòbil, una sèrie d'espires muntades a l'aire, per on passa el corrent, de manera que puguin girar dins del camp magnètic de l'imant permanent.
+
+----
+
+##### Galvanòmetre
+
+* Quan passa el corrent elèctric, les espires tendeixen a situar-se de manera que les línies de força entrin per la cara sud, on es troba a l'oposició de la torsió del ﬁl, llavors s'estableix un equilibri entre el parell de la força magnètica i el parell de la força de torsió.
+
+  * L'angle format serà més gran com més elevat sigui el corrent.
+
+  * Aquest angle associat a una agulla i una escala graduada ens donarà la mesura del corrent elèctric.
+
+* Amb algunes modiﬁcacions, aquest galvanòmetre es pot convertir en voltímetre, amperímetre i òhmmetre.
+
+----
+
+##### Polímetre, o multímetre
+
+* En un altre àmbit, un tècnic que hagi de mesurar magnituds elèctriques en el camp de la informàtica haurà de conèixer un aparell com el polímetre, també conegut com a multímetre o veriﬁcador per al seu treball diari.
+
+ * En un taller d'electrònica es podrien trobar més aparells, com poden ser l'oscil·loscopi, el generador de funcions o les fonts d'alimentació variables.
+
+* Aquest dispositiu permetrà comprovar el funcionament correcte de components fonamentals com la font d'alimentació o l'alimentació elèctrica, i en alguns casos ﬁns i tot el funcionament correcte de components electrònics individuals d'una placa de circuit imprès com pot ser la placa base.
+
+----
+
+##### Polímetre, o multímetre
+
+* Encara que hi ha molts models de multímetres, el seu funcionament i característiques són molt similars en tots els casos i, per tant, l'aprenentatge de les funcions en un d'aquests aparells ens permetrà manejar sense problemes aparells semblants.
+
+----
+
+### 1.2.1 Característiques dels aparells de mesura
+
+* Abans d'utilitzar un instrument heu de tenir en compte les característiques de l'aparell que determinaran el mesurament.
+
+* Les característiques més importants dels aparells de mesura són les següents:
+
+> 
+> <hr>
+> 
+> Hi ha molts models i diferents marques de polímetres.
+> 
+> El polímetre també es coneix com a tester o multímetre.
+> <hr>
+> 
+
+----
+
+#### Aparells de mesura
+
+* a) **Exactitud**: Aproximació amb què la lectura d'un instrument de mesura s'acosta al valor real de la variable mesurada.
+
+* b) **Precisió**: Capacitat d'un instrument de mesura de donar els resultats amb exactitud.
+
+* c) **Apreciació**: Valor de la fracció mínima de la unitat de mesura que es pot llegir en un instrument.
+
+* d) **Sensibilitat**: Resposta d'un instrument respecte a un canvi en la variable mesurada.
+
+----
+
+##### Polímetre
+
+* El polímetre és un aparell de mesura que pot mesurar diferents magnituds elèctriques com la tensió contínua i alterna, la resistència i la intensitat també contínua i alterna, encara que en l'actualitat hi ha polímetres amb capacitat per a mesurar altres magnituds (capacitats, comprovació de díodes, comprovació de transistors, etc.).
+
+* Aquest instrument, per la seva exactitud i pel preu, és el preferit dels professionals de l'electrònica.
+
+----
+
+##### Polímetre
+
+
+* Polímetre digital i polímetre analògic
+
+![fp_smx_m01_u1_pdfindex_p24_block222_364.png](../../../assets/img/mim/fp_smx_m01_u1_pdfindex_p24_block222_364.png) 
+
+> **Figura 1.7**: Tipus de polímetres
+
+----
+
+##### Polímetre
+
+Hi ha dos tipus de polímetres, tal com podem veure en la ﬁgura 1.7:
+
+* Els polímetres analògics són fàcils d'identiﬁcar per una agulla que es mou
+damunt d'una escala i indica el valor de la magnitud mesurada.
+
+* Els polímetres digitals, que són els més utilitzats, s'identiﬁquen per una
+pantalla numèrica en què es fa la lectura del valor mesurat.
+
+----
+
+##### Polímetre
+
+###### Comandaments bàsics
+
+* Normalment els polímetres disposen del següent:
+
+  * Interruptor: per a posar en marxa l'aparell.
+
+  * Òhmetre: aparell per a mesurar la resistència elèctrica d'un circuit.
+
+  * Amperímetre: aparell que només mesura la intensitat o corrent.
+
+* La diferència de potencial en un circuit elèctric també s'anomena tensió o voltatge.
+----
+
+##### Polímetre
+
+* Selector de funcions: per a escollir el tipus de mesura que es realitzarà
+(resistència, voltatge en corrent altern, corrent continu...).
+
+* Selector d'escala: per a establir el màxim valor que es podrà visualitzar.
+
+* Entrada: per a connectar-hi les puntes de mesura.
+
+----
+
+##### Polímetre
+
+###### Precaucions generals
+
+Per a no deteriorar l'instrument, és molt important respectar la selecció de funcions adequades i escales per a cada mesura.
+
+* Si no se sap el nivell d'escala a seleccionar inicialment, utilitzarem la més gran i baixarem d'escala progressivament ﬁns a obtenir el resultat.
+
+----
+
+##### Polímetre
+
+###### Tècniques de mesura
+
+Hi ha un seguit de pautes que hem de tenir en compte a l'hora de fer el mesurament, amb un polímetre, de les resistències, tensions i intensitats contínues i alternes en un circuit elèctric.
+
+* Vegem-les:
+
+  a) **Mesures de resistències**
+
+     Les resistències s'han de mesurar sense tensió.
+
+     Seleccionarem la funció (ohms) i actuarem sobre l'escala ﬁns a obtenir el valor de la mesura (l'opció AC/DC és inoperant i no inﬂueix en la mesura).
+
+----
+
+##### Polímetre
+
+* Vegem-les: (cont...)
+
+  b) **Mesures d'intensitat o corrent**
+
+    Per a mesurar la intensitat elèctrica, l'aparell s'ha de connectar interrompent el circuit, fent que el corrent o la intensitat hi circuli.
+
+    És a dir, l'aparell sempre s'ha de connectar en sèrie.
+
+* S'ha de seleccionar l'escala d'intensitat (amperes), i s'ha de tenir en compte l'opció AC si voleu mesurar intensitat alterna, i DC si voleu mesurar intensitat contínua.
+
+* No s'han de mesurar intensitats més elevades que les que suporta l'instrument.
+
+----
+
+##### Polímetre
+
+* Vegem-les: (cont...)
+
+  c) **Mesures de tensió**
+
+    Per a mesurar en un circuit elèctric la tensió, tant alterna com contínua, heu de seleccionar l'escala de tensió (volts) alterna o contínua (AC/DC), segons quina sigui la seva naturalesa, i connectar el polímetre entre els dos punts on volem fer el mesurament.
+
+* Per tant, per a mesurar a tensions hem de connectar l'aparell en paral·lel.
+
+----
+
+##### Polímetre
+
+* Vegem-les: (cont...)
+
+  d) **Mesura de capacitats**
+
+    Les dues potes del condensador s'insereixen en els oriﬁcis corresponents del polímetre i situem el selector en l'escala de capacitats.
+
+* La mesura només es pot realitzar amb el condensador descarregat, per tant, abans del mesurament l'hem de comprovar.
+
+----
+
+##### Polímetre
+
+* Vegem-les: (cont...)
+
+  e) Comprovació de díodes
+
+    Seleccionem la funció de comprovació de díodes i apliquem els terminals del polímetre a les potes del díode desconnectat del circuit; en un sentit, ens donarà una resistència pràcticament nul·la, i en l'altre, una resistència molt gran.
+
+* És freqüent que quan la resistència és baixa, l'aparell ho indiqui amb un xiulet.
+
+* La funció de comprovació de díodes també es pot utilitzar per a comprovar continuïtats.
+
+----
+
+##### Polímetre
+
+* Vegem-les: (cont...)
+
+  f) Comprovació de transistors
+
+    Les tres potes del transistor s'insereixen en els oriﬁcis corresponents del polímetre i situem el selector en l'escala de H fe, respectant el seu tipus (NPN o PNP) i els terminals (base, emissor, col·lector).
+
+* En la pantalla apareix el guany del transistor.
+
+---
+
+## Activtat avaluable
+
+Omple el següent formulari <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0221-muntatge-i-manteniment-d-equips/presentacions/electricitat-intro-quiz.html" target="_blank">Qüestionari — Introducció a l'electricitat (SMX)</a> i pujar al campus virtual el fitxer JSON que t'ha facilitat el mateix formulari.

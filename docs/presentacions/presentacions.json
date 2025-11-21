@@ -1,0 +1,16 @@
+{
+  "presentations": [
+    {
+      "order": 1,
+      "title": "Introducció",
+      "src": "slides/introduccio.reveal",
+      "description": "Introducció al mòdul 0373 - Llenguatges de marques"
+    },
+        {
+      "order": 0,
+      "title": "Introducció XML · Mòdul 0373 - Llenguatges de marques",
+      "src": "slides/002_Introduccio_XML.reveal",
+      "description": "Introducció XML · Mòdul 0373 - Llenguatges de marques"
+    }
+  ]
+}

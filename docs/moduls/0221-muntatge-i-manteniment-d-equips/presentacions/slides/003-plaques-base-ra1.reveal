@@ -1,0 +1,307 @@
+### Components d’un equip microinformàtic
+
+# Plaques Base
+
+---
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Elements de la placa
+
+![alt text](../../../assets/img/elements-de-la-placa-base.png)
+
+---
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Placa Base
+
+![alt text](../../../assets/img/placa-base.png)
+
+---
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Funcions dels elements de la placa (1/3)
+
+- Connectors E/S:
+  - Proporciona connectors d’entrada i sortida per a perifèrics.
+- Connectors USB:
+  - Connectors per a ports USBs addicionals que es poden connectar al frontal de la torre.
+- Connectors panell frontal:
+  - Pins per connectar al panell frontal de la torre que ens proporciona el botó d’engegada, reinici, led de disc dur, led d’alimentació, altaveu intern del PC…
+- Connectors IDE
+  - Per connectar Discos durs IDE o lectors de CD i DVD.
+- Connectors Floppy
+  - Per connectar les antigues disqueteres.
+
+----
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Funcions dels elements de la placa (2/3)
+
+- Connectores SATA
+  - Per connectar els nous discos durs SATA
+- Pila
+  - Alimenta la memòria de la BIOS per no perdre la informació de configuració, hora del sistema, etc.
+- BIOS
+  - És un conjunt de programes gravat a un circuit electrònic que permeten controlar la placa base i els dispositius durant l’arrencada de l’ordinador.
+- ChipSet
+  - Ajuda a que el processador es comuniqui amb els dispositius connectats a la placa base i els controlin.
+- Socket Microprocesador
+  - Serveix per connectar-hi el microprocesador.
+
+---
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Funcions dels elements de la placa (3/3)
+
+- Ranures PCI
+  - Serveix per connectar targes d'expansió.
+- Ranures PCI Express
+  - Serveix per connectar targes d'expansió i targes gràfiques.
+- Ranura AGP
+  - Servia per connectar targes gràfiques. S’ha substituït per el PCI-Express
+- Ranura ISA
+  - Servia per connectar targes d’expansió. Està en desús.
+- Ranures de memòria
+  - Hi connectem la memòria RAM.
+- Connectors d’energia
+  - Serveixen per connectar la placa a la font d’alimentació per obtenir l’energia necessària per funcionar.
+---
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Socket (1/3)
+
+- Dos tipus principals
+  - ZIF: El micro porta els pins, que es connecten al socket foradat.
+  - LGA: El socket porta els pins en comptes del micro.
+    - Millor sistema de distribució d’energia i majors velocitats de bus.
+
+----
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Socket (2/3)
+
+  - ZIF: El micro porta els pins, que es connecten al socket foradat.
+
+  ![alt text](../../../assets/img/socket-zif.png)
+
+----
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Socket (3/3)
+
+  - LGA: El socket porta els pins en comptes del micro.
+    - Millor sistema de distribució d’energia i majors velocitats de bus.
+
+  ![alt text](../../../assets/img/socket-lga.png)
+---
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Ranures de memòria (1/4)
+
+- Connectors per a la memòria RAM
+- Dos tipus:
+  - SIMM: Sistema antic en desús.
+  - DIMM: Connectors actuals.
+
+----
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Ranures de memòria (2/4)
+
+- DIMM
+  - 240 pins: per a DDR2 i DDR3
+  - 184 pins: per a DDR
+- S’agrupen en bancs d’1, 2, 4 o 6
+
+----
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Ranures de memòria (3/4)
+
+![alt text](../../../assets/img/ranures-de-memoria.png)
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Ranures de memòria (4/4)
+
+#### ¿En què consisteix el dual channel?
+
+---
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Ranures de expansió
+
+- ISA , AGP, PCI
+- PCI-E (PCI Express)
+  - Nova generació de ports per a targes d’expansió
+  - Transmissió de dades en sèrie. Envia pocs bits per pols de rellotge, però a molta velocitat.
+  - PCI-E és defineix pel nombre de “Lanes”
+    - Normalment 1, 2, 4, 8, 16
+    - És a dir x1, x2, x4, x8, x16
+  - Cada Lane transfereix a 250MB/s per cada sentit.
+  - PCI-E 2.0/2.1 dobla la taxa a 500MB/s.
+  - PCI-E 3.0 torna a doblar a 1GB/s
+  - PCI-E permet connectar targes sense necessitat d’apagar l’ordinador.
+
+---
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Chipset (1/7)
+
+- El Chipset és un conjunt de circuits (chips) que ajuden a que el processador es comuniqui amb els dispositius connectats a la placa base.
+- Funcions:
+  - Controla les transmissions (dades, instruccions i senyals de control) entre la CPU i la resta d’elements del sistema.
+  - Controla la transferència de dades entre la CPU, la memòria i els perifèrics.
+  - Ofereix suport al bus d’Entrada/Sortida.
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Chipset (2/7)
+
+- Està dividit en:
+  - ***Northbridge*** (**Pont Nord**)
+  - ***Southbridge*** (**Pont Sud**)
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Chipset (3/7)
+
+- **Northbridge (Pont Nord)**
+  - És el responsable de la connexió del bus frontal (FSB) de la CPU amb els components d’alta velocitat del sistema
+    - Memòria RAM
+    - Bus AGP o PCI Express
+  - Controla  les següents característiques del sistema:
+    - Tipus de processador que suporta la placa.
+    - Nombre de processadors que suporta la placa.
+    - Velocitat del microprocessador.
+    - Velocitat del bus frontal FSB.
+    - Tipus i quantitat de memòria RAM suportat.
+    - Controladora gràfica integrada
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Chipset (4/7)
+
+### **Northbridge (Pont Nord)**
+
+![alt text](../../../assets/img/northbridge-Pont-Nord.png)
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Chipset (5/7)
+
+- **Southbridge (Pont Sud)**
+  - És el responsable de la connexió de la CPU amb els components mes lents del sistema.
+  - No està connectada a la CPU. Es comunica amb ella a través del Northbridge.
+  - El chip southbridge ofereix les següents característiques:
+    - Suport per a busos d’expansió (PCI o ISA).
+    - Controladors de dispositius: IDE, SATA, Ethernet, so.
+    - Controladors de ports per a perifèrics: USB, Firewire.
+    - Funcions d’administració d’energia.
+    - Controlador de teclat, interrupcions.
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Chipset (6/7)
+
+### **Southbridge (Pont Sud)**
+
+![alt text](../../../assets/img/southbridge-pont-sud.png)
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## Chipset (7/7)
+
+- Southbridge (Pont Sud)
+---
+- Southbridge
+- Northbridge
+- IDE, SATA
+- Suport PCI
+- Disquetera, tarja de xarxa, so
+- Suport ISA
+- USB, Firewire
+- Altres dispositius
+
+---
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## La BIOS (1/3)
+
+- BIOS (Basic Input/Output System)
+- És un conjunt de programes molt elementals, desats en un chip de la placa base que s’encarrega de realitzar les operacions necessàries per a que l’ordinador arrenqui.
+- La tarja gràfica també te una bios que procura realitzar totes les tasques necessàries per a que es pugui fer servir la pantalla durant el procés d'arrencada del PC.
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## La BIOS (1/3)
+
+- Passos de la BIOS al engegar el PC:
+  - Test de tots els components del hardware (POST).
+  - Si POST no dona problemes, inicia la BIOS de la tarja gràfica.
+  - Mostra la informació de la BIOS
+  - La BIOS fa un seguit de proves, inclòs una proba de memòria.
+  - La BIOS detecta els dispositius connectats (unitat de discos, CD-ROM...)
+  - Configuració dels dispositius Plug-and-play
+  - Resum de dades i dona pas al Sistema Operatiu.
+
+----
+
+##### Components d’un equip microinformàtic
+#### Plaques Base
+
+## La BIOS (1/3)
+
+- CMOS Setup BIOS
+  - Programa d’Ajuda de Configuració CMOS.
+  - Permet modificar al configuració bàsica de la BIOS.
+  - La configuració es desa en una memòria CMOS que constantment ha d’estar alimentada (amb la PILA).
+    - Es pot accedir al iniciar el PC prement una tecla concreta (definida pel fabricant).
+  - Es poden esborrar les dades del CMOS amb:
+    - Resetejador de CMOS (CMOS-Reset-Jumper).
+    - Retirant la PILA de la placa base.
