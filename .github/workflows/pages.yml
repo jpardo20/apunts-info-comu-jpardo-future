@@ -1,4 +1,4 @@
-name: Build & Deploy (MkDocs + publish_selected)
+name: Build & Deploy (MkDocs)
 
 on:
   push:
@@ -17,47 +17,42 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.x'
 
-      - name: Install Python deps
+      - name: Install dependencies (MkDocs + Material)
         run: |
           python -m pip install --upgrade pip
-          pip install pyyaml mkdocs mkdocs-material
+          pip install mkdocs mkdocs-material
 
-      # El teu script converteix fonts (docx → md) amb pandoc
-      - name: Setup Pandoc
-        uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: 'latest'
+      - name: Build global presentations catalog
+        run: python scripts/build_catalog.py
 
-      - name: Generate docs (publish_selected.py)
-        run: |
-          python scripts/publish_selected.py
+      - name: Build MkDocs site
+        run: mkdocs build --clean
 
-      - name: Build site with MkDocs
-        run: |
-          python scripts/build_catalog.py
-          mkdocs build
-        #    --strict
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
