@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ca">
+
+<head>
+  <meta charset="utf-8">
+  <title>Catàleg global de presentacions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS compartit del portal (des de docs/assets) -->
+  <link rel="stylesheet" href="../assets/css/portal.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/tema.css">
+  <link rel="stylesheet" href="../assets/css/fonts.css">
+</head>
+
+<body class="portal">
+  <header class="header-row">
+    <div class="topbar">
+      <p class="subtitle"><a href="../index.html">← Tornar a l'inici</a></p>
+      <h1 id="topbar-title">Catàleg global de presentacions</h1>
+    </div>
+  </header>
+
+  <!-- Controls -->
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Cerca per títol, descripció o mòdul…">
+    <select id="sort" class="sort-select" aria-label="Ordena">
+      <option value="title-az">Títol A → Z</option>
+      <option value="title-za">Títol Z → A</option>
+      <option value="module">Mòdul (codi)</option>
+      <option value="order">Ordre dins del mòdul</option>
+    </select>
+  </div>
+
+  <main>
+    <section id="grid" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer class="site-footer">© 2025 · Apunts Joan Pardo</footer>
+
+  <script>
+    const el = (sel) => document.querySelector(sel);
+    const grid = el('#grid');
+    const searchInput = el('#search');
+    const sortSelect = el('#sort');
+    let items = [];
+
+    function cardTemplate(item) {
+      const desc = item.description ? `<p>${item.description}</p>` : '';
+      const title = item.title || 'Presentació';
+      const qsTitle = encodeURIComponent(title);
+
+      // Ruta al fitxer de diapositives:
+      // presentador.html és a docs/presentacions/
+      // -> cal pujar un nivell i anar a moduls/<...>/presentacions/slides/...
+      const srcParam = `../${item.moduleBase}${item.src}`;
+
+      const href = `presentador.html?src=${encodeURIComponent(srcParam)}&title=${qsTitle}${item.theme ? `&theme=${encodeURIComponent(item.theme)}` : ''}`;
+
+      const moduleLabel = [item.moduleCode || '', item.moduleName || '']
+        .filter(Boolean)
+        .join(' · ');
+
+      return `
+        <article class="card">
+          <h2>${title}</h2>
+          <p style="font-size: .9rem; color: #555; margin: .25rem 0 .5rem;">
+            ${moduleLabel ? `[${moduleLabel}]` : ''}
+          </p>
+          ${desc}
+          <p><a class="button primary" href="${href}">Obrir presentació</a></p>
+        </article>
+      `;
+    }
+
+    function render(list) {
+      if (!list.length) {
+        grid.innerHTML = '<p>No s\'ha trobat cap presentació.</p>';
+        return;
+      }
+      grid.innerHTML = list.map(cardTemplate).join('');
+    }
+
+    function applyFilters() {
+      const q = (searchInput.value || '').toLowerCase().trim();
+      const mode = sortSelect.value || 'title-az';
+
+      let list = items.slice();
+
+      if (q) {
+        list = list.filter(item => {
+          const hay = [
+            item.title || '',
+            item.description || '',
+            item.moduleName || '',
+            item.moduleCode || ''
+          ].join(' ').toLowerCase();
+          return hay.includes(q);
+        });
+      }
+
+      list.sort((a, b) => {
+        const tA = (a.title || '').toLowerCase();
+        const tB = (b.title || '').toLowerCase();
+
+        if (mode === 'title-az') {
+          return tA.localeCompare(tB);
+        }
+        if (mode === 'title-za') {
+          return tB.localeCompare(tA);
+        }
+        if (mode === 'module') {
+          const mA = ((a.moduleCode || '') + ' ' + (a.moduleName || '')).toLowerCase();
+          const mB = ((b.moduleCode || '') + ' ' + (b.moduleName || '')).toLowerCase();
+          return mA.localeCompare(mB);
+        }
+        if (mode === 'order') {
+          const oA = (a.order !== undefined ? a.order : 9999);
+          const oB = (b.order !== undefined ? b.order : 9999);
+          return oA - oB;
+        }
+        return 0;
+      });
+
+      render(list);
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    sortSelect.addEventListener('change', applyFilters);
+
+    // Carregar el catàleg global
+    fetch('all.json')
+      .then(r => r.json())
+      .then(data => {
+        const modules = data.modules || [];
+        items = [];
+        modules.forEach(mod => {
+          const base = mod.base || '';
+          const code = mod.code || '';
+          const name = mod.name || '';
+          (mod.presentations || []).forEach(p => {
+            items.push({
+              ...p,
+              moduleBase: base,
+              moduleCode: code,
+              moduleName: name
+            });
+          });
+        });
+        applyFilters();
+      })
+      .catch(err => {
+        console.error(err);
+        grid.innerHTML = '<p>No s\'ha pogut carregar el catàleg global de presentacions.</p>';
+      });
+  </script>
+</body>
+
+</html>

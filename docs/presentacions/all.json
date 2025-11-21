@@ -1,21 +1,259 @@
 {
   "modules": [
     {
+      "code": "0221",
+      "name": "Muntatge i manteniment d'equips",
+      "base": "moduls/0221-muntatge-i-manteniment-d-equips/presentacions/",
+      "presentations": [
+        {
+          "order": 1,
+          "title": "01. Components d’un ordinador digital",
+          "src": "slides/001-components-d-un-ordinador-digital-ra1.reveal",
+          "description": "Components d’un ordinador digital",
+          "status": "active"
+        },
+        {
+          "order": 2,
+          "title": "02. Factors de Forma",
+          "src": "slides/002-factors-de-forma-ra1.reveal",
+          "description": "Factors de Forma",
+          "status": "active"
+        },
+        {
+          "order": 3,
+          "title": "03. Plaques Base",
+          "src": "slides/003-plaques-base-ra1.reveal",
+          "description": "Plaques Base",
+          "status": "active"
+        },
+        {
+          "order": 4,
+          "title": "04. Chipset",
+          "src": "slides/004-chipset-ra1.reveal",
+          "description": "Chipset",
+          "status": "active"
+        },
+        {
+          "order": 5,
+          "title": "05. Processadors",
+          "src": "slides/005-processadors-ra1.reveal",
+          "description": "Chipset",
+          "status": "active"
+        },
+        {
+          "order": 6,
+          "title": "06. RAM",
+          "src": "slides/006-ram-ra1.reveal",
+          "description": "RAM",
+          "status": "active"
+        },
+        {
+          "order": 7,
+          "title": "07. Sistemes d'emmagatzematge",
+          "src": "slides/007-sistemes-d_emmagatzematge-ra1.reveal",
+          "description": "Sistemes d'emmagatzematge",
+          "status": "active"
+        },
+        {
+          "order": 8,
+          "title": "08. Sistemes de refrigeració",
+          "src": "slides/008-sistemes-de-refrigeraci-ra1.reveal",
+          "description": "Sistemes de refrigeració",
+          "status": "active"
+        },
+        {
+          "order": 9,
+          "title": "09 - Activitat 1. Presentacions mim-ud01-ae01",
+          "src": "slides/mim-ud01-ae01.reveal",
+          "description": "Activitat 1. Presentacions",
+          "status": "active"
+        },
+        {
+          "order": 10,
+          "title": "10 - Avaluació activitat 1. Presentacions mim-ud01-ae01",
+          "src": "slides/avaluacio-presentacions.reveal",
+          "description": "Avaluació activitat 1. Presentacions mim-ud01-ae01",
+          "status": "active"
+        },
+        {
+          "order": 11,
+          "title": "11 - Avaluació avaluacio-presentacions-ms365.reveal",
+          "src": "slides/avaluacio-presentacions-ms365.reveal",
+          "description": "Avaluació avaluacio-presentacions-ms365.reveal",
+          "status": "inactive"
+        },
+        {
+          "order": 12,
+          "title": "12. Mesura de paràmetres elèctrics.",
+          "src": "slides/mim-electricitat-intro.reveal",
+          "description": "1. Mesura de paràmetres elèctrics",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "code": "0223",
+      "name": "Aplicacions Ofimàtiques",
+      "base": "moduls/0223-aplicacions-ofimatiques/presentacions/",
+      "presentations": [
+        {
+          "order": 1,
+          "title": "1. Introducción a aplicaciones ofimáticas",
+          "src": "slides/ud01-iao.reveal",
+          "description": "TEORIA: Introducción a aplicaciones ofimáticas",
+          "status": "active"
+        },
+        {
+          "order": 2,
+          "title": "2. Organización individual y Colectiva",
+          "src": "slides/organizacio.reveal",
+          "description": "TEORIA: Organización individual y Colectiva",
+          "status": "active"
+        },
+        {
+          "order": 3,
+          "title": "3. Utilidades PDF",
+          "src": "slides/aof-03-utilidades-pdf.reveal",
+          "description": "TEORIA: Utilidades PDF",
+          "status": "active"
+        },
+        {
+          "order": 4,
+          "title": "4. Actividad evaluable (Utilidades PDF): 1 (`aof-ud03-ae01`)",
+          "src": "slides/aof-ud03-actividades-evaluables-01.reveal",
+          "description": "Actividad evaluable (Utilidades PDF): 1 (`aof-ud03-ae01`)",
+          "status": "active"
+        },
+        {
+          "order": 5,
+          "title": "5. Procesadores de texto",
+          "src": "slides/aof-ud05-procesador-de-texto.reveal",
+          "description": "TEORIA: ¿Qué es un procesador de texto?",
+          "status": "active"
+        },
+        {
+          "order": 6,
+          "title": "6. Actividad evaluable (Procesadores de texto): 5 (`aof-ud05-ae05`)",
+          "src": "slides/aof-ud05-ae05.reveal",
+          "description": "Actividad evaluable (Procesadores de texto): 5 (`aof-ud05-ae05`)",
+          "status": "active"
+        },
+        {
+          "order": 7,
+          "title": "7. Recursos para Word",
+          "src": "slides/recursos.reveal",
+          "description": "Recursos-estilo-TikTok--para-Word",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "code": "0225",
+      "name": "Xarxes locals",
+      "base": "moduls/0225-xarxes-locals/presentacions/",
+      "presentations": [
+        {
+          "order": 1,
+          "title": "1. Introducció a les xarxes",
+          "src": "slides/xlo-pre00-introduccio-a-les-xarxes.reveal",
+          "description": "TEORIA: Introducció a les xarxes",
+          "status": "active"
+        },
+        {
+          "order": 2,
+          "title": "2. Adreça IP i màscara de subxarxa",
+          "src": "slides/presentacio-ip-mascara.reveal",
+          "description": "Adreça IP i màscara de subxarxa",
+          "status": "active"
+        },
+        {
+          "order": 3,
+          "title": "3. Activitat",
+          "src": "slides/activitats/activitat.html",
+          "description": "Adreça IP i màscara de subxarxa",
+          "status": "inactive"
+        },
+        {
+          "order": 4,
+          "title": "4. Activitat",
+          "src": "slides/activitats/0225-xlo-ae02-protocols.reveal",
+          "description": "Activitat: Presentacions de Protocols (SMX)<br>(<kbd>0225-xlo-ae02-protocols</kbd>)",
+          "status": "active"
+        },
+        {
+          "order": 5,
+          "title": "5. Protocols",
+          "src": "slides/protocols.reveal",
+          "description": "Protocols",
+          "status": "active"
+        }
+      ]
+    },
+    {
       "code": "0373",
       "name": "Llenguatges de marques",
       "base": "moduls/0373-llenguatges-de-marques/presentacions/",
       "presentations": [
         {
           "order": 0,
-          "title": "Introducció · Mòdul 0373 - Llenguatges de marques",
-          "src": "slides/introduccio.reveal",
-          "description": "Introducció · Mòdul 0373 - Llenguatges de marques"
+          "title": "Activitat w3css",
+          "src": "slides/activitat-w3css.reveal",
+          "description": "Activitat w3css"
         },
         {
-          "order": 0,
-          "title": "Introducció XML · Mòdul 0373 - Llenguatges de marques",
+          "order": 1,
+          "title": "1. Introducció",
+          "src": "slides/introduccio.reveal",
+          "description": "Introducció al mòdul 0373 - Llenguatges de marques"
+        },
+        {
+          "order": 2,
+          "title": "2. Introducció XML",
           "src": "slides/002_Introduccio_XML.reveal",
-          "description": "Introducció XML · Mòdul 0373 - Llenguatges de marques"
+          "description": "Introducció al concepte XML"
+        },
+        {
+          "order": 3,
+          "title": "HTML — Introducció i elements essencials",
+          "src": "slides/0373_001_HTML_Basics.reveal",
+          "description": "HTML — Introducció i elements essencials"
+        }
+      ]
+    },
+    {
+      "code": "",
+      "name": "0483-sistemes-informatics",
+      "base": "moduls/0483-sistemes-informatics/presentacions/",
+      "presentations": [
+        {
+          "order": 1,
+          "title": "intro-linux",
+          "src": "slides/intro-linux-sessio-01.reveal",
+          "description": "intro-linux"
+        },
+        {
+          "order": 2,
+          "title": "intro-linux-2",
+          "src": "slides/intro-linux-sessio-02.reveal",
+          "description": "intro-linux-2"
+        },
+        {
+          "order": 10,
+          "title": "0483-activitat-001-docker-web",
+          "src": "slides/0483-activitat-001-docker-web.reveal",
+          "description": "Activitat 1: Desplega un servei web amb Docker"
+        },
+        {
+          "order": 11,
+          "title": "Resum Docker — 0483 Sistemes informàtics (1r DAM)",
+          "src": "slides/0483-resum-docker.reveal",
+          "description": "Resum Docker — 0483 Sistemes informàtics (1r DAM)"
+        },
+        {
+          "order": 12,
+          "title": "Activitat: phpMyAdmin + MySQL amb docker compose",
+          "src": "slides/docker-compose-phhmyadmin-mysql.reveal",
+          "description": "Activitat: phpMyAdmin + MySQL amb docker compose"
         }
       ]
     },
@@ -25,10 +263,21 @@
       "base": "moduls/0484-bases-de-dades/presentacions/",
       "presentations": [
         {
-          "id": "001_Introduccio_Bases_Dades",
-          "title": "Tema 1: Introducció a Bases de Dades",
+          "id": "0484-aof-ud03-ae01",
+          "title": "Informació caòtica (**`0484-aof-ud03-ae01`**)",
           "description": "",
-          "src": "slides/001_Introduccio_Bases_Dades.md",
+          "src": "slides/bases-de-dades-activitat-dades-caotiques.reveal",
+          "theme": "white",
+          "tags": [
+            "BBDD",
+            "activitat"
+          ]
+        },
+        {
+          "id": "001_Introduccio_Bases_Dades",
+          "title": "1: Introducció a Bases de Dades",
+          "description": "",
+          "src": "slides/001_Introduccio_Bases_Dades.reveal",
           "theme": "white",
           "tags": [
             "BBDD"
@@ -36,9 +285,9 @@
         },
         {
           "id": "002_Conceptes_Basics_Bases_Dades",
-          "title": "Tema 2: Conceptes bàsics: de Bases de Dades",
+          "title": "2: Conceptes bàsics: de Bases de Dades",
           "description": "",
-          "src": "slides/002_Conceptes_Basics_Bases_Dades.md",
+          "src": "slides/002_Conceptes_Basics_Bases_Dades.reveal",
           "theme": "white",
           "tags": [
             "BBDD"
@@ -46,9 +295,9 @@
         },
         {
           "id": "003_MER_Model_Entitat_Relacio",
-          "title": "Tema 3: Model Entitat-Relació (MER)",
+          "title": "3: Model Entitat-Relació (MER)",
           "description": "",
-          "src": "slides/003_MER_Model_Entitat_Relacio.md",
+          "src": "slides/003_MER_Model_Entitat_Relacio.reveal",
           "theme": "white",
           "tags": [
             "BBDD"
@@ -56,9 +305,9 @@
         },
         {
           "id": "004_Join",
-          "title": "Comanda `JOIN` a SQL",
+          "title": "4 Comanda `JOIN` a SQL",
           "description": "",
-          "src": "slides/004_Join.md",
+          "src": "slides/004_Join.reveal",
           "theme": "white",
           "tags": [
             "BBDD"
@@ -66,23 +315,78 @@
         },
         {
           "id": "004_Relacions_MER",
-          "title": "Pres_004_Relacions_MER",
+          "title": "5 Relacions (MER)",
           "description": "",
-          "src": "slides/004_Relacions_MER.md",
+          "src": "slides/004_Relacions_MER.reveal",
           "theme": "white",
           "tags": [
             "BBDD"
           ]
         },
         {
-          "id": "005_Claus_MER",
-          "title": "Pres_005_Claus_MER",
-          "description": "",
-          "src": "slides/005_Claus_MER.md",
+          "id": "DAM_Act_004_MER_14_Enunciats",
+          "title": "Enunciats: Model Entitat-Relació (MER)",
+          "description": "Enunciats: Model Entitat-Relació (MER)",
+          "src": "slides/DAM_Act_004_MER_14_Enunciats.reveal",
           "theme": "white",
           "tags": [
             "BBDD"
           ]
+        },
+        {
+          "id": "0484-bds-activitat-validacio-mer-escenaris.reveal",
+          "title": "0484-bds-activitat-validacio-mer-escenaris.reveal",
+          "description": "Enunciats: Model Entitat-Relació (MER)",
+          "src": "slides/0484-bds-activitat-validacio-mer-escenaris.reveal",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        },
+        {
+          "id": "del-mer-al-model-relacional",
+          "title": "TEORIA: Del MER al model relacional",
+          "description": "TEORIA: Del MER al model relacional",
+          "src": "slides/del-mer-al-model-relacional.reveal",
+          "theme": "white",
+          "tags": [
+            "BBDD"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "mopt1",
+      "name": "Robòtica- Python",
+      "base": "moduls/mopt1-robotica-python/presentacions/",
+      "presentations": [
+        {
+          "order": 1,
+          "title": "1. Python 1a sessió",
+          "src": "slides/mopt1-python-apunts-01.reveal",
+          "description": "Python Apunts mopt1-python-intro-def",
+          "status": "active"
+        },
+        {
+          "order": 2,
+          "title": "2. Python segona sessió",
+          "src": "slides/mopt1-python-apunts-02.reveal",
+          "description": "Python Apunts",
+          "status": "active"
+        },
+        {
+          "order": 4,
+          "title": "4. Python Funcions",
+          "src": "slides/mopt1-python-apunts-03.reveal",
+          "description": "Python Apunts Funcions",
+          "status": "active"
+        },
+        {
+          "order": 3,
+          "title": "3. Python Funcexercicis-if-elseions",
+          "src": "slides/exercicis-if-else.reveal",
+          "description": "Python exercicis-if-else.reveal",
+          "status": "active"
         }
       ]
     }

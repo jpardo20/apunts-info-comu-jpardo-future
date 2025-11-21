@@ -4,6 +4,7 @@ site_url: https://jpardo20.github.io/apunts-jpardo20/
 
 nav:
   - Inici: index.md
+  - Presentacions (global): presentacions/index.html
   - Mòduls de SMX:
     - 0221 Muntatge i manteniment d’equips moduls:
       - Presentacions:
