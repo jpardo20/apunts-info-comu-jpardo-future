@@ -10,7 +10,7 @@
             <a href="moduls/0221-muntatge-i-manteniment-d-equips/presentacions/index.html">Presentacions</a>
         </p>
     </li>
-    <li><p><a href="https://jpardo20.github.io/apunts-jpardo20/moduls/0221-muntatge-i-manteniment-d-equips/presentacions/slides/coavaluacio-presentacions-rubrica.html">Correció: coavaluacio presentacions rúbrica</a>
+    <li><p><a href="moduls/0221-muntatge-i-manteniment-d-equips/presentacions/slides/coavaluacio-presentacions-rubrica.html">Correció: coavaluacio presentacions rúbrica</a>
         </p>
         </li>
         </ul>
@@ -51,14 +51,13 @@
 
 <ul>
 <li><p>
-divendres, 07 de novembre -> <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/tutoria/lectura_xataka_datacenters_espai_quiz.html" target="_about" style="color: gray; pointer-events: none;">Lectura i qüestionari: Data centers d'IA a l'espai (Xataka)</a>
+divendres, 07 de novembre -> <a href="moduls/tutoria/lectura_xataka_datacenters_espai_quiz.html">Lectura i qüestionari: Data centers d'IA a l'espai (Xataka)</a>
 </li>
 <li><p>
-divendres, 07 de novembre -> <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/tutoria/lectura_vilaweb_starfinder_quiz.html"  target="_about" style="color: gray; pointer-events: none;"> Lectura i qüestionari: Starfinder: Afterlight (VilaWeb)</a>
+divendres, 07 de novembre -> <a href="moduls/tutoria/lectura_vilaweb_starfinder_quiz.html">Lectura i qüestionari: Starfinder: Afterlight (VilaWeb)</a>
 </li>
 <li><p>
-
-divendres, 14 de novembre -> <a href="https://jpardo20.github.io/apunts-jpardo20/moduls/tutoria/lectura_quatre_noticies_tecnologia_combo-amb-llista-alumnes.html"  target="_blank">Lectura i qüestionari: 4 notícies de tecnologia</a>
+divendres, 14 de novembre -> <a href="moduls/tutoria/lectura_quatre_noticies_tecnologia.html">Lectura i qüestionari: 4 notícies de tecnologia</a>
 </li>
 
 </ul>

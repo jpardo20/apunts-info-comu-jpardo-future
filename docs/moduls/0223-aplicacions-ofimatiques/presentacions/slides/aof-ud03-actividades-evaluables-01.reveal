@@ -181,7 +181,7 @@ git push -u origin main
 
 ## 3a entrega
 
-Accede a este documento con consejos de seguridad sobre distintas redes sociales <a href="https://jpardo20.github.io/apunts-jpardo20/assets/files/combined_parental_guides.pdf" target="blank">combined_parent_al_guides.pdf</a>
+Accede a este documento con consejos de seguridad sobre distintas redes sociales <a href="../assets/files/combined_parental_guides.pdf" target="blank">combined_parent_al_guides.pdf</a>
 
 Se te va a solicitar la realización de un resumen de los consejos más relevantes en seguridad de redes sociales. Antes de realizar este resumen, realiza las anotaciones que estimes necesarias para facilitar el posterior resumen.
 
@@ -261,7 +261,7 @@ Realiza las siguientes operaciones utilizando [www.ilovepdf.com](www.ilovepdf.co
 *  Une en un solo PDF (**`<PrimerApellidoAlumno>-aof-ud03-ae01-4a-ent.pdf`**) los documentos:
 
 - [Prevención de riesgos en el uso de portátiles](https://www.unileon.es/intranet/prevencion/pvd_portatiles.pdf).
-- [combined_parent_al_guides.pdf](https://jpardo20.github.io/apunts-jpardo20/assets/files/combined_parental_guides.pdf).
+- [combined_parent_al_guides.pdf](../assets/files/combined_parental_guides.pdf).
 
 
 ----
