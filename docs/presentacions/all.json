@@ -138,7 +138,7 @@
           "src": "slides/aof-ud03-actividades-evaluables-01.reveal",
           "description": "Actividad evaluable (Utilidades PDF): 1 (`aof-ud03-ae01`)",
           "status": "active",
-          "type": "theory"
+          "type": "activity"
         },
         {
           "order": 5,
@@ -154,7 +154,7 @@
           "src": "slides/aof-ud05-ae05.reveal",
           "description": "Actividad evaluable (Procesadores de texto): 5 (`aof-ud05-ae05`)",
           "status": "active",
-          "type": "theory"
+          "type": "activity"
         },
         {
           "order": 7,
@@ -162,7 +162,7 @@
           "src": "slides/recursos.reveal",
           "description": "Recursos-estilo-TikTok--para-Word",
           "status": "active",
-          "type": "theory"
+          "type": "activity"
         }
       ]
     },
