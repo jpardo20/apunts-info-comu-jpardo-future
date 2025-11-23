@@ -46,29 +46,51 @@
     let items = [];
 
     function cardTemplate(item) {
+      const status = (item.status || 'active').toLowerCase();
+      const type = (item.type || 'theory').toLowerCase();
       const desc = item.description ? `<p>${item.description}</p>` : '';
       const title = item.title || 'Presentació';
-      const qsTitle = encodeURIComponent(title);
-
-      // Ruta al fitxer de diapositives:
-      // presentador.html és a docs/presentacions/
-      // -> cal pujar un nivell i anar a moduls/<...>/presentacions/slides/...
-      const srcParam = `../${item.moduleBase}${item.src}`;
-
-      const href = `presentador.html?src=${encodeURIComponent(srcParam)}&title=${qsTitle}${item.theme ? `&theme=${encodeURIComponent(item.theme)}` : ''}`;
 
       const moduleLabel = [item.moduleCode || '', item.moduleName || '']
         .filter(Boolean)
         .join(' · ');
 
+      // Ruta al fitxer de diapositives:
+      // presentador.html és a docs/presentacions/
+      // -> cal pujar un nivell i anar a moduls/<...>/presentacions/slides/...
+      const srcParam = `../${item.moduleBase || ''}${item.src || ''}`;
+
+      const href = `presentador.html?src=${encodeURIComponent(srcParam)}${
+        item.theme ? `&theme=${encodeURIComponent(item.theme)}` : ''
+      }${
+        title ? `&title=${encodeURIComponent(title)}` : ''
+      }`;
+
+      const articleClass = `card card--${type}${status === 'inactive' ? ' card--inactive' : ''}`;
+      const badge = status === 'inactive'
+        ? `<span class="badge badge--soon">Properament</span>`
+        : '';
+
+      const typeIcon = type === 'activity' ? '🧩' : '📚';
+      const typeLabel = type === 'activity' ? 'Activitat' : 'Teoria';
+
+      const button = status === 'inactive'
+        ? `<span class="button disabled" role="link" aria-disabled="true" title="Properament">No disponible</span>`
+        : `<a class="button primary" href="${href}">Obrir presentació</a>`;
+
       return `
-        <article class="card">
+        <article class="${articleClass}">
+          ${badge}
+          <div class="card-meta">
+            <span class="card-type-icon">${typeIcon}</span>
+            <span class="card-type-badge card-type-badge--${type}">${typeLabel}</span>
+          </div>
           <h2>${title}</h2>
           <p style="font-size: .9rem; color: #555; margin: .25rem 0 .5rem;">
             ${moduleLabel ? `[${moduleLabel}]` : ''}
           </p>
           ${desc}
-          <p><a class="button primary" href="${href}">Obrir presentació</a></p>
+          <p>${button}</p>
         </article>
       `;
     }
@@ -87,6 +109,7 @@
 
       let list = items.slice();
 
+      // Filtra per text (títol, descripció, mòdul)
       if (q) {
         list = list.filter(item => {
           const hay = [
@@ -99,6 +122,13 @@
         });
       }
 
+      // Amaga les presentacions marcades com a hidden
+      list = list.filter(item => {
+        const status = (item.status || 'active').toLowerCase();
+        return status !== 'hidden';
+      });
+
+      // Ordenació
       list.sort((a, b) => {
         const tA = (a.title || '').toLowerCase();
         const tB = (b.title || '').toLowerCase();
