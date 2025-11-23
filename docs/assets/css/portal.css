@@ -3,7 +3,16 @@ body.portal {
     font-family: Arial, sans-serif;
     margin: 0;
     background: #f7f9fc;
-    color: #222
+    color: #222;
+    /* Reserva espai perquè la capçalera fixa (.topbar) no tapi el contingut */
+    padding-top: 5.5rem;
+}
+
+/* Ajusta una mica més en pantalles petites, on el títol pot ocupar dues línies */
+@media (max-width: 768px) {
+    body.portal {
+        padding-top: 6.5rem;
+    }
 }
 
 .site-header {
@@ -68,6 +77,7 @@ body.portal {
     background: #0f4f93
 }
 
+
 .button.activitat {
     background: #5cb85c;
     color: #fff
@@ -91,7 +101,7 @@ body.portal {
     gap: .75rem;
     align-items: center;
     padding: 0 2rem 1rem;
-    margin-top: 1rem;
+    margin-top: .5rem;
 }
 
 .search-row input,
@@ -101,22 +111,17 @@ body.portal {
     border: 1px solid #ccc;
     border-radius: 6px;
 }
+
 .sort-select {
     padding: .5rem .75rem;
     border: 1px solid #ccc;
     border-radius: 6px;
-    background: #fff
+    background: #fff;
 }
 
 /* --- Inactive/hidden presentations styles (added) --- */
 .card {
     position: relative;
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.card:hover {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
 }
 
 .card--inactive {
@@ -149,47 +154,4 @@ body.portal {
     border: 1px solid rgba(0, 0, 0, .15);
     text-decoration: none;
     font-weight: 700;
-}
-
-/* --- Tipus de targeta: teoria / activitat --- */
-.card--theory {
-    border-left: 4px solid #1e88e5; /* blau */
-}
-
-.card--activity {
-    border-left: 4px solid #fb8c00; /* taronja */
-}
-
-.card-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    margin-bottom: 0.35rem;
-    font-size: 0.8rem;
-}
-
-.card-type-icon {
-    font-size: 1rem;
-    line-height: 1;
-}
-
-.card-type-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.1rem 0.5rem;
-    border-radius: 999px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    font-size: 0.7rem;
-}
-
-.card-type-badge--theory {
-    background-color: rgba(30, 136, 229, 0.12);
-    color: #1565c0;
-}
-
-.card-type-badge--activity {
-    background-color: rgba(251, 140, 0, 0.12);
-    color: #e65100;
 }
