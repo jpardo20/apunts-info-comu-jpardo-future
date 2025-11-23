@@ -1,0 +1,14 @@
+{
+  "students_json": "assets/data/dades_alumnes.json",
+  "forms": [
+    {
+      "id": "0221-electricitat-intro-quiz",
+      "title": "Qüestionari: Introducció a l'electricitat",
+      "module": "0221",
+      "moduleName": "Muntatge i manteniment d’equips",
+      "cycle": "SMX1",
+      "json": "forms/0221-electricitat-intro-quiz.json",
+      "output_html": "moduls/0221-muntatge-i-manteniment-d-equips/presentacions/electricitat-intro-quiz-auto.html"
+    }
+  ]
+}

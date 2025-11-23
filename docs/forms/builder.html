@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <title>Generador de qüestionaris (JSON)</title>
+
+    <!-- Reutilitzem l'estètica existent -->
+    <link rel="stylesheet" href="../assets/css/portal.css">
+    <link rel="stylesheet" href="../assets/css/forms.css">
+
+    <style>
+        /* Ajustos específics del builder */
+
+        .builder-main {
+          max-width: 960px;
+          margin: 0 auto 3rem;
+          padding: 0 1.25rem 3rem;
+        }
+
+        .builder-section {
+          margin-bottom: 1.75rem;
+          background: #ffffff;
+          border-radius: 16px;
+          padding: 1.2rem 1.4rem;
+          box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+          border: 1px solid #e5e7eb;
+        }
+
+        .builder-section h2 {
+          margin-top: 0;
+          font-size: 1.1rem;
+          margin-bottom: 0.75rem;
+          color: #111827;
+        }
+
+        .builder-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 0.75rem 1rem;
+        }
+
+        .builder-field label {
+          display: block;
+          font-weight: 600;
+          font-size: 0.9rem;
+          margin-bottom: 0.2rem;
+        }
+
+        .builder-field input,
+        .builder-field select,
+        .builder-field textarea {
+          width: 100%;
+          padding: 0.45rem 0.65rem;
+          border-radius: 8px;
+          border: 1px solid #d1d5db;
+          font-size: 0.9rem;
+        }
+
+        .builder-field textarea {
+          min-height: 70px;
+          resize: vertical;
+        }
+
+        .builder-hint {
+          font-size: 0.8rem;
+          color: #6b7280;
+          margin-top: 0.25rem;
+        }
+
+        .builder-questions-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .builder-questions-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .builder-question-card {
+          border-radius: 12px;
+          border: 1px solid #e5e7eb;
+          padding: 0.9rem 1rem;
+          background: #f9fafb;
+        }
+
+        .builder-question-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .builder-question-title {
+          font-weight: 600;
+          font-size: 0.95rem;
+        }
+
+        .builder-question-actions button {
+          border: none;
+          border-radius: 999px;
+          padding: 0.25rem 0.7rem;
+          font-size: 0.8rem;
+          cursor: pointer;
+          background: #fee2e2;
+          color: #991b1b;
+        }
+
+        .builder-question-actions button:hover {
+          background: #fecaca;
+        }
+
+        .builder-question-body .builder-field {
+          margin-bottom: 0.5rem;
+        }
+
+        .builder-checkbox-line {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.85rem;
+        }
+
+        .builder-checkbox-line input {
+          width: auto;
+        }
+
+        .builder-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          justify-content: flex-end;
+          margin-top: 0.75rem;
+        }
+
+        .builder-actions button {
+          border: none;
+          border-radius: 999px;
+          padding: 0.55rem 1.1rem;
+          font-size: 0.9rem;
+          font-weight: 500;
+          cursor: pointer;
+          background: #2563eb;
+          color: #ffffff;
+        }
+
+        .builder-actions button:hover {
+          background: #1d4ed8;
+        }
+
+        .builder-actions button.secondary {
+          background: #e5e7eb;
+          color: #111827;
+        }
+
+        .builder-actions button.secondary:hover {
+          background: #d4d4d8;
+        }
+
+        .builder-preview textarea {
+          width: 100%;
+          min-height: 260px;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+          font-size: 0.78rem;
+          border-radius: 12px;
+          border: 1px solid #d1d5db;
+          padding: 0.65rem 0.8rem;
+          background: #0f172a;
+          color: #e5e7eb;
+        }
+
+        @media (max-width: 640px) {
+          .builder-main {
+            padding-bottom: 2rem;
+          }
+        }
+    </style>
+</head>
+<body class="portal form-page">
+
+<header class="portal-header">
+  <h1 class="portal-title">Generador de qüestionaris (JSON)</h1>
+  <p class="portal-subtitle">
+    Eina per crear formularis compatibles amb el motor de qüestionaris.
+  </p>
+</header>
+
+<section class="form-intro">
+  1) Omple les dades del qüestionari. 2) Afegeix preguntes (de moment, només
+  <strong>resposta curta</strong>). 3) Descarrega el JSON i col·loca'l a la carpeta
+  <code>docs/forms/</code> del projecte.
+</section>
+
+<main class="builder-main">
+
+  <!-- META FORMULARI -->
+  <section class="builder-section">
+    <h2>1. Dades generals del qüestionari</h2>
+    <div class="builder-grid">
+      <div class="builder-field">
+        <label for="formTitle">Títol del qüestionari</label>
+        <input id="formTitle" type="text" placeholder="Qüestionari: Introducció a l'electricitat">
+        <div class="builder-hint">Apareix a la part superior del formulari.</div>
+      </div>
+
+      <div class="builder-field">
+        <label for="formId">ID del formulari</label>
+        <input id="formId" type="text" placeholder="0221-electricitat-intro-quiz">
+        <div class="builder-hint">Si el deixes buit, es generarà a partir del títol.</div>
+      </div>
+
+      <div class="builder-field">
+        <label for="formCycle">Cicle</label>
+        <select id="formCycle">
+          <option value="">─ Tria ─</option>
+          <option value="SMX1">SMX1</option>
+          <option value="SMX2">SMX2</option>
+          <option value="DAM1">DAM1</option>
+          <option value="DAM2">DAM2</option>
+        </select>
+        <div class="builder-hint">Serveix per filtrar alumnes al formulari.</div>
+      </div>
+
+      <div class="builder-field">
+        <label for="formModule">Codi del mòdul</label>
+        <input id="formModule" type="text" placeholder="0221">
+      </div>
+
+      <div class="builder-field">
+        <label for="formModuleName">Nom del mòdul</label>
+        <input id="formModuleName" type="text" placeholder="Muntatge i manteniment d’equips">
+      </div>
+
+      <div class="builder-field">
+        <label for="formDescription">Descripció (opcional)</label>
+        <textarea id="formDescription" placeholder="Breus indicacions per a l'alumnat."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREGUNTES -->
+  <section class="builder-section">
+    <div class="builder-questions-header">
+      <h2>2. Preguntes</h2>
+      <button type="button" id="addQuestionBtn">+ Afegeix pregunta</button>
+    </div>
+
+    <div class="builder-questions-list" id="questionsList">
+      <!-- Targetes de preguntes generades amb JS -->
+    </div>
+
+    <div class="builder-hint">
+      v1: només preguntes de <strong>resposta curta</strong>. Més endavant afegirem
+      Verdader/Fals, procediments, relacions i captures.
+    </div>
+  </section>
+
+  <!-- RESULTAT / JSON -->
+  <section class="builder-section builder-preview">
+    <h2>3. Resultat (JSON del formulari)</h2>
+    <div class="builder-hint">
+      Revisa el JSON i descarrega'l. Podràs enganxar-lo directament a la carpeta
+      <code>docs/forms/</code> del repositori.
+    </div>
+    <textarea id="jsonPreview" readonly></textarea>
+
+    <div class="builder-actions">
+      <button type="button" class="secondary" id="refreshJsonBtn">
+        Actualitza previsualització
+      </button>
+      <button type="button" id="downloadJsonBtn">
+        Descarrega JSON
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<script src="../assets/js/form-builder.js"></script>
+
+</body>
+</html>

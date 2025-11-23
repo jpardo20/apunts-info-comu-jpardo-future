@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <title>$title</title>
+
+    <!-- CSS (paths calculats pel script) -->
+    <link rel="stylesheet" href="$portal_css_rel">
+    <link rel="stylesheet" href="$forms_css_rel">
+</head>
+<body class="portal form-page">
+
+<header class="portal-header">
+    <h1 class="portal-title">$title</h1>
+    <p class="portal-subtitle">$subtitle</p>
+</header>
+
+<section class="form-intro">
+  Una sola resposta per alumne en aquest dispositiu. Es calcula una
+  <strong>nota orientativa</strong> a partir de les preguntes tancades.
+  Les preguntes obertes s’han de corregir manualment.
+</section>
+
+<main class="form-main">
+
+    <!-- Barra de progrés -->
+    <section class="form-progress">
+        <div class="progress-label" id="progressLabel">0% completat</div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+    </section>
+
+    <!-- Arrel del formulari dinàmic -->
+    <section id="formRoot"
+             data-form-id="$form_id"
+             data-form-json="$form_json_rel"
+             data-students-json="$students_json_rel"
+             data-cycle="$cycle">
+        <!-- El JS hi pintarà el formulari -->
+    </section>
+
+    <!-- Botons d'accions -->
+    <section class="form-actions">
+        <button type="button" id="checkMissingBtn">
+            Comprova si falta alguna resposta o captura
+        </button>
+        <button type="button" id="calcScoreBtn">
+            Calcula nota orientativa
+        </button>
+        <button type="button" id="saveProgressBtn">
+            Desa el que ja tens omplert
+        </button>
+        <button type="button" id="downloadJsonBtn">
+            Descarrega fitxer JSON
+        </button>
+    </section>
+
+    <section class="form-messages">
+        <div id="formMessages"></div>
+    </section>
+
+</main>
+
+<!-- Motor de formularis (path també calculat pel script) -->
+<script src="$form_engine_rel"></script>
+
+</body>
+</html>

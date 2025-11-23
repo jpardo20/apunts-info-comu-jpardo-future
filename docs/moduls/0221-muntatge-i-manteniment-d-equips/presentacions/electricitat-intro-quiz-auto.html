@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <title>Qüestionari: Introducció a l'electricitat</title>
+
+    <!-- CSS (paths calculats pel script) -->
+    <link rel="stylesheet" href="../../../assets/css/portal.css">
+    <link rel="stylesheet" href="../../../assets/css/forms.css">
+</head>
+<body class="portal form-page">
+
+<header class="portal-header">
+    <h1 class="portal-title">Qüestionari: Introducció a l'electricitat</h1>
+    <p class="portal-subtitle">Mòdul 0221 · Muntatge i manteniment d’equips · Cicle SMX1</p>
+</header>
+
+<section class="form-intro">
+  Una sola resposta per alumne en aquest dispositiu. Es calcula una
+  <strong>nota orientativa</strong> a partir de les preguntes tancades.
+  Les preguntes obertes s’han de corregir manualment.
+</section>
+
+<main class="form-main">
+
+    <!-- Barra de progrés -->
+    <section class="form-progress">
+        <div class="progress-label" id="progressLabel">0% completat</div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+    </section>
+
+    <!-- Arrel del formulari dinàmic -->
+    <section id="formRoot"
+             data-form-id="0221-electricitat-intro-quiz"
+             data-form-json="../../../forms/0221-electricitat-intro-quiz.json"
+             data-students-json="../../../assets/data/dades_alumnes.json"
+             data-cycle="SMX1">
+        <!-- El JS hi pintarà el formulari -->
+    </section>
+
+    <!-- Botons d'accions -->
+    <section class="form-actions">
+        <button type="button" id="checkMissingBtn">
+            Comprova si falta alguna resposta o captura
+        </button>
+        <button type="button" id="calcScoreBtn">
+            Calcula nota orientativa
+        </button>
+        <button type="button" id="saveProgressBtn">
+            Desa el que ja tens omplert
+        </button>
+        <button type="button" id="downloadJsonBtn">
+            Descarrega fitxer JSON
+        </button>
+    </section>
+
+    <section class="form-messages">
+        <div id="formMessages"></div>
+    </section>
+
+</main>
+
+<!-- Motor de formularis (path també calculat pel script) -->
+<script src="../../../assets/js/form-engine.js"></script>
+
+</body>
+</html>

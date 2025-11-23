@@ -1,0 +1,77 @@
+{
+  "id": "0221-electricitat-intro-quiz",
+  "title": "Qüestionari: Introducció a l'electricitat",
+  "description": "Activitat d'autoavaluació sobre conceptes bàsics d'electricitat.",
+  "cycle": "SMX1",
+  "module": "0221",
+  "moduleName": "Muntatge i manteniment d’equips",
+  "questions": [
+    {
+      "id": "p1-def-tensio",
+      "type": "short_text",
+      "label": "1) Explica amb les teves paraules què és la tensió elèctrica.",
+      "helpText": "Resposta curta, entre 1 i 3 frases.",
+      "required": true,
+      "max_length": 300,
+      "weight": 1.5
+    },
+    {
+      "id": "p2-matching-magnituds",
+      "type": "matching",
+      "label": "2) Relaciona cada magnitud amb la seva unitat correcta.",
+      "required": true,
+      "left": [
+        "Tensió",
+        "Intensitat",
+        "Resistència"
+      ],
+      "right": [
+        "Ampers (A)",
+        "Volts (V)",
+        "Ohms (Ω)"
+      ],
+      "correct": [1, 0, 2],
+      "weight": 2
+    },
+    {
+      "id": "p3-procediment-polimetre",
+      "type": "single_choice",
+      "label": "3) Quin és el primer pas correcte per mesurar tensió amb un polímetre?",
+      "required": true,
+      "options": [
+        {
+          "value": "a",
+          "text": "Col·locar el selector en mesura d'intensitat",
+          "is_correct": false
+        },
+        {
+          "value": "b",
+          "text": "Col·locar els cables als borns de tensió i COM",
+          "is_correct": true
+        },
+        {
+          "value": "c",
+          "text": "Tancar el circuit amb un cable per assegurar el contacte",
+          "is_correct": false
+        }
+      ],
+      "weight": 1.5
+    },
+    {
+      "id": "p4-true-false-serie",
+      "type": "true_false",
+      "label": "4) En un circuit en sèrie, la intensitat és la mateixa a tots els punts del circuit.",
+      "required": true,
+      "correct": true,
+      "weight": 1
+    },
+    {
+      "id": "p5-captura-circuit",
+      "type": "capture",
+      "label": "5) Enganxa aquí una captura del circuit simple (pila + bombeta) muntat al simulador.",
+      "helpText": "Fes la captura amb l'eina que vulguis i enganxa-la directament (Ctrl+V).",
+      "required": true,
+      "weight": 1
+    }
+  ]
+}

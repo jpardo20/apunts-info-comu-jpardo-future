@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <title>Qüestionari: Introducció a l'electricitat</title>
+
+    <!-- Reutilitzem l'estètica de portals -->
+    <link rel="stylesheet" href="../../../assets/css/portal.css">
+    <!-- Més endavant hi afegirem un forms.css específic -->
+    <link rel="stylesheet" href="../../../assets/css/forms.css">
+</head>
+<body class="portal form-page">
+
+<header class="portal-header">
+    <h1 class="portal-title">Qüestionari: Introducció a l'electricitat</h1>
+    <p class="portal-subtitle">
+        Mòdul 0221 · Muntatge i manteniment d’equips · Cicle SMX1
+    </p>
+</header>
+
+<main class="form-main">
+
+    <!-- Barra de progrés -->
+    <section class="form-progress">
+        <div class="progress-label" id="progressLabel">0% completat</div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+    </section>
+
+    <!-- Arrel on el motor pintarà el formulari -->
+    <section id="formRoot"
+             data-form-id="0221-electricitat-intro-quiz-02"
+             data-form-json="electricitat-intro-quiz-02.json"
+             data-students-json="../../../assets/data/dades_alumnes.json"
+             data-cycle="SMX1">
+        <!--
+          El JS afegirà aquí:
+          - Selector d'alumne/a
+          - Preguntes segons el JSON
+        -->
+    </section>
+
+    <!-- Botons d'accions -->
+    <section class="form-actions">
+        <button type="button" id="checkMissingBtn">
+            Comprova si falta alguna resposta o captura
+        </button>
+        <button type="button" id="calcScoreBtn">
+            Calcula nota orientativa
+        </button>
+        <button type="button" id="saveProgressBtn">
+            Desa el que ja tens omplert
+        </button>
+        <button type="button" id="downloadJsonBtn">
+            Descarrega fitxer JSON
+        </button>
+    </section>
+
+    <!-- Opcional: espai per mostrar missatges (errors, confirmacions, etc.) -->
+    <section class="form-messages">
+        <div id="formMessages"></div>
+    </section>
+
+</main>
+
+<!-- Aquí anirà el motor JS que encara hem de crear -->
+<script src="../../../assets/js/form-engine.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+docs/moduls/0221-muntatge-i-manteniment-d-equips/presentacions/electricitat-intro-quiz.html:91:  <form id="quiz" class="card">
+docs/moduls/0225-xarxes-locals/presentacions/slides/activitats/activitat.html:58:  <form id="quiz">
+docs/moduls/0373-llenguatges-de-marques/presentacions/slides/0373_001_HTML_Basics.reveal:207:<form action="/enviar" method="post">
+docs/moduls/0373-llenguatges-de-marques/apunts/selector.html:217:                        <form class="pagefind-ui__form svelte-e9gkc3" role="search" aria-label="Search this site"
+docs/moduls/tutoria/lectura_vilaweb_starfinder_quiz.html:49:  <form id="quiz">
+docs/moduls/tutoria/lectura_vilaweb_starfinder_quiz_v1.html:33:  <form id="quiz">
+docs/moduls/tutoria/lectura_xataka_datacenters_espai_quiz.html:49:  <form id="quiz">
+docs/moduls/tutoria/lectura_quatre_noticies_tecnologia.html:61:  <form id="quiz_nvidia">
+docs/moduls/tutoria/lectura_quatre_noticies_tecnologia.html:111:  <form id="quiz_ai_act">
+docs/moduls/tutoria/lectura_quatre_noticies_tecnologia.html:161:  <form id="quiz_suncatcher">
+docs/moduls/tutoria/lectura_quatre_noticies_tecnologia.html:211:  <form id="quiz_starfinder">
+docs/moduls/tutoria/lectura_xataka_datacenters_espai_quiz_v1.html:33:  <form id="quiz">
+docs/assets/forms/0484-bds-activitat-validacio-mer.html:86:    <form id="frm">
+\n---------------------\n
+docs/moduls/0221-muntatge-i-manteniment-d-equips/presentacions/electricitat-intro-quiz.html
+docs/moduls/tutoria/lectura_vilaweb_starfinder_quiz.html
+docs/moduls/tutoria/lectura_vilaweb_starfinder_quiz_v1.html
+docs/moduls/tutoria/lectura_xataka_datacenters_espai_quiz.html
+docs/moduls/tutoria/lectura_xataka_datacenters_espai_quiz_v1.html

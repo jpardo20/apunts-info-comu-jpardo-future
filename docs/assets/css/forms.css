@@ -1,0 +1,421 @@
+/* --- Layout general del qüestionari --- */
+
+body.portal.form-page {
+  background: #f4f6fb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.form-main {
+  max-width: 960px;
+  margin: 0 auto 3rem;
+  padding: 0 1.25rem 3rem;
+}
+
+/* Capçalera */
+
+.portal-header {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 0.75rem;
+}
+
+.portal-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.35rem;
+  color: #0f172a;
+}
+
+.portal-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+/* --- Barra de progrés --- */
+
+.form-progress {
+  margin: 0 0 1.75rem;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+  border: 1px solid #e5e7eb;
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1e293b;
+  white-space: nowrap;
+}
+
+.progress-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: #e0e7ff;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  transition: width 0.25s ease-out;
+}
+
+/* --- Targetes de pregunta --- */
+
+.question {
+  margin-bottom: 1.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem 1rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.question label {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #111827;
+}
+
+.question--student {
+  border-left: 4px solid #2563eb;
+  padding-left: 1.2rem;
+}
+
+/* meta + textos auxiliars */
+
+.required-mark {
+  color: #dc2626;
+  margin-left: 0.15rem;
+}
+
+.help-text {
+  font-size: 0.86rem;
+  color: #6b7280;
+  margin-bottom: 0.6rem;
+}
+
+.status-text {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.question-meta {
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #94a3b8;
+}
+
+/* --- Camps de resposta curta --- */
+
+.question-body textarea,
+.question-body input[type="text"] {
+  width: 100%;
+  min-height: 110px;
+  border-radius: 12px;
+  border: 1px dashed #cbd5f5;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #111827;
+  resize: vertical;
+  background: #f9fafb;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.question-body textarea:focus,
+.question-body input[type="text"]:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+}
+
+/* --- Opcions (radio, V/F) --- */
+
+.question-body--options {
+  margin-top: 0.25rem;
+}
+
+.question-body--options .option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.2rem 0;
+}
+
+.question-body--options input[type="radio"] {
+  margin-top: 0.15rem;
+}
+
+.question-body--options label {
+  font-weight: 400;
+  color: #111827;
+}
+
+/* --- Preguntes de relació (matching) --- */
+
+.question-body--matching .matching-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.3fr);
+  gap: 0.9rem;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+
+.matching-left {
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+.matching-select {
+  padding: 0.4rem 0.75rem;
+  min-width: 180px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 0.9rem;
+  color: #111827;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.matching-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+}
+
+/* --- Preguntes de captura --- */
+
+.question-body--capture .capture-instructions {
+  font-size: 0.86rem;
+  color: #6b7280;
+  margin-bottom: 0.4rem;
+}
+
+.question-body--capture .capture-area {
+  margin-top: 0.2rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px dashed #93c5fd;
+  background: #eff6ff;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #1d4ed8;
+  cursor: text;
+  transition: border-color 0.15s ease, background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.question-body--capture .capture-area:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #dbeafe;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+}
+
+.capture-preview img {
+  margin-top: 0.75rem;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.2);
+}
+
+/* --- Selector d'alumne --- */
+
+.question--student select {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  font-size: 0.92rem;
+  color: #111827;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.question--student select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #f9fafb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+/* --- Errors i validació --- */
+
+.question--error {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.4);
+}
+
+.question--error .question-body textarea,
+.question--error .matching-select,
+.question--error .capture-area {
+  border-color: #f97373 !important;
+}
+
+/* --- Botons d'acció --- */
+
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.form-actions button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: #e5e7eb;
+  color: #111827;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background 0.15s ease, transform 0.06s ease,
+    box-shadow 0.15s ease;
+}
+
+.form-actions button:hover {
+  background: #d4d4d8;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+  transform: translateY(-1px);
+}
+
+.form-actions button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Accentuar alguns botons concrets */
+
+#checkMissingBtn {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+#checkMissingBtn:hover {
+  background: #bae6fd;
+}
+
+#calcScoreBtn {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+#calcScoreBtn:hover {
+  background: #1d4ed8;
+}
+
+#downloadJsonBtn {
+  background: #111827;
+  color: #f9fafb;
+}
+
+#downloadJsonBtn:hover {
+  background: #020617;
+}
+
+#saveProgressBtn {
+  background: #ecfdf5;
+  color: #15803d;
+}
+
+#saveProgressBtn:hover {
+  background: #bbf7d0;
+}
+
+/* --- Missatges --- */
+
+.form-messages {
+  margin-top: 1.25rem;
+}
+
+#formMessages {
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.message-success {
+  background: #ecfdf5;
+  border: 1px solid #22c55e;
+  color: #166534;
+}
+
+.message-error {
+  background: #fef2f2;
+  border: 1px solid #ef4444;
+  color: #991b1b;
+}
+
+.message-warning {
+  background: #fffbeb;
+  border: 1px solid #f59e0b;
+  color: #92400e;
+}
+
+.message-info {
+  background: #eef2ff;
+  border: 1px solid #6366f1;
+  color: #3730a3;
+}
+
+/* --- Responsivitat bàsica --- */
+
+@media (max-width: 640px) {
+  .portal-title {
+    font-size: 1.5rem;
+  }
+
+  .form-progress {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .progress-label {
+    text-align: center;
+  }
+
+  .question {
+    padding: 1rem 1rem 0.85rem;
+  }
+
+  .question-body--matching .matching-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-intro {
+  max-width: 960px;
+  margin: 0 auto 1.25rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  background: #e0f2fe;
+  color: #0f172a;
+  border-radius: 12px;
+  border: 1px solid #7dd3fc;
+}

@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "id": "000001",
+      "name": "Júlia Pons",
+      "cycle": "SMX1",
+      "group": "SMX1-A"
+    },
+    {
+      "id": "000002",
+      "name": "Arnau Garcia",
+      "cycle": "SMX1",
+      "group": "SMX1-A"
+    },
+    {
+      "id": "000003",
+      "name": "Marc López",
+      "cycle": "DAM2",
+      "group": "DAM2-VIDEOJOCS"
+    }
+  ]
+}
