@@ -5,32 +5,36 @@
   },
   "presentations": [
     {
-        "order": 1,
-        "title": "1. Python 1a sessió",
-        "src": "slides/mopt1-python-apunts-01.reveal",
-        "description": "Python Apunts mopt1-python-intro-def",
-        "status": "active"
+      "order": 1,
+      "title": "1. Python 1a sessió",
+      "src": "slides/mopt1-python-apunts-01.reveal",
+      "description": "Python Apunts mopt1-python-intro-def",
+      "status": "active",
+      "type": "theory"
     },
     {
       "order": 2,
       "title": "2. Python segona sessió",
       "src": "slides/mopt1-python-apunts-02.reveal",
       "description": "Python Apunts",
-      "status": "active"
+      "status": "active",
+      "type": "theory"
     },
     {
       "order": 4,
       "title": "4. Python Funcions",
       "src": "slides/mopt1-python-apunts-03.reveal",
       "description": "Python Apunts Funcions",
-      "status": "active"
+      "status": "active",
+      "type": "theory"
     },
     {
       "order": 3,
       "title": "3. Python Funcexercicis-if-elseions",
       "src": "slides/exercicis-if-else.reveal",
       "description": "Python exercicis-if-else.reveal",
-      "status": "active"
+      "status": "active",
+      "type": "activity"
     }
   ]
 }

@@ -4,32 +4,41 @@
       "order": 1,
       "title": "intro-linux",
       "src": "slides/intro-linux-sessio-01.reveal",
-      "description": "intro-linux"
+      "description": "intro-linux",
+      "type": "theory",
+      "status": "active"
     },
     {
       "order": 2,
       "title": "intro-linux-2",
       "src": "slides/intro-linux-sessio-02.reveal",
-      "description": "intro-linux-2"
+      "description": "intro-linux-2",
+      "type": "theory",
+      "status": "active"
     },
     {
       "order": 10,
       "title": "0483-activitat-001-docker-web",
       "src": "slides/0483-activitat-001-docker-web.reveal",
-      "description": "Activitat 1: Desplega un servei web amb Docker"
+      "description": "Activitat 1: Desplega un servei web amb Docker",
+      "type": "activity",
+      "status": "active"
     },
     {
       "order": 11,
       "title": "Resum Docker — 0483 Sistemes informàtics (1r DAM)",
       "src": "slides/0483-resum-docker.reveal",
-      "description": "Resum Docker — 0483 Sistemes informàtics (1r DAM)"
+      "description": "Resum Docker — 0483 Sistemes informàtics (1r DAM)",
+      "type": "theory",
+      "status": "active"
     },
     {
       "order": 12,
       "title": "Activitat: phpMyAdmin + MySQL amb docker compose",
       "src": "slides/docker-compose-phhmyadmin-mysql.reveal",
-      "description": "Activitat: phpMyAdmin + MySQL amb docker compose"
-    }    
-    
+      "description": "Activitat: phpMyAdmin + MySQL amb docker compose",
+      "type": "activity",
+      "status": "active"
+    }
   ]
 }

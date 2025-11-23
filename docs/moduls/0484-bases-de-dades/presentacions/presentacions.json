@@ -11,9 +11,12 @@
       "src": "slides/bases-de-dades-activitat-dades-caotiques.reveal",
       "theme": "white",
       "tags": [
-        "BBDD", "activitat"
-      ]
-        
+        "BBDD",
+        "activitat"
+      ],
+      "order": 1,
+      "type": "activity",
+      "status": "active"
     },
     {
       "id": "001_Introduccio_Bases_Dades",
@@ -23,7 +26,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 2,
+      "type": "theory",
+      "status": "active"
     },
     {
       "id": "002_Conceptes_Basics_Bases_Dades",
@@ -33,7 +39,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 3,
+      "type": "theory",
+      "status": "active"
     },
     {
       "id": "003_MER_Model_Entitat_Relacio",
@@ -43,7 +52,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 4,
+      "type": "theory",
+      "status": "active"
     },
     {
       "id": "004_Join",
@@ -53,7 +65,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 5,
+      "type": "theory",
+      "status": "active"
     },
     {
       "id": "004_Relacions_MER",
@@ -63,7 +78,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 6,
+      "type": "theory",
+      "status": "active"
     },
     {
       "id": "DAM_Act_004_MER_14_Enunciats",
@@ -73,7 +91,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 7,
+      "type": "activity",
+      "status": "active"
     },
     {
       "id": "0484-bds-activitat-validacio-mer-escenaris.reveal",
@@ -83,7 +104,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 8,
+      "type": "activity",
+      "status": "active"
     },
     {
       "id": "del-mer-al-model-relacional",
@@ -93,7 +117,10 @@
       "theme": "white",
       "tags": [
         "BBDD"
-      ]
+      ],
+      "order": 9,
+      "type": "theory",
+      "status": "active"
     }
   ]
 }

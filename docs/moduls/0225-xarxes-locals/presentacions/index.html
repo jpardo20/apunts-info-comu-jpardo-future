@@ -60,69 +60,8 @@
     </main>
     <footer class="site-footer">© 2025 · Apunts Joan Pardo per DigiTechFP</footer>
 
-    <script>
-        const el = (sel) => document.querySelector(sel);
-        const grid = el('#grid');
-        const searchInput = el('#search');
-        const sortSelect = el('#sort');
-        let items = [];
+        <script src="../../../assets/js/presentacions-modul.js"></script>
 
-        function cardTemplate(item) {
-            const status = (item.status || 'active').toLowerCase();
-            const desc = item.description ? `<p>${item.description}</p>` : '';
-            const title = item.title || 'Presentació';
-            const href = `./presentador.html?src=${encodeURIComponent(item.src || '')}${item.theme ? `&theme=${encodeURIComponent(item.theme)}` : ''}${item.title ? `&title=${encodeURIComponent(item.title)}` : ''}`;
-            const articleClass = `card${status === 'inactive' ? ' card--inactive' : ''}`;
-            const badge = status === 'inactive' ? `<span class="badge badge--soon">Properament</span>` : '';
-            const button = status === 'inactive'
-                ? `<span class="button disabled" role="link" aria-disabled="true" title="Properament">No disponible</span>`
-                : `<a class="button primary" href="${href}">Obrir presentació</a>`;
-            return `<article class="${articleClass}">
-                ${badge}
-                <h2>${title}</h2>
-                ${desc}
-                <p>${button}</p>
-              </article>`;
-        }
-
-        function render(list) {
-            grid.innerHTML = list.map(cardTemplate).join('\n');
-        }
-
-        function applyFilters() {
-            const q = (searchInput?.value || '').toLowerCase().trim();
-            const mode = sortSelect?.value || 'title-az';
-            let list = (items || []).filter(it => {
-                const status = (it.status || 'active').toLowerCase();
-                if (status === 'hidden') return false;
-                const t = (it.title || '').toLowerCase();
-                const d = (it.description || '').toLowerCase();
-                return !q || t.includes(q) || d.includes(q);
-            });
-            list.sort((a, b) => {
-                if (mode === 'title-az') return (a.title || '').localeCompare(b.title || '');
-                if (mode === 'title-za') return (b.title || '').localeCompare(a.title || '');
-                if (mode === 'date-new' || mode === 'date-old') {
-                    const ad = new Date(a.date || 0).getTime() || 0;
-                    const bd = new Date(b.date || 0).getTime() || 0;
-                    return mode === 'date-new' ? bd - ad : ad - bd;
-                }
-                return (a.order ?? 9999) - (b.order ?? 9999);
-            });
-            render(list);
-        }
-
-        searchInput?.addEventListener('input', applyFilters);
-        sortSelect?.addEventListener('change', applyFilters);
-
-        fetch('presentacions.json')
-            .then(r => r.json())
-            .then(data => { items = data.presentations || []; applyFilters(); })
-            .catch(err => {
-                grid.innerHTML = '<p>No s\'ha pogut carregar el llistat de presentacions.</p>';
-                console.error(err);
-            });
-    </script>
 </body>
 
 </html>

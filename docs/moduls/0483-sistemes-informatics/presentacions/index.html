@@ -37,51 +37,8 @@
 
     <footer class="site-footer">© 2025 · Apunts Joan Pardo per DigiTechFP</footer>
 
-    <script>
-        const el = (sel) => document.querySelector(sel);
-        const grid = el('#grid');
-        const searchInput = el('#search');
-        const sortSelect = el('#sort');
-        let items = [];
+        <script src="../../../assets/js/presentacions-modul.js"></script>
 
-        function cardTemplate(item) {
-            const desc = item.description ? `<p>${item.description}</p>` : '';
-            const title = item.title || 'Presentació';
-            const qsTitle = encodeURIComponent(title);
-            const href = `./presentador.html?src=${encodeURIComponent(item.src)}&title=${qsTitle}${item.theme ? `&theme=${encodeURIComponent(item.theme)}` : ''}`;
-            return `<article class="card">
-                  <h2>${title}</h2>
-                  ${desc}
-                  <p><a class="button primary" href="${href}">Obrir presentació</a></p>
-                </article>`;
-        }
-
-        function render(list) {
-            grid.innerHTML = list.map(cardTemplate).join('\n');
-        }
-
-        function applyFilters() {
-            const q = searchInput.value.toLowerCase().trim();
-            let list = items.filter(it => (it.title || '').toLowerCase().includes(q) || (it.description || '').toLowerCase().includes(q));
-            const mode = sortSelect.value;
-            list.sort((a, b) => {
-                if (mode === 'title') return (a.title || '').localeCompare(b.title || '');
-                return (a.order || 9999) - (b.order || 9999);
-            });
-            render(list);
-        }
-
-        searchInput.addEventListener('input', applyFilters);
-        sortSelect.addEventListener('change', applyFilters);
-
-        fetch('presentacions.json')
-            .then(r => r.json())
-            .then(data => { items = data.presentations || []; applyFilters(); })
-            .catch(err => {
-                grid.innerHTML = '<p>No s\'ha pogut carregar el llistat de presentacions.</p>';
-                console.error(err);
-            });
-    </script>
 </body>
 
 </html>
