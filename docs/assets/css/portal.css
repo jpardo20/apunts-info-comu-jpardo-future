@@ -85,20 +85,22 @@ body.portal {
     color: #666
 }
 
-.search-row {
+.search-row,
+.toolbar {
     display: flex;
     gap: .75rem;
     align-items: center;
-    padding: 0 2rem 1rem
+    padding: 0 2rem 1rem;
+    margin-top: 1rem;
 }
 
-.search-row input {
+.search-row input,
+.toolbar input {
     flex: 1;
     padding: .5rem .75rem;
     border: 1px solid #ccc;
-    border-radius: 6px
+    border-radius: 6px;
 }
-
 .sort-select {
     padding: .5rem .75rem;
     border: 1px solid #ccc;
